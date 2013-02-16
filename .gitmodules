@@ -1,0 +1,3 @@
+[submodule "IMDb-PHP-API"]
+	path = IMDb-PHP-API
+	url = https://github.com/chrisjp/IMDb-PHP-API.git
