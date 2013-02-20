@@ -2,6 +2,8 @@
 
 /**
  * Exception handler for PCRE functions
+ * @package imdb-markup-syntax
+ * @author Henrik Roos <henrik at afternoon.se>
  */
 class PCRE_Exception extends Exception {
 
@@ -24,13 +26,14 @@ class PCRE_Exception extends Exception {
      * @param Exception $previous
      */
     public function __construct($message = "", $code = 0, Exception $previous = null) {
-        $last_error = error_get_last();
-        if (empty($last_error)) {
-            $code = preg_last_error();
+        $preg_last_error = preg_last_error();
+        if (!empty($preg_last_error)) {
+            $code = $preg_last_error;
             $message = $this->pcre_errors[$code];
         } else {
-            $code = $last_error["type"];
-            $message = $last_error["message"];
+            $error_get_last = error_get_last();
+            $code = $error_get_last["type"];
+            $message = $error_get_last["message"];
         }
         parent::__construct($message, $code, $previous);
     }

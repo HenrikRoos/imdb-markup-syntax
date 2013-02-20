@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/../class-imdb-tag-processing.php';
 require_once dirname(__FILE__) . '/../class-pcre-exception.php';
 
 /**
- * Testclass for unit test for IMDb_Tag_Processing class.
+ * Testclass for phpunit test for IMDb_Tag_Processing class.
  */
 class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
 
@@ -12,11 +12,6 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
      * @var array string of testdata 
      */
     public $testdata;
-
-    /**
-     * @var IMDb_Tag_Processing
-     */
-    protected $obj;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -28,10 +23,10 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
                 Quisque congue [IMDb:id(tt0137523)]. Title: [imdb:title]",
             "two_positive" => "Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.
                 [IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id(tt0102926)]
-                Title: [imdb:title] [IMDb:id(tt0137523)]",
+                Title: [imdb:title] [IMDb:id(tt0137523)]. Year: [imdb:year]",
             "no_match" => "Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.
                 [IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id()]
-                Title: [imdb:title] [IMDb:id:tt0137523]",
+                Title: [title] [IMDb:id:tt0137523]",
         );
     }
 
@@ -40,9 +35,9 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Tag_Processing::find_id
      */
     public function testFind_idOnePositive() {
-        $this->obj = new IMDb_Tag_Processing($this->testdata["one_positive"]);
-        $this->assertTrue($this->obj->find_id(), "Id, not found");
-        $this->assertEquals("tt0137523", $this->obj->id);
+        $obj = new IMDb_Tag_Processing($this->testdata["one_positive"]);
+        $this->assertTrue($obj->find_id(), "Id, not found");
+        $this->assertEquals("tt0137523", $obj->id);
     }
 
     /**
@@ -56,34 +51,38 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * No correct [IMDb:id(xxx)] tags, Positive test. id not set.
+     * No correct [IMDb:id(xxx)] tags. Alternative test. id not set.
      * @covers IMDb_Tag_Processing::find_id
      */
     public function testFind_idNoMatch() {
-        $this->obj = new IMDb_Tag_Processing($this->testdata["no_match"]);
-        $this->assertFalse($this->obj->find_id(), "Id is found, not good");
-        $this->assertEmpty($this->obj->id);
+        $obj = new IMDb_Tag_Processing($this->testdata["no_match"]);
+        $this->assertFalse($obj->find_id(), "Id is found, not good");
+        $this->assertEmpty($obj->id);
     }
 
     /**
      * Null input = id not set.
      * @covers IMDb_Tag_Processing::find_id
      */
-    public function testFind_idNull() {
-        $this->obj = new IMDb_Tag_Processing(null);
-        $this->assertFalse($this->obj->find_id(), "Id is found, not good");
-        $this->assertEmpty($this->obj->id);
+    public function testFind_idEmpty() {
+        $obj = new IMDb_Tag_Processing(null);
+        $this->assertFalse($obj->find_id(), "Id is found, not good");
+        $this->assertEmpty($obj->id);
+        $obj2 = new IMDb_Tag_Processing("");
+        $this->assertFalse($obj2->find_id(), "Id is found, not good");
+        $this->assertEmpty($obj2->id);
     }
 
     /**
      * Negativ test for Exception handler of a PREG_ERROR
+     * @covers IMDb_Tag_Processing::find_id
      */
-    public function testFind_id_PREG_ERROR() {
-        $this->obj = new IMDb_Tag_Processing("foobar foobar foobar");
-        $this->obj->id_pattern = "/(?:\D+|<\d+>)*[!?]/";
+    public function testFind_idPREG_ERROR() {
+        $obj = new IMDb_Tag_Processing("foobar foobar foobar");
+        $obj->id_pattern = "/(?:\D+|<\d+>)*[!?]/";
         try {
-            $this->assertFalse($this->obj->find_id(), "Id is found, not good");
-            $this->assertEmpty($this->obj->id);
+            $this->assertFalse($obj->find_id(), "Id is found, not good");
+            $this->assertEmpty($obj->id);
         } catch (PCRE_Exception $exc) {
             $this->assertEquals($exc->getMessage(), "PREG_BACKTRACK_LIMIT_ERROR");
             return;
@@ -93,13 +92,14 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
 
     /**
      * Negativ test for Exception handler of a Compilation failed
+     * @covers IMDb_Tag_Processing::find_id
      */
-    public function testFind_id_Error_Control_Operators() {
-        $this->obj = new IMDb_Tag_Processing("foobar foobar foobar");
-        $this->obj->id_pattern = "/(/";
+    public function testFind_idErrorControlOperators() {
+        $obj = new IMDb_Tag_Processing("foobar foobar foobar");
+        $obj->id_pattern = "/(/";
         try {
-            $this->assertFalse($this->obj->find_id(), "Id is found, not good");
-            $this->assertEmpty($this->obj->id);
+            $this->assertFalse($obj->find_id(), "Id is found, not good");
+            $this->assertEmpty($obj->id);
         } catch (PCRE_Exception $exc) {
             $this->assertContains("Compilation failed", $exc->getMessage());
             return;
@@ -107,4 +107,82 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
         $this->fail('An expected exception has not been raised.');
     }
 
+    /**
+     * Find one tag. Positive test.
+     * @covers IMDb_Tag_Processing::find_imdb_tags
+     */
+    public function testFind_imdb_tagsOnePositive() {
+        $obj = new IMDb_Tag_Processing($this->testdata["one_positive"]);
+        $this->assertTrue($obj->find_imdb_tags(), "Not found = not good");
+        $this->assertCount(1, $obj->imdb_tags);
+        $this->assertEquals("title", $obj->imdb_tags[0]);
+    }
+
+    /**
+     * Find two tag. Positive test.
+     * @covers IMDb_Tag_Processing::find_imdb_tags
+     */
+    public function testFind_imdb_tagsTwoPositive() {
+        $obj = new IMDb_Tag_Processing($this->testdata["two_positive"]);
+        $this->assertTrue($obj->find_imdb_tags(), "Not found = not good");
+        $this->assertCount(2, $obj->imdb_tags);
+        $this->assertEquals("title", $obj->imdb_tags[0]);
+        $this->assertEquals("year", $obj->imdb_tags[1]);
+    }
+
+    /**
+     * Find zero tag. Alternative test.
+     * @covers IMDb_Tag_Processing::find_imdb_tags
+     */
+    public function testFind_imdb_tagsNoMatch() {
+        $obj = new IMDb_Tag_Processing($this->testdata["no_match"]);
+        $this->assertFalse($obj->find_imdb_tags(), "Found = not good");
+        $this->assertCount(0, $obj->imdb_tags);
+    }
+
+    /**
+     * Null input. Alternative test
+     * @covers IMDb_Tag_Processing::find_imdb_tags
+     */
+    public function testFind_imdb_tagsEmpty() {
+        $obj = new IMDb_Tag_Processing(null);
+        $this->assertFalse($obj->find_imdb_tags(), "tags is found, not good");
+        $this->assertEmpty($obj->imdb_tags);
+        $obj2 = new IMDb_Tag_Processing("");
+        $this->assertFalse($obj2->find_imdb_tags(), "tags is found, not good");
+        $this->assertEmpty($obj2->imdb_tags);
+    }
+    /**
+     * Negativ test for Exception handler of a PREG_ERROR
+     * @covers IMDb_Tag_Processing::find_imdb_tags
+     */
+    public function testFind_imdb_tagsPREG_ERROR() {
+        $obj = new IMDb_Tag_Processing("foobar foobar foobar");
+        $obj->imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        try {
+            $this->assertFalse($obj->find_imdb_tags(), "Id is found, not good");
+            $this->assertEmpty($obj->imdb_tags);
+        } catch (PCRE_Exception $exc) {
+            $this->assertEquals($exc->getMessage(), "PREG_BACKTRACK_LIMIT_ERROR");
+            return;
+        }
+        $this->fail('An expected exception has not been raised.');
+    }
+
+    /**
+     * Negativ test for Exception handler of a Compilation failed
+     * @covers IMDb_Tag_Processing::find_imdb_tags
+     */
+    public function testFind_imdb_tagsErrorControlOperators() {
+        $obj = new IMDb_Tag_Processing("foobar foobar foobar");
+        $obj->imdb_tags_pattern = "/(/";
+        try {
+            $this->assertFalse($obj->find_imdb_tags(), "imdb is found, not good");
+            $this->assertEmpty($obj->imdb_tags);
+        } catch (PCRE_Exception $exc) {
+            $this->assertContains("Compilation failed", $exc->getMessage());
+            return;
+        }
+        $this->fail('An expected exception has not been raised.');
+    }
 }
