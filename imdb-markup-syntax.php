@@ -1,5 +1,6 @@
 <?php
-/* 
+
+/*
  * Plugin Name: IMDb Markup Syntax
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
  * Description: A brief description of the Plugin.
@@ -22,5 +23,4 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
 ?>

@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="imdb-markup-syntax">
+  <file path="class-imdb-tag-processing.php" hash="22ef87811567714cca859325bcd84a30" package="Default">
+    <class final="false" abstract="false" namespace="global" line="3" package="Default">
+      <extends/>
+      <name>IMDb_Tag_Processing</name>
+      <full_name>\IMDb_Tag_Processing</full_name>
+      <property final="false" static="false" visibility="public" line="8" namespace="global" package="Default">
+        <name>$id_pattern</name>
+        <default>"/\[imdb\:id\(([a-z0-9]+)\)\]/i"</default>
+        <docblock line="5">
+          <description></description>
+          <long-description></long-description>
+          <tag line="5" name="var" description="regular expression for find id" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="14" namespace="global" package="Default">
+        <name>$original_content</name>
+        <default></default>
+        <docblock line="10">
+          <description>Original meddelandet som det ser ut innan denna prosess påbörjats</description>
+          <long-description></long-description>
+          <tag line="10" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="22" namespace="global" package="Default">
+        <name>$id</name>
+        <default></default>
+        <docblock line="16">
+          <description>Id på den filem som data återvisar.</description>
+          <long-description>&lt;p&gt;t ex http://www.imdb.com/title/tt0137523/ -&gt;
+id = tt0137523
+Syntax: [imdb:id(xxxx)] t ex [imdb:id(tt0137523)]&lt;/p&gt;</long-description>
+          <tag line="16" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="28" namespace="global" package="Default">
+        <name>$data</name>
+        <default></default>
+        <docblock line="24">
+          <description>Filmens data från IMDb:s databas</description>
+          <long-description></long-description>
+          <tag line="24" name="var" description="" type="\IMDb">
+            <type by_reference="false">\IMDb</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="34" namespace="global" package="Default">
+        <name>$imdb_tags</name>
+        <default>array()</default>
+        <docblock line="30">
+          <description>Alla uppmerkarade imdbtaggar.</description>
+          <long-description></long-description>
+          <tag line="30" name="var" description="of imdb tags" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="40" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="36">
+          <description>Skapa en instans av klassen</description>
+          <long-description></long-description>
+          <tag line="36" name="param" description="" type="\type" variable="$original_content">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="40">
+          <name>$original_content</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="50" package="Default">
+        <name>find_id</name>
+        <full_name>find_id</full_name>
+        <docblock line="44">
+          <description>Letar efer id och sätter det i $id.</description>
+          <long-description>&lt;p&gt;t ex: "ksdkasd [imdb:id(tt0137523)] dmf,sdm" -&gt;
+id = tt0137523&lt;/p&gt;</long-description>
+          <tag line="44" name="return" description="FALSE if no match TRUE if find a id" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="44" name="throws" description="if a PCRE error occurs" type="\PCRE_Exception">
+            <type by_reference="false">\PCRE_Exception</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file class-imdb-tag-processing.php</error>
+      <error line="3" code="50000">No DocBlock was found for \IMDb_Tag_Processing</error>
+    </parse_markers>
+  </file>
+  <file path="class-pcre-exception.php" hash="077c0ad3ebe37fd61b74e482e573fd05" package="Default">
+    <class final="false" abstract="false" namespace="global" line="6" package="Default">
+      <extends>\Exception</extends>
+      <name>PCRE_Exception</name>
+      <full_name>\PCRE_Exception</full_name>
+      <docblock line="3">
+        <description>Exception handler for PCRE functions</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="12" namespace="global" package="Default">
+        <name>$pcre_errors</name>
+        <default>array(0 =&gt; "PREG_NO_ERROR", 1 =&gt; "PREG_INTERNAL_ERROR", 2 =&gt; "PREG_BACKTRACK_LIMIT_ERROR", 3 =&gt; "PREG_RECURSION_LIMIT_ERROR", 4 =&gt; "PREG_BAD_UTF8_ERROR", 5 =&gt; "PREG_BAD_UTF8_OFFSET_ERROR")</default>
+        <docblock line="8">
+          <description>Mapping error code into error name</description>
+          <long-description></long-description>
+          <tag line="8" name="var" description="of pcre_errors" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="26" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="20">
+          <description>Create object and grep last preg error code</description>
+          <long-description></long-description>
+          <tag line="20" name="param" description="" type="\type" variable="$message">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="20" name="param" description="" type="\type" variable="$code">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="20" name="param" description="" type="\Exception" variable="$previous">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="26">
+          <name>$message</name>
+          <default>""</default>
+          <type/>
+        </argument>
+        <argument line="26">
+          <name>$code</name>
+          <default>0</default>
+          <type/>
+        </argument>
+        <argument line="26">
+          <name>$previous</name>
+          <default>null</default>
+          <type>\Exception</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file class-pcre-exception.php</error>
+    </parse_markers>
+  </file>
+  <file path="imdb-markup-syntax.php" hash="56b2c9b8b8ec64abd74de2a744215010" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file imdb-markup-syntax.php</error>
+    </parse_markers>
+  </file>
+  <file path="IMDb-PHP-API/class_IMDb.php" hash="469be2cdcaef7371b5e98905f0ce647b" package="Default">
+    <class final="false" abstract="false" namespace="global" line="2" package="Default">
+      <extends/>
+      <name>IMDb</name>
+      <full_name>\IMDb</full_name>
+      <property final="false" static="false" visibility="private" line="5" namespace="global" package="Default">
+        <name>$baseurl</name>
+        <default>'https://app.imdb.com/'</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="6" namespace="global" package="Default">
+        <name>$params</name>
+        <default>array('api' =&gt; 'v1', 'appid' =&gt; 'iphone1_1', 'apiPolicy' =&gt; 'app1_1', 'apiKey' =&gt; '2wex6aeu6a8q9e49k7sfvufd6rhh0n', 'locale' =&gt; 'en_US', 'timestamp' =&gt; '0')</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="14" namespace="global" package="Default">
+        <name>$anonymiser</name>
+        <default>'http://anonymouse.org/cgi-bin/anon-www.cgi/'</default>
+      </property>
+      <property final="false" static="false" visibility="public" line="15" namespace="global" package="Default">
+        <name>$anonymise</name>
+        <default>false</default>
+      </property>
+      <property final="false" static="false" visibility="public" line="16" namespace="global" package="Default">
+        <name>$summary</name>
+        <default>true</default>
+      </property>
+      <property final="false" static="false" visibility="public" line="17" namespace="global" package="Default">
+        <name>$titlesLimit</name>
+        <default>0</default>
+      </property>
+      <property final="false" static="false" visibility="public" line="22" namespace="global" package="Default">
+        <name>$ignoreTypes</name>
+        <default>array('tv_series', 'tv_special', 'video_game')</default>
+      </property>
+      <property final="false" static="false" visibility="public" line="25" namespace="global" package="Default">
+        <name>$ignoreAdult</name>
+        <default>true</default>
+      </property>
+      <property final="false" static="false" visibility="public" line="28" namespace="global" package="Default">
+        <name>$forceReturn</name>
+        <default>false</default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="30" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="30">
+          <name>$anonymise</name>
+          <default>false</default>
+          <type/>
+        </argument>
+        <argument line="30">
+          <name>$summary</name>
+          <default>true</default>
+          <type/>
+        </argument>
+        <argument line="30">
+          <name>$titlesLimit</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="37" package="Default">
+        <name>build_url</name>
+        <full_name>build_url</full_name>
+        <argument line="37">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="37">
+          <name>$query</name>
+          <default>""</default>
+          <type/>
+        </argument>
+        <argument line="37">
+          <name>$parameter</name>
+          <default>""</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="Default">
+        <name>find_by_id</name>
+        <full_name>find_by_id</full_name>
+        <argument line="57">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="73" package="Default">
+        <name>find_by_title</name>
+        <full_name>find_by_title</full_name>
+        <argument line="73">
+          <name>$title</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$year</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="102" package="Default">
+        <name>person_by_id</name>
+        <full_name>person_by_id</full_name>
+        <argument line="102">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="118" package="Default">
+        <name>person_by_name</name>
+        <full_name>person_by_name</full_name>
+        <argument line="118">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="147" package="Default">
+        <name>chart_top</name>
+        <full_name>chart_top</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="162" package="Default">
+        <name>chart_bottom</name>
+        <full_name>chart_bottom</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="177" package="Default">
+        <name>boxoffice</name>
+        <full_name>boxoffice</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="192" package="Default">
+        <name>summarise</name>
+        <full_name>summarise</full_name>
+        <argument line="192">
+          <name>$obj</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="301" package="Default">
+        <name>summarise_titles</name>
+        <full_name>summarise_titles</full_name>
+        <argument line="301">
+          <name>$objs</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="301">
+          <name>$yearMatch</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="358" package="Default">
+        <name>summarise_person</name>
+        <full_name>summarise_person</full_name>
+        <argument line="358">
+          <name>$obj</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="394" package="Default">
+        <name>summarise_people</name>
+        <full_name>summarise_people</full_name>
+        <argument line="394">
+          <name>$objs</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="439" package="Default">
+        <name>is_ignored</name>
+        <full_name>is_ignored</full_name>
+        <argument line="439">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="439">
+          <name>$cert</name>
+          <default>""</default>
+          <type/>
+        </argument>
+        <argument line="439">
+          <name>$genre</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="448" package="Default">
+        <name>yearMatch</name>
+        <full_name>yearMatch</full_name>
+        <argument line="448">
+          <name>$year</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="448">
+          <name>$yearMatch</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="455" package="Default">
+        <name>errorResponse</name>
+        <full_name>errorResponse</full_name>
+        <argument line="455">
+          <name>$obj</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="455">
+          <name>$returnArray</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="468" package="Default">
+        <name>fetchJSON</name>
+        <full_name>fetchJSON</full_name>
+        <argument line="468">
+          <name>$apiUrl</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file IMDb-PHP-API/class_IMDb.php</error>
+      <error line="2" code="50000">No DocBlock was found for \IMDb</error>
+      <error line="5" code="50018">No DocBlock was found for property $baseurl</error>
+      <error line="6" code="50018">No DocBlock was found for property $params</error>
+      <error line="14" code="50018">No DocBlock was found for property $anonymiser</error>
+      <error line="15" code="50018">No DocBlock was found for property $anonymise</error>
+      <error line="16" code="50018">No DocBlock was found for property $summary</error>
+      <error line="17" code="50018">No DocBlock was found for property $titlesLimit</error>
+      <error line="22" code="50018">No DocBlock was found for property $ignoreTypes</error>
+      <error line="25" code="50018">No DocBlock was found for property $ignoreAdult</error>
+      <error line="28" code="50018">No DocBlock was found for property $forceReturn</error>
+      <error line="30" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="37" code="50010">No DocBlock was found for method build_url()</error>
+      <error line="57" code="50010">No DocBlock was found for method find_by_id()</error>
+      <error line="73" code="50010">No DocBlock was found for method find_by_title()</error>
+      <error line="102" code="50010">No DocBlock was found for method person_by_id()</error>
+      <error line="118" code="50010">No DocBlock was found for method person_by_name()</error>
+      <error line="147" code="50010">No DocBlock was found for method chart_top()</error>
+      <error line="162" code="50010">No DocBlock was found for method chart_bottom()</error>
+      <error line="177" code="50010">No DocBlock was found for method boxoffice()</error>
+      <error line="192" code="50010">No DocBlock was found for method summarise()</error>
+      <error line="301" code="50010">No DocBlock was found for method summarise_titles()</error>
+      <error line="358" code="50010">No DocBlock was found for method summarise_person()</error>
+      <error line="394" code="50010">No DocBlock was found for method summarise_people()</error>
+      <error line="439" code="50010">No DocBlock was found for method is_ignored()</error>
+      <error line="448" code="50010">No DocBlock was found for method yearMatch()</error>
+      <error line="455" code="50010">No DocBlock was found for method errorResponse()</error>
+      <error line="468" code="50010">No DocBlock was found for method fetchJSON()</error>
+    </parse_markers>
+  </file>
+  <file path="IMDb-PHP-API/tests/charts.php" hash="599b5c5d1706cd85be171443208b5f22" package="Default">
+    <include line="2" type="Require" package="Default">
+      <name>../class_IMDb.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file IMDb-PHP-API/tests/charts.php</error>
+    </parse_markers>
+  </file>
+  <file path="IMDb-PHP-API/tests/id.php" hash="ce42dc5714d27f19dc788eee1c01ac8d" package="Default">
+    <include line="2" type="Require" package="Default">
+      <name>../class_IMDb.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file IMDb-PHP-API/tests/id.php</error>
+    </parse_markers>
+  </file>
+  <file path="IMDb-PHP-API/tests/person_id.php" hash="931796143f6974bc952ddde3fb4d6d57" package="Default">
+    <include line="2" type="Require" package="Default">
+      <name>../class_IMDb.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file IMDb-PHP-API/tests/person_id.php</error>
+    </parse_markers>
+  </file>
+  <file path="IMDb-PHP-API/tests/person_name.php" hash="0317f68d9e9efbcef248fd3ebf46c1ae" package="Default">
+    <include line="2" type="Require" package="Default">
+      <name>../class_IMDb.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file IMDb-PHP-API/tests/person_name.php</error>
+    </parse_markers>
+  </file>
+  <file path="IMDb-PHP-API/tests/title.php" hash="cba9404ab6b7f513fdf4728b6a5d593b" package="Default">
+    <include line="2" type="Require" package="Default">
+      <name>../class_IMDb.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file IMDb-PHP-API/tests/title.php</error>
+    </parse_markers>
+  </file>
+  <file path="Tests/IMDbTagProcessingTest.php" hash="a118a6d63de34ed8e7f20247d181ed71" package="Default">
+    <include line="3" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="4" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="9" package="Default">
+      <extends>\PHPUnit_Framework_TestCase</extends>
+      <name>IMDbTagProcessingTest</name>
+      <full_name>\IMDbTagProcessingTest</full_name>
+      <docblock line="6">
+        <description>Testclass for unit test for IMDb_Tag_Processing class.</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="14" namespace="global" package="Default">
+        <name>$testdata</name>
+        <default></default>
+        <docblock line="11">
+          <description></description>
+          <long-description></long-description>
+          <tag line="11" name="var" description="string of testdata" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="19" namespace="global" package="Default">
+        <name>$obj</name>
+        <default></default>
+        <docblock line="16">
+          <description></description>
+          <long-description></long-description>
+          <tag line="16" name="var" description="" type="\IMDb_Tag_Processing">
+            <type by_reference="false">\IMDb_Tag_Processing</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="25" package="Default">
+        <name>setUp</name>
+        <full_name>setUp</full_name>
+        <docblock line="21">
+          <description>Sets up the fixture, for example, opens a network connection.</description>
+          <long-description>&lt;p&gt;This method is called before a test is executed.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="42" package="Default">
+        <name>testFind_idOnePositive</name>
+        <full_name>testFind_idOnePositive</full_name>
+        <docblock line="38">
+          <description>One [IMDb:id(xxx)] tag, Positive test.</description>
+          <long-description></long-description>
+          <tag line="38" name="covers" description="\IMDb_Tag_Processing::find_id" refers="\IMDb_Tag_Processing::find_id"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="52" package="Default">
+        <name>testFind_idTwoPositive</name>
+        <full_name>testFind_idTwoPositive</full_name>
+        <docblock line="48">
+          <description>Two correct [IMDb:id(xxx)] tags, Positive test.</description>
+          <long-description>&lt;p&gt;Only one is set (first one).&lt;/p&gt;</long-description>
+          <tag line="48" name="covers" description="\IMDb_Tag_Processing::find_id" refers="\IMDb_Tag_Processing::find_id"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="Default">
+        <name>testFind_idNoMatch</name>
+        <full_name>testFind_idNoMatch</full_name>
+        <docblock line="58">
+          <description>No correct [IMDb:id(xxx)] tags, Positive test.</description>
+          <long-description>&lt;p&gt;id not set.&lt;/p&gt;</long-description>
+          <tag line="58" name="covers" description="\IMDb_Tag_Processing::find_id" refers="\IMDb_Tag_Processing::find_id"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="72" package="Default">
+        <name>testFind_idNull</name>
+        <full_name>testFind_idNull</full_name>
+        <docblock line="68">
+          <description>Null input = id not set.</description>
+          <long-description></long-description>
+          <tag line="68" name="covers" description="\IMDb_Tag_Processing::find_id" refers="\IMDb_Tag_Processing::find_id"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="81" package="Default">
+        <name>testFind_id_PREG_ERROR</name>
+        <full_name>testFind_id_PREG_ERROR</full_name>
+        <docblock line="78">
+          <description>Negativ test for Exception handler of a PREG_ERROR</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="97" package="Default">
+        <name>testFind_id_Error_Control_Operators</name>
+        <full_name>testFind_id_Error_Control_Operators</full_name>
+        <docblock line="94">
+          <description>Negativ test for Exception handler of a Compilation failed</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Tests/IMDbTagProcessingTest.php</error>
+      <critical line="16" code="50019">No short description for property $obj</critical>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

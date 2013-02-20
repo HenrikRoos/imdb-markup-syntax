@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>imdb-markup-syntax » \IMDb</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">imdb-markup-syntax</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">39</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_boxoffice" title="boxoffice :: "><span class="description">boxoffice()
+        </span><pre>boxoffice()</pre></a></li>
+<li class="method public "><a href="#method_build_url" title="build_url :: "><span class="description">build_url()
+        </span><pre>build_url()</pre></a></li>
+<li class="method public "><a href="#method_chart_bottom" title="chart_bottom :: "><span class="description">chart_bottom()
+        </span><pre>chart_bottom()</pre></a></li>
+<li class="method public "><a href="#method_chart_top" title="chart_top :: "><span class="description">chart_top()
+        </span><pre>chart_top()</pre></a></li>
+<li class="method public "><a href="#method_errorResponse" title="errorResponse :: "><span class="description">errorResponse()
+        </span><pre>errorResponse()</pre></a></li>
+<li class="method public "><a href="#method_fetchJSON" title="fetchJSON :: "><span class="description">fetchJSON()
+        </span><pre>fetchJSON()</pre></a></li>
+<li class="method public "><a href="#method_find_by_id" title="find_by_id :: "><span class="description">find_by_id()
+        </span><pre>find_by_id()</pre></a></li>
+<li class="method public "><a href="#method_find_by_title" title="find_by_title :: "><span class="description">find_by_title()
+        </span><pre>find_by_title()</pre></a></li>
+<li class="method public "><a href="#method_is_ignored" title="is_ignored :: "><span class="description">is_ignored()
+        </span><pre>is_ignored()</pre></a></li>
+<li class="method public "><a href="#method_person_by_id" title="person_by_id :: "><span class="description">person_by_id()
+        </span><pre>person_by_id()</pre></a></li>
+<li class="method public "><a href="#method_person_by_name" title="person_by_name :: "><span class="description">person_by_name()
+        </span><pre>person_by_name()</pre></a></li>
+<li class="method public "><a href="#method_summarise" title="summarise :: "><span class="description">summarise()
+        </span><pre>summarise()</pre></a></li>
+<li class="method public "><a href="#method_summarise_people" title="summarise_people :: "><span class="description">summarise_people()
+        </span><pre>summarise_people()</pre></a></li>
+<li class="method public "><a href="#method_summarise_person" title="summarise_person :: "><span class="description">summarise_person()
+        </span><pre>summarise_person()</pre></a></li>
+<li class="method public "><a href="#method_summarise_titles" title="summarise_titles :: "><span class="description">summarise_titles()
+        </span><pre>summarise_titles()</pre></a></li>
+<li class="method public "><a href="#method_yearMatch" title="yearMatch :: "><span class="description">yearMatch()
+        </span><pre>yearMatch()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property_anonymise" title="$anonymise :: "><span class="description"></span><pre>$anonymise</pre></a></li>
+<li class="property public "><a href="#property_forceReturn" title="$forceReturn :: "><span class="description"></span><pre>$forceReturn</pre></a></li>
+<li class="property public "><a href="#property_ignoreAdult" title="$ignoreAdult :: "><span class="description"></span><pre>$ignoreAdult</pre></a></li>
+<li class="property public "><a href="#property_ignoreTypes" title="$ignoreTypes :: "><span class="description"></span><pre>$ignoreTypes</pre></a></li>
+<li class="property public "><a href="#property_summary" title="$summary :: "><span class="description"></span><pre>$summary</pre></a></li>
+<li class="property public "><a href="#property_titlesLimit" title="$titlesLimit :: "><span class="description"></span><pre>$titlesLimit</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_anonymiser" title="$anonymiser :: "><span class="description"></span><pre>$anonymiser</pre></a></li>
+<li class="property private "><a href="#property_baseurl" title="$baseurl :: "><span class="description"></span><pre>$baseurl</pre></a></li>
+<li class="property private "><a href="#property_params" title="$params :: "><span class="description"></span><pre>$params</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\IMDb"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/IMDb.html">IMDb</a>
+</li>
+</ul>
+<div class="element class"><div class="details">
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>__construct()
+        </h2>
+<pre>__construct($anonymise, $summary, $titlesLimit) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$anonymise</h4></div>
+<div class="subelement argument"><h4>$summary</h4></div>
+<div class="subelement argument"><h4>$titlesLimit</h4></div>
+</div></div>
+</div>
+<a id="method_boxoffice"></a><div class="element clickable method public method_boxoffice" data-toggle="collapse" data-target=".method_boxoffice .collapse">
+<h2>boxoffice()
+        </h2>
+<pre>boxoffice() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_build_url"></a><div class="element clickable method public method_build_url" data-toggle="collapse" data-target=".method_build_url .collapse">
+<h2>build_url()
+        </h2>
+<pre>build_url($method, $query, $parameter) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$method</h4></div>
+<div class="subelement argument"><h4>$query</h4></div>
+<div class="subelement argument"><h4>$parameter</h4></div>
+</div></div>
+</div>
+<a id="method_chart_bottom"></a><div class="element clickable method public method_chart_bottom" data-toggle="collapse" data-target=".method_chart_bottom .collapse">
+<h2>chart_bottom()
+        </h2>
+<pre>chart_bottom() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_chart_top"></a><div class="element clickable method public method_chart_top" data-toggle="collapse" data-target=".method_chart_top .collapse">
+<h2>chart_top()
+        </h2>
+<pre>chart_top() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_errorResponse"></a><div class="element clickable method public method_errorResponse" data-toggle="collapse" data-target=".method_errorResponse .collapse">
+<h2>errorResponse()
+        </h2>
+<pre>errorResponse($obj, $returnArray) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$obj</h4></div>
+<div class="subelement argument"><h4>$returnArray</h4></div>
+</div></div>
+</div>
+<a id="method_fetchJSON"></a><div class="element clickable method public method_fetchJSON" data-toggle="collapse" data-target=".method_fetchJSON .collapse">
+<h2>fetchJSON()
+        </h2>
+<pre>fetchJSON($apiUrl) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$apiUrl</h4></div>
+</div></div>
+</div>
+<a id="method_find_by_id"></a><div class="element clickable method public method_find_by_id" data-toggle="collapse" data-target=".method_find_by_id .collapse">
+<h2>find_by_id()
+        </h2>
+<pre>find_by_id($id) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$id</h4></div>
+</div></div>
+</div>
+<a id="method_find_by_title"></a><div class="element clickable method public method_find_by_title" data-toggle="collapse" data-target=".method_find_by_title .collapse">
+<h2>find_by_title()
+        </h2>
+<pre>find_by_title($title, $year) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$title</h4></div>
+<div class="subelement argument"><h4>$year</h4></div>
+</div></div>
+</div>
+<a id="method_is_ignored"></a><div class="element clickable method public method_is_ignored" data-toggle="collapse" data-target=".method_is_ignored .collapse">
+<h2>is_ignored()
+        </h2>
+<pre>is_ignored($type, $cert, $genre) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$type</h4></div>
+<div class="subelement argument"><h4>$cert</h4></div>
+<div class="subelement argument"><h4>$genre</h4></div>
+</div></div>
+</div>
+<a id="method_person_by_id"></a><div class="element clickable method public method_person_by_id" data-toggle="collapse" data-target=".method_person_by_id .collapse">
+<h2>person_by_id()
+        </h2>
+<pre>person_by_id($id) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$id</h4></div>
+</div></div>
+</div>
+<a id="method_person_by_name"></a><div class="element clickable method public method_person_by_name" data-toggle="collapse" data-target=".method_person_by_name .collapse">
+<h2>person_by_name()
+        </h2>
+<pre>person_by_name($name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$name</h4></div>
+</div></div>
+</div>
+<a id="method_summarise"></a><div class="element clickable method public method_summarise" data-toggle="collapse" data-target=".method_summarise .collapse">
+<h2>summarise()
+        </h2>
+<pre>summarise($obj) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$obj</h4></div>
+</div></div>
+</div>
+<a id="method_summarise_people"></a><div class="element clickable method public method_summarise_people" data-toggle="collapse" data-target=".method_summarise_people .collapse">
+<h2>summarise_people()
+        </h2>
+<pre>summarise_people($objs) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$objs</h4></div>
+</div></div>
+</div>
+<a id="method_summarise_person"></a><div class="element clickable method public method_summarise_person" data-toggle="collapse" data-target=".method_summarise_person .collapse">
+<h2>summarise_person()
+        </h2>
+<pre>summarise_person($obj) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$obj</h4></div>
+</div></div>
+</div>
+<a id="method_summarise_titles"></a><div class="element clickable method public method_summarise_titles" data-toggle="collapse" data-target=".method_summarise_titles .collapse">
+<h2>summarise_titles()
+        </h2>
+<pre>summarise_titles($objs, $yearMatch) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$objs</h4></div>
+<div class="subelement argument"><h4>$yearMatch</h4></div>
+</div></div>
+</div>
+<a id="method_yearMatch"></a><div class="element clickable method public method_yearMatch" data-toggle="collapse" data-target=".method_yearMatch .collapse">
+<h2>yearMatch()
+        </h2>
+<pre>yearMatch($year, $yearMatch) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$year</h4></div>
+<div class="subelement argument"><h4>$yearMatch</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_anonymise"> </a><div class="element clickable property public property_anonymise" data-toggle="collapse" data-target=".property_anonymise .collapse">
+<h2></h2>
+<pre>$anonymise </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_forceReturn"> </a><div class="element clickable property public property_forceReturn" data-toggle="collapse" data-target=".property_forceReturn .collapse">
+<h2></h2>
+<pre>$forceReturn </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_ignoreAdult"> </a><div class="element clickable property public property_ignoreAdult" data-toggle="collapse" data-target=".property_ignoreAdult .collapse">
+<h2></h2>
+<pre>$ignoreAdult </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_ignoreTypes"> </a><div class="element clickable property public property_ignoreTypes" data-toggle="collapse" data-target=".property_ignoreTypes .collapse">
+<h2></h2>
+<pre>$ignoreTypes </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_summary"> </a><div class="element clickable property public property_summary" data-toggle="collapse" data-target=".property_summary .collapse">
+<h2></h2>
+<pre>$summary </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_titlesLimit"> </a><div class="element clickable property public property_titlesLimit" data-toggle="collapse" data-target=".property_titlesLimit .collapse">
+<h2></h2>
+<pre>$titlesLimit </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_anonymiser"> </a><div class="element clickable property private property_anonymiser" data-toggle="collapse" data-target=".property_anonymiser .collapse">
+<h2></h2>
+<pre>$anonymiser </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_baseurl"> </a><div class="element clickable property private property_baseurl" data-toggle="collapse" data-target=".property_baseurl .collapse">
+<h2></h2>
+<pre>$baseurl </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_params"> </a><div class="element clickable property private property_params" data-toggle="collapse" data-target=".property_params .collapse">
+<h2></h2>
+<pre>$params </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-02-20T19:09:22+01:00.<br></footer></div>
+</div>
+</body>
+</html>
