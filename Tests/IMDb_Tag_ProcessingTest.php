@@ -1,12 +1,13 @@
 <?php
 
+require_once 'PHPUnit/Autoload.php';
 require_once dirname(__FILE__) . '/../class-imdb-tag-processing.php';
-require_once dirname(__FILE__) . '/../class-pcre-exception.php';
+require_once dirname(__FILE__) . '/../Exceptions/class-pcre-exception.php';
 
 /**
- * Testclass for phpunit test for IMDb_Tag_Processing class.
+ * Testclass (PHPUnit) test for IMDb_Tag_Processing class.
  */
-class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
+class IMDb_Tag_ProcessingTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @var array string of testdata 
@@ -26,13 +27,14 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
                 Title: [imdb:title] [IMDb:id(tt0137523)]. Year: [imdb:year]",
             "no_match" => "Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.
                 [IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id()]
-                Title: [title] [IMDb:id:tt0137523]",
+                Title: [title] [IMDb:id:tt0137523] [IMDb:id:(0137523)] [IMDb:id(tt)]",
         );
     }
 
     /**
      * One [IMDb:id(xxx)] tag, Positive test.
      * @covers IMDb_Tag_Processing::find_id
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_idOnePositive() {
         $obj = new IMDb_Tag_Processing($this->testdata["one_positive"]);
@@ -43,6 +45,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Two correct [IMDb:id(xxx)] tags, Positive test. Only one is set (first one).
      * @covers IMDb_Tag_Processing::find_id
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_idTwoPositive() {
         $this->original_content = new IMDb_Tag_Processing($this->testdata["two_positive"]);
@@ -53,6 +56,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * No correct [IMDb:id(xxx)] tags. Alternative test. id not set.
      * @covers IMDb_Tag_Processing::find_id
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_idNoMatch() {
         $obj = new IMDb_Tag_Processing($this->testdata["no_match"]);
@@ -63,6 +67,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Null input = id not set.
      * @covers IMDb_Tag_Processing::find_id
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_idEmpty() {
         $obj = new IMDb_Tag_Processing(null);
@@ -76,6 +81,8 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Negativ test for Exception handler of a PREG_ERROR
      * @covers IMDb_Tag_Processing::find_id
+     * @covers PCRE_Exception
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_idPREG_ERROR() {
         $obj = new IMDb_Tag_Processing("foobar foobar foobar");
@@ -93,6 +100,8 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Negativ test for Exception handler of a Compilation failed
      * @covers IMDb_Tag_Processing::find_id
+     * @covers PCRE_Exception
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_idErrorControlOperators() {
         $obj = new IMDb_Tag_Processing("foobar foobar foobar");
@@ -110,6 +119,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Find one tag. Positive test.
      * @covers IMDb_Tag_Processing::find_imdb_tags
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_imdb_tagsOnePositive() {
         $obj = new IMDb_Tag_Processing($this->testdata["one_positive"]);
@@ -121,6 +131,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Find two tag. Positive test.
      * @covers IMDb_Tag_Processing::find_imdb_tags
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_imdb_tagsTwoPositive() {
         $obj = new IMDb_Tag_Processing($this->testdata["two_positive"]);
@@ -133,6 +144,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Find zero tag. Alternative test.
      * @covers IMDb_Tag_Processing::find_imdb_tags
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_imdb_tagsNoMatch() {
         $obj = new IMDb_Tag_Processing($this->testdata["no_match"]);
@@ -143,6 +155,7 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Null input. Alternative test
      * @covers IMDb_Tag_Processing::find_imdb_tags
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_imdb_tagsEmpty() {
         $obj = new IMDb_Tag_Processing(null);
@@ -152,9 +165,12 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse($obj2->find_imdb_tags(), "tags is found, not good");
         $this->assertEmpty($obj2->imdb_tags);
     }
+
     /**
      * Negativ test for Exception handler of a PREG_ERROR
      * @covers IMDb_Tag_Processing::find_imdb_tags
+     * @covers PCRE_Exception
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_imdb_tagsPREG_ERROR() {
         $obj = new IMDb_Tag_Processing("foobar foobar foobar");
@@ -172,6 +188,8 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
     /**
      * Negativ test for Exception handler of a Compilation failed
      * @covers IMDb_Tag_Processing::find_imdb_tags
+     * @covers PCRE_Exception
+     * @covers IMDb_Tag_Processing::__construct
      */
     public function testFind_imdb_tagsErrorControlOperators() {
         $obj = new IMDb_Tag_Processing("foobar foobar foobar");
@@ -185,4 +203,5 @@ class IMDbTagProcessingTest extends PHPUnit_Framework_TestCase {
         }
         $this->fail('An expected exception has not been raised.');
     }
+
 }

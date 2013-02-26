@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Exception handler for PCRE functions
  * @package imdb-markup-syntax
@@ -29,11 +28,11 @@ class PCRE_Exception extends Exception {
         $preg_last_error = preg_last_error();
         if (!empty($preg_last_error)) {
             $code = $preg_last_error;
-            $message = $this->pcre_errors[$code];
+            $message .= $this->pcre_errors[$code];
         } else {
             $error_get_last = error_get_last();
             $code = $error_get_last["type"];
-            $message = $error_get_last["message"];
+            $message .= $error_get_last["message"];
         }
         parent::__construct($message, $code, $previous);
     }

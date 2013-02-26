@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Plugin Name: IMDb Markup Syntax
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates

@@ -1,5 +1,7 @@
 <?php
 
+require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
+
 /**
  * Find and replace imdb tags to movie data from IMDb
  * @package imdb-markup-syntax
@@ -8,7 +10,7 @@
 class IMDb_Tag_Processing {
 
     /** @var string regular expression for find id */
-    public $id_pattern = "/\[imdb\:id\(([a-z0-9]+)\)\]/i";
+    public $id_pattern = "/\[imdb\:id\((tt\d+)\)\]/i";
 
     /** @var string regular expression for all imdb tags */
     public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
@@ -43,7 +45,7 @@ class IMDb_Tag_Processing {
      * Create an object
      * @param type $original_content
      */
-    function __construct($original_content) {
+    public function __construct($original_content) {
         $this->original_content = $original_content;
     }
 
@@ -52,7 +54,7 @@ class IMDb_Tag_Processing {
      * @return boolean FALSE if no match TRUE if find a id
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
-    function find_id() {
+    public function find_id() {
         $matches = array();
         if (@preg_match($this->id_pattern, $this->original_content, $matches) === FALSE) {
             throw new PCRE_Exception();
@@ -70,7 +72,7 @@ class IMDb_Tag_Processing {
      * @return boolean FALSE if no match TRUE if find 
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
-    function find_imdb_tags() {
+    public function find_imdb_tags() {
         $matches = array();
         if (@preg_match_all($this->imdb_tags_pattern, $this->original_content, $matches) === FALSE) {
             throw new PCRE_Exception();
