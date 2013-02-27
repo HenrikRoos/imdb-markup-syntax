@@ -55,7 +55,7 @@ class Movie_Datasource extends IMDb {
         }
         curl_close($ch);
         $this->response = json_decode($json);
-        if (isNull($this->response)) {
+        if (!isset($this->response)) {
             throw new Json_Exception();
         }
         return $this->response;

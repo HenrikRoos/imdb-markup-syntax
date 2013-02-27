@@ -12,12 +12,12 @@ class Curl_Exception extends Exception {
      * @param int $code if $ch is null set custom errro code
      */
     public function __construct(resource $ch = null, $message = "", $code = 0) {
-        if (!isNull($ch) && curl_errno($ch) > 0) {
+        if (isset($ch) && curl_errno($ch) > 0) {
             $code = curl_errno($ch);
             $message .= curl_error($ch);
         } else {
             $error_get_last = error_get_last();
-            if (!isNull($error_get_last)) {
+            if (isset($error_get_last)) {
                 $code = $error_get_last["type"];
                 $message = $error_get_last["message"];
             }

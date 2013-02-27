@@ -26,7 +26,7 @@ class Json_Exception extends Exception {
             $message .= $this->json_errors[json_last_error()];
         } else {
             $error_get_last = error_get_last();
-            if (!isNull($error_get_last)) {
+            if (isset($error_get_last)) {
                 $code = $error_get_last["type"];
                 $message = $error_get_last["message"];
             }
