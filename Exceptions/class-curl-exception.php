@@ -11,7 +11,7 @@ class Curl_Exception extends Exception {
      * @param string $message extra messages
      * @param int $code if $ch is null set custom errro code
      */
-    public function __construct(resource $ch = null, $message = "", $code = 0) {
+    public function __construct($ch = null, $message = "", $code = 0, Exception $previous = null) {
         if (isset($ch) && curl_errno($ch) > 0) {
             $code = curl_errno($ch);
             $message .= curl_error($ch);
@@ -22,7 +22,7 @@ class Curl_Exception extends Exception {
                 $message = $error_get_last["message"];
             }
         }
-        parent::__construct($message, $code);
+        parent::__construct($message, $code, $previous);
     }
 
 }

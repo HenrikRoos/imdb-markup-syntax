@@ -20,18 +20,12 @@ class Json_Exception extends Exception {
      * @param type $message
      * @param type $code
      */
-    public function __construct($message = "", $code = 0) {
+    public function __construct($message = "", $code = 0, Exception $previous = null) {
         if (json_last_error() > 0) {
             $code = json_last_error();
             $message .= $this->json_errors[json_last_error()];
-        } else {
-            $error_get_last = error_get_last();
-            if (isset($error_get_last)) {
-                $code = $error_get_last["type"];
-                $message = $error_get_last["message"];
-            }
         }
-        parent::__construct($message, $code);
+        parent::__construct($message, $code, $previous);
     }
 
 }
