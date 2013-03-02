@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * PhpDoc: Page-level DocBlock
+ * @package imdb-markup-syntax
+ */
+
+namespace IMDb_Markup_Syntax;
+
+use IMDb;
+use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
+use IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Json_Exception;
+use stdClass;
+
 require_once dirname(__FILE__) . '/IMDb-PHP-API/class_IMDb.php';
 require_once dirname(__FILE__) . '/Exceptions/class-error-runtime-exception.php';
 require_once dirname(__FILE__) . '/Exceptions/class-curl-exception.php';
@@ -7,6 +20,8 @@ require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
 
 /**
  * Class for access to IMDb RESTful datasource web api.
+ * @author Henrik Roos <henrik at afternoon.se>
+ * @package imdb-markup-syntax
  */
 class Movie_Datasource extends IMDb {
 
@@ -20,10 +35,9 @@ class Movie_Datasource extends IMDb {
     public $response;
 
     /**
-     * The maximum number of milliseconds to allow cURL functions to execute. If libcurl is built
+     * @var int The maximum number of milliseconds to allow cURL functions to execute. If libcurl is built
      * to use the standard system name resolver, that portion of the connect will still use full-second
      * resolution for timeouts with a minimum timeout allowed of one second.
-     * @var int
      */
     public $timeout;
 
@@ -43,25 +57,24 @@ class Movie_Datasource extends IMDb {
     }
 
     /**
-     * Fetch and convert data from IMDb from current movie id.
-     * data stores in $this->response
-     * @return array movie data
+     * Fetch and convert data from IMDb from current id. Data stores in $this->response
+     * @return stdClass movie data
      * @throws Curl_Exception on error in web api request
      * @throws Json_Exception if error in decode
      * @throws Error_Runtime_Exception if response has error in result ex no data for this id.
      */
-    public function getMovie() {
+    public function getData() {
         $this->fetchResponse();
-        return $this->toDataArray();
+        return $this->toDataClass();
     }
 
     /**
-     * Convert raw json data from web api to movie array.
-     * @return array movie data
+     * Convert raw json data from web api to movie stdClass.
+     * @return stdClass movie data
      * @throws Json_Exception if error in decode
      * @throws Error_Runtime_Exception if response has error in result ex no data for this id.
      */
-    public function toDataArray() {
+    public function toDataClass() {
         $obj = json_decode($this->response);
         if (!isset($obj)) {
             throw new Json_Exception();
@@ -73,8 +86,7 @@ class Movie_Datasource extends IMDb {
     }
 
     /**
-     * Function for cURL data fetching for current movie.
-     * data stores in $this->response
+     * Function for cURL data fetching for current movie. Data stores in $this->response
      * @throws Curl_Exception on error in web api request
      */
     public function fetchResponse() {

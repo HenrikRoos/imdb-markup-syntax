@@ -1,7 +1,18 @@
 <?php
 
 /**
+ * PhpDoc: Page-level DocBlock
+ * @package imdb-markup-syntax-exception
+ */
+
+namespace IMDb_Markup_Syntax\Exceptions;
+
+use Exception;
+
+/**
  * Exception class for curl exceptions
+ * @package imdb-markup-syntax-exception
+ * @author Henrik Roos <henrik at afternoon.se>
  */
 class Curl_Exception extends Exception {
 
@@ -10,6 +21,7 @@ class Curl_Exception extends Exception {
      * @param resource $ch resource from curl_init
      * @param string $message extra messages
      * @param int $code if $ch is null set custom errro code
+     * @param Exception $previous
      */
     public function __construct($ch = null, $message = "", $code = 0, Exception $previous = null) {
         if (isset($ch) && curl_errno($ch) > 0) {

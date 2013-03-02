@@ -1,13 +1,23 @@
 <?php
 
-require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
+/**
+ * PhpDoc: Page-level DocBlock
+ * @package imdb-markup-syntax
+ */
+
+namespace IMDb_Markup_Syntax;
+
+use IMDb;
+use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
+
+//require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
 
 /**
  * Find and replace imdb tags to movie data from IMDb
- * @package imdb-markup-syntax
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package imdb-markup-syntax
  */
-class IMDb_Tag_Processing {
+class Tag_Processing {
 
     /** @var string regular expression for find id */
     public $id_pattern = "/\[imdb\:id\((tt\d+)\)\]/i";
@@ -15,35 +25,24 @@ class IMDb_Tag_Processing {
     /** @var string regular expression for all imdb tags */
     public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
 
-    /**
-     * Original content before this filter processing
-     * @var string
-     */
+    /** @var string Original content before this filter processing */
     public $original_content;
 
     /**
-     * Id on current movie. ex http://www.imdb.com/title/tt0137523/ ->
-     * id = tt0137523
+     * @var string Id on current movie. ex http://www.imdb.com/title/tt0137523/ -> id = tt0137523
      * Syntax: [imdb:id(xxxx)] t ex [imdb:id(tt0137523)]
-     * @var string
      */
     public $id;
 
-    /**
-     * IMDb:s data object
-     * @var IMDb object
-     */
+    /** @var IMDb object IMDb:s data object */
     public $data;
 
-    /**
-     * All imdb tags in current content
-     * @var array of imdb tags
-     */
+    /** @var array of imdb tags. All imdb tags in current content */
     public $imdb_tags = array();
 
     /**
      * Create an object
-     * @param type $original_content
+     * @param string $original_content
      */
     public function __construct($original_content) {
         $this->original_content = $original_content;

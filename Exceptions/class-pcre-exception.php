@@ -1,7 +1,17 @@
 <?php
+
+/**
+ * PhpDoc: Page-level DocBlock
+ * @package imdb-markup-syntax-exception
+ */
+
+namespace IMDb_Markup_Syntax\Exceptions;
+
+use Exception;
+
 /**
  * Exception handler for PCRE functions
- * @package imdb-markup-syntax
+ * @package imdb-markup-syntax-exception
  * @author Henrik Roos <henrik at afternoon.se>
  */
 class PCRE_Exception extends Exception {
@@ -20,17 +30,17 @@ class PCRE_Exception extends Exception {
 
     /**
      * Create object and grep last preg error code
-     * @param type $message
-     * @param type $code
+     * @param string $message extra message
+     * @param int $code if no preg_last_error or error_get_last use this code
      * @param Exception $previous
      */
     public function __construct($message = "", $code = 0, Exception $previous = null) {
         $preg_last_error = preg_last_error();
+        $error_get_last = error_get_last();
         if (!empty($preg_last_error)) {
             $code = $preg_last_error;
             $message .= $this->pcre_errors[$code];
-        } else {
-            $error_get_last = error_get_last();
+        } else if (!empty($error_get_last)) {
             $code = $error_get_last["type"];
             $message .= $error_get_last["message"];
         }

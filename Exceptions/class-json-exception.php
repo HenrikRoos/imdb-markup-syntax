@@ -1,7 +1,18 @@
 <?php
 
 /**
+ * PhpDoc: Page-level DocBlock
+ * @package imdb-markup-syntax-exception
+ */
+
+namespace IMDb_Markup_Syntax\Exceptions;
+
+use Exception;
+
+/**
  * Exception class for json exceptions
+ * @package imdb-markup-syntax-exception
+ * @author Henrik Roos <henrik at afternoon.se>
  */
 class Json_Exception extends Exception {
 
@@ -17,8 +28,9 @@ class Json_Exception extends Exception {
 
     /**
      * Create object and grep the last error from json
-     * @param type $message
-     * @param type $code
+     * @param string $message extra message
+     * @param int $code if json_last_error = 0 use this code
+     * @param Exception $previous
      */
     public function __construct($message = "", $code = 0, Exception $previous = null) {
         if (json_last_error() > 0) {

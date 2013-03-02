@@ -1,5 +1,8 @@
 <?php
-/*
+
+namespace IMDb_Markup_Syntax;
+
+/**
  * Plugin Name: IMDb Markup Syntax
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
  * Description: A brief description of the Plugin.
