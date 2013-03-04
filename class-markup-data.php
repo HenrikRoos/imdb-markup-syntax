@@ -7,10 +7,7 @@
 
 namespace IMDb_Markup_Syntax;
 
-use IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception;
 use stdClass;
-
-require_once dirname(__FILE__) . '/../Exceptions/class-error-runtime-exception.php';
 
 /**
  * Markup data tags from INDb data result. Most popular tag in imdb result has a function in this class.
@@ -27,9 +24,6 @@ class Markup_Data {
      * @param stdClass $data IMDb data json class
      */
     public function __construct(stdClass $data) {
-        if (isEmpty($data)) {
-            throw new Error_Runtime_Exception("data is empty");
-        }
         $this->data = $data;
     }
 
@@ -38,9 +32,12 @@ class Markup_Data {
      * @return string|boolean list of writers as a string
      */
     public function writers_summary() {
-        if (is_array($this->data->writers_summary)) {
-            $a = array_map("writer_summary", $this->data->writers_summary);
-            return implode(", ", $a);
+        if (isset($this->data->writers_summary) && is_array($this->data->writers_summary)) {
+            $named = array_filter($this->data->writers_summary, function($writer) {
+                        return isset($writer->name->name);
+                    });
+            $named_summary = array_map(array($this, "writer_summary"), $named);
+            return implode(", ", $named_summary);
         }
         return FALSE;
     }
@@ -58,13 +55,14 @@ class Markup_Data {
      * )
      * OUTPUT: <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
      * @param stdClass $writer array item from writers_summary
-     * @return string|boolean string if $writer->name is a object else false
+     * @return string ex <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
      */
     protected function writer_summary(stdClass $writer) {
-        if (is_object($writer->name)) {
-            return "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">{$writer->name->name}</a> {$writer->name->attr}";
+        $res = isset($writer->name->nconst) ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">{$writer->name->name}</a>" : $writer->name->name;
+        if (isset($writer->attr)) {
+            $res .= " " . $writer->attr;
         }
-        return FALSE;
+        return $res;
     }
 
 }

@@ -15,6 +15,7 @@ require_once 'PHPUnit/Autoload.php';
 require_once dirname(__FILE__) . '/../class-tag-processing.php';
 require_once dirname(__FILE__) . '/../Exceptions/class-pcre-exception.php';
 
+
 /**
  * Testclass (PHPUnit) test for Tag_Processing class.
  * @author Henrik Roos <henrik at afternoon.se>

@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>WordPress Plugin: IMDb Markup Syntax » \IMDb_Markup_Syntax\Exceptions\Curl_Exception</title>
+<title>WordPress Plugin: IMDb Markup Syntax » \IMDb_Markup_Syntax\Tests\Markup_DataTest</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -58,67 +58,106 @@
 </div>
 <ul class="side-nav nav nav-list"><li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
-                    <ul><li class="method public "><a href="#method___construct" title="__construct :: Create an instnas of exception class and grep the last error from curl class."><span class="description">Create an instnas of exception class and grep the last error from curl class.</span><pre>__construct()</pre></a></li></ul>
+                    <ul>
+<li class="method public "><a href="#method_testWriters_summaryNoWriter" title="testWriters_summaryNoWriter :: Alternative test where movie has no writers"><span class="description">Alternative test where movie has no writers</span><pre>testWriters_summaryNoWriter()</pre></a></li>
+<li class="method public "><a href="#method_testWriters_summaryOnePositive" title="testWriters_summaryOnePositive :: Positive test where movie has one writer"><span class="description">Positive test where movie has one writer</span><pre>testWriters_summaryOnePositive()</pre></a></li>
+<li class="method public "><a href="#method_testWriters_summaryTowPositive" title="testWriters_summaryTowPositive :: Positive test where movie has two writers"><span class="description">Positive test where movie has two writers</span><pre>testWriters_summaryTowPositive()</pre></a></li>
+</ul>
 </li></ul>
 </div>
 <div class="span8">
-<a id="\IMDb_Markup_Syntax\Exceptions\Curl_Exception"></a><ul class="breadcrumb">
+<a id="\IMDb_Markup_Syntax\Tests\Markup_DataTest"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/IMDb_Markup_Syntax.html">IMDb_Markup_Syntax</a></li>
 <li>
-<span class="divider">\</span><a href="../namespaces/IMDb_Markup_Syntax.Exceptions.html">Exceptions</a>
+<span class="divider">\</span><a href="../namespaces/IMDb_Markup_Syntax.Tests.html">Tests</a>
 </li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/IMDb_Markup_Syntax.Exceptions.Curl_Exception.html">Curl_Exception</a>
+<span class="divider">\</span><a href="../classes/IMDb_Markup_Syntax.Tests.Markup_DataTest.html">Markup_DataTest</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">Exception class for curl exceptions</p>
+<p class="short_description">Testclass (PHPUnit) test for Markup_Data class</p>
 <div class="details">
 <div class="long_description"></div>
 <table class="table table-bordered">
-<tr>
-<th>package</th>
-<td><a href="../packages/imdb-markup-syntax-exception.html">imdb-markup-syntax-exception</a></td>
-</tr>
 <tr>
 <th>author</th>
 <td><a href="">Henrik Roos &lt;henrik at afternoon.se&gt;</a></td>
 </tr>
 <tr>
-<th>used_by</th>
-<td>\IMDb_Markup_Syntax\Tests\Movie_DatasourceTest::testTimeout()</td>
-</tr>
-<tr>
-<th>used_by</th>
-<td>\IMDb_Markup_Syntax\Tests\Movie_DatasourceTest::testFetchResponseCurl_initException()</td>
+<th>package</th>
+<td><a href="../packages/imdb-markup-syntax-test.html">imdb-markup-syntax-test</a></td>
 </tr>
 </table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Create an instnas of exception class and grep the last error from curl class.</h2>
-<pre>__construct(resource $ch, string $message, int $code, \Exception $previous) </pre>
+<a id="method_testWriters_summaryNoWriter"></a><div class="element clickable method public method_testWriters_summaryNoWriter" data-toggle="collapse" data-target=".method_testWriters_summaryNoWriter .collapse">
+<h2>Alternative test where movie has no writers</h2>
+<pre>testWriters_summaryNoWriter() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$ch</h4>
-<code>resource</code><p>resource from curl_init</p></div>
-<div class="subelement argument">
-<h4>$message</h4>
-<code>string</code><p>extra messages</p></div>
-<div class="subelement argument">
-<h4>$code</h4>
-<code>int</code><p>if $ch is null set custom errro code</p>
+<table class="table table-bordered">
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::__construct</td>
+</tr>
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::writers_summary</td>
+</tr>
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::writer_summary</td>
+</tr>
+</table>
+</div></div>
 </div>
-<div class="subelement argument">
-<h4>$previous</h4>
-<code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code>
+<a id="method_testWriters_summaryOnePositive"></a><div class="element clickable method public method_testWriters_summaryOnePositive" data-toggle="collapse" data-target=".method_testWriters_summaryOnePositive .collapse">
+<h2>Positive test where movie has one writer</h2>
+<pre>testWriters_summaryOnePositive() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::__construct</td>
+</tr>
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::writers_summary</td>
+</tr>
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::writer_summary</td>
+</tr>
+</table>
+</div></div>
 </div>
+<a id="method_testWriters_summaryTowPositive"></a><div class="element clickable method public method_testWriters_summaryTowPositive" data-toggle="collapse" data-target=".method_testWriters_summaryTowPositive .collapse">
+<h2>Positive test where movie has two writers</h2>
+<pre>testWriters_summaryTowPositive() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::__construct</td>
+</tr>
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::writers_summary</td>
+</tr>
+<tr>
+<th>covers</th>
+<td>\IMDb_Markup_Syntax\Markup_Data::writer_summary</td>
+</tr>
+</table>
 </div></div>
 </div>
 </div>

@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="WordPress Plugin: IMDb Markup Syntax">
-  <file path="class-markup-data.php" hash="f9f8b2ebeb2b599061d7e921bbe1bc50" package="imdb-markup-syntax">
+  <file path="class-markup-data.php" hash="1992f064fb8f7374d2cb82db6d5739c5" package="imdb-markup-syntax">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
       <long-description></long-description>
       <tag line="3" name="package" description="imdb-markup-syntax"/>
     </docblock>
-    <include line="13" type="Require Once" package="Default">
-      <name/>
-    </include>
-    <class final="false" abstract="false" namespace="IMDb_Markup_Syntax" line="20" package="imdb-markup-syntax">
+    <class final="false" abstract="false" namespace="IMDb_Markup_Syntax" line="17" package="imdb-markup-syntax">
       <extends/>
       <name>Markup_Data</name>
       <full_name>\IMDb_Markup_Syntax\Markup_Data</full_name>
-      <docblock line="15">
+      <docblock line="12">
         <description>Markup data tags from INDb data result.</description>
         <long-description>&lt;p&gt;Most popular tag in imdb result has a function in this class.&lt;/p&gt;</long-description>
-        <tag line="15" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
-        <tag line="15" name="package" description="imdb-markup-syntax"/>
+        <tag line="12" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
+        <tag line="12" name="package" description="imdb-markup-syntax"/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="23" namespace="IMDb_Markup_Syntax" package="Default">
+      <property final="false" static="false" visibility="private" line="20" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$data</name>
         <default></default>
-        <docblock line="22">
+        <docblock line="19">
           <description></description>
           <long-description></long-description>
-          <tag line="22" name="var" description="imdb data result" type="\stdClass">
+          <tag line="19" name="var" description="imdb data result" type="\stdClass">
             <type by_reference="false">\stdClass</type>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax" line="29" package="imdb-markup-syntax">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax" line="26" package="imdb-markup-syntax">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="25">
+        <docblock line="22">
           <description>Create a instans of this class</description>
           <long-description></long-description>
-          <tag line="25" name="param" description="IMDb data json class" type="\stdClass" variable="$data">
+          <tag line="22" name="param" description="IMDb data json class" type="\stdClass" variable="$data">
             <type by_reference="false">\stdClass</type>
           </tag>
         </docblock>
-        <argument line="29">
+        <argument line="26">
           <name>$data</name>
           <default></default>
           <type>\stdClass</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax" line="40" package="imdb-markup-syntax">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax" line="34" package="imdb-markup-syntax">
         <name>writers_summary</name>
         <full_name>writers_summary</full_name>
-        <docblock line="36">
+        <docblock line="30">
           <description>Tabbad one-linaer of all writers in current movie</description>
           <long-description></long-description>
-          <tag line="36" name="return" description="list of writers as a string" type="string|boolean">
+          <tag line="30" name="return" description="list of writers as a string" type="string|boolean">
             <type by_reference="false">string</type>
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="IMDb_Markup_Syntax" line="63" package="imdb-markup-syntax">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IMDb_Markup_Syntax" line="60" package="imdb-markup-syntax">
         <name>writer_summary</name>
         <full_name>writer_summary</full_name>
-        <docblock line="48">
+        <docblock line="45">
           <description>INPUT:
 stdClass Object
 (
@@ -74,15 +71,14 @@ stdClass Object
 )
 OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt; (characters)</description>
           <long-description></long-description>
-          <tag line="48" name="param" description="array item from writers_summary" type="\stdClass" variable="$writer">
+          <tag line="45" name="param" description="array item from writers_summary" type="\stdClass" variable="$writer">
             <type by_reference="false">\stdClass</type>
           </tag>
-          <tag line="48" name="return" description="string if $writer-&gt;name is a object else false" type="string|boolean">
+          <tag line="45" name="return" description="ex &lt;a href=&quot;http://www.imdb.com/name/nm0254645&quot;&gt;Ted Elliott&lt;/a&gt; (characters)" type="string">
             <type by_reference="false">string</type>
-            <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="63">
+        <argument line="60">
           <name>$writer</name>
           <default></default>
           <type>\stdClass</type>
@@ -93,7 +89,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
   <file path="class-movie-datasource.php" hash="425bc76ef99fe02213b1cdc1c1903e17" package="imdb-markup-syntax">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax"/>
     </docblock>
     <include line="16" type="Require Once" package="Default">
@@ -114,16 +110,16 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Movie_Datasource</full_name>
       <docblock line="21">
         <description>Class for access to IMDb RESTful datasource web api.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="21" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
         <tag line="21" name="package" description="imdb-markup-syntax"/>
       </docblock>
       <property final="false" static="false" visibility="public" line="29" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$id</name>
-        <default></default>
+        <default/>
         <docblock line="28">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="28" name="var" description="imdb id for current movie. ex &quot;tt0137523&quot;" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -131,10 +127,10 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </property>
       <property final="false" static="false" visibility="public" line="32" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$request</name>
-        <default></default>
+        <default/>
         <docblock line="31">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="31" name="var" description="request to web api." type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -142,10 +138,10 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </property>
       <property final="false" static="false" visibility="public" line="35" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$response</name>
-        <default></default>
+        <default/>
         <docblock line="34">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="34" name="var" description="raw data respomse from web api" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -153,10 +149,10 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </property>
       <property final="false" static="false" visibility="public" line="42" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$timeout</name>
-        <default></default>
+        <default/>
         <docblock line="37">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="37" name="var" description="The maximum number of milliseconds to allow cURL functions to execute. If libcurl is built to use the standard system name resolver, that portion of the connect will still use full-second resolution for timeouts with a minimum timeout allowed of one second." type="int">
             <type by_reference="false">int</type>
           </tag>
@@ -167,7 +163,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>__construct</full_name>
         <docblock line="44">
           <description>Create an instans object for acces to datasource,</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="44" name="param" description="imdb id for current movie ex &quot;tt0137523&quot;" type="string" variable="$id">
             <type by_reference="false">string</type>
           </tag>
@@ -180,7 +176,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         </docblock>
         <argument line="50">
           <name>$id</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="50">
@@ -214,7 +210,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>toDataClass</full_name>
         <docblock line="71">
           <description>Convert raw json data from web api to movie stdClass.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="71" name="return" description="movie data" type="\stdClass">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -242,7 +238,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
   <file path="class-tag-processing.php" hash="45526aaa4a9810bf0fd43aec0c362eda" package="imdb-markup-syntax">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax"/>
     </docblock>
     <class final="false" abstract="false" namespace="IMDb_Markup_Syntax" line="20" package="imdb-markup-syntax">
@@ -251,7 +247,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Tag_Processing</full_name>
       <docblock line="15">
         <description>Find and replace imdb tags to movie data from IMDb</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="15" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
         <tag line="15" name="package" description="imdb-markup-syntax"/>
       </docblock>
@@ -259,8 +255,8 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <name>$id_pattern</name>
         <default>"/\[imdb\:id\((tt\d+)\)\]/i"</default>
         <docblock line="22">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="22" name="var" description="regular expression for find id" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -270,8 +266,8 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <name>$imdb_tags_pattern</name>
         <default>"/\[imdb\:([a-z0-9]+)\]/i"</default>
         <docblock line="25">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="25" name="var" description="regular expression for all imdb tags" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -279,10 +275,10 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </property>
       <property final="false" static="false" visibility="public" line="29" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$original_content</name>
-        <default></default>
+        <default/>
         <docblock line="28">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="28" name="var" description="Original content before this filter processing" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -290,10 +286,10 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </property>
       <property final="false" static="false" visibility="public" line="35" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$id</name>
-        <default></default>
+        <default/>
         <docblock line="31">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="31" name="var" description="Id on current movie. ex http://www.imdb.com/title/tt0137523/ -&gt; id = tt0137523 Syntax: [imdb:id(xxxx)] t ex [imdb:id(tt0137523)]" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -301,10 +297,10 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </property>
       <property final="false" static="false" visibility="public" line="38" namespace="IMDb_Markup_Syntax" package="Default">
         <name>$data</name>
-        <default></default>
+        <default/>
         <docblock line="37">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="37" name="var" description="object IMDb:s data object" type="\IMDb">
             <type by_reference="false">\IMDb</type>
           </tag>
@@ -314,8 +310,8 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <name>$imdb_tags</name>
         <default>array()</default>
         <docblock line="40">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="40" name="var" description="of imdb tags. All imdb tags in current content" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -326,14 +322,14 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>__construct</full_name>
         <docblock line="43">
           <description>Create an object</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="43" name="param" description="" type="string" variable="$original_content">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
         <argument line="47">
           <name>$original_content</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -356,7 +352,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>find_imdb_tags</full_name>
         <docblock line="69">
           <description>Find and store all [imdb:xxx] tags in imdb_tags array</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="69" name="return" description="FALSE if no match TRUE if find" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
@@ -370,7 +366,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
   <file path="Exceptions/class-curl-exception.php" hash="65909c0d5dc77846d2ba275658b77178" package="imdb-markup-syntax-exception">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax-exception"/>
     </docblock>
     <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Exceptions" line="17" package="imdb-markup-syntax-exception">
@@ -379,7 +375,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Exceptions\Curl_Exception</full_name>
       <docblock line="12">
         <description>Exception class for curl exceptions</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="12" name="package" description="imdb-markup-syntax-exception"/>
         <tag line="12" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
       </docblock>
@@ -388,7 +384,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>__construct</full_name>
         <docblock line="19">
           <description>Create an instnas of exception class and grep the last error from curl class.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="19" name="param" description="resource from curl_init" type="resource" variable="$ch">
             <type by_reference="false">resource</type>
           </tag>
@@ -428,7 +424,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
   <file path="Exceptions/class-error-runtime-exception.php" hash="6cb97f2c482864df07358da2f4ca91ed" package="imdb-markup-syntax-exception">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax-exception"/>
     </docblock>
     <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Exceptions" line="18" package="imdb-markup-syntax-exception">
@@ -437,7 +433,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception</full_name>
       <docblock line="13">
         <description>Create intans object for imdb api error.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="13" name="package" description="imdb-markup-syntax-exception"/>
         <tag line="13" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
       </docblock>
@@ -446,7 +442,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>__construct</full_name>
         <docblock line="20">
           <description>Create intans object for imdb api repsonse error.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="20" name="param" description="from imdb api respons as json convert" type="\stdClass" variable="$response">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -462,7 +458,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         </docblock>
         <argument line="27">
           <name>$response</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="27">
@@ -486,7 +482,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
   <file path="Exceptions/class-json-exception.php" hash="b5753ee53e379065eceac358ff159867" package="imdb-markup-syntax-exception">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax-exception"/>
     </docblock>
     <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Exceptions" line="17" package="imdb-markup-syntax-exception">
@@ -495,7 +491,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Exceptions\Json_Exception</full_name>
       <docblock line="12">
         <description>Exception class for json exceptions</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="12" name="package" description="imdb-markup-syntax-exception"/>
         <tag line="12" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
       </docblock>
@@ -503,8 +499,8 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <name>$json_errors</name>
         <default>array(0 =&gt; "JSON_ERROR_NONE", 1 =&gt; "JSON_ERROR_DEPTH", 2 =&gt; "JSON_ERROR_STATE_MISMATCH", 3 =&gt; "JSON_ERROR_CTRL_CHAR", 4 =&gt; "JSON_ERROR_SYNTAX", 5 =&gt; "JSON_ERROR_UTF8")</default>
         <docblock line="19">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="19" name="var" description="json error codes" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -515,7 +511,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>__construct</full_name>
         <docblock line="29">
           <description>Create object and grep the last error from json</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="param" description="extra message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
@@ -547,7 +543,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
   <file path="Exceptions/class-pcre-exception.php" hash="b2481156007c34ba672aa3f355efe54e" package="imdb-markup-syntax-exception">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax-exception"/>
     </docblock>
     <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Exceptions" line="17" package="imdb-markup-syntax-exception">
@@ -556,7 +552,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Exceptions\PCRE_Exception</full_name>
       <docblock line="12">
         <description>Exception handler for PCRE functions</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="12" name="package" description="imdb-markup-syntax-exception"/>
         <tag line="12" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
       </docblock>
@@ -565,7 +561,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <default>array(0 =&gt; "PREG_NO_ERROR", 1 =&gt; "PREG_INTERNAL_ERROR", 2 =&gt; "PREG_BACKTRACK_LIMIT_ERROR", 3 =&gt; "PREG_RECURSION_LIMIT_ERROR", 4 =&gt; "PREG_BAD_UTF8_ERROR", 5 =&gt; "PREG_BAD_UTF8_OFFSET_ERROR")</default>
         <docblock line="19">
           <description>Mapping error code into error name</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="19" name="var" description="of pcre_errors" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -576,7 +572,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>__construct</full_name>
         <docblock line="31">
           <description>Create object and grep last preg error code</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="31" name="param" description="extra message" type="string" variable="$message">
             <type by_reference="false">string</type>
           </tag>
@@ -610,10 +606,70 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <error line="0" code="50007">No page-level DocBlock was found in file imdb-markup-syntax.php</error>
     </parse_markers>
   </file>
-  <file path="Tests/Movie_DatasourceTest.php" hash="90d22262bc66ace3b6d70a209ccc415f" package="imdb-markup-syntax-test">
+  <file path="Tests/Markup_DataTest.php" hash="9d0607406910a86e5ba060ff14fdfbff" package="imdb-markup-syntax-test">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
       <long-description></long-description>
+      <tag line="3" name="package" description="imdb-markup-syntax-test"/>
+    </docblock>
+    <include line="14" type="Require Once" package="Default">
+      <name>PHPUnit/Autoload.php</name>
+    </include>
+    <include line="15" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="16" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Tests" line="23" package="imdb-markup-syntax-test">
+      <extends>\PHPUnit_Framework_TestCase</extends>
+      <name>Markup_DataTest</name>
+      <full_name>\IMDb_Markup_Syntax\Tests\Markup_DataTest</full_name>
+      <docblock line="18">
+        <description>Testclass (PHPUnit) test for Markup_Data class</description>
+        <long-description></long-description>
+        <tag line="18" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
+        <tag line="18" name="package" description="imdb-markup-syntax-test"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="31" package="imdb-markup-syntax-test">
+        <name>testWriters_summaryTowPositive</name>
+        <full_name>testWriters_summaryTowPositive</full_name>
+        <docblock line="25">
+          <description>Positive test where movie has two writers</description>
+          <long-description></long-description>
+          <tag line="25" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::__construct" refers="\IMDb_Markup_Syntax\Markup_Data::__construct"/>
+          <tag line="25" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::writers_summary" refers="\IMDb_Markup_Syntax\Markup_Data::writers_summary"/>
+          <tag line="25" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::writer_summary" refers="\IMDb_Markup_Syntax\Markup_Data::writer_summary"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="45" package="imdb-markup-syntax-test">
+        <name>testWriters_summaryOnePositive</name>
+        <full_name>testWriters_summaryOnePositive</full_name>
+        <docblock line="39">
+          <description>Positive test where movie has one writer</description>
+          <long-description></long-description>
+          <tag line="39" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::__construct" refers="\IMDb_Markup_Syntax\Markup_Data::__construct"/>
+          <tag line="39" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::writers_summary" refers="\IMDb_Markup_Syntax\Markup_Data::writers_summary"/>
+          <tag line="39" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::writer_summary" refers="\IMDb_Markup_Syntax\Markup_Data::writer_summary"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="59" package="imdb-markup-syntax-test">
+        <name>testWriters_summaryNoWriter</name>
+        <full_name>testWriters_summaryNoWriter</full_name>
+        <docblock line="53">
+          <description>Alternative test where movie has no writers</description>
+          <long-description></long-description>
+          <tag line="53" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::__construct" refers="\IMDb_Markup_Syntax\Markup_Data::__construct"/>
+          <tag line="53" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::writers_summary" refers="\IMDb_Markup_Syntax\Markup_Data::writers_summary"/>
+          <tag line="53" name="covers" description="\IMDb_Markup_Syntax\Markup_Data::writer_summary" refers="\IMDb_Markup_Syntax\Markup_Data::writer_summary"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Tests/Movie_DatasourceTest.php" hash="90d22262bc66ace3b6d70a209ccc415f" package="imdb-markup-syntax-test">
+    <docblock line="3">
+      <description>PhpDoc: Page-level DocBlock</description>
+      <long-description/>
       <tag line="3" name="package" description="imdb-markup-syntax-test"/>
     </docblock>
     <include line="16" type="Require Once" package="Default">
@@ -637,7 +693,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       <full_name>\IMDb_Markup_Syntax\Tests\Movie_DatasourceTest</full_name>
       <docblock line="22">
         <description>Testclass (PHPUnit) test for Movie_Datasource class</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="22" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
         <tag line="22" name="package" description="imdb-markup-syntax-test"/>
       </docblock>
@@ -645,8 +701,8 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <name>$testdata</name>
         <default>array("movie" =&gt; "tt0137523", "tvserie" =&gt; "tt0402711", "videogame" =&gt; "tt1843198", "nodata" =&gt; "tt0000000", "incorrect" =&gt; "a b c")</default>
         <docblock line="29">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="29" name="var" description="testdata for movie id" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -657,7 +713,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testMovie</full_name>
         <docblock line="38">
           <description>Main use case get a movie data, no error</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="38" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
           <tag line="38" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::getData" refers="\IMDb_Markup_Syntax\Movie_Datasource::getData"/>
           <tag line="38" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse" refers="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse"/>
@@ -669,7 +725,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testTvSerie</full_name>
         <docblock line="51">
           <description>Main use case get a tv serie data, no error</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="51" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
           <tag line="51" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::getData" refers="\IMDb_Markup_Syntax\Movie_Datasource::getData"/>
           <tag line="51" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse" refers="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse"/>
@@ -681,7 +737,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testVideoGame</full_name>
         <docblock line="64">
           <description>Main use case get a video game data, no error</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="64" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
           <tag line="64" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::getData" refers="\IMDb_Markup_Syntax\Movie_Datasource::getData"/>
           <tag line="64" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse" refers="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse"/>
@@ -706,7 +762,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testIncorrectId</full_name>
         <docblock line="97">
           <description>Negativ test, incorrect id checked in construct</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="97" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
           <tag line="97" name="covers" description="\IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception" refers="\IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception"/>
         </docblock>
@@ -727,7 +783,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testFetchResponseIncorrectRequest</full_name>
         <docblock line="129">
           <description>Negative test, incorrect request.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="129" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse" refers="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse"/>
           <tag line="129" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
         </docblock>
@@ -737,7 +793,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testFetchResponseCurl_initException</full_name>
         <docblock line="147">
           <description>Negativ test, incorrect input to curl_init function</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="147" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse" refers="\IMDb_Markup_Syntax\Movie_Datasource::fetchResponse"/>
           <tag line="147" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
           <tag line="147" name="covers" description="\IMDb_Markup_Syntax\Exceptions\Curl_Exception" refers="\IMDb_Markup_Syntax\Exceptions\Curl_Exception"/>
@@ -748,7 +804,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
         <full_name>testToDataClassJson_Exception</full_name>
         <docblock line="166">
           <description>Negativ test, incorrect json syntax</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="166" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::toDataClass" refers="\IMDb_Markup_Syntax\Movie_Datasource::toDataClass"/>
           <tag line="166" name="covers" description="\IMDb_Markup_Syntax\Movie_Datasource::__construct" refers="\IMDb_Markup_Syntax\Movie_Datasource::__construct"/>
           <tag line="166" name="covers" description="\IMDb_Markup_Syntax\Exceptions\Json_Exception" refers="\IMDb_Markup_Syntax\Exceptions\Json_Exception"/>
@@ -756,7 +812,7 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
       </method>
     </class>
   </file>
-  <file path="Tests/Tag_ProcessingTest.php" hash="7562019a746e5e92735c696a6831cb86" package="imdb-markup-syntax-test">
+  <file path="Tests/Tag_ProcessingTest.php" hash="f11b48666a624dbf06b8280f08fd0aee" package="imdb-markup-syntax-test">
     <docblock line="3">
       <description>PhpDoc: Page-level DocBlock</description>
       <long-description></long-description>
@@ -771,157 +827,157 @@ OUTPUT: &lt;a href="http://www.imdb.com/name/nm0254645"&gt;Ted Elliott&lt;/a&gt;
     <include line="16" type="Require Once" package="Default">
       <name/>
     </include>
-    <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Tests" line="23" package="imdb-markup-syntax-test">
+    <class final="false" abstract="false" namespace="IMDb_Markup_Syntax\Tests" line="24" package="imdb-markup-syntax-test">
       <extends>\PHPUnit_Framework_TestCase</extends>
       <name>Tag_ProcessingTest</name>
       <full_name>\IMDb_Markup_Syntax\Tests\Tag_ProcessingTest</full_name>
-      <docblock line="18">
+      <docblock line="19">
         <description>Testclass (PHPUnit) test for Tag_Processing class.</description>
         <long-description></long-description>
-        <tag line="18" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
-        <tag line="18" name="package" description="imdb-markup-syntax-test"/>
+        <tag line="19" name="author" description="Henrik Roos &lt;henrik at afternoon.se&gt;"/>
+        <tag line="19" name="package" description="imdb-markup-syntax-test"/>
       </docblock>
-      <property final="false" static="false" visibility="public" line="28" namespace="IMDb_Markup_Syntax\Tests" package="Default">
+      <property final="false" static="false" visibility="public" line="29" namespace="IMDb_Markup_Syntax\Tests" package="Default">
         <name>$testdata</name>
         <default></default>
-        <docblock line="25">
+        <docblock line="26">
           <description></description>
           <long-description></long-description>
-          <tag line="25" name="var" description="string of testdata" type="array">
+          <tag line="26" name="var" description="string of testdata" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="IMDb_Markup_Syntax\Tests" line="34" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="IMDb_Markup_Syntax\Tests" line="35" package="imdb-markup-syntax-test">
         <name>setUp</name>
         <full_name>setUp</full_name>
-        <docblock line="30">
+        <docblock line="31">
           <description>Sets up the fixture, for example, opens a network connection.</description>
           <long-description>&lt;p&gt;This method is called before a test is executed.&lt;/p&gt;</long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="52" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="53" package="imdb-markup-syntax-test">
         <name>testFind_idOnePositive</name>
         <full_name>testFind_idOnePositive</full_name>
-        <docblock line="47">
+        <docblock line="48">
           <description>One [IMDb:id(xxx)] tag, Positive test.</description>
           <long-description></long-description>
-          <tag line="47" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
-          <tag line="47" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="48" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
+          <tag line="48" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="63" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="64" package="imdb-markup-syntax-test">
         <name>testFind_idTwoPositive</name>
         <full_name>testFind_idTwoPositive</full_name>
-        <docblock line="58">
+        <docblock line="59">
           <description>Two correct [IMDb:id(xxx)] tags, Positive test.</description>
           <long-description>&lt;p&gt;Only one is set (first one).&lt;/p&gt;</long-description>
-          <tag line="58" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
-          <tag line="58" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="59" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
+          <tag line="59" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="74" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="75" package="imdb-markup-syntax-test">
         <name>testFind_idNoMatch</name>
         <full_name>testFind_idNoMatch</full_name>
-        <docblock line="69">
+        <docblock line="70">
           <description>No correct [IMDb:id(xxx)] tags.</description>
           <long-description>&lt;p&gt;Alternative test. id not set.&lt;/p&gt;</long-description>
-          <tag line="69" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
-          <tag line="69" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="70" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
+          <tag line="70" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="85" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="86" package="imdb-markup-syntax-test">
         <name>testFind_idEmpty</name>
         <full_name>testFind_idEmpty</full_name>
-        <docblock line="80">
+        <docblock line="81">
           <description>Null input = id not set.</description>
           <long-description></long-description>
-          <tag line="80" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
-          <tag line="80" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="81" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
+          <tag line="81" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="100" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="101" package="imdb-markup-syntax-test">
         <name>testFind_idPREG_ERROR</name>
         <full_name>testFind_idPREG_ERROR</full_name>
-        <docblock line="94">
+        <docblock line="95">
           <description>Negativ test for Exception handler of a PREG_ERROR</description>
           <long-description></long-description>
-          <tag line="94" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
-          <tag line="94" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
-          <tag line="94" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="95" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
+          <tag line="95" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
+          <tag line="95" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="119" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="120" package="imdb-markup-syntax-test">
         <name>testFind_idErrorControlOperators</name>
         <full_name>testFind_idErrorControlOperators</full_name>
-        <docblock line="113">
+        <docblock line="114">
           <description>Negativ test for Exception handler of a Compilation failed</description>
           <long-description></long-description>
-          <tag line="113" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
-          <tag line="113" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
-          <tag line="113" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="114" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_id" refers="\IMDb_Markup_Syntax\Tag_Processing::find_id"/>
+          <tag line="114" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
+          <tag line="114" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="137" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="138" package="imdb-markup-syntax-test">
         <name>testFind_imdb_tagsOnePositive</name>
         <full_name>testFind_imdb_tagsOnePositive</full_name>
-        <docblock line="132">
+        <docblock line="133">
           <description>Find one tag.</description>
           <long-description>&lt;p&gt;Positive test.&lt;/p&gt;</long-description>
-          <tag line="132" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
-          <tag line="132" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="133" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
+          <tag line="133" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="149" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="150" package="imdb-markup-syntax-test">
         <name>testFind_imdb_tagsTwoPositive</name>
         <full_name>testFind_imdb_tagsTwoPositive</full_name>
-        <docblock line="144">
+        <docblock line="145">
           <description>Find two tag.</description>
           <long-description>&lt;p&gt;Positive test.&lt;/p&gt;</long-description>
-          <tag line="144" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
-          <tag line="144" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="145" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
+          <tag line="145" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="162" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="163" package="imdb-markup-syntax-test">
         <name>testFind_imdb_tagsNoMatch</name>
         <full_name>testFind_imdb_tagsNoMatch</full_name>
-        <docblock line="157">
+        <docblock line="158">
           <description>Find zero tag.</description>
           <long-description>&lt;p&gt;Alternative test.&lt;/p&gt;</long-description>
-          <tag line="157" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
-          <tag line="157" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="158" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
+          <tag line="158" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="173" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="174" package="imdb-markup-syntax-test">
         <name>testFind_imdb_tagsEmpty</name>
         <full_name>testFind_imdb_tagsEmpty</full_name>
-        <docblock line="168">
+        <docblock line="169">
           <description>Null input.</description>
           <long-description>&lt;p&gt;Alternative test&lt;/p&gt;</long-description>
-          <tag line="168" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
-          <tag line="168" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="169" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
+          <tag line="169" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="188" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="189" package="imdb-markup-syntax-test">
         <name>testFind_imdb_tagsPREG_ERROR</name>
         <full_name>testFind_imdb_tagsPREG_ERROR</full_name>
-        <docblock line="182">
+        <docblock line="183">
           <description>Negativ test for Exception handler of a PREG_ERROR</description>
           <long-description></long-description>
-          <tag line="182" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
-          <tag line="182" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
-          <tag line="182" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="183" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
+          <tag line="183" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
+          <tag line="183" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="207" package="imdb-markup-syntax-test">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="IMDb_Markup_Syntax\Tests" line="208" package="imdb-markup-syntax-test">
         <name>testFind_imdb_tagsErrorControlOperators</name>
         <full_name>testFind_imdb_tagsErrorControlOperators</full_name>
-        <docblock line="201">
+        <docblock line="202">
           <description>Negativ test for Exception handler of a Compilation failed</description>
           <long-description></long-description>
-          <tag line="201" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
-          <tag line="201" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
-          <tag line="201" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
+          <tag line="202" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags" refers="\IMDb_Markup_Syntax\Tag_Processing::find_imdb_tags"/>
+          <tag line="202" name="covers" description="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception" refers="\IMDb_Markup_Syntax\Exceptions\PCRE_Exception"/>
+          <tag line="202" name="covers" description="\IMDb_Markup_Syntax\Tag_Processing::__construct" refers="\IMDb_Markup_Syntax\Tag_Processing::__construct"/>
         </docblock>
       </method>
     </class>
