@@ -5,15 +5,4 @@
             <directory suffix=".php">../IMDb-PHP-API</directory>
         </blacklist>
     </filter>
-    <testsuites>
-        <testsuite name="Markup_Data">
-            <file>Markup_DataTest.php</file>
-        </testsuite>
-        <testsuite name="Movie_Datasource">
-            <file>Movie_DatasourceTest.php</file>
-        </testsuite>
-        <testsuite name="Tag_Processing">
-            <file>Tag_ProcessingTest.php</file>
-        </testsuite>
-    </testsuites>
 </phpunit>
