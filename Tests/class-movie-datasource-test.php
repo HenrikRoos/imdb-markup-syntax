@@ -1,11 +1,10 @@
 <?php
 
-namespace IMDb_Markup_Syntax\Tests;
+namespace IMDb_Markup_Syntax;
 
 use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
 use IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception;
 use IMDb_Markup_Syntax\Exceptions\Json_Exception;
-use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';

@@ -1,9 +1,8 @@
 <?php
 
-namespace IMDb_Markup_Syntax\Tests;
+namespace IMDb_Markup_Syntax;
 
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
-use IMDb_Markup_Syntax\Tag_Processing;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
