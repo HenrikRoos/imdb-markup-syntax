@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class IMDb_Markup_Syntax\Tag_Processing | imdb-markup-syntax</title>
+
+	<script type="text/javascript" src="resources/combined.js?877386528"></script>
+	<script type="text/javascript" src="elementlist.js?99038827"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax<span></span></a>
+						<ul>
+				<li><a href="namespace-IMDb_Markup_Syntax.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-IMDb_Markup_Syntax.Tests.html">Tests</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-IMDb_Markup_Syntax.Markup_Data.html">Markup_Data</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Movie_Datasource.html">Movie_Datasource</a></li>
+				<li class="active"><a href="class-IMDb_Markup_Syntax.Tag_Processing.html">Tag_Processing</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-IMDb_Markup_Syntax.html" title="Summary of IMDb_Markup_Syntax"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Tag_Processing</h1>
+
+
+	<div class="description">
+	
+<p>Find and replace imdb tags to movie data from IMDb</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax</a><br />
+		<b>Package:</b> imdb-markup-syntax<br />
+
+				<b>Author:</b>
+				Henrik Roos &lt;henrik at afternoon.se&gt;<br />
+		<b>Located at</b> <a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#10-78" title="Go to source code">class-tag-processing.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#38-44" title="Go to source code">__construct</a>( <span>string <var>$original_content</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create an object</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an object</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$original_content</var></dt>
+					<dd><code>string</code><br>$original_content</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find_id" id="_find_id">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find_id">#</a>
+		<code><a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#46-62" title="Go to source code">find_id</a>( )</code>
+
+		<div class="description short">
+			
+<p>Find and store it in $id. ex: "ksdkasd [imdb:id(tt0137523)] dmf,sdm" -&gt; id
+= tt0137523</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find and store it in $id. ex: "ksdkasd [imdb:id(tt0137523)] dmf,sdm" -&gt; id
+= tt0137523</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>FALSE if no match TRUE if find a id<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-IMDb_Markup_Syntax.Exceptions.PCRE_Exception.html">IMDb_Markup_Syntax\Exceptions\PCRE_Exception</a></code></code><br>if a PCRE error occurs or patten compilation failed<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find_imdb_tags" id="_find_imdb_tags">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find_imdb_tags">#</a>
+		<code><a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#64-76" title="Go to source code">find_imdb_tags</a>( )</code>
+
+		<div class="description short">
+			
+<p>Find and store all [imdb:xxx] tags in imdb_tags array</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find and store all [imdb:xxx] tags in imdb_tags array</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>FALSE if no match TRUE if find<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-IMDb_Markup_Syntax.Exceptions.PCRE_Exception.html">IMDb_Markup_Syntax\Exceptions\PCRE_Exception</a></code></code><br>if a PCRE error occurs or patten compilation failed<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="id_pattern" id="$id_pattern">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#17-18" title="Go to source code"><var>$id_pattern</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">&quot;/\[imdb\:id\((tt\d+)\)\]/i&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#$id_pattern" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>regular expression for find id</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>regular expression for find id</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="imdb_tags_pattern" id="$imdb_tags_pattern">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#20-21" title="Go to source code"><var>$imdb_tags_pattern</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">&quot;/\[imdb\:([a-z0-9]+)\]/i&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#$imdb_tags_pattern" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>regular expression for all imdb tags</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>regular expression for all imdb tags</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="original_content" id="$original_content">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#23-24" title="Go to source code"><var>$original_content</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$original_content" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Original content before this filter processing</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Original content before this filter processing</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="id" id="$id">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#26-30" title="Go to source code"><var>$id</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$id" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Id on current movie. ex <a
+href="http://www.imdb.com/title/tt0137523/">http://www.imdb.com/title/tt0137523/</a>
+-&gt; id = tt0137523 Syntax: [imdb:id(xxxx)] t ex [imdb:id(tt0137523)]</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Id on current movie. ex <a
+href="http://www.imdb.com/title/tt0137523/">http://www.imdb.com/title/tt0137523/</a>
+-&gt; id = tt0137523 Syntax: [imdb:id(xxxx)] t ex [imdb:id(tt0137523)]</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="data" id="$data">
+		<td class="attributes"><code>
+			public  
+			IMDb
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#32-33" title="Go to source code"><var>$data</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$data" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>object IMDb:s data object</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>object IMDb:s data object</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="imdb_tags" id="$imdb_tags">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-IMDb_Markup_Syntax.Tag_Processing.html#35-36" title="Go to source code"><var>$imdb_tags</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$imdb_tags" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>of imdb tags. All imdb tags in current content</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>of imdb tags. All imdb tags in current content</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		imdb-markup-syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

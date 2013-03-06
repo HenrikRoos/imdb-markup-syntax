@@ -1,10 +1,5 @@
 <?php
 
-/**
- * PhpDoc: Page-level DocBlock
- * @package imdb-markup-syntax-test
- */
-
 namespace IMDb_Markup_Syntax\Tests;
 
 use IMDb_Markup_Syntax\Exceptions\Curl_Exception;

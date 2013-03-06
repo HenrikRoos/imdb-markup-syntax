@@ -1,10 +1,5 @@
 <?php
 
-/**
- * PhpDoc: Page-level DocBlock
- * @package imdb-markup-syntax-test
- */
-
 namespace IMDb_Markup_Syntax\Tests;
 
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
@@ -14,7 +9,6 @@ use PHPUnit_Framework_TestCase;
 require_once 'PHPUnit/Autoload.php';
 require_once dirname(__FILE__) . '/../class-tag-processing.php';
 require_once dirname(__FILE__) . '/../Exceptions/class-pcre-exception.php';
-
 
 /**
  * Testclass (PHPUnit) test for Tag_Processing class.
