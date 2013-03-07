@@ -16,7 +16,6 @@ require_once dirname(__FILE__) . '/../Exceptions/class-json-exception.php';
 /**
  * Testclass (PHPUnit) test for Movie_Datasource class
  * @author Henrik Roos <henrik at afternoon.se>
- * @package imdb-markup-syntax-test
  */
 class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
 

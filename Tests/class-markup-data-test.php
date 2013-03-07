@@ -11,7 +11,6 @@ require_once dirname(__FILE__) . '/../class-movie-datasource.php';
 /**
  * Testclass (PHPUnit) test for Markup_Data class
  * @author Henrik Roos <henrik at afternoon.se>
- * @package imdb-markup-syntax-test
  */
 class Markup_DataTest extends PHPUnit_Framework_TestCase {
 
