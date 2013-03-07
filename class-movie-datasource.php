@@ -16,7 +16,6 @@ require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
 /**
  * Class for access to IMDb RESTful datasource web api.
  * @author Henrik Roos <henrik at afternoon.se>
- * @package imdb-markup-syntax
  */
 class Movie_Datasource extends IMDb {
 

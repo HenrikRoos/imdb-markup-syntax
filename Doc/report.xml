@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="1.3.0">
+	<file name="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/class-markup-data.php">
+		<error severity="warning" line="24" message="Existing documentation &quot;string|boolean if no id then FALSE&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::id()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="32" message="Existing documentation &quot;string|boolean if no title then FALSE&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::title()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="40" message="Existing documentation &quot;string|boolean current titles type ex video or tv_series&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::type()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="49" message="Existing documentation &quot;string|boolean list of genres in one string or FALSE if no data&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::genres()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="58" message="Existing documentation &quot;string|boolean in format 'Y-m-d' ex 2013-12-24 or FALSE if no date&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::release_date()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="67" message="Existing documentation &quot;int|boolean Runtime in minutes or FALSE if not data&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::runtime()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="75" message="Existing documentation &quot;float|boolean if no rating then FALSE&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::rating()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="83" message="Existing documentation &quot;int|boolean if no data then FALSE.&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::votes()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="91" message="Existing documentation &quot;string|boolean if no plot then FALSE&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::plot()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="102" message="Existing documentation &quot;string|boolean if no tagline then FALSE&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::tagline()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="111" message="Existing documentation &quot;string|boolean list of actors as a one string or FALSE if no data&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::cast()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="134" message="Existing documentation &quot;string|boolean list of directors as a one string or FALSE if no data&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::directors()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="warning" line="148" message="Existing documentation &quot;string|boolean code ex G, PG, PG-13, R, NC-17 or FALSE if no data&quot; of nonexistent return value of method IMDb_Markup_Syntax\Markup_Data::certificate()" source="ApiGen.Documentation.Documentation"/>
+		<error severity="error" line="170" message="Missing documentation of method IMDb_Markup_Syntax\Markup_Data::poster()" source="ApiGen.Documentation.Documentation"/>
+	</file>
+</checkstyle>

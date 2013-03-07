@@ -6,7 +6,6 @@ use Exception;
 
 /**
  * Exception class for json exceptions
- * @package imdb-markup-syntax-exception
  * @author Henrik Roos <henrik at afternoon.se>
  */
 class Json_Exception extends Exception {

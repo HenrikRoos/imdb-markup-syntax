@@ -7,7 +7,6 @@ use stdClass;
 /**
  * Markup data tags from INDb data result. Most popular tag in imdb result has a function in this class.
  * @author Henrik Roos <henrik at afternoon.se>
- * @package imdb-markup-syntax
  */
 class Markup_Data {
 

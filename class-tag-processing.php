@@ -10,7 +10,6 @@ use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 /**
  * Find and replace imdb tags to movie data from IMDb
  * @author Henrik Roos <henrik at afternoon.se>
- * @package imdb-markup-syntax
  */
 class Tag_Processing {
 
