@@ -54,11 +54,13 @@
             <arg line="--report=checkstyle               --report-file=${basedir}/build/logs/checkstyle.xml               --standard=PEAR               ${source}"/>
         </exec>
     </target>
+    <!--
     <target description="Generate API documentation using PHPDocumentor" name="phpdoc">
         <exec executable="phpdoc">
             <arg line="-d ${source} -t ${basedir}/build/api"/>
         </exec>
     </target>
+    -->
     <target description="Aggregate tool output with PHP_CodeBrowser" name="phpcb">
         <exec executable="phpcb">
             <arg line="--log    ${basedir}/build/logs               --source ${source}               --output ${basedir}/build/code-browser"/>
