@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class IMDb_Markup_Syntax\Movie_Datasource | imdb-markup-syntax</title>
+	<title>Class IMDb_Markup_Syntax\Movie_Datasource | WordPress Plugin - IMDb Markup Syntax</title>
 
 	<script type="text/javascript" src="resources/combined.js?877386528"></script>
-	<script type="text/javascript" src="elementlist.js?2391425797"></script>
+	<script type="text/javascript" src="elementlist.js?118322264"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -19,14 +19,13 @@
 
 
 		<div id="groups">
-			<h3>Namespaces</h3>
+			<h3>Packages</h3>
 			<ul>
-				<li class="active"><a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax<span></span></a>
-						<ul>
-				<li><a href="namespace-IMDb_Markup_Syntax.Exceptions.html">Exceptions</a>
+				<li class="active"><a href="package-Core.html">Core</a>
 						</li>
-							</ul></li>
-				<li><a href="namespace-PHP.html">PHP</a>
+				<li><a href="package-Exception.html">Exception</a>
+						</li>
+				<li><a href="package-Test.html">Test</a>
 						</li>
 			</ul>
 		</div>
@@ -37,12 +36,9 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-IMDb_Markup_Syntax.Markup_Data.html">Markup_Data</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Markup_DataTest.html">Markup_DataTest</a></li>
-				<li class="active"><a href="class-IMDb_Markup_Syntax.Movie_Datasource.html">Movie_Datasource</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Movie_DatasourceTest.html">Movie_DatasourceTest</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Tag_Processing.html">Tag_Processing</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Tag_ProcessingTest.html">Tag_ProcessingTest</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Markup_Data.html">IMDb_Markup_Syntax\Markup_Data</a></li>
+				<li class="active"><a href="class-IMDb_Markup_Syntax.Movie_Datasource.html">IMDb_Markup_Syntax\Movie_Datasource</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Tag_Processing.html">IMDb_Markup_Syntax\Tag_Processing</a></li>
 			</ul>
 
 
@@ -70,7 +66,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-IMDb_Markup_Syntax.html" title="Summary of IMDb_Markup_Syntax"><span>Namespace</span></a>
+				<a href="package-Core.html" title="Summary of Core"><span>Package</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -121,12 +117,12 @@ IMDb
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax</a><br />
-		
+		<b>Namespace:</b> IMDb_Markup_Syntax<br />
+		<b>Package:</b> <a href="package-Core.html">Core</a><br />
 
 				<b>Author:</b>
 				Henrik Roos &lt;henrik at afternoon.se&gt;<br />
-		<b>Located at</b> <a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#16-106" title="Go to source code">class-movie-datasource.php</a><br />
+		<b>Located at</b> <a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#16-107" title="Go to source code">class-movie-datasource.php</a><br />
 	</div>
 
 
@@ -144,7 +140,7 @@ IMDb
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#38-51" title="Go to source code">__construct</a>( <span>string <var>$id</var></span>, <span>integer <var>$timeout</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#39-52" title="Go to source code">__construct</a>( <span>string <var>$id</var></span>, <span>integer <var>$timeout</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -161,7 +157,7 @@ IMDb
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$id</var></dt>
-					<dd><code>string</code><br>$id imdb id for current movie ex "tt0137523"</dd>
+					<dd><code>string</code><br>$id imdb id for current movie <i>e.g. tt0137523</i></dd>
 					<dt><var>$timeout</var></dt>
 					<dd><code>integer</code><br>$timeout The maximum number of milliseconds to allow execute to imdb.</dd>
 				</dl></div>
@@ -181,14 +177,14 @@ IMDb
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-stdClass.html">stdClass</a></code>
+			stdClass
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getData">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#53-63" title="Go to source code">getData</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#54-64" title="Go to source code">getData</a>( )</code>
 
 		<div class="description short">
 			
@@ -207,7 +203,7 @@ $this-&gt;response</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-stdClass.html">stdClass</a></code></code><br>movie data<br />
+					<code>stdClass</code><br>movie data<br />
 				</div>
 
 				<h4>Throws</h4>
@@ -226,14 +222,14 @@ $this-&gt;response</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-stdClass.html">stdClass</a></code>
+			stdClass
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toDataClass">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#65-80" title="Go to source code">toDataClass</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#66-81" title="Go to source code">toDataClass</a>( )</code>
 
 		<div class="description short">
 			
@@ -250,7 +246,7 @@ $this-&gt;response</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-stdClass.html">stdClass</a></code></code><br>movie data<br />
+					<code>stdClass</code><br>movie data<br />
 				</div>
 
 				<h4>Throws</h4>
@@ -275,7 +271,7 @@ $this-&gt;response</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fetchResponse">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#82-104" title="Go to source code">fetchResponse</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#83-105" title="Go to source code">fetchResponse</a>( )</code>
 
 		<div class="description short">
 			
@@ -325,7 +321,7 @@ $this-&gt;response</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#22-23" title="Go to source code"><var>$id</var></a>
+				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#23-24" title="Go to source code"><var>$id</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -333,13 +329,13 @@ $this-&gt;response</p>
 
 			<div class="description short">
 				
-<p>imdb id for current movie. ex "tt0137523"</p>
+<p>imdb id for current movie. <i>e.g. tt0137523</i></p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>imdb id for current movie. ex "tt0137523"</p>
+<p>imdb id for current movie. <i>e.g. tt0137523</i></p>
 
 
 			</div>
@@ -352,7 +348,7 @@ $this-&gt;response</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#25-26" title="Go to source code"><var>$request</var></a>
+				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#26-27" title="Go to source code"><var>$request</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -379,7 +375,7 @@ $this-&gt;response</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#28-29" title="Go to source code"><var>$response</var></a>
+				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#29-30" title="Go to source code"><var>$response</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -406,7 +402,7 @@ $this-&gt;response</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#31-36" title="Go to source code"><var>$timeout</var></a>
+				<a href="source-class-IMDb_Markup_Syntax.Movie_Datasource.html#32-37" title="Go to source code"><var>$timeout</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -442,7 +438,7 @@ timeout allowed of one second.</p>
 </div>
 
 	<div id="footer">
-		imdb-markup-syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		WordPress Plugin - IMDb Markup Syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

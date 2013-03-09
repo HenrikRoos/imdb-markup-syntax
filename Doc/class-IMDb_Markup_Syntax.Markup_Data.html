@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class IMDb_Markup_Syntax\Markup_Data | imdb-markup-syntax</title>
+	<title>Class IMDb_Markup_Syntax\Markup_Data | WordPress Plugin - IMDb Markup Syntax</title>
 
 	<script type="text/javascript" src="resources/combined.js?877386528"></script>
-	<script type="text/javascript" src="elementlist.js?2391425797"></script>
+	<script type="text/javascript" src="elementlist.js?118322264"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -19,14 +19,13 @@
 
 
 		<div id="groups">
-			<h3>Namespaces</h3>
+			<h3>Packages</h3>
 			<ul>
-				<li class="active"><a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax<span></span></a>
-						<ul>
-				<li><a href="namespace-IMDb_Markup_Syntax.Exceptions.html">Exceptions</a>
+				<li class="active"><a href="package-Core.html">Core</a>
 						</li>
-							</ul></li>
-				<li><a href="namespace-PHP.html">PHP</a>
+				<li><a href="package-Exception.html">Exception</a>
+						</li>
+				<li><a href="package-Test.html">Test</a>
 						</li>
 			</ul>
 		</div>
@@ -37,12 +36,9 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-IMDb_Markup_Syntax.Markup_Data.html">Markup_Data</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Markup_DataTest.html">Markup_DataTest</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Movie_Datasource.html">Movie_Datasource</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Movie_DatasourceTest.html">Movie_DatasourceTest</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Tag_Processing.html">Tag_Processing</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Tag_ProcessingTest.html">Tag_ProcessingTest</a></li>
+				<li class="active"><a href="class-IMDb_Markup_Syntax.Markup_Data.html">IMDb_Markup_Syntax\Markup_Data</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Movie_Datasource.html">IMDb_Markup_Syntax\Movie_Datasource</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Tag_Processing.html">IMDb_Markup_Syntax\Tag_Processing</a></li>
 			</ul>
 
 
@@ -70,7 +66,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-IMDb_Markup_Syntax.html" title="Summary of IMDb_Markup_Syntax"><span>Namespace</span></a>
+				<a href="package-Core.html" title="Summary of Core"><span>Package</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -109,12 +105,12 @@ function in this class.</p>
 	<div class="info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax</a><br />
-		
+		<b>Namespace:</b> IMDb_Markup_Syntax<br />
+		<b>Package:</b> <a href="package-Core.html">Core</a><br />
 
 				<b>Author:</b>
 				Henrik Roos &lt;henrik at afternoon.se&gt;<br />
-		<b>Located at</b> <a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#7-199" title="Go to source code">class-markup-data.php</a><br />
+		<b>Located at</b> <a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#7-205" title="Go to source code">class-markup-data.php</a><br />
 	</div>
 
 
@@ -132,7 +128,7 @@ function in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#16-22" title="Go to source code">__construct</a>( <span><code><a href="class-stdClass.html">stdClass</a></code> <var>$data</var></span> )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#17-23" title="Go to source code">__construct</a>( <span>stdClass <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -149,7 +145,7 @@ function in this class.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd><code><code><a href="class-stdClass.html">stdClass</a></code></code><br>$data IMDb data json class</dd>
+					<dd><code>stdClass</code><br>$data IMDb data json class</dd>
 				</dl></div>
 
 
@@ -170,17 +166,17 @@ function in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_id">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#24-30" title="Go to source code">id</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#25-31" title="Go to source code">id</a>( )</code>
 
 		<div class="description short">
 			
-<p>id (tconst) for current movie ex tt0137523</p>
+<p>id (tconst) for current movie <i>e.g. tt0137523</i></p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>id (tconst) for current movie ex tt0137523</p>
+<p>id (tconst) for current movie <i>e.g. tt0137523</i></p>
 
 
 
@@ -207,7 +203,7 @@ function in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#32-38" title="Go to source code">title</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#33-39" title="Go to source code">title</a>( )</code>
 
 		<div class="description short">
 			
@@ -244,19 +240,19 @@ function in this class.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_type">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#40-47" title="Go to source code">type</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#41-48" title="Go to source code">type</a>( )</code>
 
 		<div class="description short">
 			
-<p>IMDb classifies titles under one of the following types: feature, short,
-documentary, video, tv_series, tv_special and video_game.</p>
+<p>IMDb classifies titles under one of the following types: feature,
+short,documentary, video, tv_series, tv_special and video_game.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>IMDb classifies titles under one of the following types: feature, short,
-documentary, video, tv_series, tv_special and video_game.</p>
+<p>IMDb classifies titles under one of the following types: feature,
+short,documentary, video, tv_series, tv_special and video_game.</p>
 
 
 
@@ -283,11 +279,11 @@ documentary, video, tv_series, tv_special and video_game.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_genres">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#49-56" title="Go to source code">genres</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#50-57" title="Go to source code">genres</a>( )</code>
 
 		<div class="description short">
 			
-<p>One or more genres for current movie. @link <a
+<p>One or more genres for current movie. <a
 href="http://www.imdb.com/genre">http://www.imdb.com/genre</a> IMDb list of all
 genres ex Adventure, Action, Animation etc</p>
 
@@ -295,7 +291,7 @@ genres ex Adventure, Action, Animation etc</p>
 
 		<div class="description detailed hidden">
 			
-<p>One or more genres for current movie. @link <a
+<p>One or more genres for current movie. <a
 href="http://www.imdb.com/genre">http://www.imdb.com/genre</a> IMDb list of all
 genres ex Adventure, Action, Animation etc</p>
 
@@ -324,7 +320,7 @@ genres ex Adventure, Action, Animation etc</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_release_date">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#58-65" title="Go to source code">release_date</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#59-66" title="Go to source code">release_date</a>( )</code>
 
 		<div class="description short">
 			
@@ -345,7 +341,7 @@ restrictions on who can see the movie.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|boolean</code><br>in format 'Y-m-d' ex 2013-12-24 or FALSE if no date<br />
+					<code>string|boolean</code><br>in format 'Y-m-d' <i>e.g. 2013-12-24</i> or FALSE if no date<br />
 				</div>
 
 
@@ -365,7 +361,7 @@ restrictions on who can see the movie.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_runtime">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#67-73" title="Go to source code">runtime</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#68-74" title="Go to source code">runtime</a>( )</code>
 
 		<div class="description short">
 			
@@ -402,17 +398,19 @@ restrictions on who can see the movie.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rating">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#75-81" title="Go to source code">rating</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#76-82" title="Go to source code">rating</a>( )</code>
 
 		<div class="description short">
 			
-<p>Rating scale from 1 to 10 there 10 is best and with one decimal. ex 7.3</p>
+<p>Rating scale from 1 to 10 there 10 is best and with one decimal. <i>e.g.
+7.3</i></p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Rating scale from 1 to 10 there 10 is best and with one decimal. ex 7.3</p>
+<p>Rating scale from 1 to 10 there 10 is best and with one decimal. <i>e.g.
+7.3</i></p>
 
 
 
@@ -439,17 +437,17 @@ restrictions on who can see the movie.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_votes">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#83-89" title="Go to source code">votes</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#84-90" title="Go to source code">votes</a>( )</code>
 
 		<div class="description short">
 			
-<p>Number of votes from imdb members for current movie. ex 3039</p>
+<p>Number of votes from imdb members for current movie. <i>e.g. 3039</i></p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Number of votes from imdb members for current movie. ex 3039</p>
+<p>Number of votes from imdb members for current movie. <i>e.g. 3039</i></p>
 
 
 
@@ -476,7 +474,7 @@ restrictions on who can see the movie.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_plot">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#91-100" title="Go to source code">plot</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#92-101" title="Go to source code">plot</a>( )</code>
 
 		<div class="description short">
 			
@@ -523,21 +521,21 @@ detail.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_tagline">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#102-109" title="Go to source code">tagline</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#103-110" title="Go to source code">tagline</a>( )</code>
 
 		<div class="description short">
 			
 <p>A tagline is a variant of a branding slogan typically used in marketing
-materials and advertising. ex "Yippee Ki-Yay Mother Russia" (Movie: "A Good Day
-to Die Hard")</p>
+materials and advertising. <i>e.g. "Yippee Ki-Yay Mother Russia" (A Good Day to
+Die Hard)</i></p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>A tagline is a variant of a branding slogan typically used in marketing
-materials and advertising. ex "Yippee Ki-Yay Mother Russia" (Movie: "A Good Day
-to Die Hard")</p>
+materials and advertising. <i>e.g. "Yippee Ki-Yay Mother Russia" (A Good Day to
+Die Hard)</i></p>
 
 
 
@@ -564,7 +562,7 @@ to Die Hard")</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_cast">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#111-117" title="Go to source code">cast</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#112-118" title="Go to source code">cast</a>( )</code>
 
 		<div class="description short">
 			
@@ -601,7 +599,7 @@ to Die Hard")</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_writers">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#119-132" title="Go to source code">writers</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#120-133" title="Go to source code">writers</a>( )</code>
 
 		<div class="description short">
 			
@@ -640,7 +638,7 @@ screenplay, or teleplay.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_directors">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#134-146" title="Go to source code">directors</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#135-147" title="Go to source code">directors</a>( )</code>
 
 		<div class="description short">
 			
@@ -693,7 +691,7 @@ unit.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_certificate">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#148-167" title="Go to source code">certificate</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#149-168" title="Go to source code">certificate</a>( )</code>
 
 		<div class="description short">
 			
@@ -714,7 +712,7 @@ content of their films against the demands of the classification board.
 Negotiations are common; studios agree to make certain changes to films in order
 to receive the required rating. The IMDb uses the term "Certificate" as opposed
 to "Rating" to avoid confusion with "ratings" meaning the opinions of critics.
-@link <a href="http://www.filmratings.com">http://www.filmratings.com</a>
+<a href="http://www.filmratings.com">http://www.filmratings.com</a>
 Classification and Rating Administration (CARA)</p>
 
 		</div>
@@ -738,7 +736,7 @@ content of their films against the demands of the classification board.
 Negotiations are common; studios agree to make certain changes to films in order
 to receive the required rating. The IMDb uses the term "Certificate" as opposed
 to "Rating" to avoid confusion with "ratings" meaning the opinions of critics.
-@link <a href="http://www.filmratings.com">http://www.filmratings.com</a>
+<a href="http://www.filmratings.com">http://www.filmratings.com</a>
 Classification and Rating Administration (CARA)</p>
 
 
@@ -746,7 +744,7 @@ Classification and Rating Administration (CARA)</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string|boolean</code><br>code ex G, PG, PG-13, R, NC-17 or FALSE if no data<br />
+					<code>string|boolean</code><br>code <i>e.g G, PG, PG-13, R, NC-17</i> or FALSE if no data<br />
 				</div>
 
 
@@ -766,7 +764,7 @@ Classification and Rating Administration (CARA)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_poster">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#170-172" title="Go to source code">poster</a>( )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#171-173" title="Go to source code">poster</a>( )</code>
 
 		<div class="description short">
 			
@@ -795,33 +793,62 @@ Classification and Rating Administration (CARA)</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_writer">#</a>
-		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#175-196" title="Go to source code">writer</a>( <span><code><a href="class-stdClass.html">stdClass</a></code> <var>$writer</var></span> )</code>
+		<code><a href="source-class-IMDb_Markup_Syntax.Markup_Data.html#176-202" title="Go to source code">writer</a>( <span>stdClass <var>$writer</var></span> )</code>
 
 		<div class="description short">
 			
-<p>INPUT: stdClass Object (<br />
-[name] =&gt; stdClass Object<br />
-(<br />
-[nconst] =&gt; nm0254645<br />
-[name] =&gt; Ted Elliott<br />
-)<br />
-[attr] =&gt; (characters) ) OUTPUT: <a
-href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)</p>
+<p><b>input</b></p>
+
+<pre>
+stdClass Object
+(
+    [name] =&gt; stdClass Object
+    (
+       [nconst] =&gt; nm0254645
+       [name] =&gt; Ted Elliott
+    )
+    [attr] =&gt; (characters)
+)
+</pre>
+
+<p><b>output</b></p>
+
+<pre>
+&lt;a href=<span
+class="php-quote">&quot;http://www.imdb.com/name/nm0254645&quot;</span>&gt;Ted Elliott&lt;/a&gt; (characters)
+</pre>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>INPUT: stdClass Object ( [name] =&gt; stdClass Object ( [nconst] =&gt;
-nm0254645 [name] =&gt; Ted Elliott ) [attr] =&gt; (characters) ) OUTPUT: <a
-href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)</p>
+<p><b>input</b></p>
+
+<pre>
+stdClass Object
+(
+    [name] =&gt; stdClass Object
+    (
+       [nconst] =&gt; nm0254645
+       [name] =&gt; Ted Elliott
+    )
+    [attr] =&gt; (characters)
+)
+</pre>
+
+<p><b>output</b></p>
+
+<pre>
+&lt;a href=<span
+class="php-quote">&quot;http://www.imdb.com/name/nm0254645&quot;</span>&gt;Ted Elliott&lt;/a&gt; (characters)
+</pre>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$writer</var></dt>
-					<dd><code><code><a href="class-stdClass.html">stdClass</a></code></code><br>$writer array item from writers_summary</dd>
+					<dd><code>stdClass</code><br>$writer array item from writers_summary</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -857,7 +884,7 @@ href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)</p>
 </div>
 
 	<div id="footer">
-		imdb-markup-syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		WordPress Plugin - IMDb Markup Syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

@@ -7,6 +7,7 @@ use Exception;
 /**
  * Exception class for json exceptions
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Exception
  */
 class Json_Exception extends Exception {
 

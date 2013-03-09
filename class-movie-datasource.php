@@ -16,10 +16,11 @@ require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
 /**
  * Class for access to IMDb RESTful datasource web api.
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Core
  */
 class Movie_Datasource extends IMDb {
 
-    /** @var string imdb id for current movie. ex "tt0137523" */
+    /** @var string imdb id for current movie. <i>e.g. tt0137523</i> */
     public $id;
 
     /** @var string request to web api. */
@@ -37,7 +38,7 @@ class Movie_Datasource extends IMDb {
 
     /**
      * Create an instans object for acces to datasource,
-     * @param string $id imdb id for current movie ex "tt0137523"
+     * @param string $id imdb id for current movie <i>e.g. tt0137523</i>
      * @param int $timeout The maximum number of milliseconds to allow execute to imdb.
      * @throws Error_Runtime_Exception if incorrect id.
      */

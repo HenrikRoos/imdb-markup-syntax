@@ -12,6 +12,7 @@ require_once dirname(__FILE__) . '/../Exceptions/class-pcre-exception.php';
 /**
  * Testclass (PHPUnit) test for Tag_Processing class.
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Test
  */
 class Tag_ProcessingTest extends PHPUnit_Framework_TestCase {
 

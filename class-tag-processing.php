@@ -10,6 +10,7 @@ require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
 /**
  * Find and replace imdb tags to movie data from IMDb
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Core
  */
 class Tag_Processing {
 
@@ -23,8 +24,8 @@ class Tag_Processing {
     public $original_content;
 
     /**
-     * @var string Id on current movie. ex http://www.imdb.com/title/tt0137523/ -> id = tt0137523
-     * Syntax: [imdb:id(xxxx)] t ex [imdb:id(tt0137523)]
+     * @var string Id on current movie. <i>e.g http://www.imdb.com/title/tt0137523/ -> id = tt0137523</i>
+     * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
      */
     public $id;
 
@@ -43,7 +44,8 @@ class Tag_Processing {
     }
 
     /**
-     * Find and store it in $id. ex: "ksdkasd [imdb:id(tt0137523)] dmf,sdm" -> id = tt0137523
+     * Find and store it in $id. Syntax: <b>[imdb:id(ttxxxxxxx)]</b>.
+     * <i>e.g. "Nunc non diam sit [imdb:id(tt0137523)] nulla sem tempus magna" -> id = tt0137523</i>
      * @return boolean FALSE if no match TRUE if find a id
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
@@ -61,7 +63,7 @@ class Tag_Processing {
     }
 
     /**
-     * Find and store all [imdb:xxx] tags in imdb_tags array
+     * Find and store alltags in imdb_tags array. Syntax: <b>[imdb:xxx]</b> 
      * @return boolean FALSE if no match TRUE if find 
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */

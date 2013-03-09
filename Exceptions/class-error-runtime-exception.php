@@ -8,6 +8,7 @@ use stdClass;
 /**
  * Create intans object for imdb api error.
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Exception
  */
 class Error_Runtime_Exception extends Exception {
 

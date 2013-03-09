@@ -7,6 +7,7 @@ use Exception;
 /**
  * Exception handler for PCRE functions
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Exception
  */
 class PCRE_Exception extends Exception {
 

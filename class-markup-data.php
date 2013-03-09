@@ -7,6 +7,7 @@ use stdClass;
 /**
  * Markup data tags from INDb data result. Most popular tag in imdb result has a function in this class.
  * @author Henrik Roos <henrik at afternoon.se>
+ * @package Core
  */
 class Markup_Data {
 
@@ -22,7 +23,7 @@ class Markup_Data {
     }
 
     /**
-     * id (tconst) for current movie ex tt0137523
+     * id (tconst) for current movie <i>e.g. tt0137523</i>
      * @return string|boolean if no id then FALSE
      */
     public function id() {
@@ -38,7 +39,7 @@ class Markup_Data {
     }
 
     /**
-     * IMDb classifies titles under one of the following types: feature, short, documentary, video, tv_series,
+     * IMDb classifies titles under one of the following types: feature, short,documentary, video, tv_series,
      * tv_special and video_game.
      * @return string|boolean current titles type ex video or tv_series
      */
@@ -47,7 +48,7 @@ class Markup_Data {
     }
 
     /**
-     * One or more genres for current movie. @link http://www.imdb.com/genre IMDb list of all genres
+     * One or more genres for current movie. http://www.imdb.com/genre IMDb list of all genres
      * ex Adventure, Action, Animation etc
      * @return string|boolean list of genres in one string or FALSE if no data
      */
@@ -58,7 +59,7 @@ class Markup_Data {
     /**
      * The day when a movie is shipped to exhibitors by the distributor, it is deemed to have been released
      * for public viewing - there are no longer any studio restrictions on who can see the movie.
-     * @return string|boolean in format 'Y-m-d' ex 2013-12-24 or FALSE if no date
+     * @return string|boolean in format 'Y-m-d' <i>e.g. 2013-12-24</i> or FALSE if no date
      */
     public function release_date() {
         //TODO some code please
@@ -73,7 +74,7 @@ class Markup_Data {
     }
 
     /**
-     * Rating scale from 1 to 10 there 10 is best and with one decimal. ex 7.3
+     * Rating scale from 1 to 10 there 10 is best and with one decimal. <i>e.g. 7.3</i>
      * @return float|boolean if no rating then FALSE
      */
     public function rating() {
@@ -81,7 +82,7 @@ class Markup_Data {
     }
 
     /**
-     * Number of votes from imdb members for current movie. ex 3039
+     * Number of votes from imdb members for current movie. <i>e.g. 3039</i>
      * @return int|boolean if no data then FALSE.
      */
     public function votes() {
@@ -101,7 +102,7 @@ class Markup_Data {
 
     /**
      * A tagline is a variant of a branding slogan typically used in marketing materials and advertising.
-     * ex "Yippee Ki-Yay Mother Russia" (Movie: "A Good Day to Die Hard")
+     * <i>e.g. "Yippee Ki-Yay Mother Russia" (A Good Day to Die Hard)</i>
      * @return string|boolean if no tagline then FALSE
      */
     public function tagline() {
@@ -159,8 +160,8 @@ class Markup_Data {
      * content of their films against the demands of the classification board. Negotiations are common;
      * studios agree to make certain changes to films in order to receive the required rating. The IMDb uses
      * the term "Certificate" as opposed to "Rating" to avoid confusion with "ratings" meaning the opinions
-     * of critics. @link http://www.filmratings.com Classification and Rating Administration (CARA)
-     * @return string|boolean code ex G, PG, PG-13, R, NC-17 or FALSE if no data
+     * of critics. http://www.filmratings.com Classification and Rating Administration (CARA)
+     * @return string|boolean code <i>e.g G, PG, PG-13, R, NC-17</i> or FALSE if no data
      */
     public function certificate() {
         //TODO some code please
@@ -173,7 +174,8 @@ class Markup_Data {
 
     // <editor-fold defaultstate="collapsed" desc="callables">
     /**
-     * INPUT:
+     * <b>input</b>
+     * <code>
      * stdClass Object
      * (
      *     [name] => stdClass Object
@@ -183,7 +185,11 @@ class Markup_Data {
      *     )
      *     [attr] => (characters)
      * )
-     * OUTPUT: <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
+     * </code>
+     * <b>output</b>
+     * <code>
+     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
+     * </code>
      * @param stdClass $writer array item from writers_summary
      * @return string ex <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
      */

@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File Exceptions/class-pcre-exception.php | imdb-markup-syntax</title>
+	<title>File Exceptions/class-pcre-exception.php | WordPress Plugin - IMDb Markup Syntax</title>
 
 	<script type="text/javascript" src="resources/combined.js?877386528"></script>
-	<script type="text/javascript" src="elementlist.js?2391425797"></script>
+	<script type="text/javascript" src="elementlist.js?118322264"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -20,14 +20,13 @@
 
 
 		<div id="groups">
-			<h3>Namespaces</h3>
+			<h3>Packages</h3>
 			<ul>
-				<li class="active"><a href="namespace-IMDb_Markup_Syntax.html">IMDb_Markup_Syntax<span></span></a>
-						<ul>
-				<li class="active"><a href="namespace-IMDb_Markup_Syntax.Exceptions.html">Exceptions</a>
+				<li><a href="package-Core.html">Core</a>
 						</li>
-							</ul></li>
-				<li><a href="namespace-PHP.html">PHP</a>
+				<li class="active"><a href="package-Exception.html">Exception</a>
+						</li>
+				<li><a href="package-Test.html">Test</a>
 						</li>
 			</ul>
 		</div>
@@ -41,10 +40,10 @@
 
 			<h3>Exceptions</h3>
 			<ul>
-				<li><a href="class-IMDb_Markup_Syntax.Exceptions.Curl_Exception.html">Curl_Exception</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Exceptions.Error_Runtime_Exception.html">Error_Runtime_Exception</a></li>
-				<li><a href="class-IMDb_Markup_Syntax.Exceptions.Json_Exception.html">Json_Exception</a></li>
-				<li class="active"><a href="class-IMDb_Markup_Syntax.Exceptions.PCRE_Exception.html">PCRE_Exception</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Exceptions.Curl_Exception.html">IMDb_Markup_Syntax\Exceptions\Curl_Exception</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Exceptions.Error_Runtime_Exception.html">IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception</a></li>
+				<li><a href="class-IMDb_Markup_Syntax.Exceptions.Json_Exception.html">IMDb_Markup_Syntax\Exceptions\Json_Exception</a></li>
+				<li class="active"><a href="class-IMDb_Markup_Syntax.Exceptions.PCRE_Exception.html">IMDb_Markup_Syntax\Exceptions\PCRE_Exception</a></li>
 			</ul>
 
 
@@ -69,7 +68,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-IMDb_Markup_Syntax.Exceptions.html" title="Summary of IMDb_Markup_Syntax\Exceptions"><span>Namespace</span></a>
+				<a href="package-Exception.html" title="Summary of Exception"><span>Package</span></a>
 			</li>
 			<li>
 				<a href="class-IMDb_Markup_Syntax.Exceptions.PCRE_Exception.html" title="Summary of IMDb_Markup_Syntax\Exceptions\PCRE_Exception"><span>Class</span></a>
@@ -96,47 +95,48 @@
 </span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-comment">/**
 </span></span><span id="8" class="l"><a class="l" href="#8"> 8: </a><span class="php-comment"> * Exception handler for PCRE functions
 </span></span><span id="9" class="l"><a class="l" href="#9"> 9: </a><span class="php-comment"> * @author Henrik Roos &lt;henrik at afternoon.se&gt;
-</span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment"> */</span>
-</span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-keyword1">class</span> <a id="PCRE_Exception" href="#PCRE_Exception">PCRE_Exception</a> <span class="php-keyword1">extends</span> Exception {
-</span><span id="12" class="l"><a class="l" href="#12">12: </a>
-</span><span id="13" class="l"><a class="l" href="#13">13: </a>    <span class="php-comment">/**
-</span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     * Mapping error code into error name
-</span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     * @var array of pcre_errors
-</span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     */</span>
-</span><span id="17" class="l"><a class="l" href="#17">17: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$pcre_errors" href="#$pcre_errors">$pcre_errors</a></span> = <span class="php-keyword1">array</span>(
-</span><span id="18" class="l"><a class="l" href="#18">18: </a>        <span class="php-num">0</span> =&gt; <span class="php-quote">&quot;PREG_NO_ERROR&quot;</span>,
-</span><span id="19" class="l"><a class="l" href="#19">19: </a>        <span class="php-num">1</span> =&gt; <span class="php-quote">&quot;PREG_INTERNAL_ERROR&quot;</span>,
-</span><span id="20" class="l"><a class="l" href="#20">20: </a>        <span class="php-num">2</span> =&gt; <span class="php-quote">&quot;PREG_BACKTRACK_LIMIT_ERROR&quot;</span>,
-</span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-num">3</span> =&gt; <span class="php-quote">&quot;PREG_RECURSION_LIMIT_ERROR&quot;</span>,
-</span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-num">4</span> =&gt; <span class="php-quote">&quot;PREG_BAD_UTF8_ERROR&quot;</span>,
-</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-num">5</span> =&gt; <span class="php-quote">&quot;PREG_BAD_UTF8_OFFSET_ERROR&quot;</span>);
-</span><span id="24" class="l"><a class="l" href="#24">24: </a>
-</span><span id="25" class="l"><a class="l" href="#25">25: </a>    <span class="php-comment">/**
-</span></span><span id="26" class="l"><a class="l" href="#26">26: </a><span class="php-comment">     * Create object and grep last preg error code
-</span></span><span id="27" class="l"><a class="l" href="#27">27: </a><span class="php-comment">     * @param string $message extra message
-</span></span><span id="28" class="l"><a class="l" href="#28">28: </a><span class="php-comment">     * @param int $code if no preg_last_error or error_get_last use this code
-</span></span><span id="29" class="l"><a class="l" href="#29">29: </a><span class="php-comment">     * @param Exception $previous
-</span></span><span id="30" class="l"><a class="l" href="#30">30: </a><span class="php-comment">     */</span>
-</span><span id="31" class="l"><a class="l" href="#31">31: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$message</span> = <span class="php-quote">&quot;&quot;</span>, <span class="php-var">$code</span> = <span class="php-num">0</span>, Exception <span class="php-var">$previous</span> = <span class="php-keyword1">null</span>) {
-</span><span id="32" class="l"><a class="l" href="#32">32: </a>        <span class="php-var">$preg_last_error</span> = <span class="php-keyword2">preg_last_error</span>();
-</span><span id="33" class="l"><a class="l" href="#33">33: </a>        <span class="php-var">$error_get_last</span> = <span class="php-keyword2">error_get_last</span>();
-</span><span id="34" class="l"><a class="l" href="#34">34: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">empty</span>(<span class="php-var">$preg_last_error</span>)) {
-</span><span id="35" class="l"><a class="l" href="#35">35: </a>            <span class="php-var">$code</span> = <span class="php-var">$preg_last_error</span>;
-</span><span id="36" class="l"><a class="l" href="#36">36: </a>            <span class="php-var">$message</span> .= <span class="php-var">$this</span>-&gt;pcre_errors[<span class="php-var">$code</span>];
-</span><span id="37" class="l"><a class="l" href="#37">37: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span> (!<span class="php-keyword1">empty</span>(<span class="php-var">$error_get_last</span>)) {
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>            <span class="php-var">$code</span> = <span class="php-var">$error_get_last</span>[<span class="php-quote">&quot;type&quot;</span>];
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>            <span class="php-var">$message</span> .= <span class="php-var">$error_get_last</span>[<span class="php-quote">&quot;message&quot;</span>];
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>        }
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>        parent::__construct(<span class="php-var">$message</span>, <span class="php-var">$code</span>, <span class="php-var">$previous</span>);
-</span><span id="42" class="l"><a class="l" href="#42">42: </a>    }
-</span><span id="43" class="l"><a class="l" href="#43">43: </a>
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>}
-</span><span id="45" class="l"><a class="l" href="#45">45: </a>
-</span><span id="46" class="l"><a class="l" href="#46">46: </a><span class="xlang">?&gt;</span>
-</span><span id="47" class="l"><a class="l" href="#47">47: </a></span></code></pre>
+</span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment"> * @package Exception
+</span></span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment"> */</span>
+</span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-keyword1">class</span> <a id="PCRE_Exception" href="#PCRE_Exception">PCRE_Exception</a> <span class="php-keyword1">extends</span> Exception {
+</span><span id="13" class="l"><a class="l" href="#13">13: </a>
+</span><span id="14" class="l"><a class="l" href="#14">14: </a>    <span class="php-comment">/**
+</span></span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">     * Mapping error code into error name
+</span></span><span id="16" class="l"><a class="l" href="#16">16: </a><span class="php-comment">     * @var array of pcre_errors
+</span></span><span id="17" class="l"><a class="l" href="#17">17: </a><span class="php-comment">     */</span>
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$pcre_errors" href="#$pcre_errors">$pcre_errors</a></span> = <span class="php-keyword1">array</span>(
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>        <span class="php-num">0</span> =&gt; <span class="php-quote">&quot;PREG_NO_ERROR&quot;</span>,
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>        <span class="php-num">1</span> =&gt; <span class="php-quote">&quot;PREG_INTERNAL_ERROR&quot;</span>,
+</span><span id="21" class="l"><a class="l" href="#21">21: </a>        <span class="php-num">2</span> =&gt; <span class="php-quote">&quot;PREG_BACKTRACK_LIMIT_ERROR&quot;</span>,
+</span><span id="22" class="l"><a class="l" href="#22">22: </a>        <span class="php-num">3</span> =&gt; <span class="php-quote">&quot;PREG_RECURSION_LIMIT_ERROR&quot;</span>,
+</span><span id="23" class="l"><a class="l" href="#23">23: </a>        <span class="php-num">4</span> =&gt; <span class="php-quote">&quot;PREG_BAD_UTF8_ERROR&quot;</span>,
+</span><span id="24" class="l"><a class="l" href="#24">24: </a>        <span class="php-num">5</span> =&gt; <span class="php-quote">&quot;PREG_BAD_UTF8_OFFSET_ERROR&quot;</span>);
+</span><span id="25" class="l"><a class="l" href="#25">25: </a>
+</span><span id="26" class="l"><a class="l" href="#26">26: </a>    <span class="php-comment">/**
+</span></span><span id="27" class="l"><a class="l" href="#27">27: </a><span class="php-comment">     * Create object and grep last preg error code
+</span></span><span id="28" class="l"><a class="l" href="#28">28: </a><span class="php-comment">     * @param string $message extra message
+</span></span><span id="29" class="l"><a class="l" href="#29">29: </a><span class="php-comment">     * @param int $code if no preg_last_error or error_get_last use this code
+</span></span><span id="30" class="l"><a class="l" href="#30">30: </a><span class="php-comment">     * @param Exception $previous
+</span></span><span id="31" class="l"><a class="l" href="#31">31: </a><span class="php-comment">     */</span>
+</span><span id="32" class="l"><a class="l" href="#32">32: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$message</span> = <span class="php-quote">&quot;&quot;</span>, <span class="php-var">$code</span> = <span class="php-num">0</span>, Exception <span class="php-var">$previous</span> = <span class="php-keyword1">null</span>) {
+</span><span id="33" class="l"><a class="l" href="#33">33: </a>        <span class="php-var">$preg_last_error</span> = <span class="php-keyword2">preg_last_error</span>();
+</span><span id="34" class="l"><a class="l" href="#34">34: </a>        <span class="php-var">$error_get_last</span> = <span class="php-keyword2">error_get_last</span>();
+</span><span id="35" class="l"><a class="l" href="#35">35: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">empty</span>(<span class="php-var">$preg_last_error</span>)) {
+</span><span id="36" class="l"><a class="l" href="#36">36: </a>            <span class="php-var">$code</span> = <span class="php-var">$preg_last_error</span>;
+</span><span id="37" class="l"><a class="l" href="#37">37: </a>            <span class="php-var">$message</span> .= <span class="php-var">$this</span>-&gt;pcre_errors[<span class="php-var">$code</span>];
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>        } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span> (!<span class="php-keyword1">empty</span>(<span class="php-var">$error_get_last</span>)) {
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>            <span class="php-var">$code</span> = <span class="php-var">$error_get_last</span>[<span class="php-quote">&quot;type&quot;</span>];
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>            <span class="php-var">$message</span> .= <span class="php-var">$error_get_last</span>[<span class="php-quote">&quot;message&quot;</span>];
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>        }
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>        parent::__construct(<span class="php-var">$message</span>, <span class="php-var">$code</span>, <span class="php-var">$previous</span>);
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>    }
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>}
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a><span class="xlang">?&gt;</span>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a></span></code></pre>
 
 	<div id="footer">
-		imdb-markup-syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+		WordPress Plugin - IMDb Markup Syntax API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>
