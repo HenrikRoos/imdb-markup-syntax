@@ -20,9 +20,6 @@
     </logging>
 
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">.</directory>
-        </whitelist>
         <blacklist>
             <directory suffix=".php">IMDb-PHP-API</directory>
         </blacklist>
