@@ -23,9 +23,7 @@
                 <antcall target="pdepend"/>
                 <antcall target="phpmd"/>
             </sequential>
-            <!--<antcall target="phpcpd"/>-->
             <antcall target="phpcs"/>
-            <antcall target="phploc"/>
         </parallel>
     </target>
     <target description="Generate jdepend.xml and software metrics charts using PHP_Depend" name="pdepend">
@@ -41,11 +39,6 @@
     <target description="Generate pmd-cpd.xml using PHPCPD" name="phpcpd">
         <exec executable="phpcpd">
             <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml ${source}"/>
-        </exec>
-    </target>
-    <target description="Generate phploc.csv" name="phploc">
-        <exec executable="phploc">
-            <arg line="--log-csv ${basedir}/build/logs/phploc.csv ${source}"/>
         </exec>
     </target>
     <target description="Generate checkstyle.xml using PHP_CodeSniffer" name="phpcs">
