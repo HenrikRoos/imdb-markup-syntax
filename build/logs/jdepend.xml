@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PDepend>
+  <Packages>
+    <Package name="+global">
+      <Stats>
+        <TotalClasses>1</TotalClasses>
+        <ConcreteClasses>1</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>0</Ce>
+        <A>0</A>
+        <I>0</I>
+        <D>1</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/IMDb-PHP-API/class_IMDb.php">IMDb</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon/>
+      <UsedBy/>
+    </Package>
+    <Package name="IMDb_Markup_Syntax\Exceptions">
+      <Stats>
+        <TotalClasses>4</TotalClasses>
+        <ConcreteClasses>4</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>1</Ca>
+        <Ce>1</Ce>
+        <A>0</A>
+        <I>0.5</I>
+        <D>0.5</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Exceptions/class-curl-exception.php">Curl_Exception</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Exceptions/class-error-runtime-exception.php">Error_Runtime_Exception</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Exceptions/class-json-exception.php">Json_Exception</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Exceptions/class-pcre-exception.php">PCRE_Exception</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package></Package>
+      </DependsUpon>
+      <UsedBy>
+        <Package>IMDb_Markup_Syntax</Package>
+      </UsedBy>
+    </Package>
+    <Package name="IMDb_Markup_Syntax">
+      <Stats>
+        <TotalClasses>6</TotalClasses>
+        <ConcreteClasses>6</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>2</Ce>
+        <A>0</A>
+        <I>1</I>
+        <D>0</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Tests/class-markup-data-test.php">Markup_DataTest</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Tests/class-movie-datasource-test.php">Movie_DatasourceTest</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/Tests/class-tag-processing-test.php">Tag_ProcessingTest</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/class-markup-data.php">Markup_Data</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/class-movie-datasource.php">Movie_Datasource</Class>
+        <Class sourceFile="/Users/henrikroos/NetBeansProjects/wordpress/wp-content/plugins/imdb-markup-syntax/class-tag-processing.php">Tag_Processing</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package></Package>
+        <Package>IMDb_Markup_Syntax\Exceptions</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+  </Packages>
+  <Cycles/>
+</PDepend>
