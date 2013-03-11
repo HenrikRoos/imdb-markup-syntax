@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<phpunit colors="false">
-    <filter>
-        <blacklist>
-            <directory suffix=".php">../IMDb-PHP-API</directory>
-        </blacklist>
-    </filter>
-</phpunit>
