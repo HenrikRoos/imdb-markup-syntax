@@ -10,10 +10,11 @@ require_once dirname(__FILE__) . '/../class-movie-datasource.php';
 
 /**
  * Testclass (PHPUnit) test for Markup_Data class
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Test
  */
-class Markup_DataTest extends PHPUnit_Framework_TestCase {
+class Markup_DataTest extends PHPUnit_Framework_TestCase
+{
 
     /**
      * Positive test where movie has two writers
@@ -21,7 +22,8 @@ class Markup_DataTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Markup_Data::writers
      * @covers IMDb_Markup_Syntax\Markup_Data::writer
      */
-    public function testWritersTowPositive() {
+    public function testWritersTowPositive()
+    {
         $imdb = new Movie_Datasource("tt0137523");
         $data = new Markup_Data($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk</a> (novel), '
@@ -36,7 +38,8 @@ class Markup_DataTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Markup_Data::writers
      * @covers IMDb_Markup_Syntax\Markup_Data::writer
      */
-    public function testWritersOnePositive() {
+    public function testWritersOnePositive()
+    {
         $imdb = new Movie_Datasource("tt1564043");
         $data = new Markup_Data($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm3503431">Bryan Litt</a>';
@@ -50,7 +53,8 @@ class Markup_DataTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Markup_Data::writers
      * @covers IMDb_Markup_Syntax\Markup_Data::writer
      */
-    public function testWritersNoWriter() {
+    public function testWritersNoWriter()
+    {
         $imdb = new Movie_Datasource("tt1129398");
         $data = new Markup_Data($imdb->getData());
         $expected = FALSE;

@@ -6,10 +6,11 @@ use stdClass;
 
 /**
  * Markup data tags from INDb data result. Most popular tag in imdb result has a function in this class.
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Core
  */
-class Markup_Data {
+class Markup_Data
+{
 
     /** @var stdClass imdb data result */
     private $data;
@@ -18,15 +19,17 @@ class Markup_Data {
      * Create a instans of this class
      * @param stdClass $data IMDb data json class
      */
-    public function __construct(stdClass $data) {
+    public function __construct(stdClass $data)
+    {
         $this->data = $data;
     }
 
     /**
-     * id (tconst) for current movie <i>e.g. tt0137523</i>
-     * @return string|boolean if no id then FALSE
+     * tconst for current movie <i>e.g. tt0137523</i>
+     * @return string|boolean if no data then FALSE
      */
-    public function id() {
+    public function tconst()
+    {
         //TODO some code please
     }
 
@@ -34,7 +37,8 @@ class Markup_Data {
      * Title for current moive
      * @return string|boolean if no title then FALSE
      */
-    public function title() {
+    public function title()
+    {
         //TODO some code please
     }
 
@@ -43,7 +47,8 @@ class Markup_Data {
      * tv_special and video_game.
      * @return string|boolean current titles type ex video or tv_series
      */
-    public function type() {
+    public function type()
+    {
         //TODO some code please
     }
 
@@ -52,7 +57,8 @@ class Markup_Data {
      * ex Adventure, Action, Animation etc
      * @return string|boolean list of genres in one string or FALSE if no data
      */
-    public function genres() {
+    public function genres()
+    {
         //TODO some code please
     }
 
@@ -61,7 +67,8 @@ class Markup_Data {
      * for public viewing - there are no longer any studio restrictions on who can see the movie.
      * @return string|boolean in format 'Y-m-d' <i>e.g. 2013-12-24</i> or FALSE if no date
      */
-    public function release_date() {
+    public function release_date()
+    {
         //TODO some code please
     }
 
@@ -69,7 +76,8 @@ class Markup_Data {
      * Runtime in minutes for current movie.
      * @return int|boolean Runtime in minutes or FALSE if not data
      */
-    public function runtime() {
+    public function runtime()
+    {
         //TODO some code please
     }
 
@@ -77,7 +85,8 @@ class Markup_Data {
      * Rating scale from 1 to 10 there 10 is best and with one decimal. <i>e.g. 7.3</i>
      * @return float|boolean if no rating then FALSE
      */
-    public function rating() {
+    public function rating()
+    {
         //TODO some code please
     }
 
@@ -85,7 +94,8 @@ class Markup_Data {
      * Number of votes from imdb members for current movie. <i>e.g. 3039</i>
      * @return int|boolean if no data then FALSE.
      */
-    public function votes() {
+    public function votes()
+    {
         //TODO some code please
     }
 
@@ -96,7 +106,8 @@ class Markup_Data {
      * of the twists and turns in the plot, but without confusing the reader with unnecessary detail.
      * @return string|boolean if no plot then FALSE
      */
-    public function plot() {
+    public function plot()
+    {
         //TODO some code please
     }
 
@@ -105,7 +116,8 @@ class Markup_Data {
      * <i>e.g. "Yippee Ki-Yay Mother Russia" (A Good Day to Die Hard)</i>
      * @return string|boolean if no tagline then FALSE
      */
-    public function tagline() {
+    public function tagline()
+    {
         //TODO some code please
     }
 
@@ -113,7 +125,8 @@ class Markup_Data {
      * A collective term for the actors appearing in a particular movie.
      * @return string|boolean list of actors as a one string or FALSE if no data
      */
-    public function cast() {
+    public function cast()
+    {
         //TODO some code please
     }
 
@@ -121,7 +134,8 @@ class Markup_Data {
      * A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay.
      * @return string|boolean list of writers as a string
      */
-    public function writers() {
+    public function writers()
+    {
         if (isset($this->data->writers_summary) && is_array($this->data->writers_summary)) {
             $named = array_filter($this->data->writers_summary, function($writer) {
                         return isset($writer->name->name);
@@ -142,7 +156,8 @@ class Markup_Data {
      * second unit.
      * @return string|boolean list of directors as a one string or FALSE if no data
      */
-    public function directors() {
+    public function directors()
+    {
         //TODO some code please
     }
 
@@ -163,12 +178,14 @@ class Markup_Data {
      * of critics. http://www.filmratings.com Classification and Rating Administration (CARA)
      * @return string|boolean code <i>e.g G, PG, PG-13, R, NC-17</i> or FALSE if no data
      */
-    public function certificate() {
+    public function certificate()
+    {
         //TODO some code please
     }
 
     // TODO poster document
-    public function poster() {
+    public function poster()
+    {
         //TODO some code please
     }
 
@@ -193,7 +210,8 @@ class Markup_Data {
      * @param stdClass $writer array item from writers_summary
      * @return string ex <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
      */
-    protected function writer(stdClass $writer) {
+    protected function writer(stdClass $writer)
+    {
         $res = isset($writer->name->nconst) ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">{$writer->name->name}</a>" : $writer->name->name;
         if (isset($writer->attr)) {
             $res .= " " . $writer->attr;

@@ -7,10 +7,11 @@ use stdClass;
 
 /**
  * Create intans object for imdb api error.
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Exception
  */
-class Error_Runtime_Exception extends Exception {
+class Error_Runtime_Exception extends Exception
+{
 
     /**
      * Create intans object for imdb api repsonse error.
@@ -19,7 +20,8 @@ class Error_Runtime_Exception extends Exception {
      * @param int $code error code ex 404 for not fond
      * @param Exception $previous
      */
-    public function __construct($response, $message = "", $code = 0, Exception $previous = null) {
+    public function __construct($response, $message = "", $code = 0, Exception $previous = null)
+    {
         if (isset($response->error) && isset($response->error->message) && isset($response->error->status)) {
             $message .= $response->error->message;
             $code = $response->error->status;

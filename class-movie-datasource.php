@@ -15,13 +15,14 @@ require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
 
 /**
  * Class for access to IMDb RESTful datasource web api.
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Core
  */
-class Movie_Datasource extends IMDb {
+class Movie_Datasource extends IMDb
+{
 
-    /** @var string imdb id for current movie. <i>e.g. tt0137523</i> */
-    public $id;
+    /** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
+    public $tconst;
 
     /** @var string request to web api. */
     public $request;
@@ -38,27 +39,29 @@ class Movie_Datasource extends IMDb {
 
     /**
      * Create an instans object for acces to datasource,
-     * @param string $id imdb id for current movie <i>e.g. tt0137523</i>
+     * @param string $tconst imdb tconst for current movie <i>e.g. tt0137523</i>
      * @param int $timeout The maximum number of milliseconds to allow execute to imdb.
-     * @throws Error_Runtime_Exception if incorrect id.
+     * @throws Error_Runtime_Exception if incorrect tconst.
      */
-    public function __construct($id, $timeout = 0) {
-        if (@preg_match("/^tt\d+$/", $id) == 0) {
-            throw new Error_Runtime_Exception(null, "Incorrect id: {$id}");
+    public function __construct($tconst, $timeout = 0)
+    {
+        if (@preg_match("/^tt\d+$/", $tconst) == 0) {
+            throw new Error_Runtime_Exception(null, "Incorrect tconst: {$tconst}");
         }
         parent::__construct(true, false);
-        $this->request = $this->build_url('title/maindetails', $id, 'tconst');
+        $this->request = $this->build_url('title/maindetails', $tconst, 'tconst');
         $this->timeout = $timeout;
     }
 
     /**
-     * Fetch and convert data from IMDb from current id. Data stores in $this->response
+     * Fetch and convert data from IMDb from current tconst. Data stores in $this->response
      * @return stdClass movie data
      * @throws Curl_Exception on error in web api request
      * @throws Json_Exception if error in decode
-     * @throws Error_Runtime_Exception if response has error in result ex no data for this id.
+     * @throws Error_Runtime_Exception if response has error in result ex no data for this tconst.
      */
-    public function getData() {
+    public function getData()
+    {
         $this->fetchResponse();
         return $this->toDataClass();
     }
@@ -67,9 +70,10 @@ class Movie_Datasource extends IMDb {
      * Convert raw json data from web api to movie stdClass.
      * @return stdClass movie data
      * @throws Json_Exception if error in decode
-     * @throws Error_Runtime_Exception if response has error in result ex no data for this id.
+     * @throws Error_Runtime_Exception if response has error in result ex no data for this tconst.
      */
-    public function toDataClass() {
+    public function toDataClass()
+    {
         $obj = json_decode($this->response);
         if (!isset($obj)) {
             throw new Json_Exception();
@@ -84,9 +88,10 @@ class Movie_Datasource extends IMDb {
      * Function for cURL data fetching for current movie. Data stores in $this->response
      * @throws Curl_Exception on error in web api request
      */
-    public function fetchResponse() {
-        $ch = @curl_init($this->request);
-        if (!isset($ch) || $ch === FALSE) {
+    public function fetchResponse()
+    {
+        $resource = @curl_init($this->request);
+        if (!isset($resource) || $resource === FALSE) {
             throw new Curl_Exception(null, "curl_init return false or null");
         }
         $options = array(
@@ -95,12 +100,12 @@ class Movie_Datasource extends IMDb {
             CURLOPT_TIMEOUT_MS => $this->timeout,
             CURLOPT_ENCODING => 'deflate',
             CURLOPT_RETURNTRANSFER => true);
-        curl_setopt_array($ch, $options);
-        $response = curl_exec($ch);
+        curl_setopt_array($resource, $options);
+        $response = curl_exec($resource);
         if ($response === FALSE) {
-            throw new Curl_Exception($ch);
+            throw new Curl_Exception($resource);
         }
-        curl_close($ch);
+        curl_close($resource);
         $this->response = $response;
     }
 

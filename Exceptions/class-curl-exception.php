@@ -9,19 +9,21 @@ use Exception;
  * @author Henrik Roos <henrik@afternoon.se>
  * @package Exception
  */
-class Curl_Exception extends Exception {
+class Curl_Exception extends Exception
+{
 
     /**
      * Create an instnas of exception class and grep the last error from curl class.
-     * @param resource $ch resource from curl_init
+     * @param resource $resource resource from curl_init
      * @param string $message extra messages
-     * @param int $code if $ch is null set custom errro code
+     * @param int $code if $resource is null set custom errro code
      * @param Exception $previous
      */
-    public function __construct($ch = null, $message = "", $code = 0, Exception $previous = null) {
-        if (isset($ch) && curl_errno($ch) > 0) {
-            $code = curl_errno($ch);
-            $message .= curl_error($ch);
+    public function __construct($resource = null, $message = "", $code = 0, Exception $previous = null)
+    {
+        if (isset($resource) && curl_errno($resource) > 0) {
+            $code = curl_errno($resource);
+            $message .= curl_error($resource);
         } else {
             $error_get_last = error_get_last();
             if (isset($error_get_last)) {

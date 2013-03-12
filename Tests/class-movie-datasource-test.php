@@ -15,12 +15,13 @@ require_once dirname(__FILE__) . '/../Exceptions/class-json-exception.php';
 
 /**
  * Testclass (PHPUnit) test for Movie_Datasource class
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Test
  */
-class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
+class Movie_DatasourceTest extends PHPUnit_Framework_TestCase
+{
 
-    /** @var array testdata for movie id */
+    /** @var array testdata for movie tconst */
     public $testdata = array(
         "movie" => "tt0137523",
         "tvserie" => "tt0402711",
@@ -36,7 +37,8 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      */
-    public function testMovie() {
+    public function testMovie()
+    {
         $imdb = new Movie_Datasource($this->testdata["movie"]);
         $movie = $imdb->getData();
         $this->assertEquals("Fight Club", $movie->title);
@@ -49,7 +51,8 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      */
-    public function testTvSerie() {
+    public function testTvSerie()
+    {
         $imdb = new Movie_Datasource($this->testdata["tvserie"]);
         $movie = $imdb->getData();
         $this->assertEquals("Boston Legal", $movie->title);
@@ -62,26 +65,28 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      */
-    public function testVideoGame() {
+    public function testVideoGame()
+    {
         $imdb = new Movie_Datasource($this->testdata["videogame"]);
         $movie = $imdb->getData();
         $this->assertEquals("Lego Pirates of the Caribbean: The Video Game", $movie->title);
     }
 
     /**
-     * Negativ test, No data for this title id. HTTP 404
+     * Negativ test, No data for this title tconst. HTTP 404
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception
      */
-    public function testGetMovieNoData() {
+    public function testGetMovieNoData()
+    {
         try {
             $imdb = new Movie_Datasource($this->testdata["nodata"]);
             $imdb->getData();
         } catch (Error_Runtime_Exception $exc) {
-            $this->assertEquals("No data for this title id.", $exc->getMessage());
+            $this->assertEquals("No data for this title tconst.", $exc->getMessage());
             $this->assertEquals(404, $exc->getCode());
             return;
         }
@@ -89,15 +94,16 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * Negativ test, incorrect id checked in construct
+     * Negativ test, incorrect tconst checked in construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception
      */
-    public function testIncorrectId() {
+    public function testIncorrectId()
+    {
         try {
             new Movie_Datasource($this->testdata["incorrect"]);
         } catch (Error_Runtime_Exception $exc) {
-            $this->assertEquals("Incorrect id: {$this->testdata["incorrect"]}", $exc->getMessage());
+            $this->assertEquals("Incorrect tconst: {$this->testdata["incorrect"]}", $exc->getMessage());
             return;
         }
         $this->fail('An expected exception has not been raised.');
@@ -109,7 +115,8 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Exceptions\Curl_Exception
      */
-    public function testTimeout() {
+    public function testTimeout()
+    {
         try {
             $imdb = new Movie_Datasource($this->testdata["movie"], 400);
             $imdb->fetchResponse();
@@ -125,7 +132,8 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      */
-    public function testFetchResponseIncorrectRequest() {
+    public function testFetchResponseIncorrectRequest()
+    {
         try {
             $imdb = new Movie_Datasource($this->testdata["nodata"]);
             $imdb->request = "a b c";
@@ -144,7 +152,8 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Exceptions\Curl_Exception
      */
-    public function testFetchResponseCurl_initException() {
+    public function testFetchResponseCurl_initException()
+    {
         try {
             $imdb = new Movie_Datasource($this->testdata["nodata"]);
             $imdb->request = array();
@@ -163,7 +172,8 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase {
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Exceptions\Json_Exception
      */
-    public function testToDataClassJson_Exception() {
+    public function testToDataClassJson_Exception()
+    {
         try {
             $imdb = new Movie_Datasource($this->testdata["movie"]);
             $imdb->fetchResponse();

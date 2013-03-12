@@ -6,10 +6,11 @@ use Exception;
 
 /**
  * Exception class for json exceptions
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Exception
  */
-class Json_Exception extends Exception {
+class Json_Exception extends Exception
+{
 
     /** @var array json error codes */
     public $json_errors = array(
@@ -27,7 +28,8 @@ class Json_Exception extends Exception {
      * @param int $code if json_last_error = 0 use this code
      * @param Exception $previous
      */
-    public function __construct($message = "", $code = 0, Exception $previous = null) {
+    public function __construct($message = "", $code = 0, Exception $previous = null)
+    {
         if (json_last_error() > 0) {
             $code = json_last_error();
             $message .= $this->json_errors[json_last_error()];

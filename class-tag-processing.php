@@ -9,13 +9,14 @@ require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
 
 /**
  * Find and replace imdb tags to movie data from IMDb
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Core
  */
-class Tag_Processing {
+class Tag_Processing
+{
 
-    /** @var string regular expression for find id */
-    public $id_pattern = "/\[imdb\:id\((tt\d+)\)\]/i";
+    /** @var string regular expression for find tconst */
+    public $tconst_pattern = "/\[imdb\:tconst\((tt\d+)\)\]/i";
 
     /** @var string regular expression for all imdb tags */
     public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
@@ -24,10 +25,10 @@ class Tag_Processing {
     public $original_content;
 
     /**
-     * @var string Id on current movie. <i>e.g http://www.imdb.com/title/tt0137523/ -> id = tt0137523</i>
-     * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
+     * @var string Id on current movie. <i>e.g http://www.imdb.com/title/tt0137523/ -> tconst = tt0137523</i>
+     * Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>
      */
-    public $id;
+    public $tconst;
 
     /** @var IMDb object IMDb:s data object */
     public $data;
@@ -39,26 +40,28 @@ class Tag_Processing {
      * Create an object
      * @param string $original_content
      */
-    public function __construct($original_content) {
+    public function __construct($original_content)
+    {
         $this->original_content = $original_content;
     }
 
     /**
-     * Find and store it in $id. Syntax: <b>[imdb:id(ttxxxxxxx)]</b>.
-     * <i>e.g. "Nunc non diam sit [imdb:id(tt0137523)] nulla sem tempus magna" -> id = tt0137523</i>
-     * @return boolean FALSE if no match TRUE if find a id
+     * Find and store it in $tconst. Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>.
+     * <i>e.g. "Nunc non diam sit [imdb:tconst(tt0137523)] nulla sem tempus magna" -> tconst = tt0137523</i>
+     * @return boolean FALSE if no match TRUE if find a tconst
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
-    public function find_id() {
+    public function find_tconst()
+    {
         $matches = array();
-        if (@preg_match($this->id_pattern, $this->original_content, $matches) === FALSE) {
+        if (@preg_match($this->tconst_pattern, $this->original_content, $matches) === FALSE) {
             throw new PCRE_Exception();
         }
         if (empty($matches)) {
-            $this->id = null;
+            $this->tconst = null;
             return FALSE;
         }
-        $this->id = $matches[1];
+        $this->tconst = $matches[1];
         return TRUE;
     }
 
@@ -67,7 +70,8 @@ class Tag_Processing {
      * @return boolean FALSE if no match TRUE if find 
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
-    public function find_imdb_tags() {
+    public function find_imdb_tags()
+    {
         $matches = array();
         if (@preg_match_all($this->imdb_tags_pattern, $this->original_content, $matches) === FALSE) {
             throw new PCRE_Exception();

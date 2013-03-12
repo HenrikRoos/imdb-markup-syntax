@@ -6,10 +6,11 @@ use Exception;
 
 /**
  * Exception handler for PCRE functions
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Exception
  */
-class PCRE_Exception extends Exception {
+class PCRE_Exception extends Exception
+{
 
     /**
      * Mapping error code into error name
@@ -29,7 +30,8 @@ class PCRE_Exception extends Exception {
      * @param int $code if no preg_last_error or error_get_last use this code
      * @param Exception $previous
      */
-    public function __construct($message = "", $code = 0, Exception $previous = null) {
+    public function __construct($message = "", $code = 0, Exception $previous = null)
+    {
         $preg_last_error = preg_last_error();
         $error_get_last = error_get_last();
         if (!empty($preg_last_error)) {
