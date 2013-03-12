@@ -6,6 +6,7 @@
  * PHP version 5
  * 
  * @package   Exception
+ * @category  Runnable
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
@@ -18,7 +19,9 @@ use Exception;
 
 /**
  * Exception class for curl exceptions
+ * 
  * @package   Exception
+ * @category  Runnable
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
@@ -29,10 +32,11 @@ class Curl_Exception extends Exception
 
     /**
      * Create an instnas of exception class and grep the last error from curl class.
-     * @param resource $resource resource from curl_init
-     * @param string $message extra messages
-     * @param int $code if $resource is null set custom errro code
-     * @param Exception $previous
+     * 
+     * @param resource  $resource Resource from curl_init
+     * @param string    $message  Extra messages
+     * @param int       $code     If $resource is null set custom errro code
+     * @param Exception $previous The previous exception
      */
     public function __construct($resource = null, $message = "", $code = 0, Exception $previous = null)
     {
