@@ -91,7 +91,7 @@ class Movie_Datasource extends IMDb
     public function fetchResponse()
     {
         $resource = @curl_init($this->request);
-        if (!isset($resource) || $resource === FALSE) {
+        if (!isset($resource) || $resource === false) {
             throw new Curl_Exception(null, "curl_init return false or null");
         }
         $options = array(
@@ -102,7 +102,7 @@ class Movie_Datasource extends IMDb
             CURLOPT_RETURNTRANSFER => true);
         curl_setopt_array($resource, $options);
         $response = curl_exec($resource);
-        if ($response === FALSE) {
+        if ($response === false) {
             throw new Curl_Exception($resource);
         }
         curl_close($resource);

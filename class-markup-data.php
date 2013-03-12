@@ -26,7 +26,7 @@ class Markup_Data
 
     /**
      * tconst for current movie <i>e.g. tt0137523</i>
-     * @return string|boolean if no data then FALSE
+     * @return string|boolean if no data then false
      */
     public function tconst()
     {
@@ -35,7 +35,7 @@ class Markup_Data
 
     /**
      * Title for current moive
-     * @return string|boolean if no title then FALSE
+     * @return string|boolean if no title then false
      */
     public function title()
     {
@@ -55,7 +55,7 @@ class Markup_Data
     /**
      * One or more genres for current movie. http://www.imdb.com/genre IMDb list of all genres
      * ex Adventure, Action, Animation etc
-     * @return string|boolean list of genres in one string or FALSE if no data
+     * @return string|boolean list of genres in one string or false if no data
      */
     public function genres()
     {
@@ -65,7 +65,7 @@ class Markup_Data
     /**
      * The day when a movie is shipped to exhibitors by the distributor, it is deemed to have been released
      * for public viewing - there are no longer any studio restrictions on who can see the movie.
-     * @return string|boolean in format 'Y-m-d' <i>e.g. 2013-12-24</i> or FALSE if no date
+     * @return string|boolean in format 'Y-m-d' <i>e.g. 2013-12-24</i> or false if no date
      */
     public function release_date()
     {
@@ -74,7 +74,7 @@ class Markup_Data
 
     /**
      * Runtime in minutes for current movie.
-     * @return int|boolean Runtime in minutes or FALSE if not data
+     * @return int|boolean Runtime in minutes or false if not data
      */
     public function runtime()
     {
@@ -83,7 +83,7 @@ class Markup_Data
 
     /**
      * Rating scale from 1 to 10 there 10 is best and with one decimal. <i>e.g. 7.3</i>
-     * @return float|boolean if no rating then FALSE
+     * @return float|boolean if no rating then false
      */
     public function rating()
     {
@@ -92,7 +92,7 @@ class Markup_Data
 
     /**
      * Number of votes from imdb members for current movie. <i>e.g. 3039</i>
-     * @return int|boolean if no data then FALSE.
+     * @return int|boolean if no data then false.
      */
     public function votes()
     {
@@ -104,7 +104,7 @@ class Markup_Data
      * It is not a review and should not contain the opinions of the author. It should contain all the
      * necessary information about the main characters and the unfolding drama to give a complete impression
      * of the twists and turns in the plot, but without confusing the reader with unnecessary detail.
-     * @return string|boolean if no plot then FALSE
+     * @return string|boolean if no plot then false
      */
     public function plot()
     {
@@ -114,7 +114,7 @@ class Markup_Data
     /**
      * A tagline is a variant of a branding slogan typically used in marketing materials and advertising.
      * <i>e.g. "Yippee Ki-Yay Mother Russia" (A Good Day to Die Hard)</i>
-     * @return string|boolean if no tagline then FALSE
+     * @return string|boolean if no tagline then false
      */
     public function tagline()
     {
@@ -123,7 +123,7 @@ class Markup_Data
 
     /**
      * A collective term for the actors appearing in a particular movie.
-     * @return string|boolean list of actors as a one string or FALSE if no data
+     * @return string|boolean list of actors as a one string or false if no data
      */
     public function cast()
     {
@@ -141,7 +141,7 @@ class Markup_Data
             $named_summary = array_map(array($this, "writer"), $named);
             return implode(", ", $named_summary);
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -152,7 +152,7 @@ class Markup_Data
      * aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a
      * producer or a studio. In some large productions, a director will delegate less important scenes to a
      * second unit.
-     * @return string|boolean list of directors as a one string or FALSE if no data
+     * @return string|boolean list of directors as a one string or false if no data
      */
     public function directors()
     {
@@ -174,7 +174,7 @@ class Markup_Data
      * studios agree to make certain changes to films in order to receive the required rating. The IMDb uses
      * the term "Certificate" as opposed to "Rating" to avoid confusion with "ratings" meaning the opinions
      * of critics. http://www.filmratings.com Classification and Rating Administration (CARA)
-     * @return string|boolean code <i>e.g G, PG, PG-13, R, NC-17</i> or FALSE if no data
+     * @return string|boolean code <i>e.g G, PG, PG-13, R, NC-17</i> or false if no data
      */
     public function certificate()
     {
@@ -220,7 +220,7 @@ class Markup_Data
     /**
      * Check if writer name is set
      * @param stdClass $writer array item from writers_summary
-     * @return boolean TRUE if name is set FALSE if no name is set
+     * @return boolean TRUE if name is set false if no name is set
      */
     protected function has_name(stdClass $writer)
     {

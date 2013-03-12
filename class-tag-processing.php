@@ -48,18 +48,18 @@ class Tag_Processing
     /**
      * Find and store it in $tconst. Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>.
      * <i>e.g. "Nunc non diam sit [imdb:tconst(tt0137523)] nulla sem tempus magna" -> tconst = tt0137523</i>
-     * @return boolean FALSE if no match TRUE if find a tconst
+     * @return boolean false if no match TRUE if find a tconst
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
     public function find_tconst()
     {
         $matches = array();
-        if (@preg_match($this->tconst_pattern, $this->original_content, $matches) === FALSE) {
+        if (@preg_match($this->tconst_pattern, $this->original_content, $matches) === false) {
             throw new PCRE_Exception();
         }
         if (empty($matches)) {
             $this->tconst = null;
-            return FALSE;
+            return false;
         }
         $this->tconst = $matches[1];
         return TRUE;
@@ -67,13 +67,13 @@ class Tag_Processing
 
     /**
      * Find and store alltags in imdb_tags array. Syntax: <b>[imdb:xxx]</b> 
-     * @return boolean FALSE if no match TRUE if find 
+     * @return boolean false if no match TRUE if find 
      * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
      */
     public function find_imdb_tags()
     {
         $matches = array();
-        if (@preg_match_all($this->imdb_tags_pattern, $this->original_content, $matches) === FALSE) {
+        if (@preg_match_all($this->imdb_tags_pattern, $this->original_content, $matches) === false) {
             throw new PCRE_Exception();
         }
         $this->imdb_tags = $matches[1];

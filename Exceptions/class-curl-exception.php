@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class for exception handler for PCRE functions
+ */
+
 namespace IMDb_Markup_Syntax\Exceptions;
 
 use Exception;

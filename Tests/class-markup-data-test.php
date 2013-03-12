@@ -57,7 +57,7 @@ class Markup_DataTest extends PHPUnit_Framework_TestCase
     {
         $imdb = new Movie_Datasource("tt1129398");
         $data = new Markup_Data($imdb->getData());
-        $expected = FALSE;
+        $expected = false;
         $actual = $data->writers();
         $this->assertEquals($expected, $actual);
     }
