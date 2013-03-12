@@ -1,28 +1,50 @@
 <?php
 
+/**
+ * Exception class for runtime exceptions
+ * 
+ * PHP version 5
+ * 
+ * @category  Runnable
+ * @package   Exception
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
+ */
+
 namespace IMDb_Markup_Syntax\Exceptions;
 
 use Exception;
 use stdClass;
 
 /**
- * Create intans object for imdb api error.
- * @author Henrik Roos <henrik@afternoon.se>
- * @package Exception
+ * Exception class for runtime exceptions
+ * 
+ * @category  Runnable
+ * @package   Exception
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Error_Runtime_Exception extends Exception
 {
 
     /**
      * Create intans object for imdb api repsonse error.
-     * @param stdClass $response from imdb api respons as json convert
-     * @param string $message extra message
-     * @param int $code error code ex 404 for not fond
-     * @param Exception $previous
+     * 
+     * @param stdClass  $response From imdb api respons as json convert
+     * @param string    $message  Extra message
+     * @param int       $code     Error code ex 404 for not fond
+     * @param Exception $previous The previous exception
      */
-    public function __construct($response, $message = "", $code = 0, Exception $previous = null)
-    {
-        if (isset($response->error) && isset($response->error->message) && isset($response->error->status)) {
+    public function __construct($response, $message = "", $code = 0,
+        Exception $previous = null
+    ) {
+        if (isset($response->error) && isset($response->error->message) &&
+            isset($response->error->status)
+        ) {
             $message .= $response->error->message;
             $code = $response->error->status;
         }
@@ -30,5 +52,4 @@ class Error_Runtime_Exception extends Exception
     }
 
 }
-
 ?>
