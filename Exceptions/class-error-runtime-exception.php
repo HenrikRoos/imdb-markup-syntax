@@ -42,8 +42,8 @@ class Error_Runtime_Exception extends Exception
     public function __construct($response, $message = "", $code = 0,
         Exception $previous = null
     ) {
-        if (isset($response->error) && isset($response->error->message) &&
-            isset($response->error->status)
+        if (isset($response->error) && isset($response->error->message)
+            && isset($response->error->status)
         ) {
             $message .= $response->error->message;
             $code = $response->error->status;
