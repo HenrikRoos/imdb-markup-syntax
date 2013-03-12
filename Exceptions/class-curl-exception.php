@@ -5,8 +5,8 @@
  * 
  * PHP version 5
  * 
- * @package   Exception
  * @category  Runnable
+ * @package   Exception
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
@@ -20,8 +20,8 @@ use Exception;
 /**
  * Exception class for curl exceptions
  * 
- * @package   Exception
  * @category  Runnable
+ * @package   Exception
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
@@ -38,7 +38,8 @@ class Curl_Exception extends Exception
      * @param int       $code     If $resource is null set custom errro code
      * @param Exception $previous The previous exception
      */
-    public function __construct($resource = null, $message = "", $code = 0, Exception $previous = null)
+    public function __construct($resource = null, $message = "", $code = 0,
+            Exception $previous = null)
     {
         if (isset($resource) && curl_errno($resource) > 0) {
             $code = curl_errno($resource);
