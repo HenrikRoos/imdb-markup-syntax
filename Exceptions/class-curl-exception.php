@@ -6,7 +6,7 @@ use Exception;
 
 /**
  * Exception class for curl exceptions
- * @author Henrik Roos <henrik at afternoon.se>
+ * @author Henrik Roos <henrik@afternoon.se>
  * @package Exception
  */
 class Curl_Exception extends Exception {
