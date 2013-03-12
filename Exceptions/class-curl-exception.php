@@ -1,7 +1,12 @@
 <?php
 
 /**
- * Class for exception handler for PCRE functions
+ * Exception class for curl exceptions
+ * @package Exception
+ * @author Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright (c) 2013, Henrik Roos
+ * @license https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
 namespace IMDb_Markup_Syntax\Exceptions;
@@ -10,8 +15,11 @@ use Exception;
 
 /**
  * Exception class for curl exceptions
- * @author Henrik Roos <henrik@afternoon.se>
  * @package Exception
+ * @author Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright (c) 2013, Henrik Roos
+ * @license https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Curl_Exception extends Exception
 {
