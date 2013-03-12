@@ -86,7 +86,7 @@ class Movie_DatasourceTest extends PHPUnit_Framework_TestCase
             $imdb = new Movie_Datasource($this->testdata["nodata"]);
             $imdb->getData();
         } catch (Error_Runtime_Exception $exc) {
-            $this->assertEquals("No data for this title tconst.", $exc->getMessage());
+            $this->assertEquals("No data for this title id.", $exc->getMessage());
             $this->assertEquals(404, $exc->getCode());
             return;
         }
