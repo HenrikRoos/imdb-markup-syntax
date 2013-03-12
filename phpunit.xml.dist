@@ -22,6 +22,7 @@
     <filter>
         <blacklist>
             <directory suffix=".php">IMDb-PHP-API</directory>
+            <directory suffix=".php">PHPUnit</directory>
         </blacklist>
     </filter>
 </phpunit>
