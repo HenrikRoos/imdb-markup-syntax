@@ -7,7 +7,7 @@
  * 
  * @package   Exception
  * @author    Henrik Roos <henrik.roos@afternoon.se>
- * @copyright (c) 2013, Henrik Roos
+ * @copyright 2013 Henrik Roos
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
@@ -20,7 +20,7 @@ use Exception;
  * Exception class for curl exceptions
  * @package   Exception
  * @author    Henrik Roos <henrik.roos@afternoon.se>
- * @copyright (c) 2013, Henrik Roos
+ * @copyright 2013 Henrik Roos
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
