@@ -39,7 +39,8 @@ class Curl_Exception extends Exception
      * @param Exception $previous The previous exception
      */
     public function __construct($resource = null, $message = "", $code = 0,
-            Exception $previous = null)
+            Exception $previous = null
+    )
     {
         if (isset($resource) && curl_errno($resource) > 0) {
             $code = curl_errno($resource);
