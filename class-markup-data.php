@@ -137,9 +137,7 @@ class Markup_Data
     public function writers()
     {
         if (isset($this->data->writers_summary) && is_array($this->data->writers_summary)) {
-            $named = array_filter($this->data->writers_summary, function($writer) {
-                        return isset($writer->name->name);
-                    });
+            $named = array_filter($this->data->writers_summary, array($this, "has_name"));
             $named_summary = array_map(array($this, "writer"), $named);
             return implode(", ", $named_summary);
         }
@@ -219,7 +217,17 @@ class Markup_Data
         return $res;
     }
 
-    // </editor-fold>
+    /**
+     * Check if writer name is set
+     * @param stdClass $writer array item from writers_summary
+     * @return boolean TRUE if name is set FALSE if no name is set
+     */
+    protected function has_name(stdClass $writer)
+    {
+        return isset($writer->name->name);
+    }
+
 }
 
+// </editor-fold>
 ?>
