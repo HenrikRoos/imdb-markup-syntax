@@ -41,6 +41,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp()
     {
@@ -132,7 +134,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @return void
      */
-    public function testFindTconstPREG_ERROR()
+    public function testFindTconstPregError()
     {
         $obj = new TagProcessing("foobar foobar foobar");
         $obj->tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
@@ -244,7 +246,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @return void
      */
-    public function testFindImdbTagsPREG_ERROR()
+    public function testFindImdbTagsPregError()
     {
         $obj = new TagProcessing("foobar foobar foobar");
         $obj->imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";

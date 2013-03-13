@@ -96,8 +96,9 @@ class MovieDatasourceTest extends PHPUnit_Framework_TestCase
     {
         $imdb = new MovieDatasource($this->testdata["videogame"]);
         $movie = $imdb->getData();
-        $this->assertEquals
-            ("Lego Pirates of the Caribbean: The Video Game", $movie->title);
+        $this->assertEquals(
+            "Lego Pirates of the Caribbean: The Video Game", $movie->title
+        );
     }
 
     /**
@@ -183,8 +184,9 @@ class MovieDatasourceTest extends PHPUnit_Framework_TestCase
             $imdb->request = "a b c";
             $imdb->fetchResponse();
         } catch (CurlException $exc) {
-            $this->assertEquals("Could not resolve host: a b c; nodename nor"
-                . " servname provided, or not known", $exc->getMessage()
+            $this->assertEquals(
+                "Could not resolve host: a b c; nodename nor servname provided, or"
+                . " not known", $exc->getMessage()
             );
             $this->assertEquals(6, $exc->getCode());
             return;
