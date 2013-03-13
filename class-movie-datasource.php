@@ -117,6 +117,8 @@ class Movie_Datasource extends IMDb
      * Function for cURL data fetching for current movie. Data stores in
      * $this->response
      * 
+     * @return void No return
+     * 
      * @throws Curl_Exception On error in web api request
      */
     public function fetchResponse()
