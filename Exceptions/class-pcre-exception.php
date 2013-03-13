@@ -43,8 +43,10 @@ class PCRE_Exception extends Exception
      * Create object and grep last preg error code
      * 
      * @param string    $message  Extra message
-     * @param int       $code     Ff no preg_last_error or error_get_last use this code
-     * @param Exception $previous The previous exception used for the exception chaining
+     * @param int       $code     If no preg_last_error or error_get_last use this
+     * code
+     * @param Exception $previous The previous exception used for the exception
+     * chaining
      */
     public function __construct($message = "", $code = 0, Exception $previous = null)
     {

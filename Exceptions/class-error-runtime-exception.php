@@ -37,7 +37,8 @@ class Error_Runtime_Exception extends Exception
      * @param stdClass  $response From imdb api respons as json convert
      * @param string    $message  Extra message
      * @param int       $code     Error code ex 404 for not fond
-     * @param Exception $previous The previous exception used for the exception chaining
+     * @param Exception $previous The previous exception used for the exception
+     * chaining
      */
     public function __construct($response, $message = "", $code = 0,
         Exception $previous = null

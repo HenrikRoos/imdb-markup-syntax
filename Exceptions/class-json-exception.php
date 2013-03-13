@@ -44,8 +44,9 @@ class Json_Exception extends Exception
      * Create object and grep the last error from json
      * 
      * @param string    $message  Extra message
-     * @param int       $code if  Json_last_error = 0 use this code
-     * @param Exception $previous The previous exception used for the exception chaining
+     * @param int       $code     If json_last_error = 0 use this code
+     * @param Exception $previous The previous exception used for the exception
+     * chaining
      */
     public function __construct($message = "", $code = 0, Exception $previous = null)
     {
