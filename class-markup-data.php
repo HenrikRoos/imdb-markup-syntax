@@ -50,7 +50,7 @@ class MarkupData
      * 
      * @return string|boolean if no data then false
      */
-    public function tconst()
+    public function getTconst()
     {
         //TODO some code please
     }
@@ -60,7 +60,7 @@ class MarkupData
      * 
      * @return string|boolean if no title then false
      */
-    public function title()
+    public function getTitle()
     {
         //TODO some code please
     }
@@ -71,7 +71,7 @@ class MarkupData
      * 
      * @return string|boolean Current titles type <i>e.g. video or tv_series</i>
      */
-    public function type()
+    public function getType()
     {
         //TODO some code please
     }
@@ -82,7 +82,7 @@ class MarkupData
      * 
      * @return string|boolean List of genres in one string or false if no data
      */
-    public function genres()
+    public function getGenres()
     {
         //TODO some code please
     }
@@ -95,7 +95,7 @@ class MarkupData
      * @return string|boolean In format 'Y-m-d' <i>e.g. 2013-12-24</i> or false if no
      * data
      */
-    public function releaseDate()
+    public function getReleaseDate()
     {
         //TODO some code please
     }
@@ -105,7 +105,7 @@ class MarkupData
      * 
      * @return int|boolean Runtime in minutes or false if not data
      */
-    public function runtime()
+    public function getRuntime()
     {
         //TODO some code please
     }
@@ -116,7 +116,7 @@ class MarkupData
      * 
      * @return float|boolean If no data then false
      */
-    public function rating()
+    public function getRating()
     {
         //TODO some code please
     }
@@ -126,7 +126,7 @@ class MarkupData
      * 
      * @return int|boolean If no data then false.
      */
-    public function votes()
+    public function getVotes()
     {
         //TODO some code please
     }
@@ -141,7 +141,7 @@ class MarkupData
      * 
      * @return string|boolean If no data then false
      */
-    public function plot()
+    public function getPlot()
     {
         //TODO some code please
     }
@@ -153,7 +153,7 @@ class MarkupData
      * 
      * @return string|boolean If no tagline then false
      */
-    public function tagline()
+    public function getTagline()
     {
         //TODO some code please
     }
@@ -163,7 +163,7 @@ class MarkupData
      * 
      * @return string|boolean List of actors as a one string or false if no data
      */
-    public function cast()
+    public function getCast()
     {
         //TODO some code please
     }
@@ -174,7 +174,7 @@ class MarkupData
      * 
      * @return string|boolean List of writers as a string
      */
-    public function writers()
+    public function getWriters()
     {
         if (isset($this->_data->writers_summary)
             && is_array($this->_data->writers_summary)
@@ -201,7 +201,7 @@ class MarkupData
      * 
      * @return string|boolean List of directors as a one string or false if no data
      */
-    public function directors()
+    public function getDirectors()
     {
         //TODO some code please
     }
@@ -230,7 +230,7 @@ class MarkupData
      * @return string|boolean Code <i>e.g G, PG, PG-13, R, NC-17</i> or false if no
      * data
      */
-    public function certificate()
+    public function getCertificate()
     {
         //TODO some code please
     }
@@ -240,7 +240,7 @@ class MarkupData
      * 
      * @return string URL to the image
      */
-    public function poster()
+    public function getPoster()
     {
         //TODO some code please
     }
