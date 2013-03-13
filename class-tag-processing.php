@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * Find and replace imdb tags to movie data from IMDb
+ * 
+ * PHP version 5
+ * 
+ * @category  Runnable
+ * @package   Core
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
+ */
+
 namespace IMDb_Markup_Syntax;
 
 use IMDb;
@@ -9,23 +22,29 @@ require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
 
 /**
  * Find and replace imdb tags to movie data from IMDb
- * @author Henrik Roos <henrik@afternoon.se>
- * @package Core
+ * 
+ * @category  Runnable
+ * @package   Core
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Tag_Processing
 {
 
-    /** @var string regular expression for find tconst */
+    /** @var string Regular expression for find tconst */
     public $tconst_pattern = "/\[imdb\:tconst\((tt\d+)\)\]/i";
 
-    /** @var string regular expression for all imdb tags */
+    /** @var string Regular expression for all imdb tags */
     public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
 
     /** @var string Original content before this filter processing */
     public $original_content;
 
     /**
-     * @var string Id on current movie. <i>e.g http://www.imdb.com/title/tt0137523/ -> tconst = tt0137523</i>
+     * @var string Id on current movie.
+     * <i>e.g http://www.imdb.com/title/tt0137523/ -> tconst = tt0137523</i>
      * Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>
      */
     public $tconst;
@@ -38,6 +57,7 @@ class Tag_Processing
 
     /**
      * Create an object
+     * 
      * @param string $original_content
      */
     public function __construct($original_content)
@@ -46,15 +66,19 @@ class Tag_Processing
     }
 
     /**
-     * Find and store it in $tconst. Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>.
-     * <i>e.g. "Nunc non diam sit [imdb:tconst(tt0137523)] nulla sem tempus magna" -> tconst = tt0137523</i>
-     * @return boolean false if no match TRUE if find a tconst
-     * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
+     * Find and store it in tconst. Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>.
+     * <i>e.g. "Nunc non diam sit [imdb:tconst(tt0137523)]nulla sem tempus magna" ->
+     * tconst = tt0137523</i>
+     * 
+     * @return boolean False if no match TRUE if find a tconst
+     * 
+     * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
-    public function find_tconst()
+    public function findTconst()
     {
         $matches = array();
-        if (@preg_match($this->tconst_pattern, $this->original_content, $matches) === false) {
+        if (@preg_match($this->tconst_pattern, $this->original_content, $matches) === false
+        ) {
             throw new PCRE_Exception();
         }
         if (empty($matches)) {
@@ -66,14 +90,18 @@ class Tag_Processing
     }
 
     /**
-     * Find and store alltags in imdb_tags array. Syntax: <b>[imdb:xxx]</b> 
-     * @return boolean false if no match TRUE if find 
-     * @throws PCRE_Exception if a PCRE error occurs or patten compilation failed
+     * Find and store alltags in imdb_tags array. Syntax: <b>[imdb:xxx]</b>
+     * 
+     * @return boolean False if no match true if find
+     * 
+     * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
-    public function find_imdb_tags()
+    public function findImdbTags()
     {
         $matches = array();
-        if (@preg_match_all($this->imdb_tags_pattern, $this->original_content, $matches) === false) {
+        if (@preg_match_all($this->imdb_tags_pattern, $this->original_content,
+            $matches) === false
+        ) {
             throw new PCRE_Exception();
         }
         $this->imdb_tags = $matches[1];
