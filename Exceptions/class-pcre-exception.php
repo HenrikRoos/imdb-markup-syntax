@@ -1,21 +1,36 @@
 <?php
 
+/**
+ * Exception class for PCRE exceptions
+ * 
+ * PHP version 5
+ * 
+ * @category  Runnable
+ * @package   Exception
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
+ */
+
 namespace IMDb_Markup_Syntax\Exceptions;
 
 use Exception;
 
 /**
- * Exception handler for PCRE functions
- * @author Henrik Roos <henrik@afternoon.se>
- * @package Exception
+ * Exception class for PCRE exceptions
+ * 
+ * @category  Runnable
+ * @package   Exception
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class PCRE_Exception extends Exception
 {
 
-    /**
-     * Mapping error code into error name
-     * @var array of pcre_errors
-     */
+    /** @var array Mapping error code into error name */
     public $pcre_errors = array(
         0 => "PREG_NO_ERROR",
         1 => "PREG_INTERNAL_ERROR",
@@ -26,9 +41,10 @@ class PCRE_Exception extends Exception
 
     /**
      * Create object and grep last preg error code
-     * @param string $message extra message
-     * @param int $code if no preg_last_error or error_get_last use this code
-     * @param Exception $previous
+     * 
+     * @param string    $message  Extra message
+     * @param int       $code     Ff no preg_last_error or error_get_last use this code
+     * @param Exception $previous The previous exception used for the exception chaining
      */
     public function __construct($message = "", $code = 0, Exception $previous = null)
     {

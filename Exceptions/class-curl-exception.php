@@ -36,7 +36,7 @@ class Curl_Exception extends Exception
      * @param resource  $resource Resource from curl_init
      * @param string    $message  Extra messages
      * @param int       $code     If $resource is null set custom errro code
-     * @param Exception $previous The previous exception
+     * @param Exception $previous The previous exception used for the exception chaining
      */
     public function __construct($resource = null, $message = "", $code = 0,
         Exception $previous = null
