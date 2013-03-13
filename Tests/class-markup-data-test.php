@@ -50,7 +50,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
         $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk'
             . '</a> (novel), <a href="http://www.imdb.com/name/nm0880243">Jim Uhls'
             . '</a> (screenplay)';
-        $actual = $data->writers();
+        $actual = $data->getWriters();
         $this->assertEquals($expected, $actual);
     }
 
@@ -68,7 +68,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
         $imdb = new MovieDatasource("tt1564043");
         $data = new MarkupData($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm3503431">Bryan Litt</a>';
-        $actual = $data->writers();
+        $actual = $data->getWriters();
         $this->assertEquals($expected, $actual);
     }
 
@@ -86,7 +86,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
         $imdb = new MovieDatasource("tt1129398");
         $data = new MarkupData($imdb->getData());
         $expected = false;
-        $actual = $data->writers();
+        $actual = $data->getWriters();
         $this->assertEquals($expected, $actual);
     }
 

@@ -35,7 +35,7 @@
     </target>
     <target description="Generate pmd.xml using PHPMD" name="phpmd">
         <exec executable="phpmd">
-            <arg line="${source} xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml --exclude ${basedir}/IMDb-PHP-API --strict"/>
+            <arg line="${source} xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml --exclude ${basedir}/IMDb-PHP-API,${basedir}/Tests --strict"/>
         </exec>
     </target>
     <target description="Generate pmd-cpd.xml using PHPCPD" name="phpcpd">
