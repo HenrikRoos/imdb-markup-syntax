@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * Main class for IMDb Markup Syntax WordPress Plugin
+ * 
+ * PHP version 5
+ * 
+ * @category  Runnable
+ * @package   Core
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
+ */
+
 namespace IMDbMarkupSyntax;
 
 /**
@@ -24,7 +37,5 @@ namespace IMDbMarkupSyntax;
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- * @author Henrik Roos <henrik@afternoon.se>
- * @package Core
  */
 ?>
