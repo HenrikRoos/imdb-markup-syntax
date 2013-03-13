@@ -64,6 +64,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindTconstOnePositive()
     {
@@ -78,6 +80,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindTconstTwoPositive()
     {
@@ -91,6 +95,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindTconstNoMatch()
     {
@@ -104,6 +110,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindTconstEmpty()
     {
@@ -121,6 +129,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindTconstPREG_ERROR()
     {
@@ -142,6 +152,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindTconstErrorControlOperators()
     {
@@ -162,6 +174,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindImdbTagsOnePositive()
     {
@@ -176,6 +190,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindImdbTagsTwoPositive()
     {
@@ -191,6 +207,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindImdbTagsNoMatch()
     {
@@ -204,6 +222,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindImdbTagsEmpty()
     {
@@ -221,6 +241,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindImdbTagsPREG_ERROR()
     {
@@ -242,6 +264,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * 
+     * @return void
      */
     public function testFindImdbTagsErrorControlOperators()
     {

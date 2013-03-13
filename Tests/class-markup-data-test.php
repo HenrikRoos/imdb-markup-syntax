@@ -40,6 +40,8 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\MarkupData::__construct
      * @covers IMDbMarkupSyntax\MarkupData::writers
      * @covers IMDbMarkupSyntax\MarkupData::writer
+     * 
+     * @return void
      */
     public function testWritersTowPositive()
     {
@@ -58,6 +60,8 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\MarkupData::__construct
      * @covers IMDbMarkupSyntax\MarkupData::writers
      * @covers IMDbMarkupSyntax\MarkupData::writer
+     * 
+     * @return void
      */
     public function testWritersOnePositive()
     {
@@ -74,6 +78,8 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
      * @covers IMDbMarkupSyntax\MarkupData::__construct
      * @covers IMDbMarkupSyntax\MarkupData::writers
      * @covers IMDbMarkupSyntax\MarkupData::writer
+     * 
+     * @return void
      */
     public function testWritersNoWriter()
     {
