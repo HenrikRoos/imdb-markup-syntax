@@ -272,7 +272,8 @@ class Markup_Data
     protected function writer(stdClass $writer)
     {
         $res = isset($writer->name->nconst)
-            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">{$writer->name->name}</a>"
+            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">"
+            . $writer->name->name . "</a>"
             : $writer->name->name;
         if (isset($writer->attr)) {
             $res .= " " . $writer->attr;

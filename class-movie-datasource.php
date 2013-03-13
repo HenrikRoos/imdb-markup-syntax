@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * Class for access to IMDb RESTful datasource web api
+ * 
+ * PHP version 5
+ * 
+ * @category  Runnable
+ * @package   Core
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
+ */
+
 namespace IMDb_Markup_Syntax;
 
 use IMDb;
@@ -14,9 +27,14 @@ require_once dirname(__FILE__) . '/Exceptions/class-curl-exception.php';
 require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
 
 /**
- * Class for access to IMDb RESTful datasource web api.
- * @author Henrik Roos <henrik@afternoon.se>
- * @package Core
+ * Class for access to IMDb RESTful datasource web api
+ * 
+ * @category  Runnable
+ * @package   Core
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Movie_Datasource extends IMDb
 {
@@ -31,16 +49,20 @@ class Movie_Datasource extends IMDb
     public $response;
 
     /**
-     * @var int The maximum number of milliseconds to allow cURL functions to execute. If libcurl is built
-     * to use the standard system name resolver, that portion of the connect will still use full-second
-     * resolution for timeouts with a minimum timeout allowed of one second.
+     * @var int The maximum number of milliseconds to allow cURL functions to
+     * execute. If libcurl is built to use the standard system name resolver, that
+     * portion of the connect will still use full-second resolution for timeouts with
+     * a minimum timeout allowed of one second.
      */
     public $timeout;
 
     /**
-     * Create an instans object for acces to datasource,
-     * @param string $tconst imdb tconst for current movie <i>e.g. tt0137523</i>
-     * @param int $timeout The maximum number of milliseconds to allow execute to imdb.
+     * Create an instans object for acces to datasource
+     * 
+     * @param string $tconst  Imdb tconst for current movie <i>e.g. tt0137523</i>
+     * @param int    $timeout The maximum number of milliseconds to allow execute to
+     * imdb.
+     * 
      * @throws Error_Runtime_Exception if incorrect tconst.
      */
     public function __construct($tconst, $timeout = 0)
@@ -54,11 +76,15 @@ class Movie_Datasource extends IMDb
     }
 
     /**
-     * Fetch and convert data from IMDb from current tconst. Data stores in $this->response
+     * Fetch and convert data from IMDb from current tconst. Data stores in
+     * $this->response
+     * 
      * @return stdClass movie data
-     * @throws Curl_Exception on error in web api request
-     * @throws Json_Exception if error in decode
-     * @throws Error_Runtime_Exception if response has error in result ex no data for this tconst.
+     * 
+     * @throws Curl_Exception          On error in web api request
+     * @throws Json_Exception          If error in decode
+     * @throws Error_Runtime_Exception If response has error in result ex no data for
+     * this tconst.
      */
     public function getData()
     {
@@ -67,10 +93,13 @@ class Movie_Datasource extends IMDb
     }
 
     /**
-     * Convert raw json data from web api to movie stdClass.
+     * Convert raw json data from web api to movie stdClass
+     * 
      * @return stdClass movie data
-     * @throws Json_Exception if error in decode
-     * @throws Error_Runtime_Exception if response has error in result ex no data for this tconst.
+     * 
+     * @throws Json_Exception          If error in decode
+     * @throws Error_Runtime_Exception If response has error in result ex no data for
+     * this tconst.
      */
     public function toDataClass()
     {
@@ -85,8 +114,10 @@ class Movie_Datasource extends IMDb
     }
 
     /**
-     * Function for cURL data fetching for current movie. Data stores in $this->response
-     * @throws Curl_Exception on error in web api request
+     * Function for cURL data fetching for current movie. Data stores in
+     * $this->response
+     * 
+     * @throws Curl_Exception On error in web api request
      */
     public function fetchResponse()
     {
@@ -95,7 +126,8 @@ class Movie_Datasource extends IMDb
             throw new Curl_Exception(null, "curl_init return false or null");
         }
         $options = array(
-            CURLOPT_HTTPHEADER => array('Connection: Keep-Alive', 'Content-type: text/plain;charset=UTF-8'),
+            CURLOPT_HTTPHEADER => array('Connection: Keep-Alive',
+                'Content-type: text/plain;charset=UTF-8'),
             CURLOPT_HEADER => false,
             CURLOPT_TIMEOUT_MS => $this->timeout,
             CURLOPT_ENCODING => 'deflate',
