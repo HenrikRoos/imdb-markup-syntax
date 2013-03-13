@@ -100,8 +100,8 @@ class TagProcessing
     public function findImdbTags()
     {
         $match = array();
-        $isOk = @preg_match_all($this->imdb_tags_pattern, $this->original_content,
-                $match
+        $isOk = @preg_match_all(
+                $this->imdb_tags_pattern, $this->original_content, $match
         );
         if ($isOk === false) {
             throw new PCREException();
