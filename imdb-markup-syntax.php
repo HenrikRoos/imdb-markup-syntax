@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main class for IMDb Markup Syntax WordPress Plugin
+ * Main file for IMDb Markup Syntax WordPress Plugin
  * 
  * PHP version 5
  * 
