@@ -174,12 +174,10 @@ class Markup_Data
      */
     public function writers()
     {
-        if (isset($this->_data->writers_summary) &&
-            is_array($this->_data->writers_summary)
+        if (isset($this->_data->writers_summary) && is_array($this->_data->writers_summary)
         ) {
             $named = array_filter($this->_data->writers_summary,
-                array($this, "hasName")
-            );
+                array($this, "hasName"));
             $named_summary = array_map(array($this, "writer"), $named);
             return implode(", ", $named_summary);
         }
@@ -270,7 +268,8 @@ class Markup_Data
     protected function writer(stdClass $writer)
     {
         $res = isset($writer->name->nconst)
-            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">{$writer->name->name}</a>"
+            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">"
+            . "{$writer->name->name}</a>"
             : $writer->name->name;
         if (isset($writer->attr)) {
             $res .= " " . $writer->attr;
