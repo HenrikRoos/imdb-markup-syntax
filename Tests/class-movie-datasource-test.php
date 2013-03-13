@@ -168,7 +168,7 @@ class MovieDatasourceTest extends PHPUnit_Framework_TestCase
             $imdb->fetchResponse();
         } catch (CurlException $exc) {
             $this->assertEquals("Could not resolve host: a b c; nodename nor"
-                . "servname provided, or not known", $exc->getMessage());
+                . " servname provided, or not known", $exc->getMessage());
             $this->assertEquals(6, $exc->getCode());
             return;
         }
@@ -190,7 +190,7 @@ class MovieDatasourceTest extends PHPUnit_Framework_TestCase
             $imdb->fetchResponse();
         } catch (CurlException $exc) {
             $this->assertEquals("curl_init() expects parameter 1 to be string, array"
-                . "given", $exc->getMessage());
+                . " given", $exc->getMessage());
             $this->assertEquals(2, $exc->getCode());
             return;
         }
