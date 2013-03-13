@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Markup data tags from INDb data result. Most popular tag in imdb result has a function in this class
+ * Markup data tags from INDb data result. Most popular tag in imdb result has a
+ * function in this class
  * 
  * PHP version 5
  * 
@@ -18,7 +19,8 @@ namespace IMDb_Markup_Syntax;
 use stdClass;
 
 /**
- * Markup data tags from INDb data result. Most popular tag in imdb result has a function in this class
+ * Markup data tags from INDb data result. Most popular tag in imdb result has a
+ * function in this class
  * 
  * @category  Runnable
  * @package   Core
@@ -174,10 +176,12 @@ class Markup_Data
      */
     public function writers()
     {
-        if (isset($this->_data->writers_summary) && is_array($this->_data->writers_summary)
+        if (isset($this->_data->writers_summary)
+            && is_array($this->_data->writers_summary)
         ) {
-            $named = array_filter($this->_data->writers_summary,
-                array($this, "hasName"));
+            $named = array_filter(
+                $this->_data->writers_summary, array($this, "hasName")
+            );
             $named_summary = array_map(array($this, "writer"), $named);
             return implode(", ", $named_summary);
         }
@@ -268,8 +272,7 @@ class Markup_Data
     protected function writer(stdClass $writer)
     {
         $res = isset($writer->name->nconst)
-            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">"
-            . "{$writer->name->name}</a>"
+            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">{$writer->name->name}</a>"
             : $writer->name->name;
         if (isset($writer->attr)) {
             $res .= " " . $writer->attr;
