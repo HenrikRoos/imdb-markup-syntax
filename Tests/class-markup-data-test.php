@@ -38,7 +38,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
      * Positive test where movie has two writers
      * 
      * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::writers
+     * @covers IMDbMarkupSyntax\MarkupData::getWriters
      * @covers IMDbMarkupSyntax\MarkupData::writer
      * 
      * @return void
@@ -58,7 +58,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
      * Positive test where movie has one writer and no attribute like (nocel)
      * 
      * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::writers
+     * @covers IMDbMarkupSyntax\MarkupData::getWriters
      * @covers IMDbMarkupSyntax\MarkupData::writer
      * 
      * @return void
@@ -76,7 +76,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
      * Alternative test where movie has no writers
      * 
      * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::writers
+     * @covers IMDbMarkupSyntax\MarkupData::getWriters
      * @covers IMDbMarkupSyntax\MarkupData::writer
      * 
      * @return void
