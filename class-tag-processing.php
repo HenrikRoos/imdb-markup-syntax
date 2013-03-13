@@ -58,7 +58,7 @@ class Tag_Processing
     /**
      * Create an object
      * 
-     * @param string $original_content
+     * @param string $original_content Blog post content
      */
     public function __construct($original_content)
     {
@@ -70,14 +70,15 @@ class Tag_Processing
      * <i>e.g. "Nunc non diam sit [imdb:tconst(tt0137523)]nulla sem tempus magna" ->
      * tconst = tt0137523</i>
      * 
-     * @return boolean False if no match TRUE if find a tconst
+     * @return boolean False if no match true if find a tconst
      * 
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
     public function findTconst()
     {
         $matches = array();
-        if (@preg_match($this->tconst_pattern, $this->original_content, $matches) === false
+        if (@preg_match(
+                $this->tconst_pattern, $this->original_content, $matches) === false
         ) {
             throw new PCRE_Exception();
         }
@@ -86,7 +87,7 @@ class Tag_Processing
             return false;
         }
         $this->tconst = $matches[1];
-        return TRUE;
+        return true;
     }
 
     /**
@@ -99,8 +100,8 @@ class Tag_Processing
     public function findImdbTags()
     {
         $matches = array();
-        if (@preg_match_all($this->imdb_tags_pattern, $this->original_content,
-            $matches) === false
+        if (@preg_match_all(
+                $this->imdb_tags_pattern, $this->original_content, $matches) === false
         ) {
             throw new PCRE_Exception();
         }
