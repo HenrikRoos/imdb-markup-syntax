@@ -13,10 +13,10 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
+namespace IMDbMarkupSyntax;
 
 use IMDb;
-use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
+use IMDbMarkupSyntax\Exceptions\PCREException;
 
 require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
 
@@ -30,7 +30,7 @@ require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Tag_Processing
+class TagProcessing
 {
 
     /** @var string Regular expression for find tconst */
@@ -72,21 +72,21 @@ class Tag_Processing
      * 
      * @return boolean False if no match true if find a tconst
      * 
-     * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
+     * @throws PCREException If a PCRE error occurs or patten compilation failed
      */
     public function findTconst()
     {
-        $matches = array();
-        if (@preg_match(
-                $this->tconst_pattern, $this->original_content, $matches) === false
-        ) {
-            throw new PCRE_Exception();
+        $match = array();
+        $isOk = @preg_match($this->tconst_pattern, $this->original_content, $match);
+
+        if ($isOk === false) {
+            throw new PCREException();
         }
-        if (empty($matches)) {
+        if (empty($match)) {
             $this->tconst = null;
             return false;
         }
-        $this->tconst = $matches[1];
+        $this->tconst = $match[1];
         return true;
     }
 
@@ -95,18 +95,19 @@ class Tag_Processing
      * 
      * @return boolean False if no match true if find
      * 
-     * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
+     * @throws PCREException If a PCRE error occurs or patten compilation failed
      */
     public function findImdbTags()
     {
-        $matches = array();
-        if (@preg_match_all(
-                $this->imdb_tags_pattern, $this->original_content, $matches) === false
-        ) {
-            throw new PCRE_Exception();
+        $match = array();
+        $isOk = @preg_match_all($this->imdb_tags_pattern, $this->original_content,
+                $match
+        );
+        if ($isOk === false) {
+            throw new PCREException();
         }
-        $this->imdb_tags = $matches[1];
-        return !empty($matches[1]);
+        $this->imdb_tags = $match[1];
+        return !empty($match[1]);
     }
 
 }

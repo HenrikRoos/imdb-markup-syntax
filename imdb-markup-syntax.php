@@ -1,6 +1,6 @@
 <?php
 
-namespace IMDb_Markup_Syntax;
+namespace IMDbMarkupSyntax;
 
 /**
  * Plugin Name: IMDb Markup Syntax

@@ -1,6 +1,6 @@
 <?php
 
-namespace IMDb_Markup_Syntax;
+namespace IMDbMarkupSyntax;
 
 use PHPUnit_Framework_TestCase;
 
@@ -9,23 +9,23 @@ require_once dirname(__FILE__) . '/../class-markup-data.php';
 require_once dirname(__FILE__) . '/../class-movie-datasource.php';
 
 /**
- * Testclass (PHPUnit) test for Markup_Data class
+ * Testclass (PHPUnit) test for MarkupData class
  * @author Henrik Roos <henrik@afternoon.se>
  * @package Test
  */
-class Markup_DataTest extends PHPUnit_Framework_TestCase
+class MarkupDataTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Positive test where movie has two writers
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::writers
-     * @covers IMDb_Markup_Syntax\Markup_Data::writer
+     * @covers IMDbMarkupSyntax\MarkupData::__construct
+     * @covers IMDbMarkupSyntax\MarkupData::writers
+     * @covers IMDbMarkupSyntax\MarkupData::writer
      */
     public function testWritersTowPositive()
     {
-        $imdb = new Movie_Datasource("tt0137523");
-        $data = new Markup_Data($imdb->getData());
+        $imdb = new MovieDatasource("tt0137523");
+        $data = new MarkupData($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk</a> (novel), '
                 . '<a href="http://www.imdb.com/name/nm0880243">Jim Uhls</a> (screenplay)';
         $actual = $data->writers();
@@ -34,14 +34,14 @@ class Markup_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Positive test where movie has one writer and no attribute like (nocel)
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::writers
-     * @covers IMDb_Markup_Syntax\Markup_Data::writer
+     * @covers IMDbMarkupSyntax\MarkupData::__construct
+     * @covers IMDbMarkupSyntax\MarkupData::writers
+     * @covers IMDbMarkupSyntax\MarkupData::writer
      */
     public function testWritersOnePositive()
     {
-        $imdb = new Movie_Datasource("tt1564043");
-        $data = new Markup_Data($imdb->getData());
+        $imdb = new MovieDatasource("tt1564043");
+        $data = new MarkupData($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm3503431">Bryan Litt</a>';
         $actual = $data->writers();
         $this->assertEquals($expected, $actual);
@@ -49,14 +49,14 @@ class Markup_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Alternative test where movie has no writers
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::writers
-     * @covers IMDb_Markup_Syntax\Markup_Data::writer
+     * @covers IMDbMarkupSyntax\MarkupData::__construct
+     * @covers IMDbMarkupSyntax\MarkupData::writers
+     * @covers IMDbMarkupSyntax\MarkupData::writer
      */
     public function testWritersNoWriter()
     {
-        $imdb = new Movie_Datasource("tt1129398");
-        $data = new Markup_Data($imdb->getData());
+        $imdb = new MovieDatasource("tt1129398");
+        $data = new MarkupData($imdb->getData());
         $expected = false;
         $actual = $data->writers();
         $this->assertEquals($expected, $actual);

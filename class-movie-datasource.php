@@ -13,12 +13,12 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
+namespace IMDbMarkupSyntax;
 
 use IMDb;
-use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
-use IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception;
-use IMDb_Markup_Syntax\Exceptions\Json_Exception;
+use IMDbMarkupSyntax\Exceptions\CurlException;
+use IMDbMarkupSyntax\Exceptions\ErrorRuntimeException;
+use IMDbMarkupSyntax\Exceptions\JsonException;
 use stdClass;
 
 require_once dirname(__FILE__) . '/IMDb-PHP-API/class_IMDb.php';
@@ -36,7 +36,7 @@ require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Movie_Datasource extends IMDb
+class MovieDatasource extends IMDb
 {
 
     /** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
@@ -63,12 +63,12 @@ class Movie_Datasource extends IMDb
      * @param int    $timeout The maximum number of milliseconds to allow execute to
      * imdb.
      * 
-     * @throws Error_Runtime_Exception if incorrect tconst.
+     * @throws ErrorRuntimeException if incorrect tconst.
      */
     public function __construct($tconst, $timeout = 0)
     {
         if (@preg_match("/^tt\d+$/", $tconst) == 0) {
-            throw new Error_Runtime_Exception(null, "Incorrect tconst: {$tconst}");
+            throw new ErrorRuntimeException(null, "Incorrect tconst: {$tconst}");
         }
         parent::__construct(true, false);
         $this->request = $this->build_url('title/maindetails', $tconst, 'tconst');
@@ -81,9 +81,9 @@ class Movie_Datasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws Curl_Exception          On error in web api request
-     * @throws Json_Exception          If error in decode
-     * @throws Error_Runtime_Exception If response has error in result ex no data for
+     * @throws CurlException          On error in web api request
+     * @throws JsonException          If error in decode
+     * @throws ErrorRuntimeException If response has error in result ex no data for
      * this tconst.
      */
     public function getData()
@@ -97,18 +97,18 @@ class Movie_Datasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws Json_Exception          If error in decode
-     * @throws Error_Runtime_Exception If response has error in result ex no data for
+     * @throws JsonException          If error in decode
+     * @throws ErrorRuntimeException If response has error in result ex no data for
      * this tconst.
      */
     public function toDataClass()
     {
         $obj = json_decode($this->response);
         if (!isset($obj)) {
-            throw new Json_Exception();
+            throw new JsonException();
         }
         if (isset($obj->error)) {
-            throw new Error_Runtime_Exception($obj);
+            throw new ErrorRuntimeException($obj);
         }
         return $obj->data;
     }
@@ -119,13 +119,13 @@ class Movie_Datasource extends IMDb
      * 
      * @return void No return
      * 
-     * @throws Curl_Exception On error in web api request
+     * @throws CurlException On error in web api request
      */
     public function fetchResponse()
     {
         $resource = @curl_init($this->request);
         if (!isset($resource) || $resource === false) {
-            throw new Curl_Exception(null, "curl_init return false or null");
+            throw new CurlException(null, "curl_init return false or null");
         }
         $options = array(
             CURLOPT_HTTPHEADER => array('Connection: Keep-Alive',
@@ -137,7 +137,7 @@ class Movie_Datasource extends IMDb
         curl_setopt_array($resource, $options);
         $response = curl_exec($resource);
         if ($response === false) {
-            throw new Curl_Exception($resource);
+            throw new CurlException($resource);
         }
         curl_close($resource);
         $this->response = $response;

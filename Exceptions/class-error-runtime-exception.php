@@ -13,7 +13,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax\Exceptions;
+namespace IMDbMarkupSyntax\Exceptions;
 
 use Exception;
 use stdClass;
@@ -28,7 +28,7 @@ use stdClass;
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Error_Runtime_Exception extends Exception
+class ErrorRuntimeException extends Exception
 {
 
     /**
