@@ -31,7 +31,7 @@ class Markup_Data
 {
 
     /** @var stdClass imdb data result */
-    private $data;
+    private $_data;
 
     /**
      * Create a instans of this class
@@ -40,7 +40,7 @@ class Markup_Data
      */
     public function __construct(stdClass $data)
     {
-        $this->data = $data;
+        $this->_data = $data;
     }
 
     /**
@@ -93,7 +93,7 @@ class Markup_Data
      * @return string|boolean In format 'Y-m-d' <i>e.g. 2013-12-24</i> or false if no
      * data
      */
-    public function release_date()
+    public function releaseDate()
     {
         //TODO some code please
     }
@@ -174,11 +174,12 @@ class Markup_Data
      */
     public function writers()
     {
-        if (isset($this->data->writers_summary)
-            && is_array($this->data->writers_summary)
+        if (isset($this->_data->writers_summary) &&
+            is_array($this->_data->writers_summary)
         ) {
-            $named = array_filter($this->data->writers_summary,
-                array($this, "has_name"));
+            $named = array_filter($this->_data->writers_summary,
+                array($this, "hasName")
+            );
             $named_summary = array_map(array($this, "writer"), $named);
             return implode(", ", $named_summary);
         }
@@ -232,7 +233,11 @@ class Markup_Data
         //TODO some code please
     }
 
-    // TODO poster document
+    /**
+     * Current movie poster image
+     * 
+     * @return string URL to the image
+     */
     public function poster()
     {
         //TODO some code please
@@ -258,6 +263,7 @@ class Markup_Data
      * </code>
      * 
      * @param stdClass $writer Array item from writers_summary
+     * 
      * @return string e.g.
      * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
      */
@@ -276,9 +282,10 @@ class Markup_Data
      * Check if writer name is set
      * 
      * @param stdClass $writer array item from writers_summary
+     * 
      * @return boolean True if name is set false if no name is set
      */
-    protected function has_name(stdClass $writer)
+    protected function hasName(stdClass $writer)
     {
         return isset($writer->name->name);
     }
