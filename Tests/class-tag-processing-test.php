@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * Testclass (PHPUnit) test for TagProcessing class
+ * 
+ * PHP version 5
+ * 
+ * @category  Testable
+ * @package   Test
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
+ */
+
 namespace IMDbMarkupSyntax;
 
 use IMDbMarkupSyntax\Exceptions\PCREException;
@@ -10,16 +23,19 @@ require_once dirname(__FILE__) . '/../class-tag-processing.php';
 require_once dirname(__FILE__) . '/../Exceptions/class-pcre-exception.php';
 
 /**
- * Testclass (PHPUnit) test for TagProcessing class.
- * @author Henrik Roos <henrik@afternoon.se>
- * @package Test
+ * Testclass (PHPUnit) test for TagProcessing class
+ * 
+ * @category  Testable
+ * @package   Test
+ * @author    Henrik Roos <henrik.roos@afternoon.se>
+ * @copyright 2013 Henrik Roos
+ * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class TagProcessingTest extends PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @var array string of testdata 
-     */
+    /** @var array String of testdata */
     public $testdata;
 
     /**
@@ -29,19 +45,23 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->testdata = array(
-            "one_positive" => "Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.
-                Quisque congue [IMDb:tconst(tt0137523)]. Title: [imdb:title]",
-            "two_positive" => "Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.
-                [IMDb:tconst(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:tconst(tt0102926)]
-                Title: [imdb:title] [IMDb:tconst(tt0137523)]. Year: [imdb:year]",
-            "no_match" => "Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.
-                [IMDb:tconst(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:tconst()]
-                Title: [title] [IMDb:tconst:tt0137523] [IMDb:tconst:(0137523)] [IMDb:tconst(tt)]",
+            "one_positive" => "Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. Quisque congue [IMDb:tconst(tt0137523)]. Title:
+                [imdb:title]",
+            "two_positive" => "Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis.[IMDb:tconst(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:tconst(tt0102926)] Title: [imdb:title]
+                [IMDb:tconst(tt0137523)]. Year: [imdb:year]",
+            "no_match" => "Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. [IMDb:tconst(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:tconst()] Title: [title] [IMDb:tconst:tt0137523]
+                [IMDb:tconst:(0137523)] [IMDb:tconst(tt)]",
         );
     }
 
     /**
-     * One [IMDb:tconst(xxx)] tag, Positive test.
+     * One [IMDb:tconst(xxx)] tag, Positive test
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -53,7 +73,9 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Two correct [IMDb:tconst(xxx)] tags, Positive test. Only one is set (first one).
+     * Two correct [IMDb:tconst(xxx)] tags, Positive test. Only one is set
+     * (first one)
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -65,7 +87,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * No correct [IMDb:tconst(xxx)] tags. Alternative test. tconst not set.
+     * No correct [IMDb:tconst(xxx)] tags. Alternative test. tconst not set
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -77,7 +100,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Null input = tconst not set.
+     * Null input = tconst not set
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -93,6 +117,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test for Exception handler of a PREG_ERROR
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
@@ -113,6 +138,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test for Exception handler of a Compilation failed
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findTconst
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
@@ -132,7 +158,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Find one tag. Positive test.
+     * Find one tag. Positive test
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -145,7 +172,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Find two tag. Positive test.
+     * Find two tag. Positive test
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -159,7 +187,8 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Find zero tag. Alternative test.
+     * Find zero tag. Alternative test
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -172,6 +201,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Null input. Alternative test
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
      */
@@ -187,6 +217,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test for Exception handler of a PREG_ERROR
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
@@ -207,6 +238,7 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test for Exception handler of a Compilation failed
+     * 
      * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
      * @covers IMDbMarkupSyntax\Exceptions\PCREException
      * @covers IMDbMarkupSyntax\TagProcessing::__construct
