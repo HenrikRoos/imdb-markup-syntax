@@ -96,9 +96,8 @@ class MovieDatasourceTest extends PHPUnit_Framework_TestCase
     {
         $imdb = new MovieDatasource($this->testdata["videogame"]);
         $movie = $imdb->getData();
-        $this->assertEquals("Lego Pirates of the Caribbean: The Video Game",
-            $movie->title
-        );
+        $this->assertEquals
+            ("Lego Pirates of the Caribbean: The Video Game", $movie->title);
     }
 
     /**
@@ -138,7 +137,8 @@ class MovieDatasourceTest extends PHPUnit_Framework_TestCase
         try {
             new MovieDatasource($this->testdata["incorrect"]);
         } catch (ErrorRuntimeException $exc) {
-            $this->assertEquals("Incorrect tconst: {$this->testdata["incorrect"]}",
+            $this->assertEquals(
+                "Incorrect tconst: {$this->testdata["incorrect"]}",
                 $exc->getMessage()
             );
             return;
