@@ -49,7 +49,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
         $data = new MarkupData($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk'
             . '</a> (novel), <a href="http://www.imdb.com/name/nm0880243">Jim Uhls'
-            . '</a> (screenplay) j';
+            . '</a> (screenplay)';
         $actual = $data->getWriters();
         $this->assertEquals($expected, $actual);
     }
