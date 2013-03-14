@@ -29,7 +29,11 @@
     </target>
     <target description="Generate jdepend.xml and software metrics charts using PHP_Depend" name="pdepend">
         <exec executable="pdepend">
-            <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml --jdepend-chart=${basedir}/build/pdepend/dependencies.svg --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg ${source}"/>
+            <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
+                       --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
+                       --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
+                       --ignore=${basedir}/IMDb-PHP-API
+                       ${source}"/>
         </exec>
     </target>
     <target description="Generate pmd.xml using PHPMD" name="phpmd">
