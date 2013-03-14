@@ -3,28 +3,28 @@
          backupStaticAttributes="false"
          strict="true"
          verbose="true">
-    <testsuites>
-        <testsuite name="imdb-markup-syntax">
+  <testsuites>
+    <testsuite name="imdb-markup-syntax">
             <directory suffix="test.php">Tests</directory>
-        </testsuite>
-    </testsuites>
+    </testsuite>
+  </testsuites>
 
-    <logging>
-        <log type="coverage-html" target="build/coverage" title="imdb-markup-syntax"
+  <logging>
+    <log type="coverage-html" target="build/coverage" title="imdb-markup-syntax"
          charset="UTF-8" yui="true" highlight="true"
          lowUpperBound="35" highLowerBound="70"/>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    <log type="coverage-clover" target="build/logs/clover.xml"/>
         <log type="junit" target="build/logs/junit.xml"
              logIncompleteSkipped="false"/>
-    </logging>
+  </logging>
 
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">.</directory>
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">.</directory>
             <exclude>
                 <directory suffix=".php">IMDb-PHP-API</directory>
                 <directory suffix=".php">Tests</directory>
             </exclude>
-        </whitelist>
-    </filter>
+    </whitelist>
+  </filter>
 </phpunit>
