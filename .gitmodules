@@ -3,4 +3,4 @@
 	url = https://github.com/chrisjp/IMDb-PHP-API.git
 [submodule "php-jenkins-template"]
 	path = php-jenkins-template
-	url = git://github.com/sebastianbergmann/php-jenkins-template.git
+	url = https://github.com/sebastianbergmann/php-jenkins-template.git
