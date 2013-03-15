@@ -21,10 +21,10 @@ use IMDbMarkupSyntax\Exceptions\JsonException;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../class-movie-datasource.php';
-require_once dirname(__FILE__) . '/../Exceptions/class-error-runtime-exception.php';
-require_once dirname(__FILE__) . '/../Exceptions/class-curl-exception.php';
-require_once dirname(__FILE__) . '/../Exceptions/class-json-exception.php';
+require_once dirname(__FILE__) . '/../MovieDatasource.php';
+require_once dirname(__FILE__) . '/../Exceptions/ErrorRuntimeException.php';
+require_once dirname(__FILE__) . '/../Exceptions/CurlException.php';
+require_once dirname(__FILE__) . '/../Exceptions/JsonException.php';
 
 /**
  * Testclass (PHPUnit) test for MovieDatasource class

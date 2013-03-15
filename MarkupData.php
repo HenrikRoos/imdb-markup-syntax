@@ -245,7 +245,7 @@ class MarkupData
         //TODO some code please
     }
 
-    // <editor-fold defaultstate="collapsed" desc="callables">
+// <editor-fold defaultstate="collapsed" desc="callables">
     /**
      * <b>input</b>
      * <code>
@@ -293,7 +293,7 @@ class MarkupData
         return isset($writer->name->name);
     }
 
+// </editor-fold>
 }
 
-// </editor-fold>
 ?>

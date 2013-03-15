@@ -18,7 +18,7 @@ namespace IMDbMarkupSyntax;
 use IMDb;
 use IMDbMarkupSyntax\Exceptions\PCREException;
 
-require_once dirname(__FILE__) . '/Exceptions/class-pcre-exception.php';
+require_once dirname(__FILE__) . '/Exceptions/PCREException.php';
 
 /**
  * Find and replace imdb tags to movie data from IMDb

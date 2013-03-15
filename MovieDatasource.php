@@ -22,9 +22,9 @@ use IMDbMarkupSyntax\Exceptions\JsonException;
 use stdClass;
 
 require_once dirname(__FILE__) . '/IMDb-PHP-API/class_IMDb.php';
-require_once dirname(__FILE__) . '/Exceptions/class-error-runtime-exception.php';
-require_once dirname(__FILE__) . '/Exceptions/class-curl-exception.php';
-require_once dirname(__FILE__) . '/Exceptions/class-json-exception.php';
+require_once dirname(__FILE__) . '/Exceptions/ErrorRuntimeException.php';
+require_once dirname(__FILE__) . '/Exceptions/CurlException.php';
+require_once dirname(__FILE__) . '/Exceptions/JsonException.php';
 
 /**
  * Class for access to IMDb RESTful datasource web api
@@ -81,8 +81,8 @@ class MovieDatasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws CurlException          On error in web api request
-     * @throws JsonException          If error in decode
+     * @throws CurlException         On error in web api request
+     * @throws JsonException         If error in decode
      * @throws ErrorRuntimeException If response has error in result ex no data for
      * this tconst.
      */
@@ -97,7 +97,7 @@ class MovieDatasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws JsonException          If error in decode
+     * @throws JsonException         If error in decode
      * @throws ErrorRuntimeException If response has error in result ex no data for
      * this tconst.
      */

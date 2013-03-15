@@ -19,8 +19,8 @@ use IMDbMarkupSyntax\Exceptions\PCREException;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../class-tag-processing.php';
-require_once dirname(__FILE__) . '/../Exceptions/class-pcre-exception.php';
+require_once dirname(__FILE__) . '/../TagProcessing.php';
+require_once dirname(__FILE__) . '/../Exceptions/PCREException.php';
 
 /**
  * Testclass (PHPUnit) test for TagProcessing class
