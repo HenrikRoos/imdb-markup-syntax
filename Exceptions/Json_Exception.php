@@ -13,7 +13,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDbMarkupSyntax\Exceptions;
+namespace IMDb_Markup_Syntax\Exceptions;
 
 use Exception;
 
@@ -27,7 +27,7 @@ use Exception;
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class JsonException extends Exception
+class Json_Exception extends Exception
 {
 
     /** @var array json error codes */

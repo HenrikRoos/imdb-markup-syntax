@@ -13,18 +13,18 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDbMarkupSyntax;
+namespace IMDb_Markup_Syntax;
 
 use IMDb;
-use IMDbMarkupSyntax\Exceptions\CurlException;
-use IMDbMarkupSyntax\Exceptions\ErrorRuntimeException;
-use IMDbMarkupSyntax\Exceptions\JsonException;
+use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
+use IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Json_Exception;
 use stdClass;
 
 require_once dirname(__FILE__) . '/IMDb-PHP-API/class_IMDb.php';
-require_once dirname(__FILE__) . '/Exceptions/ErrorRuntimeException.php';
-require_once dirname(__FILE__) . '/Exceptions/CurlException.php';
-require_once dirname(__FILE__) . '/Exceptions/JsonException.php';
+require_once dirname(__FILE__) . '/Exceptions/Error_Runtime_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Curl_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Json_Exception.php';
 
 /**
  * Class for access to IMDb RESTful datasource web api
@@ -36,7 +36,7 @@ require_once dirname(__FILE__) . '/Exceptions/JsonException.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class MovieDatasource extends IMDb
+class Movie_Datasource extends IMDb
 {
 
     /** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
@@ -63,12 +63,12 @@ class MovieDatasource extends IMDb
      * @param int    $timeout The maximum number of milliseconds to allow execute to
      * imdb.
      * 
-     * @throws ErrorRuntimeException if incorrect tconst.
+     * @throws Error_Runtime_Exception if incorrect tconst.
      */
     public function __construct($tconst, $timeout = 0)
     {
         if (@preg_match("/^tt\d+$/", $tconst) == 0) {
-            throw new ErrorRuntimeException(null, "Incorrect tconst: {$tconst}");
+            throw new Error_Runtime_Exception(null, "Incorrect tconst: {$tconst}");
         }
         parent::__construct(true, false);
         $this->request = $this->build_url('title/maindetails', $tconst, 'tconst');
@@ -81,9 +81,9 @@ class MovieDatasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws CurlException         On error in web api request
-     * @throws JsonException         If error in decode
-     * @throws ErrorRuntimeException If response has error in result ex no data for
+     * @throws Curl_Exception         On error in web api request
+     * @throws Json_Exception         If error in decode
+     * @throws Error_Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function getData()
@@ -97,18 +97,18 @@ class MovieDatasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws JsonException         If error in decode
-     * @throws ErrorRuntimeException If response has error in result ex no data for
+     * @throws Json_Exception         If error in decode
+     * @throws Error_Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function toDataClass()
     {
         $obj = json_decode($this->response);
         if (!isset($obj)) {
-            throw new JsonException();
+            throw new Json_Exception();
         }
         if (isset($obj->error)) {
-            throw new ErrorRuntimeException($obj);
+            throw new Error_Runtime_Exception($obj);
         }
         return $obj->data;
     }
@@ -119,13 +119,13 @@ class MovieDatasource extends IMDb
      * 
      * @return void
      * 
-     * @throws CurlException On error in web api request
+     * @throws Curl_Exception On error in web api request
      */
     public function fetchResponse()
     {
         $resource = @curl_init($this->request);
         if (!isset($resource) || $resource === false) {
-            throw new CurlException(null, "curl_init return false or null");
+            throw new Curl_Exception(null, "curl_init return false or null");
         }
         $options = array(
             CURLOPT_HTTPHEADER => array('Connection: Keep-Alive',
@@ -137,7 +137,7 @@ class MovieDatasource extends IMDb
         curl_setopt_array($resource, $options);
         $response = curl_exec($resource);
         if ($response === false) {
-            throw new CurlException($resource);
+            throw new Curl_Exception($resource);
         }
         curl_close($resource);
         $this->response = $response;

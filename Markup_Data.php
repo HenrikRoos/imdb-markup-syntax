@@ -14,7 +14,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDbMarkupSyntax;
+namespace IMDb_Markup_Syntax;
 
 use stdClass;
 
@@ -29,7 +29,7 @@ use stdClass;
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class MarkupData
+class Markup_Data
 {
 
     /** @var stdClass imdb data result */

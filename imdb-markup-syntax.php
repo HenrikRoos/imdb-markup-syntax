@@ -13,7 +13,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDbMarkupSyntax;
+namespace IMDb_Markup_Syntax;
 
 /**
  * Plugin Name: IMDb Markup Syntax

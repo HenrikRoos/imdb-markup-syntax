@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass (PHPUnit) test for MarkupData class
+ * Testclass (PHPUnit) test for Markup_Data class
  * 
  * PHP version 5
  * 
@@ -13,16 +13,16 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDbMarkupSyntax;
+namespace IMDb_Markup_Syntax;
 
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../MarkupData.php';
-require_once dirname(__FILE__) . '/../MovieDatasource.php';
+require_once dirname(__FILE__) . '/../Markup_Data.php';
+require_once dirname(__FILE__) . '/../Movie_Datasource.php';
 
 /**
- * Testclass (PHPUnit) test for MarkupData class
+ * Testclass (PHPUnit) test for Markup_Data class
  * 
  * @category  Testable
  * @package   Test
@@ -31,29 +31,29 @@ require_once dirname(__FILE__) . '/../MovieDatasource.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class MarkupDataTest extends PHPUnit_Framework_TestCase
+class Markup_Data_Test extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Test get an id sucessful and not on no data
      *
-     * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
      * 
      * @return void
      */
     public function testGetTconst()
     {
-        $imdb = new MovieDatasource("tt0137523");
+        $imdb = new Movie_Datasource("tt0137523");
         $data = $imdb->getData();
-        $mdata = new MarkupData($data);
+        $mdata = new Markup_Data($data);
         $expected = "???";
         $actual = $mdata->getTconst();
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getTitle
+     * @covers IMDb_Markup_Syntax\Markup_Data::getTitle
      * @todo   Implement testGetTitle().
      */
     public function testGetTitle()
@@ -65,7 +65,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getType
+     * @covers IMDb_Markup_Syntax\Markup_Data::getType
      * @todo   Implement testGetType().
      */
     public function testGetType()
@@ -77,7 +77,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getGenres
+     * @covers IMDb_Markup_Syntax\Markup_Data::getGenres
      * @todo   Implement testGetGenres().
      */
     public function testGetGenres()
@@ -89,7 +89,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getReleaseDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getReleaseDate
      * @todo   Implement testGetReleaseDate().
      */
     public function testGetReleaseDate()
@@ -101,7 +101,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getRuntime
+     * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
      * @todo   Implement testGetRuntime().
      */
     public function testGetRuntime()
@@ -113,7 +113,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getRating
+     * @covers IMDb_Markup_Syntax\Markup_Data::getRating
      * @todo   Implement testGetRating().
      */
     public function testGetRating()
@@ -125,7 +125,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getVotes
+     * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @todo   Implement testGetVotes().
      */
     public function testGetVotes()
@@ -137,7 +137,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getPlot
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPlot
      * @todo   Implement testGetPlot().
      */
     public function testGetPlot()
@@ -149,7 +149,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getTagline
+     * @covers IMDb_Markup_Syntax\Markup_Data::getTagline
      * @todo   Implement testGetTagline().
      */
     public function testGetTagline()
@@ -161,7 +161,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getCast
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCast
      * @todo   Implement testGetCast().
      */
     public function testGetCast()
@@ -176,16 +176,16 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test where movie has two writers
      * 
-     * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::getWriters
-     * @covers IMDbMarkupSyntax\MarkupData::writer
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::writer
      * 
      * @return void
      */
     public function testGetWritersTowPositive()
     {
-        $imdb = new MovieDatasource("tt0137523");
-        $data = new MarkupData($imdb->getData());
+        $imdb = new Movie_Datasource("tt0137523");
+        $data = new Markup_Data($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk'
             . '</a> (novel), <a href="http://www.imdb.com/name/nm0880243">Jim Uhls'
             . '</a> (screenplay)';
@@ -196,16 +196,16 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test where movie has one writer and no attribute like (nocel)
      * 
-     * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::getWriters
-     * @covers IMDbMarkupSyntax\MarkupData::writer
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::writer
      * 
      * @return void
      */
     public function testGetWritersOnePositive()
     {
-        $imdb = new MovieDatasource("tt1564043");
-        $data = new MarkupData($imdb->getData());
+        $imdb = new Movie_Datasource("tt1564043");
+        $data = new Markup_Data($imdb->getData());
         $expected = '<a href="http://www.imdb.com/name/nm3503431">Bryan Litt</a>';
         $actual = $data->getWriters();
         $this->assertEquals($expected, $actual);
@@ -214,16 +214,16 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     /**
      * Alternative test where movie has no writers
      * 
-     * @covers IMDbMarkupSyntax\MarkupData::__construct
-     * @covers IMDbMarkupSyntax\MarkupData::getWriters
-     * @covers IMDbMarkupSyntax\MarkupData::writer
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::writer
      * 
      * @return void
      */
     public function testGetWritersNoWriter()
     {
-        $imdb = new MovieDatasource("tt1129398");
-        $data = new MarkupData($imdb->getData());
+        $imdb = new Movie_Datasource("tt1129398");
+        $data = new Markup_Data($imdb->getData());
         $expected = false;
         $actual = $data->getWriters();
         $this->assertEquals($expected, $actual);
@@ -232,7 +232,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     // </editor-fold>
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getDirectors
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDirectors
      * @todo   Implement testGetDirectors().
      */
     public function testGetDirectors()
@@ -244,7 +244,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getCertificate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
      * @todo   Implement testGetCertificate().
      */
     public function testGetCertificate()
@@ -256,7 +256,7 @@ class MarkupDataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMDbMarkupSyntax\MarkupData::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
      * @todo   Implement testGetPoster().
      */
     public function testGetPoster()

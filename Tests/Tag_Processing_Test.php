@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass (PHPUnit) test for TagProcessing class
+ * Testclass (PHPUnit) test for Tag_Processing class
  * 
  * PHP version 5
  * 
@@ -13,17 +13,17 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDbMarkupSyntax;
+namespace IMDb_Markup_Syntax;
 
-use IMDbMarkupSyntax\Exceptions\PCREException;
+use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../TagProcessing.php';
-require_once dirname(__FILE__) . '/../Exceptions/PCREException.php';
+require_once dirname(__FILE__) . '/../Tag_Processing.php';
+require_once dirname(__FILE__) . '/../Exceptions/PCRE_Exception.php';
 
 /**
- * Testclass (PHPUnit) test for TagProcessing class
+ * Testclass (PHPUnit) test for Tag_Processing class
  * 
  * @category  Testable
  * @package   Test
@@ -32,7 +32,7 @@ require_once dirname(__FILE__) . '/../Exceptions/PCREException.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class TagProcessingTest extends PHPUnit_Framework_TestCase
+class Tag_Processing_Test extends PHPUnit_Framework_TestCase
 {
 
     /** @var array String of testdata */
@@ -64,14 +64,14 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * One [IMDb:tconst(xxx)] tag, Positive test
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findTconst
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findTconst
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindTconstOnePositive()
     {
-        $obj = new TagProcessing($this->testdata["one_positive"]);
+        $obj = new Tag_Processing($this->testdata["one_positive"]);
         $this->assertTrue($obj->findTconst(), "Id, not found");
         $this->assertEquals("tt0137523", $obj->tconst);
     }
@@ -80,14 +80,14 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
      * Two correct [IMDb:tconst(xxx)] tags, Positive test. Only one is set
      * (first one)
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findTconst
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findTconst
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindTconstTwoPositive()
     {
-        $this->original_content = new TagProcessing($this->testdata["two_positive"]);
+        $this->original_content = new Tag_Processing($this->testdata["two_positive"]);
         $this->assertTrue($this->original_content->findTconst(), "Id, not found");
         $this->assertEquals("tt0102926", $this->original_content->tconst);
     }
@@ -95,14 +95,14 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * No correct [IMDb:tconst(xxx)] tags. Alternative test. tconst not set
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findTconst
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findTconst
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindTconstNoMatch()
     {
-        $obj = new TagProcessing($this->testdata["no_match"]);
+        $obj = new Tag_Processing($this->testdata["no_match"]);
         $this->assertFalse($obj->findTconst(), "Id is found, not good");
         $this->assertEmpty($obj->tconst);
     }
@@ -110,17 +110,17 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Null input = tconst not set
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findTconst
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findTconst
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindTconstEmpty()
     {
-        $obj = new TagProcessing(null);
+        $obj = new Tag_Processing(null);
         $this->assertFalse($obj->findTconst(), "Id is found, not good");
         $this->assertEmpty($obj->tconst);
-        $obj2 = new TagProcessing("");
+        $obj2 = new Tag_Processing("");
         $this->assertFalse($obj2->findTconst(), "Id is found, not good");
         $this->assertEmpty($obj2->tconst);
     }
@@ -128,20 +128,20 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a PREG_ERROR
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findTconst
-     * @covers IMDbMarkupSyntax\Exceptions\PCREException
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findTconst
+     * @covers IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindTconstPregError()
     {
-        $obj = new TagProcessing("foobar foobar foobar");
+        $obj = new Tag_Processing("foobar foobar foobar");
         $obj->tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
         try {
             $this->assertFalse($obj->findTconst(), "Id is found, not good");
             $this->assertEmpty($obj->tconst);
-        } catch (PCREException $exc) {
+        } catch (PCRE_Exception $exc) {
             $this->assertEquals($exc->getMessage(), "PREG_BACKTRACK_LIMIT_ERROR");
             return;
         }
@@ -151,20 +151,20 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a Compilation failed
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findTconst
-     * @covers IMDbMarkupSyntax\Exceptions\PCREException
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findTconst
+     * @covers IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindTconstErrorControlOperators()
     {
-        $obj = new TagProcessing("foobar foobar foobar");
+        $obj = new Tag_Processing("foobar foobar foobar");
         $obj->tconst_pattern = "/(/";
         try {
             $this->assertFalse($obj->findTconst(), "Id is found, not good");
             $this->assertEmpty($obj->tconst);
-        } catch (PCREException $exc) {
+        } catch (PCRE_Exception $exc) {
             $this->assertContains("Compilation failed", $exc->getMessage());
             return;
         }
@@ -174,14 +174,14 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Find one tag. Positive test
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindImdbTagsOnePositive()
     {
-        $obj = new TagProcessing($this->testdata["one_positive"]);
+        $obj = new Tag_Processing($this->testdata["one_positive"]);
         $this->assertTrue($obj->findImdbTags(), "Not found = not good");
         $this->assertCount(1, $obj->imdb_tags);
         $this->assertEquals("title", $obj->imdb_tags[0]);
@@ -190,14 +190,14 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Find two tag. Positive test
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindImdbTagsTwoPositive()
     {
-        $obj = new TagProcessing($this->testdata["two_positive"]);
+        $obj = new Tag_Processing($this->testdata["two_positive"]);
         $this->assertTrue($obj->findImdbTags(), "Not found = not good");
         $this->assertCount(2, $obj->imdb_tags);
         $this->assertEquals("title", $obj->imdb_tags[0]);
@@ -207,14 +207,14 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Find zero tag. Alternative test
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindImdbTagsNoMatch()
     {
-        $obj = new TagProcessing($this->testdata["no_match"]);
+        $obj = new Tag_Processing($this->testdata["no_match"]);
         $this->assertFalse($obj->findImdbTags(), "Found = not good");
         $this->assertCount(0, $obj->imdb_tags);
     }
@@ -222,17 +222,17 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Null input. Alternative test
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindImdbTagsEmpty()
     {
-        $obj = new TagProcessing(null);
+        $obj = new Tag_Processing(null);
         $this->assertFalse($obj->findImdbTags(), "tags is found, not good");
         $this->assertEmpty($obj->imdb_tags);
-        $obj2 = new TagProcessing("");
+        $obj2 = new Tag_Processing("");
         $this->assertFalse($obj2->findImdbTags(), "tags is found, not good");
         $this->assertEmpty($obj2->imdb_tags);
     }
@@ -240,20 +240,20 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a PREG_ERROR
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
-     * @covers IMDbMarkupSyntax\Exceptions\PCREException
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindImdbTagsPregError()
     {
-        $obj = new TagProcessing("foobar foobar foobar");
+        $obj = new Tag_Processing("foobar foobar foobar");
         $obj->imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
         try {
             $this->assertFalse($obj->findImdbTags(), "Id is found, not good");
             $this->assertEmpty($obj->imdb_tags);
-        } catch (PCREException $exc) {
+        } catch (PCRE_Exception $exc) {
             $this->assertEquals($exc->getMessage(), "PREG_BACKTRACK_LIMIT_ERROR");
             return;
         }
@@ -263,20 +263,20 @@ class TagProcessingTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a Compilation failed
      * 
-     * @covers IMDbMarkupSyntax\TagProcessing::findImdbTags
-     * @covers IMDbMarkupSyntax\Exceptions\PCREException
-     * @covers IMDbMarkupSyntax\TagProcessing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * 
      * @return void
      */
     public function testFindImdbTagsErrorControlOperators()
     {
-        $obj = new TagProcessing("foobar foobar foobar");
+        $obj = new Tag_Processing("foobar foobar foobar");
         $obj->imdb_tags_pattern = "/(/";
         try {
             $this->assertFalse($obj->findImdbTags(), "imdb is found, not good");
             $this->assertEmpty($obj->imdb_tags);
-        } catch (PCREException $exc) {
+        } catch (PCRE_Exception $exc) {
             $this->assertContains("Compilation failed", $exc->getMessage());
             return;
         }
