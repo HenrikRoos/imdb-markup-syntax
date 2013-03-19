@@ -52,7 +52,9 @@ class Markup_Data
      */
     public function getTconst()
     {
-        //TODO some code please
+        return (isset($this->_data->tconst) && !empty($this->_data->tconst))
+            ? $this->_data->tconst
+            : false;
     }
 
     /**
@@ -176,8 +178,7 @@ class Markup_Data
      */
     public function getWriters()
     {
-        if (isset($this->_data->writers_summary)
-            && is_array($this->_data->writers_summary)
+        if (isset($this->_data->writers_summary) && is_array($this->_data->writers_summary)
         ) {
             $named = array_filter(
                 $this->_data->writers_summary, array($this, "hasName")
@@ -245,7 +246,7 @@ class Markup_Data
         //TODO some code please
     }
 
-// <editor-fold defaultstate="collapsed" desc="callables">
+    //<editor-fold defaultstate="collapsed" desc="Callables">
     /**
      * <b>input</b>
      * <code>
@@ -293,7 +294,7 @@ class Markup_Data
         return isset($writer->name->name);
     }
 
-// </editor-fold>
+    //</editor-fold>
 }
 
 ?>

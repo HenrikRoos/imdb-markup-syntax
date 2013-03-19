@@ -33,8 +33,8 @@ require_once dirname(__FILE__) . '/Exceptions/PCRE_Exception.php';
 class Tag_Processing
 {
 
-    /** @var string Regular expression for find tconst */
-    public $tconst_pattern = "/\[imdb\:tconst\((tt\d+)\)\]/i";
+    /** @var string Regular expression for find id */
+    public $tconst_pattern = "/\[imdb\:id\((tt\d+)\)\]/i";
 
     /** @var string Regular expression for all imdb tags */
     public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
@@ -44,8 +44,8 @@ class Tag_Processing
 
     /**
      * @var string Id on current movie.
-     * <i>e.g http://www.imdb.com/title/tt0137523/ -> tconst = tt0137523</i>
-     * Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>
+     * <i>e.g http://www.imdb.com/title/tt0137523/ -> id = tt0137523</i>
+     * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
      */
     public $tconst;
 
@@ -66,15 +66,15 @@ class Tag_Processing
     }
 
     /**
-     * Find and store it in tconst. Syntax: <b>[imdb:tconst(ttxxxxxxx)]</b>.
-     * <i>e.g. "Nunc non diam sit [imdb:tconst(tt0137523)]nulla sem tempus magna" ->
-     * tconst = tt0137523</i>
+     * Find and store it in id. Syntax: <b>[imdb:id(ttxxxxxxx)]</b>.
+     * <i>e.g. "Nunc non diam sit [imdb:id(tt0137523)]nulla sem tempus magna" ->
+     * id = tt0137523</i>
      * 
-     * @return boolean False if no match true if find a tconst
+     * @return boolean False if no match true if find a id
      * 
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
-    public function findTconst()
+    public function findId()
     {
         $match = array();
         $isOk = @preg_match($this->tconst_pattern, $this->original_content, $match);

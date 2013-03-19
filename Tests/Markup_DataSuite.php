@@ -15,11 +15,11 @@
 
 namespace IMDb_Markup_Syntax;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit_Framework_TestSuite;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../Markup_Data.php';
-require_once dirname(__FILE__) . '/../Movie_Datasource.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_TconstTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_WritersTest.php';
 
 /**
  * Testclass (PHPUnit) test for Markup_Data class
@@ -31,25 +31,24 @@ require_once dirname(__FILE__) . '/../Movie_Datasource.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Markup_Data_Test extends PHPUnit_Framework_TestCase
+class Markup_DataSuite extends PHPUnit_Framework_TestSuite
 {
 
     /**
-     * Test get an id sucessful and not on no data
-     *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * Definition tests for Movie_Datasource suite
      * 
-     * @return void
+     * @return \IMDb_Markup_Syntax\Movie_DatasourceSuite
      */
-    public function testGetTconst()
+    public static function suite()
     {
-        $imdb = new Movie_Datasource("tt0137523");
-        $data = $imdb->getData();
-        $mdata = new Markup_Data($data);
-        $expected = "???";
-        $actual = $mdata->getTconst();
-        $this->assertEquals($expected, $actual);
+        $suite = new self();
+        $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_TconstTest"
+        );
+        $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_WritersTest"
+        );
+        return $suite;
     }
 
     /**
@@ -171,65 +170,6 @@ class Markup_Data_Test extends PHPUnit_Framework_TestCase
             'This test has not been implemented yet.'
         );
     }
-
-    // <editor-fold defaultstate="collapsed" desc="testGetWriters">
-    /**
-     * Positive test where movie has two writers
-     * 
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::writer
-     * 
-     * @return void
-     */
-    public function testGetWritersTowPositive()
-    {
-        $imdb = new Movie_Datasource("tt0137523");
-        $data = new Markup_Data($imdb->getData());
-        $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk'
-            . '</a> (novel), <a href="http://www.imdb.com/name/nm0880243">Jim Uhls'
-            . '</a> (screenplay)';
-        $actual = $data->getWriters();
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * Positive test where movie has one writer and no attribute like (nocel)
-     * 
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::writer
-     * 
-     * @return void
-     */
-    public function testGetWritersOnePositive()
-    {
-        $imdb = new Movie_Datasource("tt1564043");
-        $data = new Markup_Data($imdb->getData());
-        $expected = '<a href="http://www.imdb.com/name/nm3503431">Bryan Litt</a>';
-        $actual = $data->getWriters();
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * Alternative test where movie has no writers
-     * 
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::writer
-     * 
-     * @return void
-     */
-    public function testGetWritersNoWriter()
-    {
-        $imdb = new Movie_Datasource("tt1129398");
-        $data = new Markup_Data($imdb->getData());
-        $expected = false;
-        $actual = $data->getWriters();
-        $this->assertEquals($expected, $actual);
-    }
-
-    // </editor-fold>
 
     /**
      * @covers IMDb_Markup_Syntax\Markup_Data::getDirectors
