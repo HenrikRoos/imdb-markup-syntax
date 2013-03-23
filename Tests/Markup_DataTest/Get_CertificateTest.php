@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass to Markup_DataSuite for for method getTconst in Markup_Data class
+ * Testclass to Markup_DataSuite for method getCertificate in Markup_Data class
  * 
  * PHP version 5
  * 
@@ -15,8 +15,6 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
-use IMDb_Markup_Syntax\Markup_Data;
-use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -24,7 +22,7 @@ require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 require_once 'PHPUnit/Autoload.php';
 
 /**
- * Testclass to Markup_DataSuite for method getTconst in Markup_Data class
+ * Testclass to Markup_DataSuite for method getCertificate in Markup_Data class
  * 
  * @category  Testable
  * @package   Test
@@ -33,7 +31,7 @@ require_once 'PHPUnit/Autoload.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Get_TconstTest extends PHPUnit_Framework_TestCase
+class Get_CertificateTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var string positive testdata */
@@ -50,10 +48,10 @@ class Get_TconstTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Positive test: Get id sucessful
+     * Positive test: Get data sucessful
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getTitle
      * 
      * @return void
      */
@@ -62,8 +60,7 @@ class Get_TconstTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "tt0137523";
-
+        $expected = "??"; //TODO testdata
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getTconst();
@@ -73,10 +70,10 @@ class Get_TconstTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Negative test: No tconst is set
+     * Negative test: No data is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getTitle
      * 
      * @return void
      */
@@ -85,7 +82,7 @@ class Get_TconstTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst);
+        unset($data->tconst); //TODO data value
         $expected = false;
 
         //When
@@ -97,7 +94,7 @@ class Get_TconstTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Negative test: Tconst is empty
+     * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
@@ -109,7 +106,7 @@ class Get_TconstTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = "";
+        $data->tconst = ""; //TODO data value
         $expected = false;
 
         //When

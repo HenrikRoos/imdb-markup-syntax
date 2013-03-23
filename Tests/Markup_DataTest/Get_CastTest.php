@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass to Markup_DataSuite for method getWriters in Markup_Data class
+ * Testclass to Markup_DataSuite for method getCast in Markup_Data class
  * 
  * PHP version 5
  * 
@@ -24,7 +24,7 @@ require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 require_once 'PHPUnit/Autoload.php';
 
 /**
- * Testclass to Markup_DataSuite for method getWriters in Markup_Data class
+ * Testclass to Markup_DataSuite for method getCast in Markup_Data class
  * 
  * @category  Testable
  * @package   Test
@@ -33,7 +33,7 @@ require_once 'PHPUnit/Autoload.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Get_WritersTest extends PHPUnit_Framework_TestCase
+class Get_CastTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var string positive testdata */
@@ -46,14 +46,14 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->testdataPositive = "tt1564043";
+        $this->testdataPositive = "tt0137523";
     }
 
     /**
-     * Positive test where movie has one writer and no attribute like (nocel)
-     * 
+     * Positive test: Get data sucessful
+     *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCast
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -65,49 +65,26 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
-        $data = new Markup_Data($imdb->getData());
-        $expected = '<a href="http://www.imdb.com/name/nm3503431">Bryan Litt</a>';
-
+        $data = $imdb->getData();
+        $expected = <<<EOD
+<a href="http://www.imdb.com/name/nm0000093">Brad Pitt</a> Tyler Durden
+<a href="http://www.imdb.com/name/nm0001570">Edward Norton</a> The Narrator
+<a href="http://www.imdb.com/name/nm0000307">Helena Bonham Carter</a> Marla Singer
+<a href="http://www.imdb.com/name/nm0001533">Meat Loaf</a> (as Meat Loaf Aday) Robert 'Bob' Paulson
+EOD;
         //When
-        $actual = $data->getWriters();
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getCast();
 
         //Then
         $this->assertSame($expected, $actual);
     }
 
     /**
-     * Positive test where movie has two writers
-     * 
+     * Negative test: No data is set
+     *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
-     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
-     * 
-     * @return void
-     */
-    public function testTowPositive()
-    {
-        //Given
-        $imdb = new Movie_Datasource("tt0137523");
-        $data = new Markup_Data($imdb->getData());
-        $expected = '<a href="http://www.imdb.com/name/nm0657333">Chuck Palahniuk'
-            . '</a> (novel), <a href="http://www.imdb.com/name/nm0880243">Jim Uhls'
-            . '</a> (screenplay)';
-
-        //When
-        $actual = $data->getWriters();
-
-        //Then
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Alternative test where movie has no writers
-     * 
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCast
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -118,22 +95,24 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     public function testNotSet()
     {
         //Given
-        $imdb = new Movie_Datasource("tt1129398");
-        $data = new Markup_Data($imdb->getData());
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        unset($data->cast_summary);
         $expected = false;
 
         //When
-        $actual = $data->getWriters();
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getCast();
 
         //Then
         $this->assertSame($expected, $actual);
     }
 
     /**
-     * Negative test: getWriters is empty
+     * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCast
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -146,12 +125,15 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->writers_summary = array();
+        $data->cast_summary = array($data->cast_summary[0]);
+        unset($data->cast_summary[0]->name->nconst);
+        $data->cast_summary[0]->char = "";
+        $data->cast_summary[0]->name->name = " ";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getWriters();
+        $actual = $mdata->getCast();
 
         //Then
         $this->assertSame($expected, $actual);

@@ -167,7 +167,18 @@ class Markup_Data
      */
     public function getCast()
     {
-        //TODO some code please
+        if (!isset($this->_data->cast_summary)) {
+            return false;
+        }
+        $casts = $this->_data->cast_summary;
+        if (!is_array($casts)) {
+            return false;
+        }
+        $castsList = $this->toPersonsList($casts);
+        if ($castsList === false) {
+            return false;
+        }
+        return implode("\n", $castsList);
     }
 
     /**
@@ -178,15 +189,18 @@ class Markup_Data
      */
     public function getWriters()
     {
-        if (isset($this->_data->writers_summary) && is_array($this->_data->writers_summary)
-        ) {
-            $named = array_filter(
-                $this->_data->writers_summary, array($this, "hasName")
-            );
-            $named_summary = array_map(array($this, "writer"), $named);
-            return implode(", ", $named_summary);
+        if (!isset($this->_data->writers_summary)) {
+            return false;
         }
-        return false;
+        $writers = $this->_data->writers_summary;
+        if (!is_array($writers)) {
+            return false;
+        }
+        $writersList = $this->toPersonsList($writers);
+        if ($writersList === false) {
+            return false;
+        }
+        return implode(", ", $writersList);
     }
 
     /**
@@ -248,6 +262,24 @@ class Markup_Data
 
     //<editor-fold defaultstate="collapsed" desc="Callables">
     /**
+     * Convert json objects persion to array contans string format for the
+     * persons
+     * 
+     * @param array $personsObj list of persions objects
+     * @return array|boolean list that persion is a string markup
+     */
+    protected function toPersonsList(array $personsObj)
+    {
+        $named = array_map(array($this, "toPersonString"), $personsObj);
+        $named_summary = array_filter($named, array($this, "isNotEmpty"));
+        if (count($named_summary) == 0) {
+            return false;
+        }
+        return $named_summary;
+    }
+
+    /**
+     * Extract name like data into a string e.g.
      * <b>input</b>
      * <code>
      * stdClass Object
@@ -265,33 +297,58 @@ class Markup_Data
      * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
      * </code>
      * 
-     * @param stdClass $writer Array item from writers_summary
+     * @param stdClass $person object where minimun name object is set
      * 
-     * @return string e.g.
-     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
+     * @return string concat data into a string
      */
-    protected function writer(stdClass $writer)
+    protected function toPersonString(stdClass $person)
     {
-        $res = isset($writer->name->nconst)
-            ? "<a href=\"http://www.imdb.com/name/{$writer->name->nconst}\">"
-            . $writer->name->name . "</a>"
-            : $writer->name->name;
-        if (isset($writer->attr)) {
-            $res .= " " . $writer->attr;
+        $resultArr = array();
+        $props = get_object_vars($person);
+        if (isset($props["image"])) {
+            unset($props["image"]);
         }
-        return $res;
+        if ((isset($person->name->name)) && is_object($person->name)) {
+            array_push($resultArr, $this->toNameString($person->name));
+            unset($props["name"]);
+        }
+        $result = array_merge($resultArr, $props);
+        $resultStr = implode(" ", $result);
+        return trim($resultStr);
     }
 
     /**
-     * Check if writer name is set
+     * Convert name objekt into string
      * 
-     * @param stdClass $writer array item from writers_summary
+     * @param object $nameArray an array like
+     * <code>
+     * [name] => stdClass Object
+     *     (
+     *        [nconst] => nm0254645
+     *        [name] => Ted Elliott
+     *     )
+     * </code>
      * 
-     * @return boolean True if name is set false if no name is set
+     * @return string like <i>
+     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)</i>
      */
-    protected function hasName(stdClass $writer)
+    protected function toNameString(stdClass $nameObj)
     {
-        return isset($writer->name->name);
+        return isset($nameObj->nconst)
+            ? "<a href=\"http://www.imdb.com/name/{$nameObj->nconst}\">"
+            . $nameObj->name . "</a>"
+            : $nameObj->name;
+    }
+
+    /**
+     * Check if a string is empty or not
+     * 
+     * @param string $value a string
+     * @return boolean true if is not empty false if is empty
+     */
+    protected function isNotEmpty($value)
+    {
+        return !empty($value);
     }
 
     //</editor-fold>

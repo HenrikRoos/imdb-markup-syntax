@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass (PHPUnit) test for Markup_Data class
+ * Test suite (PHPUnit) test for Markup_Data tests
  * 
  * PHP version 5
  * 
@@ -18,11 +18,24 @@ namespace IMDb_Markup_Syntax;
 use PHPUnit_Framework_TestSuite;
 
 require_once 'PHPUnit/Autoload.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_CastTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_CertificateTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_DirectorsTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_GenresTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_PlotTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_PosterTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_RatingTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_Release_DateTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_RuntimeTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_TaglineTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_TconstTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_TitleTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_TypeTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_VotesTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_WritersTest.php';
 
 /**
- * Testclass (PHPUnit) test for Markup_Data class
+ * Test suite (PHPUnit) test for Markup_Data tests
  * 
  * @category  Testable
  * @package   Test
@@ -35,7 +48,7 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
 {
 
     /**
-     * Definition tests for Movie_Datasource suite
+     * Definition tests for Markup_Data suite
      * 
      * @return \IMDb_Markup_Syntax\Movie_DatasourceSuite
      */
@@ -51,17 +64,6 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
         return $suite;
     }
 
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTitle
-     * @todo   Implement testGetTitle().
-     */
-    public function testGetTitle()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
 
     /**
      * @covers IMDb_Markup_Syntax\Markup_Data::getType
