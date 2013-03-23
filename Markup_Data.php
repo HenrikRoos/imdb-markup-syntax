@@ -167,18 +167,9 @@ class Markup_Data
      */
     public function getCast()
     {
-        if (!isset($this->_data->cast_summary)) {
-            return false;
-        }
-        $casts = $this->_data->cast_summary;
-        if (!is_array($casts)) {
-            return false;
-        }
-        $castsList = $this->toPersonsList($casts);
-        if ($castsList === false) {
-            return false;
-        }
-        return implode("\n", $castsList);
+        return isset($this->_data->cast_summary)
+            ? $this->toSummaryString($this->_data->cast_summary, "\n")
+            : false;
     }
 
     /**
@@ -189,18 +180,9 @@ class Markup_Data
      */
     public function getWriters()
     {
-        if (!isset($this->_data->writers_summary)) {
-            return false;
-        }
-        $writers = $this->_data->writers_summary;
-        if (!is_array($writers)) {
-            return false;
-        }
-        $writersList = $this->toPersonsList($writers);
-        if ($writersList === false) {
-            return false;
-        }
-        return implode(", ", $writersList);
+        return isset($this->_data->writers_summary)
+            ? $this->toSummaryString($this->_data->writers_summary, ", ")
+            : false;
     }
 
     /**
@@ -218,7 +200,9 @@ class Markup_Data
      */
     public function getDirectors()
     {
-        //TODO some code please
+        return isset($this->_data->directors_summary)
+            ? $this->toSummaryString($this->_data->directors_summary, ", ")
+            : false;
     }
 
     /**
@@ -261,6 +245,26 @@ class Markup_Data
     }
 
     //<editor-fold defaultstate="collapsed" desc="Callables">
+    /**
+     * Convert data *_summary object to string contans persons as list separate by
+     * specifde glue char(s).
+     * 
+     * @param array $summary e.g $this->_data->directors_summary
+     * @param string $glue one or more char as separat between persons in the list
+     * @return boolean|string contans all persons or false if no data
+     */
+    protected function toSummaryString($summary, $glue)
+    {
+        if (!is_array($summary)) {
+            return false;
+        }
+        $summaryList = $this->toPersonsList($summary);
+        if ($summaryList === false) {
+            return false;
+        }
+        return implode($glue, $summaryList);
+    }
+
     /**
      * Convert json objects persion to array contans string format for the
      * persons

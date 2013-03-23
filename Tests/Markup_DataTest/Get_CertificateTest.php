@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';

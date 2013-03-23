@@ -56,6 +56,12 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
     {
         $suite = new self();
         $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_CastTest"
+        );
+        $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_DirectorsTest"
+        );
+        $suite->addTestSuite(
             "IMDb_Markup_Syntax\Markup_DataTest\Get_TconstTest"
         );
         $suite->addTestSuite(
@@ -63,7 +69,6 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
         );
         return $suite;
     }
-
 
     /**
      * @covers IMDb_Markup_Syntax\Markup_Data::getType

@@ -54,6 +54,7 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCast
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -66,12 +67,12 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = <<<EOD
+        $expected = <<<DATA
 <a href="http://www.imdb.com/name/nm0000093">Brad Pitt</a> Tyler Durden
 <a href="http://www.imdb.com/name/nm0001570">Edward Norton</a> The Narrator
 <a href="http://www.imdb.com/name/nm0000307">Helena Bonham Carter</a> Marla Singer
 <a href="http://www.imdb.com/name/nm0001533">Meat Loaf</a> (as Meat Loaf Aday) Robert 'Bob' Paulson
-EOD;
+DATA;
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getCast();
@@ -85,6 +86,7 @@ EOD;
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCast
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -113,6 +115,7 @@ EOD;
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCast
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString

@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -52,6 +54,11 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDirectors
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
+     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
+     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
+     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
+     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
      * 
      * @return void
      */
@@ -60,10 +67,10 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = '<a href="http://www.imdb.com/name/nm0000399">David Fincher</a>';
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getDirectors();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -74,6 +81,11 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDirectors
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
+     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
+     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
+     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
+     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
      * 
      * @return void
      */
@@ -82,12 +94,12 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        unset($data->directors_summary);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getDirectors();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -98,6 +110,11 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
+     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
+     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
+     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
+     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
      * 
      * @return void
      */
@@ -106,12 +123,12 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->directors_summary = "";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getDirectors();
 
         //Then
         $this->assertSame($expected, $actual);

@@ -54,6 +54,7 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -80,6 +81,7 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -108,6 +110,7 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
@@ -134,6 +137,7 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
+     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
