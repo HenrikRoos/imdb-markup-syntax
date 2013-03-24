@@ -65,156 +65,15 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
             "IMDb_Markup_Syntax\Markup_DataTest\Get_DirectorsTest"
         );
         $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_GenresTest"
+        );
+        $suite->addTestSuite(
             "IMDb_Markup_Syntax\Markup_DataTest\Get_TconstTest"
         );
         $suite->addTestSuite(
             "IMDb_Markup_Syntax\Markup_DataTest\Get_WritersTest"
         );
         return $suite;
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getType
-     * @todo   Implement testGetType().
-     */
-    public function testGetType()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getGenres
-     * @todo   Implement testGetGenres().
-     */
-    public function testGetGenres()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getReleaseDate
-     * @todo   Implement testGetReleaseDate().
-     */
-    public function testGetReleaseDate()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
-     * @todo   Implement testGetRuntime().
-     */
-    public function testGetRuntime()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getRating
-     * @todo   Implement testGetRating().
-     */
-    public function testGetRating()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
-     * @todo   Implement testGetVotes().
-     */
-    public function testGetVotes()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPlot
-     * @todo   Implement testGetPlot().
-     */
-    public function testGetPlot()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTagline
-     * @todo   Implement testGetTagline().
-     */
-    public function testGetTagline()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getCast
-     * @todo   Implement testGetCast().
-     */
-    public function testGetCast()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getDirectors
-     * @todo   Implement testGetDirectors().
-     */
-    public function testGetDirectors()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
-     * @todo   Implement testGetCertificate().
-     */
-    public function testGetCertificate()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
-     * @todo   Implement testGetPoster().
-     */
-    public function testGetPoster()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
     }
 
 }

@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -44,7 +46,7 @@ class Get_GenresTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->testdataPositive = "tt0137523";
+        $this->testdataPositive = "tt0120737";
     }
 
     /**
@@ -60,10 +62,11 @@ class Get_GenresTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = "Action, Adventure, Fantasy";
+        
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->
+        $actual = $mdata->getGenres();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -82,12 +85,12 @@ class Get_GenresTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        unset($data->genres);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getGenres();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -106,12 +109,12 @@ class Get_GenresTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->genres = array();
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getGenres();
 
         //Then
         $this->assertSame($expected, $actual);

@@ -86,7 +86,13 @@ class Markup_Data
      */
     public function getGenres()
     {
-        //TODO some code please
+        if (!isset($this->_data->genres)) {
+            return false;
+        }
+        if (!is_array($this->_data->genres) || empty($this->_data->genres)) {
+            return false;
+        }
+        return implode(", ", $this->_data->genres);
     }
 
     /**
@@ -257,6 +263,7 @@ class Markup_Data
      * 
      * @param array $summary e.g $this->_data->directors_summary
      * @param string $glue one or more char as separat between persons in the list
+     * 
      * @return boolean|string contans all persons or false if no data
      */
     protected function toSummaryString($summary, $glue)
@@ -276,6 +283,7 @@ class Markup_Data
      * persons
      * 
      * @param array $personsObj list of persions objects
+     * 
      * @return array|boolean list that persion is a string markup
      */
     protected function toPersonsList(array $personsObj)
@@ -354,6 +362,7 @@ class Markup_Data
      * Check if a string is empty or not
      * 
      * @param string $value a string
+     * 
      * @return boolean true if is not empty false if is empty
      */
     protected function isNotEmpty($value)
