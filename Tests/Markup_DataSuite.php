@@ -59,6 +59,9 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
             "IMDb_Markup_Syntax\Markup_DataTest\Get_CastTest"
         );
         $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_CertificateTest"
+        );
+        $suite->addTestSuite(
             "IMDb_Markup_Syntax\Markup_DataTest\Get_DirectorsTest"
         );
         $suite->addTestSuite(

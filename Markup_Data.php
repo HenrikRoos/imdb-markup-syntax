@@ -231,7 +231,13 @@ class Markup_Data
      */
     public function getCertificate()
     {
-        //TODO some code please
+        if (!isset($this->_data->certificate->certificate)) {
+            return false;
+        }
+        if (trim($this->_data->certificate->certificate) == false) {
+            return false;
+        }
+        return $this->_data->certificate->certificate;
     }
 
     /**

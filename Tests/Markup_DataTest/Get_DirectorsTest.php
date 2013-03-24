@@ -68,6 +68,7 @@ class Get_DirectorsTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $expected = '<a href="http://www.imdb.com/name/nm0000399">David Fincher</a>';
+        
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getDirectors();

@@ -53,7 +53,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      * Positive test: Get data sucessful
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTitle
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
      * 
      * @return void
      */
@@ -62,10 +62,34 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = "R";
+
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getCertificate();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful for a kids movie
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
+     * 
+     * @return void
+     */
+    public function testPositiveKids()
+    {
+        //Given
+        $imdb = new Movie_Datasource("tt0397892");
+        $data = $imdb->getData();
+        $expected = "PG";
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getCertificate();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -75,7 +99,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      * Negative test: No data is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTitle
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
      * 
      * @return void
      */
@@ -84,12 +108,12 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        unset($data->certificate);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getCertificate();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -99,7 +123,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
      * 
      * @return void
      */
@@ -108,12 +132,12 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->certificate->certificate = " ";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getCertificate();
 
         //Then
         $this->assertSame($expected, $actual);

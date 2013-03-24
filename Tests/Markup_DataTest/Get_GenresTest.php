@@ -63,7 +63,7 @@ class Get_GenresTest extends PHPUnit_Framework_TestCase
         $expected = "??"; //TODO testdata
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->
 
         //Then
         $this->assertSame($expected, $actual);
