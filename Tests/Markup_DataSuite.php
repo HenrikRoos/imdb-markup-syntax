@@ -68,6 +68,14 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
             "IMDb_Markup_Syntax\Markup_DataTest\Get_GenresTest"
         );
         $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_PlotTest"
+        );
+        $suite->addTestSuite(
+            "IMDb_Markup_Syntax\Markup_DataTest\Get_PosterTest"
+        );
+
+
+        $suite->addTestSuite(
             "IMDb_Markup_Syntax\Markup_DataTest\Get_TconstTest"
         );
         $suite->addTestSuite(

@@ -151,7 +151,13 @@ class Markup_Data
      */
     public function getPlot()
     {
-        //TODO some code please
+        if (!isset($this->_data->plot->outline)) {
+            return false;
+        }
+        if (trim($this->_data->plot->outline) == false) {
+            return false;
+        }
+        return $this->_data->plot->outline;
     }
 
     /**
@@ -253,7 +259,13 @@ class Markup_Data
      */
     public function getPoster()
     {
-        //TODO some code please
+        if (!isset($this->_data->image->url)) {
+            return false;
+        }
+        if (trim($this->_data->image->url) == false) {
+            return false;
+        }
+        return $this->_data->image->url;
     }
 
     //<editor-fold defaultstate="collapsed" desc="Callables">

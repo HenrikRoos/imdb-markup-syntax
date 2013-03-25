@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -60,10 +62,11 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = "http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg";
+
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getPoster();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -82,12 +85,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        unset($data->image->url);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getPoster();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -106,12 +109,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->image->url = "";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getPoster();
 
         //Then
         $this->assertSame($expected, $actual);
