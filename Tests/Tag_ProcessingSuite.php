@@ -59,7 +59,7 @@ class Tag_ProcessingSuite extends PHPUnit_Framework_TestSuite
     /**
      * Definition tests for Tag_Processing suite
      * 
-     * @return \IMDb_Markup_Syntax\Tag_ProcessingSuite
+     * @return IMDb_Markup_Syntax\Tag_ProcessingSuite
      */
     public static function suite()
     {

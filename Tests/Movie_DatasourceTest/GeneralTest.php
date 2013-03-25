@@ -37,11 +37,11 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, incorrect tconst checked in construct
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * @expectedExceptionMessage Incorrect tconst
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception
+     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * 
      * @return void
      */
@@ -67,7 +67,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
      * 
      * @return void
      */
-    public function testToDataClassJson_Exception()
+    public function testToDataClassJsonException()
     {
         //Given
         $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["movie"]);

@@ -55,7 +55,7 @@ class Movie_DatasourceSuite extends PHPUnit_Framework_TestSuite
     /**
      * Definition tests for Movie_Datasource suite
      * 
-     * @return \IMDb_Markup_Syntax\Movie_DatasourceSuite
+     * @return IMDb_Markup_Syntax\Movie_DatasourceSuite
      */
     public static function suite()
     {

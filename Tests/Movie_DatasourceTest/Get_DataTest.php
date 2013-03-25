@@ -93,13 +93,13 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, No data for this title tconst. HTTP 404
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      * @expectedExceptionCode    404
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception
+     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * 
      * @return void
      */

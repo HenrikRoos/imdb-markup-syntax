@@ -261,8 +261,8 @@ class Markup_Data
      * Convert data *_summary object to string contans persons as list separate by
      * specifde glue char(s).
      * 
-     * @param array $summary e.g $this->_data->directors_summary
-     * @param string $glue one or more char as separat between persons in the list
+     * @param array  $summary E.g $this->_data->directors_summary
+     * @param string $glue    One or more char as separat between persons in the list
      * 
      * @return boolean|string contans all persons or false if no data
      */
@@ -338,7 +338,7 @@ class Markup_Data
     /**
      * Convert name objekt into string
      * 
-     * @param object $nameArray an array like
+     * @param stdClass $nameArray An array like
      * <code>
      * [name] => stdClass Object
      *     (
@@ -361,7 +361,7 @@ class Markup_Data
     /**
      * Check if a string is empty or not
      * 
-     * @param string $value a string
+     * @param string $value A string
      * 
      * @return boolean true if is not empty false if is empty
      */

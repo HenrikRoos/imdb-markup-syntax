@@ -50,7 +50,7 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
     /**
      * Definition tests for Markup_Data suite
      * 
-     * @return \IMDb_Markup_Syntax\Movie_DatasourceSuite
+     * @return IMDb_Markup_Syntax\Movie_DatasourceSuite
      */
     public static function suite()
     {

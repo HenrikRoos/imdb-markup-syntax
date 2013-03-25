@@ -17,12 +17,12 @@ namespace IMDb_Markup_Syntax;
 
 use IMDb;
 use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
-use IMDb_Markup_Syntax\Exceptions\Error_Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 use IMDb_Markup_Syntax\Exceptions\Json_Exception;
 use stdClass;
 
 require_once dirname(__FILE__) . '/IMDb-PHP-API/class_IMDb.php';
-require_once dirname(__FILE__) . '/Exceptions/Error_Runtime_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
 require_once dirname(__FILE__) . '/Exceptions/Curl_Exception.php';
 require_once dirname(__FILE__) . '/Exceptions/Json_Exception.php';
 
@@ -63,12 +63,12 @@ class Movie_Datasource extends IMDb
      * @param int    $timeout The maximum number of milliseconds to allow execute to
      * imdb.
      * 
-     * @throws Error_Runtime_Exception if incorrect tconst.
+     * @throws Runtime_Exception if incorrect tconst.
      */
     public function __construct($tconst, $timeout = 0)
     {
         if (@preg_match("/^tt\d+$/", $tconst) == 0) {
-            throw new Error_Runtime_Exception(null, "Incorrect tconst: {$tconst}");
+            throw new Runtime_Exception(null, "Incorrect tconst: {$tconst}");
         }
         parent::__construct(true, false);
         $this->request = $this->build_url('title/maindetails', $tconst, 'tconst');
@@ -83,7 +83,7 @@ class Movie_Datasource extends IMDb
      * 
      * @throws Curl_Exception         On error in web api request
      * @throws Json_Exception         If error in decode
-     * @throws Error_Runtime_Exception If response has error in result ex no data for
+     * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function getData()
@@ -98,7 +98,7 @@ class Movie_Datasource extends IMDb
      * @return stdClass movie data
      * 
      * @throws Json_Exception         If error in decode
-     * @throws Error_Runtime_Exception If response has error in result ex no data for
+     * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function toDataClass()
@@ -108,7 +108,7 @@ class Movie_Datasource extends IMDb
             throw new Json_Exception();
         }
         if (isset($obj->error)) {
-            throw new Error_Runtime_Exception($obj);
+            throw new Runtime_Exception($obj);
         }
         return $obj->data;
     }
