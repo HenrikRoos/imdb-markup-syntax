@@ -52,13 +52,9 @@ class Markup_Data
      */
     public function getTconst()
     {
-        if (!isset($this->_data->tconst)) {
-            return false;
-        }
-        if (empty($this->_data->tconst)) {
-            return false;
-        }
-        return $this->_data->tconst;
+        return (isset($this->_data->tconst) && !empty($this->_data->tconst))
+            ? $this->_data->tconst
+            : false;
     }
 
     /**
@@ -68,13 +64,9 @@ class Markup_Data
      */
     public function getTitle()
     {
-        if (!isset($this->_data->title)) {
-            return false;
-        }
-        if (trim($this->_data->title) == false) {
-            return false;
-        }
-        return $this->_data->title;
+        return (isset($this->_data->title) && trim($this->_data->title))
+            ? $this->_data->title
+            : false;
     }
 
     /**
@@ -85,13 +77,9 @@ class Markup_Data
      */
     public function getType()
     {
-        if (!isset($this->_data->type)) {
-            return false;
-        }
-        if (trim($this->_data->type) == false) {
-            return false;
-        }
-        return $this->_data->type;
+        return (isset($this->_data->type) && trim($this->_data->type))
+            ? $this->_data->type
+            : false;
     }
 
     /**
@@ -102,13 +90,10 @@ class Markup_Data
      */
     public function getGenres()
     {
-        if (!isset($this->_data->genres)) {
-            return false;
-        }
-        if (!is_array($this->_data->genres) || empty($this->_data->genres)) {
-            return false;
-        }
-        return implode(", ", $this->_data->genres);
+        return (isset($this->_data->genres) && !empty($this->_data->genres)
+            && is_array($this->_data->genres))
+            ? implode(", ", $this->_data->genres)
+            : false;
     }
 
     /**
@@ -122,14 +107,12 @@ class Markup_Data
      */
     public function getDate()
     {
-        if (isset($this->_data->release_date->normal))
-        {
+        if (isset($this->_data->release_date->normal)) {
             if (trim($this->_data->release_date->normal) != false) {
                 return $this->_data->release_date->normal;
             }
         }
-        if (isset($this->_data->year))
-        {
+        if (isset($this->_data->year)) {
             if (trim($this->_data->year) != false) {
                 return $this->_data->year;
             }
@@ -144,13 +127,10 @@ class Markup_Data
      */
     public function getRuntime()
     {
-        if (!isset($this->_data->runtime->time)) {
-            return false;
-        }
-        if (empty($this->_data->runtime->time)) {
-            return false;
-        }
-        return (int) round($this->_data->runtime->time / 60);
+        return (isset($this->_data->runtime->time)
+            && !empty($this->_data->runtime->time))
+            ? (int) round($this->_data->runtime->time / 60)
+            : false;
     }
 
     /**
@@ -161,13 +141,9 @@ class Markup_Data
      */
     public function getRating()
     {
-        if (!isset($this->_data->rating)) {
-            return false;
-        }
-        if (empty($this->_data->rating)) {
-            return false;
-        }
-        return $this->_data->rating;
+        return (isset($this->_data->rating) && !empty($this->_data->rating))
+            ? $this->_data->rating
+            : false;
     }
 
     /**
@@ -177,13 +153,9 @@ class Markup_Data
      */
     public function getVotes()
     {
-        if (!isset($this->_data->num_votes)) {
-            return false;
-        }
-        if (empty($this->_data->num_votes)) {
-            return false;
-        }
-        return $this->_data->num_votes;
+        return(isset($this->_data->num_votes) && !empty($this->_data->num_votes))
+            ? $this->_data->num_votes
+            : false;
     }
 
     /**
@@ -198,13 +170,11 @@ class Markup_Data
      */
     public function getPlot()
     {
-        if (!isset($this->_data->plot->outline)) {
-            return false;
-        }
-        if (trim($this->_data->plot->outline) == false) {
-            return false;
-        }
-        return $this->_data->plot->outline;
+
+        return (isset($this->_data->plot->outline)
+            && trim($this->_data->plot->outline))
+            ? $this->_data->plot->outline
+            : false;
     }
 
     /**
@@ -216,13 +186,9 @@ class Markup_Data
      */
     public function getTagline()
     {
-        if (!isset($this->_data->tagline)) {
-            return false;
-        }
-        if (trim($this->_data->tagline) == false) {
-            return false;
-        }
-        return $this->_data->tagline;
+        return (isset($this->_data->tagline) && trim($this->_data->tagline))
+            ? $this->_data->tagline
+            : false;
     }
 
     /**
@@ -296,13 +262,10 @@ class Markup_Data
      */
     public function getCertificate()
     {
-        if (!isset($this->_data->certificate->certificate)) {
-            return false;
-        }
-        if (trim($this->_data->certificate->certificate) == false) {
-            return false;
-        }
-        return $this->_data->certificate->certificate;
+        return (isset($this->_data->certificate->certificate)
+            && trim($this->_data->certificate->certificate))
+            ? $this->_data->certificate->certificate
+            : false;
     }
 
     /**
@@ -312,13 +275,9 @@ class Markup_Data
      */
     public function getPoster()
     {
-        if (!isset($this->_data->image->url)) {
-            return false;
-        }
-        if (trim($this->_data->image->url) == false) {
-            return false;
-        }
-        return $this->_data->image->url;
+        return (isset($this->_data->image->url) && trim($this->_data->image->url))
+            ? $this->_data->image->url
+            : false;
     }
 
     //<editor-fold defaultstate="collapsed" desc="Callables">
@@ -337,10 +296,10 @@ class Markup_Data
             return false;
         }
         $summaryList = $this->toPersonsList($summary);
-        if ($summaryList === false) {
-            return false;
-        }
-        return implode($glue, $summaryList);
+
+        return $summaryList
+            ? implode($glue, $summaryList)
+            : false;
     }
 
     /**
@@ -355,9 +314,6 @@ class Markup_Data
     {
         $named = array_map(array($this, "toPersonString"), $personsObj);
         $named_summary = array_filter($named, array($this, "isNotEmpty"));
-        if (count($named_summary) == 0) {
-            return false;
-        }
         return $named_summary;
     }
 
