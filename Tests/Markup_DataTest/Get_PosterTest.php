@@ -62,7 +62,8 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg";
+        $expected = "http://ia.media-imdb.com/images/M/"
+            . "MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg";
 
         //When
         $mdata = new Markup_Data($data);

@@ -126,7 +126,13 @@ class Markup_Data
      */
     public function getRating()
     {
-        //TODO some code please
+        if (!isset($this->_data->rating)) {
+            return false;
+        }
+        if ($this->_data->rating == false) {
+            return false;
+        }
+        return $this->_data->rating;
     }
 
     /**
@@ -350,7 +356,7 @@ class Markup_Data
     /**
      * Convert name objekt into string
      * 
-     * @param stdClass $nameArray An array like
+     * @param stdClass $nameObj An array like
      * <code>
      * [name] => stdClass Object
      *     (
