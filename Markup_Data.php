@@ -64,7 +64,13 @@ class Markup_Data
      */
     public function getTitle()
     {
-        //TODO some code please
+        if (!isset($this->_data->title)) {
+            return false;
+        }
+        if (trim($this->_data->title) == false) {
+            return false;
+        }
+        return $this->_data->title;
     }
 
     /**
@@ -98,14 +104,27 @@ class Markup_Data
     /**
      * The day when a movie is shipped to exhibitors by the distributor, it is deemed
      * to have been released for public viewing - there are no longer any studio
-     * restrictions on who can see the movie
+     * restrictions on who can see the movie. If no release date is given as used
+     * publication year.
      * 
-     * @return string|boolean In format 'Y-m-d' <i>e.g. 2013-12-24</i> or false if no
-     * data
+     * @return string|boolean In format 'Y-m-d' <i>e.g. 2013-12-24</i> or just 'Y'
+     * <i>e.g. 2013</i> or false if no data is set.
      */
-    public function getReleaseDate()
+    public function getDate()
     {
-        //TODO some code please
+        if (isset($this->_data->release_date->normal))
+        {
+            if (trim($this->_data->release_date->normal) != false) {
+                return $this->_data->release_date->normal;
+            }
+        }
+        if (isset($this->_data->year))
+        {
+            if (trim($this->_data->year) != false) {
+                return $this->_data->year;
+            }
+        }
+        return false;
     }
 
     /**
@@ -115,7 +134,13 @@ class Markup_Data
      */
     public function getRuntime()
     {
-        //TODO some code please
+        if (!isset($this->_data->runtime->time)) {
+            return false;
+        }
+        if (empty($this->_data->runtime->time)) {
+            return false;
+        }
+        return (int) round($this->_data->runtime->time / 60);
     }
 
     /**
@@ -175,7 +200,13 @@ class Markup_Data
      */
     public function getTagline()
     {
-        //TODO some code please
+        if (!isset($this->_data->tagline)) {
+            return false;
+        }
+        if (trim($this->_data->tagline) == false) {
+            return false;
+        }
+        return $this->_data->tagline;
     }
 
     /**

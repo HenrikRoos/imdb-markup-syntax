@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass to Markup_DataSuite for method getReleaseDate in Markup_Data class
+ * Testclass to Markup_DataSuite for method getDate in Markup_Data class
  * 
  * PHP version 5
  * 
@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -22,7 +24,7 @@ require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 require_once 'PHPUnit/Autoload.php';
 
 /**
- * Testclass to Markup_DataSuite for method getReleaseDate in Markup_Data class
+ * Testclass to Markup_DataSuite for method getDate in Markup_Data class
  * 
  * @category  Testable
  * @package   Test
@@ -31,7 +33,7 @@ require_once 'PHPUnit/Autoload.php';
  * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Get_Release_DateTest extends PHPUnit_Framework_TestCase
+class Get_DateTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var string positive testdata */
@@ -44,50 +46,76 @@ class Get_Release_DateTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->testdataPositive = "tt0137523";
+        $this->testdataPositive = "tt0468569";
     }
 
     /**
-     * Positive test: Get data sucessful
+     * Positive test: Get data sucessful then release date is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getReleaseDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * 
      * @return void
      */
-    public function testPositive()
+    public function testReleaseDatePositive()
     {
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = "2008-07-18";
+
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getDate();
 
         //Then
         $this->assertSame($expected, $actual);
     }
 
     /**
-     * Negative test: No data is set
+     * Alternative positive test: No release_date is not set but year is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getReleaseDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * 
      * @return void
      */
-    public function testNotSet()
+    public function testYearAlternative()
     {
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        $data->release_date->normal = "";
+        $expected = "2008";
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getDate();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Negative test: Data is not set (release date and year)
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * 
+     * @return void
+     */
+    public function testNoSet()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        unset($data->release_date);
+        unset($data->year);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getDate();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -97,7 +125,7 @@ class Get_Release_DateTest extends PHPUnit_Framework_TestCase
      * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * 
      * @return void
      */
@@ -106,12 +134,13 @@ class Get_Release_DateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->release_date->normal = "";
+        $data->year = "";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getDate();
 
         //Then
         $this->assertSame($expected, $actual);

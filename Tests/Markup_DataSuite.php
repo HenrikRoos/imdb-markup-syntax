@@ -25,7 +25,7 @@ require_once dirname(__FILE__) . '/Markup_DataTest/Get_GenresTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_PlotTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_PosterTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_RatingTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_Release_DateTest.php';
+require_once dirname(__FILE__) . '/Markup_DataTest/Get_DateTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_RuntimeTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_TaglineTest.php';
 require_once dirname(__FILE__) . '/Markup_DataTest/Get_TconstTest.php';
@@ -55,34 +55,23 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
     public static function suite()
     {
         $suite = new self();
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_CastTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_CertificateTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_DirectorsTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_GenresTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_PlotTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_PosterTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_RatingTest"
-        );
+        $namespace = "IMDb_Markup_Syntax\Markup_DataTest";
 
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_TconstTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Markup_DataTest\Get_WritersTest"
-        );
+        $suite->addTestSuite($namespace . "\Get_CastTest");
+        $suite->addTestSuite($namespace . "\Get_CertificateTest");
+        $suite->addTestSuite($namespace . "\Get_DateTest");
+        $suite->addTestSuite($namespace . "\Get_DirectorsTest");
+        $suite->addTestSuite($namespace . "\Get_GenresTest");
+        $suite->addTestSuite($namespace . "\Get_PlotTest");
+        $suite->addTestSuite($namespace . "\Get_PosterTest");
+        $suite->addTestSuite($namespace . "\Get_RatingTest");
+        $suite->addTestSuite($namespace . "\Get_RuntimeTest");
+        $suite->addTestSuite($namespace . "\Get_TaglineTest");
+        $suite->addTestSuite($namespace . "\Get_TconstTest");
+        $suite->addTestSuite($namespace . "\Get_TitleTest");
+        
+        
+        $suite->addTestSuite($namespace . "\Get_WritersTest");
         return $suite;
     }
 

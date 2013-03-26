@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -60,10 +62,10 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = "Fight Club";
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getTitle();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -82,12 +84,12 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        unset($data->title);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getTitle();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -106,12 +108,12 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->title = " ";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getTitle();
 
         //Then
         $this->assertSame($expected, $actual);
