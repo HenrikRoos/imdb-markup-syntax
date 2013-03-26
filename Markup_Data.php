@@ -52,9 +52,13 @@ class Markup_Data
      */
     public function getTconst()
     {
-        return (isset($this->_data->tconst) && !empty($this->_data->tconst))
-            ? $this->_data->tconst
-            : false;
+        if (!isset($this->_data->tconst)) {
+            return false;
+        }
+        if (empty($this->_data->tconst)) {
+            return false;
+        }
+        return $this->_data->tconst;
     }
 
     /**
@@ -81,7 +85,13 @@ class Markup_Data
      */
     public function getType()
     {
-        //TODO some code please
+        if (!isset($this->_data->type)) {
+            return false;
+        }
+        if (trim($this->_data->type) == false) {
+            return false;
+        }
+        return $this->_data->type;
     }
 
     /**
@@ -154,7 +164,7 @@ class Markup_Data
         if (!isset($this->_data->rating)) {
             return false;
         }
-        if ($this->_data->rating == false) {
+        if (empty($this->_data->rating)) {
             return false;
         }
         return $this->_data->rating;
@@ -167,7 +177,13 @@ class Markup_Data
      */
     public function getVotes()
     {
-        //TODO some code please
+        if (!isset($this->_data->num_votes)) {
+            return false;
+        }
+        if (empty($this->_data->num_votes)) {
+            return false;
+        }
+        return $this->_data->num_votes;
     }
 
     /**

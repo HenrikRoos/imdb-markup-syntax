@@ -69,9 +69,10 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
         $suite->addTestSuite($namespace . "\Get_TaglineTest");
         $suite->addTestSuite($namespace . "\Get_TconstTest");
         $suite->addTestSuite($namespace . "\Get_TitleTest");
-        
-        
+        $suite->addTestSuite($namespace . "\Get_TypeTest");
+        $suite->addTestSuite($namespace . "\Get_VotesTest");
         $suite->addTestSuite($namespace . "\Get_WritersTest");
+
         return $suite;
     }
 

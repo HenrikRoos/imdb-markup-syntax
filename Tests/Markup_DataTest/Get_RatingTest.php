@@ -62,14 +62,16 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = 8.9;
+        $expected_under = 8;
+        $expected_over = 9;
         
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getRating();
 
         //Then
-        $this->assertSame($expected, $actual);
+        $this->assertGreaterThanOrEqual($expected_under, $actual);
+        $this->assertLessThanOrEqual($expected_over, $actual);
     }
 
     /**

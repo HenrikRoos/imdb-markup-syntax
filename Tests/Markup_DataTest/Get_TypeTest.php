@@ -15,6 +15,8 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
+use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
@@ -48,22 +50,46 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Positive test: Get data sucessful
+     * Positive test: Get data sucessful for a feature
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getType
      * 
      * @return void
      */
-    public function testPositive()
+    public function testFeaturePositive()
     {
         //Given
-        $imdb = new Movie_Datasource($this->testdataPositive);
+        $imdb = new Movie_Datasource("tt0468569");
         $data = $imdb->getData();
-        $expected = "??"; //TODO testdata
+        $expected = "feature";
+
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getType();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful for a tv-serie
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getType
+     * 
+     * @return void
+     */
+    public function testTVSeriePositive()
+    {
+        //Given
+        $imdb = new Movie_Datasource("tt0402711");
+        $data = $imdb->getData();
+        $expected = "tv_series";
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getType();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -82,12 +108,12 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->tconst); //TODO data value
+        unset($data->type);
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getType();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -106,12 +132,12 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->tconst = ""; //TODO data value
+        $data->type = "";
         $expected = false;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getTconst();
+        $actual = $mdata->getType();
 
         //Then
         $this->assertSame($expected, $actual);
