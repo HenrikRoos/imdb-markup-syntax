@@ -81,8 +81,8 @@ class Movie_Datasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws Curl_Exception         On error in web api request
-     * @throws Json_Exception         If error in decode
+     * @throws Curl_Exception    On error in web api request
+     * @throws Json_Exception    If error in decode
      * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
@@ -97,7 +97,7 @@ class Movie_Datasource extends IMDb
      * 
      * @return stdClass movie data
      * 
-     * @throws Json_Exception         If error in decode
+     * @throws Json_Exception    If error in decode
      * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
