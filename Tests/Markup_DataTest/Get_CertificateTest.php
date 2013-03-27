@@ -132,7 +132,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->certificate->certificate = " ";
+        $data->certificate->certificate = "";
         $expected = false;
 
         //When

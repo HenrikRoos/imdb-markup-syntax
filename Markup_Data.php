@@ -52,9 +52,7 @@ class Markup_Data
      */
     public function getTconst()
     {
-        return (isset($this->_data->tconst) && !empty($this->_data->tconst))
-            ? $this->_data->tconst
-            : false;
+        return $this->getValue("tconst");
     }
 
     /**
@@ -64,9 +62,7 @@ class Markup_Data
      */
     public function getTitle()
     {
-        return (isset($this->_data->title) && trim($this->_data->title))
-            ? $this->_data->title
-            : false;
+        return $this->getValue("title");
     }
 
     /**
@@ -77,9 +73,7 @@ class Markup_Data
      */
     public function getType()
     {
-        return (isset($this->_data->type) && trim($this->_data->type))
-            ? $this->_data->type
-            : false;
+        return $this->getValue("type");
     }
 
     /**
@@ -90,10 +84,8 @@ class Markup_Data
      */
     public function getGenres()
     {
-        return (isset($this->_data->genres) && !empty($this->_data->genres)
-            && is_array($this->_data->genres))
-            ? implode(", ", $this->_data->genres)
-            : false;
+        $genres = $this->getValue("genres");
+        return is_array($genres) ? implode(", ", $genres) : false;
     }
 
     /**
@@ -108,12 +100,12 @@ class Markup_Data
     public function getDate()
     {
         if (isset($this->_data->release_date->normal)) {
-            if (trim($this->_data->release_date->normal) != false) {
+            if (!empty($this->_data->release_date->normal)) {
                 return $this->_data->release_date->normal;
             }
         }
         if (isset($this->_data->year)) {
-            if (trim($this->_data->year) != false) {
+            if (!empty($this->_data->year)) {
                 return $this->_data->year;
             }
         }
@@ -127,10 +119,8 @@ class Markup_Data
      */
     public function getRuntime()
     {
-        return (isset($this->_data->runtime->time)
-            && !empty($this->_data->runtime->time))
-            ? (int) round($this->_data->runtime->time / 60)
-            : false;
+        $runtime = $this->getValueValue("runtime", "time");
+        return $runtime ? (int) round($runtime / 60) : false;
     }
 
     /**
@@ -141,9 +131,7 @@ class Markup_Data
      */
     public function getRating()
     {
-        return (isset($this->_data->rating) && !empty($this->_data->rating))
-            ? $this->_data->rating
-            : false;
+        return $this->getValue("rating");
     }
 
     /**
@@ -153,9 +141,7 @@ class Markup_Data
      */
     public function getVotes()
     {
-        return(isset($this->_data->num_votes) && !empty($this->_data->num_votes))
-            ? $this->_data->num_votes
-            : false;
+        return $this->getValue("num_votes");
     }
 
     /**
@@ -170,11 +156,7 @@ class Markup_Data
      */
     public function getPlot()
     {
-
-        return (isset($this->_data->plot->outline)
-            && trim($this->_data->plot->outline))
-            ? $this->_data->plot->outline
-            : false;
+        return $this->getValueValue("plot", "outline");
     }
 
     /**
@@ -186,9 +168,7 @@ class Markup_Data
      */
     public function getTagline()
     {
-        return (isset($this->_data->tagline) && trim($this->_data->tagline))
-            ? $this->_data->tagline
-            : false;
+        return $this->getValue("tagline");
     }
 
     /**
@@ -198,9 +178,7 @@ class Markup_Data
      */
     public function getCast()
     {
-        return isset($this->_data->cast_summary)
-            ? $this->toSummaryString($this->_data->cast_summary, "\n")
-            : false;
+        return $this->toSummaryString("cast_summary", "\n");
     }
 
     /**
@@ -211,9 +189,7 @@ class Markup_Data
      */
     public function getWriters()
     {
-        return isset($this->_data->writers_summary)
-            ? $this->toSummaryString($this->_data->writers_summary, ", ")
-            : false;
+        return $this->toSummaryString("writers_summary");
     }
 
     /**
@@ -231,9 +207,7 @@ class Markup_Data
      */
     public function getDirectors()
     {
-        return isset($this->_data->directors_summary)
-            ? $this->toSummaryString($this->_data->directors_summary, ", ")
-            : false;
+        return $this->toSummaryString("directors_summary");
     }
 
     /**
@@ -262,10 +236,7 @@ class Markup_Data
      */
     public function getCertificate()
     {
-        return (isset($this->_data->certificate->certificate)
-            && trim($this->_data->certificate->certificate))
-            ? $this->_data->certificate->certificate
-            : false;
+        return $this->getValueValue("certificate", "certificate");
     }
 
     /**
@@ -275,31 +246,61 @@ class Markup_Data
      */
     public function getPoster()
     {
-        return (isset($this->_data->image->url) && trim($this->_data->image->url))
-            ? $this->_data->image->url
+        return $this->getValueValue("image", "url");
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Helpers">
+    /**
+     * Help function check and get value for specifide objekt
+     * 
+     * @param string $name name of the first function
+     * 
+     * @return int|float|string|boolean data value or false if value not set or empty 
+     */
+    protected function getValue($name)
+    {
+        return (isset($this->_data->$name) && !empty($this->_data->$name))
+            ? $this->_data->$name
             : false;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Callables">
+    /**
+     * Help function check and get value for specifide objekt
+     * 
+     * @param string $na1 name of the first function
+     * @param string $na2 name of the second function
+     * 
+     * @return int|float|string|boolean data value or false if value not set or empty 
+     */
+    protected function getValueValue($na1, $na2)
+    {
+        return (isset($this->_data->$na1->$na2) && !empty($this->_data->$na1->$na2))
+            ? $this->_data->$na1->$na2
+            : false;
+    }
+
     /**
      * Convert data *_summary object to string contans persons as list separate by
      * specifde glue char(s).
      * 
-     * @param array  $summary E.g $this->_data->directors_summary
+     * @param string $summary E.g <i>directors_summary</i> in
+     * $this->_data->directors_summary
      * @param string $glue    One or more char as separat between persons in the list
+     * default is <i>", "</i>
      * 
      * @return boolean|string contans all persons or false if no data
      */
-    protected function toSummaryString($summary, $glue)
+    protected function toSummaryString($summary, $glue = ", ")
     {
-        if (!is_array($summary)) {
-            return false;
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary) &&
+            is_array($this->_data->$summary)
+        ) {
+            $summaryList = $this->toPersonsList($this->_data->$summary);
+            if (!empty($summaryList)) {
+                return implode($glue, $summaryList);
+            }
         }
-        $summaryList = $this->toPersonsList($summary);
-
-        return $summaryList
-            ? implode($glue, $summaryList)
-            : false;
+        return false;
     }
 
     /**

@@ -108,7 +108,7 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->title = " ";
+        $data->title = "";
         $expected = false;
 
         //When
