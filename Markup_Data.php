@@ -255,7 +255,7 @@ class Markup_Data
      * 
      * @param string $name name of the first function
      * 
-     * @return int|float|string|boolean data value or false if value not set or empty 
+     * @return int|float|string|boolean data value or false if value not set or empty
      */
     protected function getValue($name)
     {
@@ -270,7 +270,7 @@ class Markup_Data
      * @param string $na1 name of the first function
      * @param string $na2 name of the second function
      * 
-     * @return int|float|string|boolean data value or false if value not set or empty 
+     * @return int|float|string|boolean data value or false if value not set or empty
      */
     protected function getValueValue($na1, $na2)
     {
@@ -292,8 +292,8 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary) &&
-            is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
+            && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
@@ -345,9 +345,6 @@ class Markup_Data
     {
         $resultArr = array();
         $props = get_object_vars($person);
-        if (isset($props["image"])) {
-            unset($props["image"]);
-        }
         if ((isset($person->name->name)) && is_object($person->name)) {
             array_push($resultArr, $this->toNameString($person->name));
             unset($props["name"]);

@@ -1,4 +1,4 @@
-<?php
+k<?php
 
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
@@ -54,6 +54,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -78,6 +79,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -101,7 +103,8 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */

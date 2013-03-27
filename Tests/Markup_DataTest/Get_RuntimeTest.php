@@ -54,6 +54,7 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -76,6 +77,7 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -99,7 +101,8 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */

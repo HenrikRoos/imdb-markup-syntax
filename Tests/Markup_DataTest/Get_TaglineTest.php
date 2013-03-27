@@ -54,6 +54,7 @@ class Get_TaglineTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getTagline
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */
@@ -78,6 +79,7 @@ class Get_TaglineTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getTagline
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */
@@ -101,7 +103,8 @@ class Get_TaglineTest extends PHPUnit_Framework_TestCase
      * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getTconst
+     * @covers IMDb_Markup_Syntax\Markup_Data::getTagline
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */

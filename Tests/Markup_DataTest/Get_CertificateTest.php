@@ -54,6 +54,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */
@@ -77,6 +78,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */
@@ -100,6 +102,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */
@@ -124,6 +127,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * 
      * @return void
      */

@@ -33,12 +33,13 @@ require_once 'PHPUnit/Autoload.php';
  */
 class Get_DataTest extends PHPUnit_Framework_TestCase
 {
-
     /**
      * Main use case get a movie data, no error
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * 
      * @return void
      */
@@ -57,6 +58,8 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * 
      * @return void
      */
@@ -75,6 +78,8 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * 
      * @return void
      */
@@ -99,6 +104,8 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * 
      * @return void

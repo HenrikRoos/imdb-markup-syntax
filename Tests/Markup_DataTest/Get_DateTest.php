@@ -54,6 +54,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -77,6 +78,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -101,6 +103,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
@@ -126,6 +129,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
      */
