@@ -1,4 +1,4 @@
-k<?php
+<?php
 
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
