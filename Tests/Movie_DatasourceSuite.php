@@ -60,15 +60,12 @@ class Movie_DatasourceSuite extends PHPUnit_Framework_TestSuite
     public static function suite()
     {
         $suite = new self();
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Movie_DatasourceTest\GeneralTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Movie_DatasourceTest\Fetch_ResponseTest"
-        );
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Movie_DatasourceTest\Get_DataTest"
-        );
+        $namespace = "IMDb_Markup_Syntax\Movie_DatasourceTest";
+
+        $suite->addTestSuite($namespace . "\GeneralTest");
+        $suite->addTestSuite($namespace . "\Fetch_ResponseTest");
+        $suite->addTestSuite($namespace . "\Get_DataTest");
+
         return $suite;
     }
 

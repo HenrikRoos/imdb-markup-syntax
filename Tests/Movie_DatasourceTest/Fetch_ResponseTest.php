@@ -98,7 +98,7 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testTimeout()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["movie"], 400);
+        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["movie"], null, 400);
 
         //When
         $imdb->fetchResponse();

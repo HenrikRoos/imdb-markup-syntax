@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Markup data tags from INDb data result. Most popular tag in imdb result has a
+ * Markup data tags from IMDb data result. Most popular tag in imdb result has a
  * function in this class
  * 
  * PHP version 5
@@ -19,7 +19,7 @@ namespace IMDb_Markup_Syntax;
 use stdClass;
 
 /**
- * Markup data tags from INDb data result. Most popular tag in imdb result has a
+ * Markup data tags from IMDb data result. Most popular tag in imdb result has a
  * function in this class
  * 
  * @category  Runnable
@@ -36,7 +36,7 @@ class Markup_Data
     private $_data;
 
     /**
-     * Create a instans of this class
+     * Create an instans of this class
      * 
      * @param stdClass $data IMDb data json class
      */
@@ -124,7 +124,7 @@ class Markup_Data
     }
 
     /**
-     * Rating scale from 1 to 10 there 10 is best and with one decimal.
+     * Rating scale from 1 to 10 where 10 is best and with one decimal.
      * <i>e.g. 7.3</i>
      * 
      * @return float|boolean If no data then false
@@ -135,7 +135,7 @@ class Markup_Data
     }
 
     /**
-     * Number of votes from imdb members for current movie. <i>e.g. 3039</i>
+     * Number of votes from imdb members for the current movie. <i>e.g. 3039</i>
      * 
      * @return int|boolean If no data then false.
      */

@@ -33,10 +33,12 @@ require_once 'PHPUnit/Autoload.php';
  */
 class Get_DataTest extends PHPUnit_Framework_TestCase
 {
+
     /**
      * Main use case get a movie data, no error
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
@@ -57,6 +59,7 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
      * Main use case get a tv serie data, no error
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
@@ -77,6 +80,7 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
      * Main use case get a video game data, no error
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
@@ -103,6 +107,7 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
      * @expectedExceptionCode    404
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
@@ -116,6 +121,33 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["nodata"]);
         //When
         $imdb->getData();
+    }
+
+    /**
+     * Positive alternative test. Different release date in different countries
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * 
+     * @return void
+     */
+    public function testAlternativeLocale()
+    {
+        //Given
+        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"]);
+        $imdb_se = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"],
+            "sv_SE");
+
+        //When
+        $movie = $imdb->getData();
+        $movie_se = $imdb_se->getData();
+
+        //Then
+        $this->assertSame("2004-10-03", $movie->release_date->normal);
+        $this->assertSame("2005-03-21", $movie_se->release_date->normal);
     }
 
 }

@@ -77,6 +77,26 @@ class GeneralTest extends PHPUnit_Framework_TestCase
         //When
         $imdb->toDataClass();
     }
+    
+    /**
+     * Negative test, no query data
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage No query
+     * 
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
+     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * 
+     * @return void
+     */
+    public function testSetRequest()
+    {
+        //Given
+        $imdb = new Movie_Datasource();
+        //When
+        $imdb->setRequest("");
+    }
 
 }
 ?>
