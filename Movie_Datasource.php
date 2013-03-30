@@ -115,7 +115,8 @@ class Movie_Datasource
         $this->params["timestamp"] = $_SERVER["REQUEST_TIME"];
 
         // Generate a signature
-        $sig = hash_hmac("sha1",
+        $sig = hash_hmac(
+            "sha1",
             $this->baseurl . $method . "?" . http_build_query($this->params),
             $this->params["apiKey"]
         );
