@@ -32,13 +32,12 @@
             <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
                        --jdepend-chart=${basedir}/build/pdepend/dependencies.svg
                        --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg
-                       --ignore=${basedir}/IMDb-PHP-API
                        ${source}"/>
         </exec>
     </target>
     <target description="Generate pmd.xml using PHPMD" name="phpmd">
         <exec executable="phpmd">
-            <arg line="${source} xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml --exclude ${basedir}/IMDb-PHP-API --strict"/>
+            <arg line="${source} xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml --strict"/>
         </exec>
     </target>
     <target description="Generate pmd-cpd.xml using PHPCPD" name="phpcpd">
@@ -53,7 +52,7 @@
     </target>
     <target description="Generate checkstyle.xml using PHP_CodeSniffer" name="phpcs">
         <exec executable="phpcs" output="/dev/null">
-            <arg line="--report=checkstyle --report-file=${basedir}/build/logs/checkstyle.xml --standard=PEAR --ignore=${basedir}/IMDb-PHP-API ${source}"/>
+            <arg line="--report=checkstyle --report-file=${basedir}/build/logs/checkstyle.xml --standard=PEAR ${source}"/>
         </exec>
     </target>
     <target description="Generate API documentation using PHPDocumentor" name="apigen">

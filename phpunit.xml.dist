@@ -27,7 +27,6 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">.</directory>
             <exclude>
-                <directory suffix=".php">IMDb-PHP-API</directory>
                 <directory suffix=".php">Tests</directory>
             </exclude>
         </whitelist>
