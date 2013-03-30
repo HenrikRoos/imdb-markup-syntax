@@ -125,6 +125,7 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Positive alternative test. Different release date in different countries
+     * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
@@ -138,8 +139,8 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"]);
-        $imdb_se = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"],
-            "sv_SE");
+        $imdb_se = new Movie_Datasource(
+            $GLOBALS["movieDatasourceData"]["tvserie"], "sv_SE");
 
         //When
         $movie = $imdb->getData();

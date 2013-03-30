@@ -101,9 +101,12 @@ class Movie_Datasource
      * Alternative find after persion id: <i>name/maindetails</i> or just simple
      * <i>find</i>
      * RFC 4646 language
+     * 
+     * @return void
      */
     public function setRequest($query, $locale = "en_US", $key = "tconst",
-        $method = "title/maindetails")
+        $method = "title/maindetails"
+    )
     {
         if (empty($query)) {
             throw new Runtime_Exception(null, "No query");
@@ -115,11 +118,12 @@ class Movie_Datasource
         // Generate a signature
         $sig = hash_hmac("sha1",
             $this->baseurl . $method . "?" . http_build_query($this->params),
-            $this->params["apiKey"]);
+            $this->params["apiKey"]
+        );
         $this->params["sig"] = "app1-" . $sig;
 
-        $this->request =
-            $this->baseurl . $method . "?" . http_build_query($this->params);
+        $this->request
+            = $this->baseurl . $method . "?" . http_build_query($this->params);
     }
 
     /**
