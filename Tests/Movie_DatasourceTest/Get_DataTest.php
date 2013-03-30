@@ -140,7 +140,8 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"]);
         $imdb_se = new Movie_Datasource(
-            $GLOBALS["movieDatasourceData"]["tvserie"], "sv_SE");
+            $GLOBALS["movieDatasourceData"]["tvserie"], "sv_SE"
+        );
 
         //When
         $movie = $imdb->getData();
