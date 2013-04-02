@@ -15,7 +15,7 @@
 
 namespace IMDb_Markup_Syntax;
 
-use IMDb;
+use Exception;
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 
@@ -43,24 +43,34 @@ class Tag_Processing
     /** @var string Regular expression for all imdb tags */
     public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
 
-    /** @var string Original content before this filter processing */
+    /** @var string Original content before filter processing */
     public $original_content;
 
+    /** @var string Replacement content after filter processing */
+    public $replacement_content;
+
     /**
-     * @var string Id on current movie.
+     * @var array Id on current movie.
      * <i>e.g http://www.imdb.com/title/tt0137523/ -> id = tt0137523</i>
      * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
+     * <code>$tconst_tag => array("[imdb:id(tt0137523)]", "tt0137523")</code>
      */
-    public $tconst;
+    public $tconst_tag = array();
+
+    /**
+     * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
+     * current content
+     * - <code>$imdb_tags[0] => array("[imdb:xxx]", "xxx")</code>
+     * - <code>$imdb_tags[1] => array("[imdb:yyy]", "yyy")</code>
+     * - <code>...</code>
+     */
+    public $imdb_tags = array();
 
     /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
     public $locale;
 
-    /** @var IMDb object IMDb:s data object */
+    /** @var object IMDb:s data object */
     public $data;
-
-    /** @var array of imdb tags. All imdb tags in current content */
-    public $imdb_tags = array();
 
     /**
      * Create an object
@@ -71,6 +81,7 @@ class Tag_Processing
     public function __construct($original_content, $locale = "en_US")
     {
         $this->original_content = $original_content;
+        $this->replacement_content = $original_content;
         $this->locale = $locale;
     }
 
@@ -92,14 +103,14 @@ class Tag_Processing
             throw new PCRE_Exception();
         }
         if (empty($match)) {
-            $this->tconst = null;
+            $this->tconst = array();
             return false;
         }
         $imdb = new Movie_Datasource($match[1], $this->locale);
         $this->data = new Markup_Data($imdb->getData());
-        $this->tconst = $this->data->getTconst();
+        $this->tconst_tag = $match;
 
-        return $this->tconst == true;
+        return $this->data->getTconst() == true;
     }
 
     /**
@@ -113,19 +124,58 @@ class Tag_Processing
     {
         $match = array();
         $isOk = @preg_match_all(
-                $this->imdb_tags_pattern, $this->original_content, $match
+            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
         }
-        $this->imdb_tags = $match[1];
-        return !empty($match[1]);
+        if (empty($match)) {
+            $this->imdb_tags = array();
+            return false;
+        }
+        $this->imdb_tags = $match;
+        return true;
+    }
+
+    /**
+     * Delete <b>[imdb:id(ttxxxxxxx)]</b> and replace <b>[imdb:xxx]</b> with imdb
+     * data in <b>replacement_content</b>.
+     * 
+     * @return boolean|int False if no id or tags is present or number of
+     * replacements performed 
+     */
+    public function tagsReplace()
+    {
+        if (empty($this->tconst_tag) || empty($this->imdb_tags)) {
+            return false;
+        }
+
+        //Delete [imdb:id(ttxxxxxxx)] in replacement_content
+        $count = 0;
+        $this->replacement_content =
+          str_replace($this->tconst_tag[0], "", $this->replacement_content, $count);
+
+        //Replace [imdb:xxx] with imdb data
+        $num = 0;
+        foreach ($this->imdb_tags as $imdb_tag) {
+            try {
+                $replace = $this->toDataString($imdb_tag[1]);
+            } catch (Exception $exc) {
+                $replace = $exc->getMessage();
+            }
+            $this->replacement_content =
+              str_replace($imdb_tag[0], $replace, $this->replacement_content, $num);
+            $count += $num;
+        }
+
+        return $count;
     }
 
     /**
      * Find imdb data for the tag name
      * 
      * @param string $tag Name of tag to get data for
+     * 
      * @return string|boolean Replacement text for the tag name
      */
     public function toDataString($tag)

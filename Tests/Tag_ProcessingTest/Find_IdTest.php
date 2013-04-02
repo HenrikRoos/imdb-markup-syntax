@@ -46,12 +46,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
-        $expected = "tt0137523";
+        $expected = array("[IMDb:id(tt0137523)]", "tt0137523");
 
         //When
         $obj = new Tag_Processing($original_content);
         $condition = $obj->findId();
-        $actual = $obj->tconst;
+        $actual = $obj->tconst_tag;
 
         //Then
         $this->assertTrue($condition);
@@ -71,12 +71,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["two_positive"];
-        $expected = "tt0102926";
+        $expected = array("[IMDb:id(tt0102926)]", "tt0102926");
 
         //When
         $obj = new Tag_Processing($original_content);
         $condition = $obj->findId();
-        $actual = $obj->tconst;
+        $actual = $obj->tconst_tag;
 
         //Then
         $this->assertTrue($condition);

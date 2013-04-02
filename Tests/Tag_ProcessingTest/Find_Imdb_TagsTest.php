@@ -49,13 +49,15 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
         $expectedCount = 1;
-        $expected = "title";
+        $expected = array(
+            array("[imdb:title]", "title")
+        );
 
         //When
         $obj = new Tag_Processing($original_content);
         $condition = $obj->findImdbTags();
         $haystack = $obj->imdb_tags;
-        $actual = $obj->imdb_tags[0];
+        $actual = $obj->imdb_tags;
 
         //Then
         $this->assertTrue($condition);
@@ -76,7 +78,10 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["two_positive"];
         $expectedCount = 2;
-        $expected = array("title", "year");
+        $expected = array(
+            array("[imdb:title]", "title"),
+            array("[IMDb:year]", "year")
+        );
 
         //When
         $obj = new Tag_Processing($original_content);

@@ -19,6 +19,7 @@ use PHPUnit_Framework_TestSuite;
 
 require_once dirname(__FILE__) . '/Tag_ProcessingTest/Find_IdTest.php';
 require_once dirname(__FILE__) . '/Tag_ProcessingTest/Find_Imdb_TagsTest.php';
+require_once dirname(__FILE__) . '/Tag_ProcessingTest/Tags_ReplaceTest.php';
 require_once dirname(__FILE__) . '/Tag_ProcessingTest/To_Data_StringTest.php';
 require_once 'PHPUnit/Autoload.php';
 
@@ -49,7 +50,7 @@ class Tag_ProcessingSuite extends PHPUnit_Framework_TestSuite
             "two_positive" => "Pellentesque viverra luctus est, vel bibendum arcu
                 suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
                 Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
-                [IMDb:id(tt0137523)]. Year: [imdb:year]",
+                [IMDb:id(tt0137523)]. Year: [IMDb:year]",
             "no_match" => "Pellentesque viverra luctus est, vel bibendum arcu
                 suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)]
                 Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523]
@@ -69,6 +70,7 @@ class Tag_ProcessingSuite extends PHPUnit_Framework_TestSuite
 
         $suite->addTestSuite($namespace . "\Find_IdTest");
         $suite->addTestSuite($namespace . "\Find_Imdb_TagsTest");
+        $suite->addTestSuite($namespace . "\Tags_ReplaceTest");
         $suite->addTestSuite($namespace . "\To_Data_StringTest");
 
         return $suite;
