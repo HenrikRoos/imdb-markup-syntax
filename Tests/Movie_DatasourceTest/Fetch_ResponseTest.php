@@ -52,10 +52,12 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testCurlInitException()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["nodata"]);
-        $imdb->request = array();
+        $tconst = $GLOBALS["movieDatasourceData"]["nodata"];
+        $request = array();
 
         //When
+        $imdb = new Movie_Datasource($tconst);
+        $imdb->request = $request;
         $imdb->fetchResponse();
     }
 
@@ -75,10 +77,12 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testIncorrectRequest()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["nodata"]);
-        $imdb->request = "a b c";
+        $tconst = $GLOBALS["movieDatasourceData"]["nodata"];
+        $request = "a b c";
 
         //When
+        $imdb = new Movie_Datasource($tconst);
+        $imdb->request = $request;
         $imdb->fetchResponse();
     }
 
@@ -98,11 +102,12 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testTimeout()
     {
         //Given
-        $imdb = new Movie_Datasource(
-            $GLOBALS["movieDatasourceData"]["movie"], null, 400
-        );
+        $tconst = $GLOBALS["movieDatasourceData"]["movie"];
+        $locale = null;
+        $timeout = 400;
 
         //When
+        $imdb = new Movie_Datasource($tconst, $locale, $timeout);
         $imdb->fetchResponse();
     }
 

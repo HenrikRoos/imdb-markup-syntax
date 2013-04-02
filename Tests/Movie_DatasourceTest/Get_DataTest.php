@@ -48,11 +48,16 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     public function testMovie()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["movie"]);
+        $tconst = $GLOBALS["movieDatasourceData"]["movie"];
+        $expected = "Fight Club";
+
         //When
-        $movie = $imdb->getData();
+        $imdb = new Movie_Datasource($tconst);
+        $data = $imdb->getData();
+        $actual = $data->title;
+
         //Then
-        $this->assertSame("Fight Club", $movie->title);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -69,11 +74,16 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     public function testTvSerie()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"]);
+        $tconst = $GLOBALS["movieDatasourceData"]["tvserie"];
+        $expected = "Boston Legal";
+
         //When
-        $movie = $imdb->getData();
+        $imdb = new Movie_Datasource($tconst);
+        $data = $imdb->getData();
+        $actual = $data->title;
+
         //Then
-        $this->assertSame("Boston Legal", $movie->title);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -90,13 +100,16 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     public function testVideoGame()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["videogame"]);
+        $tconst = $GLOBALS["movieDatasourceData"]["videogame"];
+        $expected = "Lego Pirates of the Caribbean: The Video Game";
+
         //When
-        $movie = $imdb->getData();
+        $imdb = new Movie_Datasource($tconst);
+        $data = $imdb->getData();
+        $actual = $data->title;
+
         //Then
-        $this->assertSame(
-            "Lego Pirates of the Caribbean: The Video Game", $movie->title
-        );
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -118,8 +131,10 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     public function testNoData()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["nodata"]);
+        $tconst = $GLOBALS["movieDatasourceData"]["nodata"];
+
         //When
+        $imdb = new Movie_Datasource($tconst);
         $imdb->getData();
     }
 
@@ -138,18 +153,24 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     public function testAlternativeLocale()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["tvserie"]);
-        $imdb_se = new Movie_Datasource(
-            $GLOBALS["movieDatasourceData"]["tvserie"], "sv_SE"
-        );
+        $tconst = $GLOBALS["movieDatasourceData"]["tvserie"];
+        $locale = "sv_SE";
+        $expected = "2004-10-03";
+        $expected_se = "2005-03-21";
 
         //When
-        $movie = $imdb->getData();
-        $movie_se = $imdb_se->getData();
+        $imdb = new Movie_Datasource($tconst);
+        $imdb_se = new Movie_Datasource($tconst, $locale);
+
+        $data = $imdb->getData();
+        $data_se = $imdb_se->getData();
+
+        $actual = $data->release_date->normal;
+        $actual_se = $data_se->release_date->normal;
 
         //Then
-        $this->assertSame("2004-10-03", $movie->release_date->normal);
-        $this->assertSame("2005-03-21", $movie_se->release_date->normal);
+        $this->assertSame($expected, $actual);
+        $this->assertSame($expected_se, $actual_se);
     }
 
 }

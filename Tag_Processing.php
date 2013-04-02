@@ -17,8 +17,12 @@ namespace IMDb_Markup_Syntax;
 
 use IMDb;
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
+use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 
 require_once dirname(__FILE__) . '/Exceptions/PCRE_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
+require_once dirname(__FILE__) . '/Movie_Datasource.php';
+require_once dirname(__FILE__) . '/Markup_Data.php';
 
 /**
  * Find and replace imdb tags to movie data from IMDb
@@ -49,6 +53,9 @@ class Tag_Processing
      */
     public $tconst;
 
+    /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
+    public $locale;
+
     /** @var IMDb object IMDb:s data object */
     public $data;
 
@@ -59,10 +66,12 @@ class Tag_Processing
      * Create an object
      * 
      * @param string $original_content Blog post content
+     * @param string $locale           Localization for data, defualt <i>en_US</i>
      */
-    public function __construct($original_content)
+    public function __construct($original_content, $locale = "en_US")
     {
         $this->original_content = $original_content;
+        $this->locale = $locale;
     }
 
     /**
@@ -86,8 +95,11 @@ class Tag_Processing
             $this->tconst = null;
             return false;
         }
-        $this->tconst = $match[1];
-        return true;
+        $imdb = new Movie_Datasource($match[1], $this->locale);
+        $this->data = new Markup_Data($imdb->getData());
+        $this->tconst = $this->data->getTconst();
+
+        return $this->tconst == true;
     }
 
     /**
@@ -101,13 +113,31 @@ class Tag_Processing
     {
         $match = array();
         $isOk = @preg_match_all(
-            $this->imdb_tags_pattern, $this->original_content, $match
+                $this->imdb_tags_pattern, $this->original_content, $match
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
         }
         $this->imdb_tags = $match[1];
         return !empty($match[1]);
+    }
+
+    /**
+     * Find imdb data for the tag name
+     * 
+     * @param string $tag Name of tag to get data for
+     * @return string|boolean Replacement text for the tag name
+     */
+    public function toDataString($tag)
+    {
+        if (@preg_match("/^[a-z0-9_]+$/i", $tag) == 0) {
+            throw new Runtime_Exception(null, "Invalid function name");
+        }
+        $fname = "get" . ucfirst(strtolower($tag));
+        if (!method_exists($this->data, $fname)) {
+            throw new Runtime_Exception(null, "Function not exists : {$fname}");
+        }
+        return $this->data->$fname();
     }
 
 }

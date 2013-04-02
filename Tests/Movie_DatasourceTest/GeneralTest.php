@@ -47,11 +47,11 @@ class GeneralTest extends PHPUnit_Framework_TestCase
      */
     public function testIncorrectId()
     {
+        //Given
+        $tconst = $GLOBALS["movieDatasourceData"]["nodata"];
+
         //When
-        new Movie_Datasource(
-            //Given
-            $GLOBALS["movieDatasourceData"]["incorrect"]
-        );
+        new Movie_Datasource($tconst);
     }
 
     /**
@@ -70,14 +70,15 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     public function testToDataClassJsonException()
     {
         //Given
-        $imdb = new Movie_Datasource($GLOBALS["movieDatasourceData"]["movie"]);
-        $imdb->fetchResponse();
-        $imdb->response .= "a";
+        $tconst = $GLOBALS["movieDatasourceData"]["movie"];
 
         //When
+        $imdb = new Movie_Datasource($tconst);
+        $imdb->fetchResponse();
+        $imdb->response .= "a";
         $imdb->toDataClass();
     }
-    
+
     /**
      * Negative test, no query data
      * 
@@ -99,4 +100,5 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     }
 
 }
+
 ?>

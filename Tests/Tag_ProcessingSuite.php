@@ -19,6 +19,7 @@ use PHPUnit_Framework_TestSuite;
 
 require_once dirname(__FILE__) . '/Tag_ProcessingTest/Find_IdTest.php';
 require_once dirname(__FILE__) . '/Tag_ProcessingTest/Find_Imdb_TagsTest.php';
+require_once dirname(__FILE__) . '/Tag_ProcessingTest/To_Data_StringTest.php';
 require_once 'PHPUnit/Autoload.php';
 
 /**
@@ -64,10 +65,12 @@ class Tag_ProcessingSuite extends PHPUnit_Framework_TestSuite
     public static function suite()
     {
         $suite = new self();
-        $suite->addTestSuite("IMDb_Markup_Syntax\Tag_ProcessingTest\Find_IdTest");
-        $suite->addTestSuite(
-            "IMDb_Markup_Syntax\Tag_ProcessingTest\Find_Imdb_TagsTest"
-        );
+        $namespace = "IMDb_Markup_Syntax\Tag_ProcessingTest";
+
+        $suite->addTestSuite($namespace . "\Find_IdTest");
+        $suite->addTestSuite($namespace . "\Find_Imdb_TagsTest");
+        $suite->addTestSuite($namespace . "\To_Data_StringTest");
+
         return $suite;
     }
 

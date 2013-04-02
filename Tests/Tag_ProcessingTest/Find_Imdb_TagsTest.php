@@ -46,16 +46,21 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
      */
     public function testOnePositive()
     {
+        //Given
+        $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
+        $expectedCount = 1;
+        $expected = "title";
+
         //When
-        $obj = new Tag_Processing(
-            //Given
-            $GLOBALS['tagProcessingData']["one_positive"]
-        );
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $haystack = $obj->imdb_tags;
+        $actual = $obj->imdb_tags[0];
 
         //Then
-        $this->assertTrue($obj->findImdbTags(), "Not found = not good");
-        $this->assertCount(1, $obj->imdb_tags);
-        $this->assertSame("title", $obj->imdb_tags[0]);
+        $this->assertTrue($condition);
+        $this->assertCount($expectedCount, $haystack);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -68,17 +73,21 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
      */
     public function testTwoPositive()
     {
+        //Given
+        $original_content = $GLOBALS["tagProcessingData"]["two_positive"];
+        $expectedCount = 2;
+        $expected = array("title", "year");
+
         //When
-        $obj = new Tag_Processing(
-            //Given
-            $GLOBALS['tagProcessingData']["two_positive"]
-        );
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $haystack = $obj->imdb_tags;
+        $actual = $obj->imdb_tags;
 
         //Then
-        $this->assertTrue($obj->findImdbTags(), "Not found = not good");
-        $this->assertCount(2, $obj->imdb_tags);
-        $this->assertSame("title", $obj->imdb_tags[0]);
-        $this->assertSame("year", $obj->imdb_tags[1]);
+        $this->assertTrue($condition);
+        $this->assertCount($expectedCount, $haystack);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -91,15 +100,18 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
      */
     public function testNoMatch()
     {
+        //Given
+        $original_content = $GLOBALS["tagProcessingData"]["no_match"];
+        $expectedCount = 0;
+
         //When
-        $obj = new Tag_Processing(
-            //Given
-            $GLOBALS['tagProcessingData']["no_match"]
-        );
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $haystack = $obj->imdb_tags;
 
         //Then
-        $this->assertFalse($obj->findImdbTags(), "Found = not good");
-        $this->assertCount(0, $obj->imdb_tags);
+        $this->assertFalse($condition);
+        $this->assertCount($expectedCount, $haystack);
     }
 
     /**
@@ -119,11 +131,13 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         //When
         $obj = new Tag_Processing($testdata);
         $obj2 = new Tag_Processing($testdata2);
+        $condition = $obj->findImdbTags();
+        $condition2 = $obj2->findImdbTags();
 
         //Then
-        $this->assertFalse($obj->findImdbTags(), "tags is found, not good");
+        $this->assertFalse($condition);
         $this->assertEmpty($obj->imdb_tags);
-        $this->assertFalse($obj2->findImdbTags(), "tags is found, not good");
+        $this->assertFalse($condition2);
         $this->assertEmpty($obj2->imdb_tags);
     }
 
@@ -141,16 +155,17 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
      */
     public function testPregError()
     {
-        //When
-        $obj = new Tag_Processing(
-            //Given
-            "foobar foobar foobar"
-        );
         //Given
-        $obj->imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $original_content = "foobar foobar foobar";
+        $imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->imdb_tags_pattern = $imdb_tags_pattern;
+        $condition = $obj->findImdbTags();
 
         //Then
-        $this->assertFalse($obj->findImdbTags(), "Id is found, not good");
+        $this->assertFalse($condition);
     }
 
     /**
@@ -167,16 +182,17 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
      */
     public function testErrorControlOperators()
     {
-        //When
-        $obj = new Tag_Processing(
-            //Given
-            "foobar foobar foobar"
-        );
         //Given
-        $obj->imdb_tags_pattern = "/(/";
+        $original_content = "foobar foobar foobar";
+        $imdb_tags_pattern = "/(/";
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->imdb_tags_pattern = $imdb_tags_pattern;
+        $condition = $obj->findImdbTags();
 
         //Then
-        $this->assertFalse($obj->findImdbTags(), "imdb is found, not good");
+        $this->assertFalse($condition);
     }
 
 }
