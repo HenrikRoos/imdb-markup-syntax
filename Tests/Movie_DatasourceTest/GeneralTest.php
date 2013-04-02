@@ -48,7 +48,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     public function testIncorrectId()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["nodata"];
+        $tconst = $GLOBALS["movieDatasourceData"]["incorrect"];
 
         //When
         new Movie_Datasource($tconst);
@@ -95,8 +95,10 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $imdb = new Movie_Datasource();
+        $request = "";
+
         //When
-        $imdb->setRequest("");
+        $imdb->setRequest($request);
     }
 
 }
