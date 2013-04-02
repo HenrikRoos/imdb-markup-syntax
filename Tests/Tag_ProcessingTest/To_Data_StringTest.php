@@ -100,7 +100,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
-        $tag = "abc";
+        $tag = "is_null";
 
         //When
         $obj = new Tag_Processing($original_content);
