@@ -45,7 +45,7 @@ class Tag_Processing_Help extends Tag_Processing
      */
     public function toDataString($tag)
     {
-        parent::toDataString($tag);
+        return parent::toDataString($tag);
     }
 
 }
