@@ -36,6 +36,11 @@ require_once dirname(__FILE__) . '/../../Tag_Processing.php';
 class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 {
 
+    /** @var string Simple positive testdata with one id and one imdb tag */
+    public $positive_testdata = "Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. Title:
+                [imdb:title]";
+
     /**
      * Replace one imdb tag and delete mandatory id. Positive test
      *
@@ -47,9 +52,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public function testOnePositive()
     {
         //Given
-        $original_content = "Pellentesque viverra luctus est, vel bibendum arcu
-                suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. Title:
-                [imdb:title]";
+        $original_content = $this->positive_testdata;
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
                 suscipit quis. ÖÄÅ öäå Quisque congue. Title:
                 Fight Club";
@@ -57,26 +60,38 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 
         //When
         $obj = new Tag_Processing($original_content);
-        $findId_before = $obj->findId();
-        $findImdbTags_before = $obj->findImdbTags();
+        $obj->findId();
+        $obj->findImdbTags();
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->replacement_content;
-        
-        $obj->original_content = $obj->replacement_content;
-        $findId_after = $obj->findId();
-        $findImdbTags_after = $obj->findImdbTags();
-        $actual_count_after = $obj->tagsReplace();
-        
+
         //Then
-        $this->assertTrue($findId_before);
-        $this->assertTrue($findImdbTags_before);
         $this->assertSame($expected_count, $actual_count);
         $this->assertSame($expected_content, $actual_content);
-        
-        $this->assertFalse($findId_after);
-        $this->assertFalse($findImdbTags_after);
-        $this->assertFalse($actual_count_after);
+    }
+
+    /**
+     * Test when no id or imdb tags is empty. Alternative positive test
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * 
+     * @return void
+     */
+    public function testEmpty()
+    {
+        //Given
+        $original_content = $this->positive_testdata;
+        $expected = false;
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $actual = $obj->tagsReplace();
+
+        //Then
+        $this->assertSame($expected, $actual);
     }
 
 }
+
 ?>

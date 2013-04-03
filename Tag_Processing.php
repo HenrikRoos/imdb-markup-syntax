@@ -53,16 +53,16 @@ class Tag_Processing
      * @var array Id on current movie.
      * <i>e.g http://www.imdb.com/title/tt0137523/ -> id = tt0137523</i>
      * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
-     * <code>$tconst_tag => array("[imdb:id(tt0137523)]", "tt0137523")</code>
+     * $tconst_tag => array("[imdb:id(tt0137523)]", "tt0137523")
      */
     public $tconst_tag = array();
 
     /**
      * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
      * current content
-     * - <code>$imdb_tags[0] => array("[imdb:xxx]", "xxx")</code>
-     * - <code>$imdb_tags[1] => array("[imdb:yyy]", "yyy")</code>
-     * - <code>...</code>
+     * - $imdb_tags[0] => array("[imdb:xxx]", "xxx")
+     * - $imdb_tags[1] => array("[imdb:yyy]", "yyy")
+     * - ...
      */
     public $imdb_tags = array();
 
@@ -124,7 +124,8 @@ class Tag_Processing
     {
         $match = array();
         $isOk = @preg_match_all(
-            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
+                $this->imdb_tags_pattern, $this->original_content, $match,
+                PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
@@ -153,7 +154,7 @@ class Tag_Processing
         //Delete [imdb:id(ttxxxxxxx)] in replacement_content
         $count = 0;
         $this->replacement_content = str_replace(
-          $this->tconst_tag[0], "", $this->replacement_content, $count
+            $this->tconst_tag[0], "", $this->replacement_content, $count
         );
 
         //Replace [imdb:xxx] with imdb data
@@ -164,8 +165,9 @@ class Tag_Processing
             } catch (Exception $exc) {
                 $replace = $exc->getMessage();
             }
-            $this->replacement_content
-              = str_replace($imdb_tag[0], $replace, $this->replacement_content, $num);
+            $this->replacement_content = str_replace(
+                $imdb_tag[0], $replace, $this->replacement_content, $num
+            );
             $count += $num;
         }
 
@@ -179,7 +181,7 @@ class Tag_Processing
      * 
      * @return string|boolean Replacement text for the tag name
      */
-    public function toDataString($tag)
+    protected function toDataString($tag)
     {
         if (@preg_match("/^[a-z0-9_]+$/i", $tag) == 0) {
             throw new Runtime_Exception(null, "Invalid function name");
