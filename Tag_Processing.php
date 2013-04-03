@@ -152,8 +152,8 @@ class Tag_Processing
 
         //Delete [imdb:id(ttxxxxxxx)] in replacement_content
         $count = 0;
-        $this->replacement_content =
-          str_replace($this->tconst_tag[0], "", $this->replacement_content, $count);
+        $this->replacement_content
+          = str_replace($this->tconst_tag[0], "", $this->replacement_content, $count);
 
         //Replace [imdb:xxx] with imdb data
         $num = 0;
@@ -163,8 +163,8 @@ class Tag_Processing
             } catch (Exception $exc) {
                 $replace = $exc->getMessage();
             }
-            $this->replacement_content =
-              str_replace($imdb_tag[0], $replace, $this->replacement_content, $num);
+            $this->replacement_content
+              = str_replace($imdb_tag[0], $replace, $this->replacement_content, $num);
             $count += $num;
         }
 
