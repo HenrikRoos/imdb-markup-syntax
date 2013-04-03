@@ -152,8 +152,9 @@ class Tag_Processing
 
         //Delete [imdb:id(ttxxxxxxx)] in replacement_content
         $count = 0;
-        $this->replacement_content
-          = str_replace($this->tconst_tag[0], "", $this->replacement_content, $count);
+        $this->replacement_content = str_replace(
+          $this->tconst_tag[0], "", $this->replacement_content, $count
+        );
 
         //Replace [imdb:xxx] with imdb data
         $num = 0;
