@@ -16,11 +16,10 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
-use IMDb_Markup_Syntax\Tag_Processing;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../../Tag_Processing.php';
+require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method toDataString in Tag_Processing
@@ -53,7 +52,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         $expected = "1999-12-25";
 
         //When
-        $obj = new Tag_Processing($original_content, $locale);
+        $obj = new Tag_Processing_Help($original_content, $locale);
         $condition = $obj->findId();
         $actual = $obj->toDataString($tag);
 
@@ -65,7 +64,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     /**
      * No maching function to the tags.
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedException        Runtime_Exception
      * @expectedExceptionMessage Invalid function name
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
@@ -80,7 +79,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         $tag = "öäå";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->findId();
         $obj->toDataString($tag);
     }
@@ -103,7 +102,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         $tag = "is_null";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->findId();
         $obj->toDataString($tag);
     }
@@ -124,7 +123,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         $expected = "Fight Club";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findId();
         $actual = $obj->toDataString($tag);
 
