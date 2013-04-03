@@ -124,8 +124,7 @@ class Tag_Processing
     {
         $match = array();
         $isOk = @preg_match_all(
-                $this->imdb_tags_pattern, $this->original_content, $match,
-                PREG_SET_ORDER
+            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
