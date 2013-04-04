@@ -37,12 +37,12 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var string Simple positive testdata with one id and one imdb tag */
-    public $positive_testdata = "Pellentesque viverra luctus est, vel bibendum arcu
+    public $positive_data = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. Title:
             [imdb:title]";
 
     /** @var string Simple positive testdata with one id and one imdb tag */
-    public $positive_mix_testdata = "Pellentesque viverra luctus est, vel bibendum
+    public $positive_mix_data = "Pellentesque viverra luctus est, vel bibendum
             arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
             Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
             [IMDb:id(tt0137523)]. Year: [IMDb:year] [imdb:date] [imdb:cast]
@@ -60,7 +60,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public function testOnePositive()
     {
         //Given
-        $original_content = $this->positive_testdata;
+        $original_content = $this->positive_data;
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue. Title:
             Fight Club";
@@ -89,9 +89,20 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public function testMixedPositive()
     {
         //Given
-        $original_content = $this->positive_mix_testdata;
-        $expected_content = "???";
-        $expected_count = 7;
+        $original_content = $this->positive_mix_data;
+        $expected_content = "Pellentesque viverra luctus est, vel bibendum
+            arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
+            Quisque congue  Title: The Silence of the Lambs
+            [IMDb:id(tt0137523)]. Year: [Tag year not exists] 1991-02-14 "
+            . "<a href=\"http://www.imdb.com/name/nm0000149\">Jodie Foster</a> "
+            . "Clarice Starling\n<a href=\"http://www.imdb.com/name/nm0000164\">"
+            . "Anthony Hopkins</a> Dr. Hannibal Lecter\n"
+            . "<a href=\"http://www.imdb.com/name/nm0095029\">Lawrence A. Bonney</a>"
+            . " FBI Instructor\n<a href=\"http://www.imdb.com/name/nm0501435\">"
+            . "Kasi Lemmons</a> Ardelia Mapp
+            The Silence of the Lambs [ImDB: writer ] [imdb:$$]
+            [imdb:qwsazxcderrfvbgtyhnmjujdjhfksjhdfkjshdkfjhsakdjfhksjadhfkjsadf]";
+        $expected_count = 6;
 
         //When
         $obj = new Tag_Processing($original_content);
@@ -116,7 +127,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public function testEmpty()
     {
         //Given
-        $original_content = $this->positive_testdata;
+        $original_content = $this->positive_data;
         $expected = false;
 
         //When
