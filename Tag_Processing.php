@@ -38,10 +38,10 @@ class Tag_Processing
 {
 
     /** @var string Regular expression for find id */
-    public $tconst_pattern = "/\[imdb\:id\((tt\d+)\)\]/i";
+    public $tconst_pattern = "/\[imdb\:id\((tt\d{7,20})\)\]/i";
 
     /** @var string Regular expression for all imdb tags */
-    public $imdb_tags_pattern = "/\[imdb\:([a-z0-9]+)\]/i";
+    public $imdb_tags_pattern = "/\[imdb\:([a-z0-9_]{1,40})\]/i";
 
     /** @var string Original content before filter processing */
     public $original_content;
@@ -187,7 +187,7 @@ class Tag_Processing
         }
         $fname = "get" . ucfirst(strtolower($tag));
         if (!method_exists($this->data, $fname)) {
-            throw new Runtime_Exception(null, "Function not exists : {$fname}");
+            throw new Runtime_Exception(null, "[Tag {$tag} not exists]");
         }
         return $this->data->$fname();
     }

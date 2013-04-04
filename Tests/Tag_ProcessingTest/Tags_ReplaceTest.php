@@ -38,8 +38,16 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 
     /** @var string Simple positive testdata with one id and one imdb tag */
     public $positive_testdata = "Pellentesque viverra luctus est, vel bibendum arcu
-                suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. Title:
-                [imdb:title]";
+            suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. Title:
+            [imdb:title]";
+
+    /** @var string Simple positive testdata with one id and one imdb tag */
+    public $positive_mix_testdata = "Pellentesque viverra luctus est, vel bibendum
+            arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
+            Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
+            [IMDb:id(tt0137523)]. Year: [IMDb:year] [imdb:date] [imdb:cast]
+            [imdb:title] [ImDB: writer ] [imdb:$$]
+            [imdb:qwsazxcderrfvbgtyhnmjujdjhfksjhdfkjshdkfjhsakdjfhksjadhfkjsadf]";
 
     /**
      * Replace one imdb tag and delete mandatory id. Positive test
@@ -54,9 +62,36 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $this->positive_testdata;
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
-                suscipit quis. ÖÄÅ öäå Quisque congue. Title:
-                Fight Club";
+            suscipit quis. ÖÄÅ öäå Quisque congue. Title:
+            Fight Club";
         $expected_count = 2;
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->findId();
+        $obj->findImdbTags();
+        $actual_count = $obj->tagsReplace();
+        $actual_content = $obj->replacement_content;
+
+        //Then
+        $this->assertSame($expected_count, $actual_count);
+        $this->assertSame($expected_content, $actual_content);
+    }
+
+    /**
+     * Replace one imdb tag and delete mandatory id. Positive test
+     *
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace 
+     * 
+     * @return void
+     */
+    public function testMixedPositive()
+    {
+        //Given
+        $original_content = $this->positive_mix_testdata;
+        $expected_content = "???";
+        $expected_count = 7;
 
         //When
         $obj = new Tag_Processing($original_content);

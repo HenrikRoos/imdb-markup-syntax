@@ -96,6 +96,104 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Negative test: Under min length of id. <b>[a-z0-9]{0}</b>
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * 
+     * @return void
+     */
+    public function testMinNegative()
+    {
+        //Given
+        $original_content = "[imdb:]";
+        $expected = array();
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $actual = $obj->imdb_tags;
+
+        //Then
+        $this->assertFalse($condition);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Min length of id. <b>[a-z0-9]{1}</b>
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * 
+     * @return void
+     */
+    public function testMinPositive()
+    {
+        //Given
+        $original_content = "[imdb:a]";
+        $expected = array(array("[imdb:a]", "a"));
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $actual = $obj->imdb_tags;
+
+        //Then
+        $this->assertTrue($condition);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Min length of id. <b>[a-z0-9]{40}</b>
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * 
+     * @return void
+     */
+    public function testMaxPositive()
+    {
+        //Given
+        $original_content = "[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]";
+        $expected = array(array("[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]",
+            "abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_"
+        ));
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $actual = $obj->imdb_tags;
+
+        //Then
+        $this->assertTrue($condition);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Negative test: Under min length of id. <b>[a-z0-9]{41}</b>
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * 
+     * @return void
+     */
+    public function testMaxNegative()
+    {
+        //Given
+        $original_content = "[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_a]";
+        $expected = array();
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findImdbTags();
+        $actual = $obj->imdb_tags;
+
+        //Then
+        $this->assertFalse($condition);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * Find zero tag. Alternative test
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags

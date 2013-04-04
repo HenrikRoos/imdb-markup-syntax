@@ -84,6 +84,96 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Negative test: Under min length of id. <b>tt\d{6}</b>
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * 
+     * @return void
+     */
+    public function testMinNegative()
+    {
+        //Given
+        $original_content = "[IMDb:id(tt999999)]";
+        $expected = array();
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findId();
+        $actual = $obj->tconst_tag;
+
+        //Then
+        $this->assertFalse($condition);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Min length of id. <b>tt\d{7}</b>
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage No data for this title id
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * 
+     * @return void
+     */
+    public function testMinPositive()
+    {
+        //Given
+        $original_content = "[IMDb:id(tt0000000)]";
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->findId();
+    }
+
+    /**
+     * Positive test: Min length of id. <b>tt\d{20}</b>
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage No data for this title id
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * 
+     * @return void
+     */
+    public function testMaxPositive()
+    {
+        //Given
+        $original_content = "[IMDb:id(tt99999999999999999999)]";
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->findId();
+    }
+
+    /**
+     * Negative test: Under min length of id. <b>tt\d{21}</b>
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * 
+     * @return void
+     */
+    public function testMaxNegative()
+    {
+        //Given
+        $original_content = "[IMDb:id(tt000000000000000000000)]";
+        $expected = array();
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $condition = $obj->findId();
+        $actual = $obj->tconst_tag;
+
+        //Then
+        $this->assertFalse($condition);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * No correct [IMDb:id(xxx)] tags. Alternative test. id not set
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct

@@ -88,7 +88,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
      * No maching function to the tags.
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Function not exists
+     * @expectedExceptionMessage [Tag is_null not exists]
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
