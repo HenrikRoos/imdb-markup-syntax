@@ -81,8 +81,60 @@ class Tag_Processing
     public function __construct($original_content, $locale = "en_US")
     {
         $this->original_content = $original_content;
-        $this->replacement_content = $original_content;
         $this->locale = $locale;
+    }
+
+    /**
+     * Delete **[imdb:id(ttxxxxxxx)]** and replace **[imdb:xxx]** with imdb
+     * data in **replacement_content**.
+     * 1) Find first [imdb:id(ttxxxxxxx)] tag in content
+     *  a) If not found then return false .{color:crimson}
+     * 2) Get data from IMDb API
+     *  a) If no data then throw an Exception, catched by this .{color:crimson}
+     *     method and replace imdb:id tag widh error message .{color:crimson}
+     * 3) Find all imdb data tags and replace tags with imdb data
+     *  a) If no data found then false usage as replaced text .{color:darkorange}
+     *  b) If Exception then getMessage() usage as replaced text .{color:crimson}
+     * 
+     * @return boolean|int False if no id or tags is present or number of
+     * replacements performed 
+     */
+    public function tagsReplace()
+    {
+        $this->replacement_content = $this->original_content;
+        try {
+            if (!$this->findId()) {
+                return false;
+            }
+            //Nice id is found, use it
+            $replaceId = $this->tconst_tag[0];
+            //Try parse imdb tags
+            findImdbTags();
+        } catch (Exception $exc) {
+            $replaceId = $exc->getMessage();
+        }
+
+        //Delete [imdb:id(ttxxxxxxx)] in replacement_content
+        $count = 0;
+        $this->replacement_content = str_replace(
+            $replaceId, "", $this->replacement_content, $count
+        );
+
+        //Replace [imdb:xxx] with imdb data
+        $num = 0;
+        foreach ($this->imdb_tags as $imdb_tag) {
+            try {
+                $replace = $this->toDataString($imdb_tag[1]);
+            } catch (Exception $exc) {
+                $replace = $exc->getMessage();
+            }
+            $this->replacement_content = str_replace(
+                $imdb_tag[0], $replace, $this->replacement_content, $num
+            );
+            $count += $num;
+        }
+
+        return $count;
     }
 
     /**
@@ -135,42 +187,6 @@ class Tag_Processing
         }
         $this->imdb_tags = $match;
         return true;
-    }
-
-    /**
-     * Delete <b>[imdb:id(ttxxxxxxx)]</b> and replace <b>[imdb:xxx]</b> with imdb
-     * data in <b>replacement_content</b>.
-     * 
-     * @return boolean|int False if no id or tags is present or number of
-     * replacements performed 
-     */
-    public function tagsReplace()
-    {
-        if (empty($this->tconst_tag) || empty($this->imdb_tags)) {
-            return false;
-        }
-
-        //Delete [imdb:id(ttxxxxxxx)] in replacement_content
-        $count = 0;
-        $this->replacement_content = str_replace(
-            $this->tconst_tag[0], "", $this->replacement_content, $count
-        );
-
-        //Replace [imdb:xxx] with imdb data
-        $num = 0;
-        foreach ($this->imdb_tags as $imdb_tag) {
-            try {
-                $replace = $this->toDataString($imdb_tag[1]);
-            } catch (Exception $exc) {
-                $replace = $exc->getMessage();
-            }
-            $this->replacement_content = str_replace(
-                $imdb_tag[0], $replace, $this->replacement_content, $num
-            );
-            $count += $num;
-        }
-
-        return $count;
     }
 
     /**
