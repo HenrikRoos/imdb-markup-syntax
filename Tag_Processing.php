@@ -85,8 +85,8 @@ class Tag_Processing
     }
 
     /**
-     * Delete **[imdb:id(ttxxxxxxx)]** and replace **[imdb:xxx]** with imdb
-     * data in **replacement_content**.
+     * Replace **[imdb:id(ttxxxxxxx)]** and **[imdb:xxx]** with imdb data in
+     * **replacement_content**.
      * 1) Find first [imdb:id(ttxxxxxxx)] tag in content
      *  a) If not found then return false .{color:crimson}
      * 2) Get data from IMDb API
@@ -106,15 +106,15 @@ class Tag_Processing
             if (!$this->findId()) {
                 return false;
             }
-            //Nice id is found, use it
+            //Nice, id is found, use it
             $replaceId = $this->tconst_tag[0];
             //Try parse imdb tags
-            findImdbTags();
+            $this->findImdbTags();
         } catch (Exception $exc) {
             $replaceId = $exc->getMessage();
         }
 
-        //Delete [imdb:id(ttxxxxxxx)] in replacement_content
+        //Replace [imdb:id(ttxxxxxxx)] in replacement_content with $replaceId
         $count = 0;
         $this->replacement_content = str_replace(
             $replaceId, "", $this->replacement_content, $count
