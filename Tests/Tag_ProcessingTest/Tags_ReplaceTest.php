@@ -127,7 +127,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public function testEmpty()
     {
         //Given
-        $original_content = $this->positive_data;
+        $original_content = $GLOBALS["tagProcessingData"]["no_match"];
         $expected = false;
 
         //When
