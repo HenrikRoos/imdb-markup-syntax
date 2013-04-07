@@ -74,8 +74,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $actual_content = $obj->replacement_content;
 
         //Then
-        $this->assertSame($expected_count, $actual_count);
         $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
     }
 
     /**
@@ -112,8 +112,60 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $actual_content = $obj->replacement_content;
 
         //Then
-        $this->assertSame($expected_count, $actual_count);
         $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
+    }
+
+    /**
+     * No data for this title id. Alternative test.
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * 
+     * @return void
+     */
+    public function testNoIdMatch()
+    {
+        //Given
+        $original_content = "Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)].";
+        $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque congue[No imdb tags found].";
+        $expected_count = 1;
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $actual_count = $obj->tagsReplace();
+        $actual_content = $obj->replacement_content;
+
+        //Then
+        $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
+    }
+    
+        /**
+     * No imdb tags just id. Alternative test.
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * 
+     * @return void
+     */
+    public function testNoImdbMatch()
+    {
+        //Given
+        $original_content = "Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523]
+                [IMDb:id:(0137523)] [IMDb:id(tt)]";
+        $expected = false;
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $actual = $obj->tagsReplace();
+
+        //Then
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -127,7 +179,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public function testEmpty()
     {
         //Given
-        $original_content = $GLOBALS["tagProcessingData"]["no_match"];
+        $original_content = "";
         $expected = false;
 
         //When
@@ -136,6 +188,91 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * PCRE Exception test. Alternative test.
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * 
+     * @return void
+     */
+    public function testPregError()
+    {
+        //Given
+        $original_content = $this->positive_data;
+        $tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque "
+            . "congue[PREG_BACKTRACK_LIMIT_ERROR(tt0137523)]. Title:
+            [imdb:title]";
+        $expected_count = 1;
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->tconst_pattern = $tconst_pattern;
+        $actual_count = $obj->tagsReplace();
+        $actual_content = $obj->replacement_content;
+
+        //Then
+        $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
+    }
+    
+        /**
+     * PCRE Exception test with no imdb:id tags. Alternative test.
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * 
+     * @return void
+     */
+    public function testPregErrorNoMatch()
+    {
+        //Given
+        $original_content = "Pellentesque viverra luctus est";
+        $tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $expected_content = "Pellentesque viverra luctus est";
+        $expected_count = 0;
+
+        //When
+        $obj = new Tag_Processing($original_content);
+        $obj->tconst_pattern = $tconst_pattern;
+        $actual_count = $obj->tagsReplace();
+        $actual_content = $obj->replacement_content;
+
+        //Then
+        $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
+    }
+
+    /**
+     * No data for this title id. Alternative test.
+     * 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * 
+     * @return void
+     */
+    public function testDatasourceException()
+    {
+        //Given
+        $original_content = $this->positive_data;
+        $timeout = 200;
+        $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque congue[SSL connection timeout]. Title:
+            [imdb:title]";
+        $expected_count = 1;
+
+        //When
+        $obj = new Tag_Processing($original_content, null, $timeout);
+        $actual_count = $obj->tagsReplace();
+        $actual_content = $obj->replacement_content;
+
+        //Then
+        $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
     }
 
 }

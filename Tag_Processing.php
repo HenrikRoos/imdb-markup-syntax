@@ -69,6 +69,9 @@ class Tag_Processing
     /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
     public $locale;
 
+    /** @var int The maximum number of milliseconds to allow execute to imdb. */
+    public $timeout;
+
     /** @var object IMDb:s data object */
     public $data;
 
@@ -76,25 +79,29 @@ class Tag_Processing
      * Create an object
      * 
      * @param string $original_content Blog post content
-     * @param string $locale           Localization for data, defualt <i>en_US</i>
+     * @param string $locale           Localization for data, defualt *en_US*
+     * @param int    $timeout          The maximum number of milliseconds to allow
+     * execute to imdb.
      */
-    public function __construct($original_content, $locale = "en_US")
+    public function __construct($original_content, $locale = "en_US", $timeout = 0)
     {
         $this->original_content = $original_content;
         $this->locale = $locale;
+        $this->timeout = $timeout;
     }
 
     /**
      * Replace **[imdb:id(ttxxxxxxx)]** and **[imdb:xxx]** with imdb data in
      * **replacement_content**.
      * 1) Find first [imdb:id(ttxxxxxxx)] tag in content
-     *  a) If not found then return false .{color:crimson}
+     *  a) If not found then return false
+     *  b) If PCRE Exception: try replace *imdb:id* with *getMessage()*
      * 2) Get data from IMDb API
-     *  a) If no data then throw an Exception, catched by this .{color:crimson}
-     *     method and replace imdb:id tag widh error message .{color:crimson}
+     *  a) If Datasource Exception: replace *imdb:id* with getMessage()
      * 3) Find all imdb data tags and replace tags with imdb data
-     *  a) If no data found then false usage as replaced text .{color:darkorange}
-     *  b) If Exception then getMessage() usage as replaced text .{color:crimson}
+     *  a) If no data found then false usage as replaced text
+     *  b) If Exception then getMessage() usage as replaced text
+     *  c) If not match replace id tag with "no imdb tags found"
      * 
      * @return boolean|int False if no id or tags is present or number of
      * replacements performed 
@@ -102,23 +109,28 @@ class Tag_Processing
     public function tagsReplace()
     {
         $this->replacement_content = $this->original_content;
+        $count = 0;
         try {
             if (!$this->findId()) {
                 return false;
             }
-            //Nice, id is found, use it
-            $replaceId = $this->tconst_tag[0];
             //Try parse imdb tags
             $this->findImdbTags();
+        } catch (PCRE_Exception $exc) {
+            //Some fishy PCRE Exception try find [imdb:id with str_replace insted
+            //and diplay this error. If not found then just return false
+            $this->replacement_content = str_ireplace(
+                "[imdb:id", "[" . $exc->getMessage(), $this->replacement_content,
+                $count
+            );
+            return $count;
         } catch (Exception $exc) {
-            $replaceId = $exc->getMessage();
+            $this->replacement_content = str_replace(
+                $this->tconst_tag[0], "[" . $exc->getMessage() . "]",
+                $this->replacement_content, $count
+            );
+            return $count;
         }
-
-        //Replace [imdb:id(ttxxxxxxx)] in replacement_content with $replaceId
-        $count = 0;
-        $this->replacement_content = str_replace(
-            $replaceId, "", $this->replacement_content, $count
-        );
 
         //Replace [imdb:xxx] with imdb data
         $num = 0;
@@ -134,7 +146,19 @@ class Tag_Processing
             $count += $num;
         }
 
-        return $count;
+        if ($count > 0) {
+            //Delete [imdb:id(ttxxxxxxx)] in replacement_content
+            $this->replacement_content = str_replace(
+                $this->tconst_tag[0], "", $this->replacement_content, $num
+            );
+        } else {
+            $this->replacement_content = str_replace(
+                $this->tconst_tag[0], "[No imdb tags found]",
+                $this->replacement_content, $num
+            );
+        }
+
+        return $count + $num;
     }
 
     /**
@@ -158,10 +182,10 @@ class Tag_Processing
             $this->tconst = array();
             return false;
         }
-        $imdb = new Movie_Datasource($match[1], $this->locale);
-        $this->data = new Markup_Data($imdb->getData());
         $this->tconst_tag = $match;
 
+        $imdb = new Movie_Datasource($match[1], $this->locale, $this->timeout);
+        $this->data = new Markup_Data($imdb->getData());
         return $this->data->getTconst() == true;
     }
 
@@ -176,7 +200,8 @@ class Tag_Processing
     {
         $match = array();
         $isOk = @preg_match_all(
-            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
+                $this->imdb_tags_pattern, $this->original_content, $match,
+                PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
