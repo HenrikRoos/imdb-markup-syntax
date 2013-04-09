@@ -22,9 +22,13 @@ require_once dirname(__FILE__) . '/../../Tag_Processing.php';
 /**
  * Help class for test protected methods in Tag_Processing class
  * Usage this class insted of Tag_Processing
- * <code>$obj = new Tag_Processing($original_content, $locale);</code>
- * <b>Usage insted</b>
- * <code>$obj = new Tag_ProcessingHelp($original_content, $locale);</code>
+ * <code>
+ * $obj = new Tag_Processing($original_content, $locale);
+ * </code>
+ * **Usage insted**
+ * <code>
+ * $obj = new Tag_ProcessingHelp($original_content, $locale);
+ * </code>
  * 
  * @category  Testable
  * @package   Test
