@@ -38,16 +38,16 @@ class Tag_Processing
 {
 
     /** @var string Regular expression for find id */
-    public $tconst_pattern = "/\[imdb\:id\((tt\d{7,20})\)\]/i";
+    protected $tconst_pattern = "/\[imdb\:id\((tt\d{7,20})\)\]/i";
 
     /** @var string Regular expression for all imdb tags */
-    public $imdb_tags_pattern = "/\[imdb\:([a-z0-9_]{1,40})\]/i";
+    protected $imdb_tags_pattern = "/\[imdb\:([a-z0-9_]{1,40})\]/i";
 
     /** @var string Original content before filter processing */
     public $original_content;
 
     /** @var string Replacement content after filter processing */
-    public $replacement_content;
+    private $replacement_content = "";
 
     /**
      * @var array Id on current movie.
@@ -55,7 +55,7 @@ class Tag_Processing
      * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
      * $tconst_tag => array("[imdb:id(tt0137523)]", "tt0137523")
      */
-    public $tconst_tag = array();
+    protected $tconst_tag = array();
 
     /**
      * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
@@ -64,7 +64,7 @@ class Tag_Processing
      * - $imdb_tags[1] => array("[imdb:yyy]", "yyy")
      * - ...
      */
-    public $imdb_tags = array();
+    protected $imdb_tags = array();
 
     /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
     public $locale;
@@ -73,7 +73,7 @@ class Tag_Processing
     public $timeout;
 
     /** @var object IMDb:s data object */
-    public $data;
+    protected $data;
 
     /**
      * Create an object
@@ -160,6 +160,17 @@ class Tag_Processing
 
         return $count + $num;
     }
+    
+    /**
+     * Get the replacment blog post content. Tags is replcesed by data or error
+     * message
+     * 
+     * @return string Replacment blog post content
+     */
+    public function getReplacementContent()
+    {
+        return $this->replacement_content;
+    }
 
     /**
      * Find and store it in id. Syntax: <b>[imdb:id(ttxxxxxxx)]</b>.
@@ -170,7 +181,7 @@ class Tag_Processing
      * 
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
-    public function findId()
+    protected function findId()
     {
         $match = array();
         $isOk = @preg_match($this->tconst_pattern, $this->original_content, $match);
@@ -196,11 +207,12 @@ class Tag_Processing
      * 
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
-    public function findImdbTags()
+    protected function findImdbTags()
     {
         $match = array();
         $isOk = @preg_match_all(
-            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
+                $this->imdb_tags_pattern, $this->original_content, $match,
+                PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();

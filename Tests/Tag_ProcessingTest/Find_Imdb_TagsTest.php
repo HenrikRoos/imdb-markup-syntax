@@ -16,10 +16,9 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
-use IMDb_Markup_Syntax\Tag_Processing;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . '/../../Tag_Processing.php';
+require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
 require_once 'PHPUnit/Autoload.php';
 
 /**
@@ -54,7 +53,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         );
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $haystack = $obj->imdb_tags;
         $actual = $obj->imdb_tags;
@@ -84,7 +83,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         );
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $haystack = $obj->imdb_tags;
         $actual = $obj->imdb_tags;
@@ -110,7 +109,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $expected = array();
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $actual = $obj->imdb_tags;
 
@@ -134,7 +133,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $expected = array(array("[imdb:a]", "a"));
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $actual = $obj->imdb_tags;
 
@@ -160,7 +159,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         ));
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $actual = $obj->imdb_tags;
 
@@ -184,7 +183,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $expected = array();
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $actual = $obj->imdb_tags;
 
@@ -208,7 +207,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $expectedCount = 0;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findImdbTags();
         $haystack = $obj->imdb_tags;
 
@@ -232,8 +231,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $testdata2 = "";
 
         //When
-        $obj = new Tag_Processing($testdata);
-        $obj2 = new Tag_Processing($testdata2);
+        $obj = new Tag_Processing_Help($testdata);
+        $obj2 = new Tag_Processing_Help($testdata2);
         $condition = $obj->findImdbTags();
         $condition2 = $obj2->findImdbTags();
 
@@ -263,7 +262,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->imdb_tags_pattern = $imdb_tags_pattern;
         $condition = $obj->findImdbTags();
 
@@ -290,7 +289,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         $imdb_tags_pattern = "/(/";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->imdb_tags_pattern = $imdb_tags_pattern;
         $condition = $obj->findImdbTags();
 

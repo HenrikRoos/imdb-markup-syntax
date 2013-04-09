@@ -37,7 +37,36 @@ class Tag_Processing_Help extends Tag_Processing
 {
 
     /**
-     * Find imdb data for the tag name
+     * Public override
+     * 
+     * @var string Regular expression for find id
+     */
+    public $tconst_pattern = "/\[imdb\:id\((tt\d{7,20})\)\]/i";
+
+    /**
+     * Public override
+     * 
+     * @var string Regular expression for all imdb tags
+     */
+    public $imdb_tags_pattern = "/\[imdb\:([a-z0-9_]{1,40})\]/i";
+
+    /**
+     * Public override
+     * 
+     * @var array Id on current movie.
+     */
+    public $tconst_tag = array();
+
+    /**
+     * Public override
+     * 
+     * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
+     * current content
+     */
+    public $imdb_tags = array();
+
+    /**
+     * Public override
      * 
      * @param string $tag Name of tag to get data for
      * 
@@ -46,6 +75,30 @@ class Tag_Processing_Help extends Tag_Processing
     public function toDataString($tag)
     {
         return parent::toDataString($tag);
+    }
+
+    /**
+     * Public override
+     * 
+     * @return boolean False if no match true if find a id
+     * 
+     * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
+     */
+    public function findId()
+    {
+        return parent::findId();
+    }
+
+    /**
+     * Public override
+     * 
+     * @return boolean False if no match true if find
+     * 
+     * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
+     */
+    public function findImdbTags()
+    {
+        return parent::findImdbTags();
     }
 
 }

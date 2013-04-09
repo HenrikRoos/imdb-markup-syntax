@@ -16,11 +16,10 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
-use IMDb_Markup_Syntax\Tag_Processing;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../../Tag_Processing.php';
+require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method tagsReplace in Tag_Processing
@@ -67,11 +66,11 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 2;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->findId();
         $obj->findImdbTags();
         $actual_count = $obj->tagsReplace();
-        $actual_content = $obj->replacement_content;
+        $actual_content = $obj->getReplacementContent();
 
         //Then
         $this->assertSame($expected_content, $actual_content);
@@ -105,11 +104,11 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 6;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->findId();
         $obj->findImdbTags();
         $actual_count = $obj->tagsReplace();
-        $actual_content = $obj->replacement_content;
+        $actual_content = $obj->getReplacementContent();
 
         //Then
         $this->assertSame($expected_content, $actual_content);
@@ -134,9 +133,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 1;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $actual_count = $obj->tagsReplace();
-        $actual_content = $obj->replacement_content;
+        $actual_content = $obj->getReplacementContent();
 
         //Then
         $this->assertSame($expected_content, $actual_content);
@@ -161,7 +160,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected = false;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $actual = $obj->tagsReplace();
 
         //Then
@@ -183,7 +182,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected = false;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $actual = $obj->tagsReplace();
 
         //Then
@@ -210,10 +209,10 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 1;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->tconst_pattern = $tconst_pattern;
         $actual_count = $obj->tagsReplace();
-        $actual_content = $obj->replacement_content;
+        $actual_content = $obj->getReplacementContent();
 
         //Then
         $this->assertSame($expected_content, $actual_content);
@@ -237,10 +236,10 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 0;
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->tconst_pattern = $tconst_pattern;
         $actual_count = $obj->tagsReplace();
-        $actual_content = $obj->replacement_content;
+        $actual_content = $obj->getReplacementContent();
 
         //Then
         $this->assertSame($expected_content, $actual_content);
@@ -266,9 +265,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 1;
 
         //When
-        $obj = new Tag_Processing($original_content, null, $timeout);
+        $obj = new Tag_Processing_Help($original_content, null, $timeout);
         $actual_count = $obj->tagsReplace();
-        $actual_content = $obj->replacement_content;
+        $actual_content = $obj->getReplacementContent();
 
         //Then
         $this->assertSame($expected_content, $actual_content);

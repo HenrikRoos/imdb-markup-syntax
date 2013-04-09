@@ -15,11 +15,10 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
-use IMDb_Markup_Syntax\Tag_Processing;
 use PHPUnit_Framework_TestCase;
 
 require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/../../Tag_Processing.php';
+require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method findId in Tag_Processing class
@@ -49,7 +48,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $expected = array("[IMDb:id(tt0137523)]", "tt0137523");
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findId();
         $actual = $obj->tconst_tag;
 
@@ -74,7 +73,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $expected = array("[IMDb:id(tt0102926)]", "tt0102926");
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findId();
         $actual = $obj->tconst_tag;
 
@@ -98,7 +97,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $expected = array();
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findId();
         $actual = $obj->tconst_tag;
 
@@ -124,7 +123,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $original_content = "[IMDb:id(tt0000000)]";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->findId();
     }
 
@@ -145,7 +144,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $original_content = "[IMDb:id(tt99999999999999999999)]";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->findId();
     }
 
@@ -164,7 +163,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $expected = array();
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findId();
         $actual = $obj->tconst_tag;
 
@@ -187,7 +186,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $original_content = $GLOBALS["tagProcessingData"]["no_match"];
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $condition = $obj->findId();
 
         //Then
@@ -210,8 +209,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $testdata2 = "";
 
         //When
-        $obj = new Tag_Processing($testdata);
-        $obj2 = new Tag_Processing($testdata2);
+        $obj = new Tag_Processing_Help($testdata);
+        $obj2 = new Tag_Processing_Help($testdata2);
         $condition = $obj->findId();
         $condition2 = $obj2->findId();
 
@@ -241,7 +240,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->tconst_pattern = $tconst_pattern;
         $condition = $obj->findId();
 
@@ -268,7 +267,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
         $tconst_pattern = "/(/";
 
         //When
-        $obj = new Tag_Processing($original_content);
+        $obj = new Tag_Processing_Help($original_content);
         $obj->tconst_pattern = $tconst_pattern;
         $condition = $obj->findId();
 
