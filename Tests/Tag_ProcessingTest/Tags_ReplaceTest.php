@@ -51,8 +51,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * Replace one imdb tag and delete mandatory id. Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct 
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
      * 
      * @return void
      */
@@ -81,7 +82,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
      * Replace one imdb tag and delete mandatory id. Positive test
      *
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct 
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
      * 
      * @return void
      */
@@ -120,6 +122,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
      * 
      * @return void
      */
@@ -141,8 +144,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected_content, $actual_content);
         $this->assertSame($expected_count, $actual_count);
     }
-    
-        /**
+
+    /**
      * No imdb tags just id. Alternative test.
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
@@ -194,6 +197,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
      * 
      * @return void
      */
@@ -218,12 +222,13 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expected_content, $actual_content);
         $this->assertSame($expected_count, $actual_count);
     }
-    
-        /**
+
+    /**
      * PCRE Exception test with no imdb:id tags. Alternative test.
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
      * 
      * @return void
      */
@@ -251,6 +256,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
      * 
      * @return void
      */

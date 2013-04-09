@@ -47,7 +47,7 @@ class Tag_Processing
     public $original_content;
 
     /** @var string Replacement content after filter processing */
-    private $replacement_content = "";
+    private $_replacement_content = "";
 
     /**
      * @var array Id on current movie.
@@ -108,7 +108,7 @@ class Tag_Processing
      */
     public function tagsReplace()
     {
-        $this->replacement_content = $this->original_content;
+        $this->_replacement_content = $this->original_content;
         $count = 0;
         try {
             if (!$this->findId()) {
@@ -119,15 +119,15 @@ class Tag_Processing
         } catch (PCRE_Exception $exc) {
             //Some fishy PCRE Exception try find [imdb:id with str_replace insted
             //and diplay this error. If not found then just return false
-            $this->replacement_content = str_ireplace(
-                "[imdb:id", "[" . $exc->getMessage(), $this->replacement_content,
+            $this->_replacement_content = str_ireplace(
+                "[imdb:id", "[" . $exc->getMessage(), $this->_replacement_content,
                 $count
             );
             return $count;
         } catch (Exception $exc) {
-            $this->replacement_content = str_replace(
+            $this->_replacement_content = str_replace(
                 $this->tconst_tag[0], "[" . $exc->getMessage() . "]",
-                $this->replacement_content, $count
+                $this->_replacement_content, $count
             );
             return $count;
         }
@@ -140,27 +140,27 @@ class Tag_Processing
             } catch (Exception $exc) {
                 $replace = $exc->getMessage();
             }
-            $this->replacement_content = str_replace(
-                $imdb_tag[0], $replace, $this->replacement_content, $num
+            $this->_replacement_content = str_replace(
+                $imdb_tag[0], $replace, $this->_replacement_content, $num
             );
             $count += $num;
         }
 
         if ($count > 0) {
             //Delete [imdb:id(ttxxxxxxx)] in replacement_content
-            $this->replacement_content = str_replace(
-                $this->tconst_tag[0], "", $this->replacement_content, $num
+            $this->_replacement_content = str_replace(
+                $this->tconst_tag[0], "", $this->_replacement_content, $num
             );
         } else {
-            $this->replacement_content = str_replace(
+            $this->_replacement_content = str_replace(
                 $this->tconst_tag[0], "[No imdb tags found]",
-                $this->replacement_content, $num
+                $this->_replacement_content, $num
             );
         }
 
         return $count + $num;
     }
-    
+
     /**
      * Get the replacment blog post content. Tags is replcesed by data or error
      * message
@@ -169,7 +169,7 @@ class Tag_Processing
      */
     public function getReplacementContent()
     {
-        return $this->replacement_content;
+        return $this->_replacement_content;
     }
 
     /**
@@ -211,8 +211,7 @@ class Tag_Processing
     {
         $match = array();
         $isOk = @preg_match_all(
-                $this->imdb_tags_pattern, $this->original_content, $match,
-                PREG_SET_ORDER
+            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
