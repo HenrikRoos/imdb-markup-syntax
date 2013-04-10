@@ -9,7 +9,7 @@
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
@@ -30,7 +30,7 @@ require_once dirname(__FILE__) . '/Movie_DatasourceTest/Get_DataTest.php';
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Movie_DatasourceSuite extends PHPUnit_Framework_TestSuite

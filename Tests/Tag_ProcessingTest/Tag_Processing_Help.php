@@ -9,7 +9,7 @@
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
@@ -23,18 +23,18 @@ require_once dirname(__FILE__) . '/../../Tag_Processing.php';
  * Help class for test protected methods in Tag_Processing class
  * Usage this class insted of Tag_Processing
  * <code>
- * $obj = new Tag_Processing($original_content, $locale);
+ * $obj = new Tag_Processing($original_content, $locale, $timeout);
  * </code>
  * **Usage insted**
  * <code>
- * $obj = new Tag_ProcessingHelp($original_content, $locale);
+ * $obj = new Tag_Processing_Help($original_content, $locale, $timeout);
  * </code>
  * 
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Tag_Processing_Help extends Tag_Processing

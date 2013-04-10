@@ -10,7 +10,7 @@
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
@@ -29,7 +29,7 @@ require_once 'PHPUnit/Autoload.php';
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
@@ -155,7 +155,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = "[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]";
         $expected = array(array("[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]",
-            "abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_"
+                "abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_"
         ));
 
         //When

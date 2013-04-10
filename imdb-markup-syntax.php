@@ -9,33 +9,39 @@
  * @package   Core
  * @author    Henrik Roos <henrik.roos@afternoon.se>
  * @copyright 2013 Henrik Roos
- * @license   https://github.com/HenrikRoos/imdb-markup-syntax/blob/master/imdb-markup-syntax.php GPL2
+ * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
+use IMDb_Markup_Syntax\Tag_Processing;
 
-namespace IMDb_Markup_Syntax;
+require_once dirname(__FILE__) . '/Tag_Processing.php';
 
 /**
  * Plugin Name: IMDb Markup Syntax
- * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+ * Plugin URI: https://github.com/HenrikRoos/imdb-markup-syntax
  * Description: A brief description of the Plugin.
- * Version: The Plugin's Version Number, e.g.: 1.0
- * Author: Name Of The Plugin Author
+ * Version: 1.0
+ * Author: Henrik Roos
  * Author URI: http://URI_Of_The_Plugin_Author
- * License: A "Slug" license name e.g. GPL2
- * 
- * Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License, version 2, as 
- * published by the Free Software Foundation.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * License: http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  */
+
+/**
+ * Replace **[imdb:id(ttxxxxxxx)]** and **[imdb:xxx]** with imdb data
+ * 
+ * @param string $content content widh tags
+ * @return string content with replaced tags
+ */
+function filter_imdb_tags($content)
+{
+    $imdb = new Tag_Processing($content, get_locale());
+    $imdb->tagsReplace();
+    return $imdb->getReplacementContent();
+}
+
+//applied to post content prior to saving it in the database
+add_filter("content_save_pre", "filter_imdb_tags");
+
+//applied to post title prior to saving it in the database
+add_filter("title_save_pre", "filter_imdb_tags");
 ?>
