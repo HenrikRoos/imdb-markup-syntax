@@ -20,9 +20,9 @@ use IMDb_Markup_Syntax\Exceptions\Json_Exception;
 use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 use stdClass;
 
-require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
-require_once dirname(__FILE__) . '/Exceptions/Curl_Exception.php';
-require_once dirname(__FILE__) . '/Exceptions/Json_Exception.php';
+require_once dirname(__FILE__) . "/Exceptions/Runtime_Exception.php";
+require_once dirname(__FILE__) . "/Exceptions/Curl_Exception.php";
+require_once dirname(__FILE__) . "/Exceptions/Json_Exception.php";
 
 /**
  * Class for access to IMDb RESTful datasource web api

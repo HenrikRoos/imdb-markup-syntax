@@ -17,7 +17,7 @@ namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
 use IMDb_Markup_Syntax\Tag_Processing;
 
-require_once dirname(__FILE__) . '/../../Tag_Processing.php';
+require_once dirname(__FILE__) . "/../../Tag_Processing.php";
 
 /**
  * Help class for test protected methods in Tag_Processing class

@@ -18,8 +18,8 @@ namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
-require_once 'PHPUnit/Autoload.php';
+require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
+require_once "PHPUnit/Autoload.php";
 
 /**
  * Sub testclass to Movie_DatasourceTest for general tests in Movie_Datasource

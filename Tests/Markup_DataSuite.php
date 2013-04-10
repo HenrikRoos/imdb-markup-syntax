@@ -17,22 +17,22 @@ namespace IMDb_Markup_Syntax;
 
 use PHPUnit_Framework_TestSuite;
 
-require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_CastTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_CertificateTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_DirectorsTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_GenresTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_PlotTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_PosterTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_RatingTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_DateTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_RuntimeTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_TaglineTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_TconstTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_TitleTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_TypeTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_VotesTest.php';
-require_once dirname(__FILE__) . '/Markup_DataTest/Get_WritersTest.php';
+require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_CastTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_CertificateTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_DirectorsTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_GenresTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_PlotTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_PosterTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_RatingTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_DateTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_RuntimeTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_TaglineTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_TconstTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_TitleTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_TypeTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_VotesTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_WritersTest.php";
 
 /**
  * Test suite (PHPUnit) test for Markup_Data tests

@@ -19,10 +19,10 @@ use Exception;
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 
-require_once dirname(__FILE__) . '/Exceptions/PCRE_Exception.php';
-require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
-require_once dirname(__FILE__) . '/Movie_Datasource.php';
-require_once dirname(__FILE__) . '/Markup_Data.php';
+require_once dirname(__FILE__) . "/Exceptions/PCRE_Exception.php";
+require_once dirname(__FILE__) . "/Exceptions/Runtime_Exception.php";
+require_once dirname(__FILE__) . "/Movie_Datasource.php";
+require_once dirname(__FILE__) . "/Markup_Data.php";
 
 /**
  * Find and replace imdb tags to movie data from IMDb

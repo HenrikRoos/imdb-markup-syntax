@@ -17,11 +17,11 @@ namespace IMDb_Markup_Syntax;
 
 use PHPUnit_Framework_TestSuite;
 
-require_once dirname(__FILE__) . '/Tag_ProcessingTest/Find_IdTest.php';
-require_once dirname(__FILE__) . '/Tag_ProcessingTest/Find_Imdb_TagsTest.php';
-require_once dirname(__FILE__) . '/Tag_ProcessingTest/Tags_ReplaceTest.php';
-require_once dirname(__FILE__) . '/Tag_ProcessingTest/To_Data_StringTest.php';
-require_once 'PHPUnit/Autoload.php';
+require_once dirname(__FILE__) . "/Tag_ProcessingTest/Find_IdTest.php";
+require_once dirname(__FILE__) . "/Tag_ProcessingTest/Find_Imdb_TagsTest.php";
+require_once dirname(__FILE__) . "/Tag_ProcessingTest/Tags_ReplaceTest.php";
+require_once dirname(__FILE__) . "/Tag_ProcessingTest/To_Data_StringTest.php";
+require_once "PHPUnit/Autoload.php";
 
 /**
  * Test suite (PHPUnit) test for Tag_Processing tests

@@ -17,8 +17,8 @@ namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
 use PHPUnit_Framework_TestCase;
 
-require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
+require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . "/Tag_Processing_Help.php";
 
 /**
  * Sub testclass to Tag_ProcessingTest for method findId in Tag_Processing class
