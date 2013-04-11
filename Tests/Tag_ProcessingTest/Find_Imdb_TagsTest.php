@@ -259,15 +259,12 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = "foobar foobar foobar";
-        $imdb_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $custom_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->imdb_tags_pattern = $imdb_tags_pattern;
-        $condition = $obj->findImdbTags();
-
-        //Then
-        $this->assertFalse($condition);
+        $obj->custom_tags_pattern = $custom_tags_pattern;
+        $obj->findImdbTags();
     }
 
     /**
@@ -286,15 +283,12 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = "foobar foobar foobar";
-        $imdb_tags_pattern = "/(/";
+        $custom_tags_pattern = "/(/";
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->imdb_tags_pattern = $imdb_tags_pattern;
-        $condition = $obj->findImdbTags();
-
-        //Then
-        $this->assertFalse($condition);
+        $obj->custom_tags_pattern = $custom_tags_pattern;
+        $obj->findImdbTags();
     }
 
 }

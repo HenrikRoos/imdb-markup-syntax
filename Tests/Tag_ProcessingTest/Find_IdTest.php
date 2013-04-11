@@ -237,15 +237,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = "foobar foobar foobar";
-        $tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $custom_id_pattern = "/(?:\D+|<\d+>)*[!?]/";
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->tconst_pattern = $tconst_pattern;
-        $condition = $obj->findId();
-
-        //Then
-        $this->assertFalse($condition);
+        $obj->custom_id_pattern = $custom_id_pattern;
+        $obj->findId();
     }
 
     /**
@@ -264,15 +261,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = "foobar foobar foobar";
-        $tconst_pattern = "/(/";
+        $custom_id_pattern = "/(/";
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->tconst_pattern = $tconst_pattern;
-        $condition = $obj->findId();
-
-        //Then
-        $this->assertFalse($condition);
+        $obj->custom_id_pattern = $custom_id_pattern;
+        $obj->findId();
     }
 
 }

@@ -37,11 +37,37 @@ require_once dirname(__FILE__) . "/Markup_Data.php";
 class Tag_Processing
 {
 
-    /** @var string Regular expression for find id */
-    protected $tconst_pattern = "/\[imdb\:id\((tt\d{7,20})\)\]/i";
+    /**
+     * @var string core syntax in tags. *e.g. prefix = imdb => [imdb:date]
+     * prefix = abc => [abc:date]*
+     */
+    public $prefix = "imdb";
 
-    /** @var string Regular expression for all imdb tags */
-    protected $imdb_tags_pattern = "/\[imdb\:([a-z0-9_]{1,40})\]/i";
+    /**
+     * @var string Regular expression for id. This is a subset of pattern:
+     * **[{$this->prefix}:{$this->id_pattern}]**
+     */
+    protected $id_pattern = "id\((tt\d{7,20})\)";
+
+    /**
+     * @var string Regular expression for imdb tags. This is a subset of pattern:
+     * **[{$this->prefix}:{$this->imdb_tags_pattern}]**
+     */
+    protected $imdb_tags_pattern = "([a-z0-9_]{1,40})";
+
+    /**
+     * @var string Regular expression for id. If this is set when override
+     * **[{$this->prefix}:{$this->id_pattern}]** with this.
+     * e.g. <i>/\[my_id\:[a-z]+\]/i"</i>
+     */
+    protected $custom_id_pattern = "";
+
+    /**
+     * @var string Regular expression for imdb tags. If this is set when override
+     * **[{$this->prefix}:{$this->imdb_tags_pattern}]** with this.
+     * e.g. <i>/\[my_prefix\:[a-z]+\]/i"</i>
+     */
+    protected $custom_tags_pattern = "";
 
     /** @var string Original content before filter processing */
     public $original_content;
@@ -67,10 +93,10 @@ class Tag_Processing
     protected $imdb_tags = array();
 
     /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
-    public $locale;
+    public $locale = "en_US";
 
     /** @var int The maximum number of milliseconds to allow execute to imdb. */
-    public $timeout;
+    public $timeout = 0;
 
     /** @var object IMDb:s data object */
     protected $data;
@@ -79,15 +105,10 @@ class Tag_Processing
      * Create an object
      * 
      * @param string $original_content Blog post content
-     * @param string $locale           Localization for data, defualt *en_US*
-     * @param int    $timeout          The maximum number of milliseconds to allow
-     * execute to imdb.
      */
-    public function __construct($original_content, $locale = "en_US", $timeout = 0)
+    public function __construct($original_content)
     {
         $this->original_content = $original_content;
-        $this->locale = $locale;
-        $this->timeout = $timeout;
     }
 
     /**
@@ -120,8 +141,8 @@ class Tag_Processing
             //Some fishy PCRE Exception try find [imdb:id with str_replace insted
             //and diplay this error. If not found then just return false
             $this->_replacement_content = str_ireplace(
-                "[imdb:id", "[" . $exc->getMessage(), $this->_replacement_content,
-                $count
+                "[{$this->prefix}:id", "[" . $exc->getMessage(),
+                $this->_replacement_content, $count
             );
             return $count;
         } catch (Exception $exc) {
@@ -184,7 +205,10 @@ class Tag_Processing
     protected function findId()
     {
         $match = array();
-        $isOk = @preg_match($this->tconst_pattern, $this->original_content, $match);
+        $pattern = empty($this->custom_id_pattern)
+            ? "/\[{$this->prefix}\:{$this->id_pattern}\]/i"
+            : $this->custom_id_pattern;
+        $isOk = @preg_match($pattern, $this->original_content, $match);
 
         if ($isOk === false) {
             throw new PCRE_Exception();
@@ -202,7 +226,7 @@ class Tag_Processing
 
     /**
      * Find and store alltags in imdb_tags array. Syntax: <b>[imdb:xxx]</b>
-     * 
+     *
      * @return boolean False if no match true if find
      * 
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
@@ -210,8 +234,11 @@ class Tag_Processing
     protected function findImdbTags()
     {
         $match = array();
+        $pattern = empty($this->custom_tags_pattern)
+            ? "/\[{$this->prefix}\:{$this->imdb_tags_pattern}\]/i"
+            : $this->custom_tags_pattern;
         $isOk = @preg_match_all(
-            $this->imdb_tags_pattern, $this->original_content, $match, PREG_SET_ORDER
+            $pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
@@ -233,7 +260,7 @@ class Tag_Processing
      */
     protected function toDataString($tag)
     {
-        if (@preg_match("/^[a-z0-9_]+$/i", $tag) == 0) {
+        if (@preg_match("/^{$this->imdb_tags_pattern}$/i", $tag) == 0) {
             throw new Runtime_Exception(null, "Invalid function name");
         }
         $fname = "get" . ucfirst(strtolower($tag));

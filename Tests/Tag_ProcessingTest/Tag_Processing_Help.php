@@ -43,16 +43,20 @@ class Tag_Processing_Help extends Tag_Processing
     /**
      * Public override
      * 
-     * @var string Regular expression for find id
+     * @var string Regular expression for id. If this is set when override
+     * **[{$this->prefix}:{$this->id_pattern}]** with this.
+     * e.g. <i>/\[my_id\:[a-z]+\]/i"</i>
      */
-    public $tconst_pattern = "/\[imdb\:id\((tt\d{7,20})\)\]/i";
+    public $custom_id_pattern = "";
 
     /**
      * Public override
      * 
-     * @var string Regular expression for all imdb tags
+     * @var string Regular expression for imdb tags. If this is set when override
+     * **[{$this->prefix}:{$this->imdb_tags_pattern}]** with this.
+     * e.g. <i>/\[my_prefix\:[a-z]+\]/i"</i>
      */
-    public $imdb_tags_pattern = "/\[imdb\:([a-z0-9_]{1,40})\]/i";
+    public $custom_tags_pattern = "";
 
     /**
      * Public override

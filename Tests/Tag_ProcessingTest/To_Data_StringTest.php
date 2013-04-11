@@ -52,7 +52,8 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         $expected = "1999-12-25";
 
         //When
-        $obj = new Tag_Processing_Help($original_content, $locale);
+        $obj = new Tag_Processing_Help($original_content);
+        $obj->locale = $locale;
         $condition = $obj->findId();
         $actual = $obj->toDataString($tag);
 

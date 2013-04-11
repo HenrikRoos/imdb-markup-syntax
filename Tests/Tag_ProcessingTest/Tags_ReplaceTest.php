@@ -68,8 +68,6 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->findId();
-        $obj->findImdbTags();
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 
@@ -107,8 +105,38 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->findId();
-        $obj->findImdbTags();
+        $actual_count = $obj->tagsReplace();
+        $actual_content = $obj->getReplacementContent();
+
+        //Then
+        $this->assertSame($expected_content, $actual_content);
+        $this->assertSame($expected_count, $actual_count);
+    }
+
+    /**
+     * Replace one imdb tag and delete mandatory id. Positive test
+     *
+     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct 
+     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * 
+     * @return void
+     */
+    public function testPrefixPositive()
+    {
+        //Given
+        $prefix = "abc";
+        $original_content = "Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque congue[abc:id(tt0137523)]. Title:
+            [abc:title] [imdb:date]";
+        $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque congue. Title:
+            Fight Club [imdb:date]";
+        $expected_count = 2;
+
+        //When
+        $obj = new Tag_Processing_Help($original_content);
+        $obj->prefix = $prefix;
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 
@@ -205,7 +233,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = $this->positive_data;
-        $tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $custom_id_pattern = "/(?:\D+|<\d+>)*[!?]/";
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque "
             . "congue[PREG_BACKTRACK_LIMIT_ERROR(tt0137523)]. Title:
@@ -214,7 +242,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->tconst_pattern = $tconst_pattern;
+        $obj->custom_id_pattern = $custom_id_pattern;
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 
@@ -236,13 +264,13 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $original_content = "Pellentesque viverra luctus est";
-        $tconst_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $custom_id_pattern = "/(?:\D+|<\d+>)*[!?]/";
         $expected_content = "Pellentesque viverra luctus est";
         $expected_count = 0;
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->tconst_pattern = $tconst_pattern;
+        $obj->custom_id_pattern = $custom_id_pattern;
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 
@@ -271,7 +299,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_count = 1;
 
         //When
-        $obj = new Tag_Processing_Help($original_content, null, $timeout);
+        $obj = new Tag_Processing_Help($original_content);
+        $obj->timeout = $timeout;
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 

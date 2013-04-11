@@ -36,7 +36,24 @@ require_once dirname(__FILE__) . "/Tag_Processing.php";
  */
 function filterImdbTags($content)
 {
-    $imdb = new Tag_Processing($content, get_locale());
+    $imdb = new Tag_Processing($content);
+    $imdb->locale = get_locale();
+    $imdb->tagsReplace();
+    return $imdb->getReplacementContent();
+}
+
+/**
+ * Replace **[imdblive:id(ttxxxxxxx)]** and **[imdblive:xxx]** with imdb data
+ * 
+ * @param string $content content widh tags
+ * 
+ * @return string content with replaced tags
+ */
+function liveFilterImdbTags($content)
+{
+    $imdb = new Tag_Processing($content);
+    $imdb->locale = get_locale();
+    $imdb->prefix = "imdblive";
     $imdb->tagsReplace();
     return $imdb->getReplacementContent();
 }
@@ -46,4 +63,12 @@ add_filter("title_save_pre", "filterImdbTags");
 
 //applied to post content prior to saving it in the database
 add_filter("content_save_pre", "filterImdbTags");
+
+//applied to the post title retrieved from the database, prior to printing on the
+//screen
+add_filter("the_title", "liveFilterImdbTags");
+
+//applied to the post content retrieved from the database, prior to printing on the
+//screen
+add_filter("the_content", "liveFilterImdbTags");
 ?>

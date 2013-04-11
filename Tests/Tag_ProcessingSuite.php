@@ -54,7 +54,7 @@ class Tag_ProcessingSuite extends PHPUnit_Framework_TestSuite
             "no_match" => "Pellentesque viverra luctus est, vel bibendum arcu
                 suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)]
                 Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523]
-                [IMDb:id:(0137523)] [IMDb:id(tt)]",
+                [IMDb:id:(0137523)] [IMDb:id(tt)]"
         );
     }
 
