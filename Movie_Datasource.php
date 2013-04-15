@@ -101,8 +101,7 @@ class Movie_Datasource
      */
     public function setRequest($query, $locale = "en_US", $key = "tconst",
         $method = "title/maindetails"
-    )
-    {
+    ) {
         if (empty($query)) {
             throw new Runtime_Exception(null, "No query");
         }
