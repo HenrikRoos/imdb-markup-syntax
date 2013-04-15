@@ -104,7 +104,7 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
         //Given
         $tconst = $GLOBALS["movieDatasourceData"]["movie"];
         $locale = null;
-        $timeout = 400;
+        $timeout = 200;
 
         //When
         $imdb = new Movie_Datasource($tconst, $locale, $timeout);

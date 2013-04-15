@@ -38,15 +38,10 @@ class Movie_Datasource
 {
 
     /** @var string IMDb API URL */
-    public $baseurl = "https://app.imdb.com/";
+    public $baseurl = "http://app.imdb.com/";
 
     /** @var array Parameter to the request */
-    public $params = array(
-        "api" => "v1",
-        "appid" => "iphone1_1",
-        "apiPolicy" => "app1_1",
-        "apiKey" => "2wex6aeu6a8q9e49k7sfvufd6rhh0n"
-    );
+    public $params = array();
 
     /** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
     public $tconst;
@@ -106,21 +101,13 @@ class Movie_Datasource
      */
     public function setRequest($query, $locale = "en_US", $key = "tconst",
         $method = "title/maindetails"
-    ) {
+    )
+    {
         if (empty($query)) {
             throw new Runtime_Exception(null, "No query");
         }
         $this->params["locale"] = $locale;
         $this->params[$key] = urlencode($query);
-        $this->params["timestamp"] = $_SERVER["REQUEST_TIME"];
-
-        // Generate a signature
-        $sig = hash_hmac(
-            "sha1",
-            $this->baseurl . $method . "?" . http_build_query($this->params),
-            $this->params["apiKey"]
-        );
-        $this->params["sig"] = "app1-" . $sig;
 
         $this->request
             = $this->baseurl . $method . "?" . http_build_query($this->params);

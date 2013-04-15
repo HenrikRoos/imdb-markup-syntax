@@ -294,7 +294,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $original_content = $this->positive_data;
         $timeout = 200;
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
-            suscipit quis. ÖÄÅ öäå Quisque congue[SSL connection timeout]. Title:
+            suscipit quis. ÖÄÅ öäå Quisque congue[Operation timed out after 201 "
+            . "milliseconds with 0 bytes received]. Title:
             [imdb:title]";
         $expected_count = 1;
 
