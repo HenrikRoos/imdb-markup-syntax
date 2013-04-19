@@ -114,6 +114,32 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Positive test: Get data sucessful
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getRating
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
+     * 
+     * @return void
+     */
+    public function testNoValidLocale()
+    {
+        //Given
+        $locale = "xxx";
+        $expected = "/\d\.\d/";
+
+        //When
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, $locale);
+        $actual = $mdata->getRating();
+
+        //Then
+        $this->assertRegExp($expected, $actual);
+    }
+
+    /**
      * Negative test: No data is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct

@@ -27,6 +27,7 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">.</directory>
             <exclude>
+                <file>imdb-markup-syntax.php</file>
                 <directory suffix=".php">Tests</directory>
             </exclude>
         </whitelist>

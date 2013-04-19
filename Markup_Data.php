@@ -44,6 +44,7 @@ class Markup_Data
      * Create an instans of this class
      * 
      * @param Movie_Datasource $data IMDb data json class
+     * @param string $locale Localization for data, standard RFC 4646
      */
     public function __construct(stdClass $data, $locale = "")
     {
@@ -278,11 +279,14 @@ class Markup_Data
      */
     protected function numberFormatLocale($number, $decimals = 0)
     {
-        $res = setlocale(LC_NUMERIC, $this->locale);
-        if ($res && is_numeric($number)) {
+        if (!setlocale(LC_NUMERIC, $this->locale)) {
+            setlocale(LC_NUMERIC, "");
+        }
+        if (is_numeric($number)) {
             $locale = localeconv();
             return number_format($number, $decimals, $locale["decimal_point"],
-                $locale["thousands_sep"]);
+                $locale["thousands_sep"]
+            );
         }
         return false;
     }
