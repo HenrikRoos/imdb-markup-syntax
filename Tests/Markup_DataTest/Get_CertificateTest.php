@@ -47,6 +47,18 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->testdataPositive = "tt0137523";
+        setlocale(LC_ALL, "");
+    }
+
+    /**
+     * Clean up after testing.
+     * 
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
     }
 
     /**
@@ -67,6 +79,31 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
 
         //When
         $mdata = new Markup_Data($data);
+        $actual = $mdata->getCertificate();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful in swedish locale
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getCertificate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * 
+     * @return void
+     */
+    public function testPositiveSwedish()
+    {
+        //Given
+        $locale = "se_SE";
+        $expected = "15";
+
+        //When
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, $locale);
         $actual = $mdata->getCertificate();
 
         //Then

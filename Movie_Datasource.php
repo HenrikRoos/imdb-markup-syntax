@@ -67,14 +67,13 @@ class Movie_Datasource
      * Create an instans object for acces to datasource
      * 
      * @param string $tconst  Imdb tconst for current movie <i>e.g. tt0137523</i>
-     * @param string $locale  Localization for data, defualt <i>en_US</i> standard
-     * RFC 4646 language
+     * @param string $locale  Localization for data
      * @param int    $timeout The maximum number of milliseconds to allow execute to
      * imdb.
      * 
      * @throws Runtime_Exception if incorrect tconst.
      */
-    public function __construct($tconst = null, $locale = "en_US", $timeout = 0)
+    public function __construct($tconst = null, $locale = "", $timeout = 0)
     {
         if (!is_null($tconst) && @preg_match("/^tt\d+$/", $tconst) == 0) {
             throw new Runtime_Exception(null, "Incorrect tconst: {$tconst}");
@@ -90,7 +89,7 @@ class Movie_Datasource
      * 
      * @param string $query  That are you locking for? <i>e.g. movie id: tt0137523 or
      * persion id</i>
-     * @param string $locale Localization for data, defualt <i>en_US</i> standard
+     * @param string $locale Localization for data
      * @param string $key    That kind of data are $query? Defualt <i>tconst</i>
      * @param string $method Type of method to API defualt is find title by id.
      * Alternative find after persion id: <i>name/maindetails</i> or just simple
@@ -99,13 +98,15 @@ class Movie_Datasource
      * 
      * @return void
      */
-    public function setRequest($query, $locale = "en_US", $key = "tconst",
+    public function setRequest($query, $locale = "", $key = "tconst",
         $method = "title/maindetails"
     ) {
         if (empty($query)) {
             throw new Runtime_Exception(null, "No query");
         }
-        $this->params["locale"] = $locale;
+        if (!empty($locale)) {
+            $this->params["locale"] = $locale;
+        }
         $this->params[$key] = urlencode($query);
 
         $this->request

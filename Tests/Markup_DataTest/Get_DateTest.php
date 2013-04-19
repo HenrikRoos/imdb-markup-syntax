@@ -47,6 +47,18 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->testdataPositive = "tt0468569";
+        setlocale(LC_ALL, "");
+    }
+
+    /**
+     * Clean up after testing.
+     * 
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
     }
 
     /**
@@ -63,10 +75,60 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "2008-07-18";
+        $expected = "Fri Jul 18 2008";
 
         //When
         $mdata = new Markup_Data($data);
+        $actual = $mdata->getDate();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful then release date is set in Swedish
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * 
+     * @return void
+     */
+    public function testReleaseDatePositiveSwedish()
+    {
+        //Given
+        $locale = "sv_SE";
+        $expected = "Fre 25 Jul 2008";
+
+        //When
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, $locale);
+        $actual = $mdata->getDate();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful then release date is set in French
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getDate
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * 
+     * @return void
+     */
+    public function testReleaseDatePositiveFrench()
+    {
+        //Given
+        $locale = "fr_FR";
+        $expected = "Mer 13 aoû 2008";
+
+        //When
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, $locale);
         $actual = $mdata->getDate();
 
         //Then

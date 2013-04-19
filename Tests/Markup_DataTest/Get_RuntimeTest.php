@@ -46,7 +46,19 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->testdataPositive = "tt0137523";
+        $this->testdataPositive = "tt1806963";
+        setlocale(LC_ALL, "");
+    }
+
+    /**
+     * Clean up after testing.
+     * 
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
     }
 
     /**
@@ -61,11 +73,37 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
     public function testPositive()
     {
         //Given
+        $expected = "5700";
+
+        //When
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = 139;
-        //When
         $mdata = new Markup_Data($data);
+        $actual = $mdata->getRuntime();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful for Swedish language
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * 
+     * @return void
+     */
+    public function testPositiveSwedish()
+    {
+        //Given
+        $locale = "sv_SE";
+        $expected = "5 700";
+
+        //When
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, $locale);
         $actual = $mdata->getRuntime();
 
         //Then

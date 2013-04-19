@@ -92,8 +92,8 @@ class Tag_Processing
      */
     protected $imdb_tags = array();
 
-    /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
-    public $locale = "en_US";
+    /** @var string Localization for data, standard RFC 4646 */
+    public $locale = "";
 
     /** @var int The maximum number of milliseconds to allow execute to imdb. */
     public $timeout = 0;
@@ -220,7 +220,7 @@ class Tag_Processing
         $this->tconst_tag = $match;
 
         $imdb = new Movie_Datasource($match[1], $this->locale, $this->timeout);
-        $this->data = new Markup_Data($imdb->getData());
+        $this->data = new Markup_Data($imdb->getData(), $this->locale);
         return $this->data->getTconst() == true;
     }
 

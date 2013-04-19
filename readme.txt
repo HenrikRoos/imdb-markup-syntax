@@ -11,13 +11,24 @@ License URI: http://opensource.org/licenses/gpl-3.0.html
 Add IMDb syntax functionallity in your post. Enter simple tags and this plugin
 replace with IMBb data direct from IMBb Database.
 
-
 == Description ==
 This plugin extends your writing with a markup syntax for display movie data in your
 Post content and title. Datasource is native IMDb Web Service same datasource IMDb:s
 Mobile apps using [IMDb Mobile Applications](http://app.imdb.com).
 
-### Example
+= Simple use case =
+You have seen a movie and you will write a post on your blog about the movie.
+
+1. Go to [IMDb](http://imdb.com/)
+2. Search after the movie
+3. Grab the id. e.g. id = **tt0081505** from the url
+*http://www.imdb.com/title/**tt0081505**/*
+4. Write `[imdb:id(tt0081505)]` some place in your new post content
+5. Now can you write some like
+> Yesterday I saw an old movie, [imdb:title]. I'am really like [imdb:directors] and
+> his movie.
+
+= Example =
 In post *edit* mode you write:
 
 ```
@@ -44,6 +55,8 @@ Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orc
 Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 ```
 
+== Syntax ==
+
 
 == IMDb data copyright ===
 Limited non-commercial use of IMDb data is allowed, provided the following conditions
@@ -67,12 +80,12 @@ limitations on allowed usage.
 
 == Installation ==
 
-### Install
+= Install =
 1. Press ** Install Now** 
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Ready to use.  
 
-### Uninstall
+= Uninstall =
 1. Deactivate the plugin through the 'Plugins' menu in WordPress
 2. Press **Delete**
 3. And conform that you want to delete this plugin. No cleanup is necessary, this plugin right no files or data in your database. 
@@ -88,16 +101,4 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+First release and stable for PHP 5.3 and WordPress 3.5

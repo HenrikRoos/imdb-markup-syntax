@@ -92,7 +92,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_content = "Pellentesque viverra luctus est, vel bibendum
             arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
             Quisque congue  Title: The Silence of the Lambs
-            [IMDb:id(tt0137523)]. Year: [Tag year not exists] 1991-02-14 "
+            [IMDb:id(tt0137523)]. Year: [Tag year not exists] Thu Feb 14 1991 "
             . "<a href=\"http://www.imdb.com/name/nm0000149\">Jodie Foster</a> "
             . "Clarice Starling\n<a href=\"http://www.imdb.com/name/nm0000164\">"
             . "Anthony Hopkins</a> Dr. Hannibal Lecter\n"
@@ -293,10 +293,10 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $this->positive_data;
         $timeout = 200;
-        $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
-            suscipit quis. ÖÄÅ öäå Quisque congue[Operation timed out after 201 "
-            . "milliseconds with 0 bytes received]. Title:
-            [imdb:title]";
+        $expected_content = "/Pellentesque viverra luctus est, vel bibendum arcu
+            suscipit quis. ÖÄÅ öäå Quisque congue\[Operation timed out after \d+ "
+            . "milliseconds with \d+ bytes received\]. Title:
+            \[imdb:title\]/";
         $expected_count = 1;
 
         //When
@@ -306,7 +306,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $actual_content = $obj->getReplacementContent();
 
         //Then
-        $this->assertSame($expected_content, $actual_content);
+        $this->assertRegExp($expected_content, $actual_content);
         $this->assertSame($expected_count, $actual_count);
     }
 

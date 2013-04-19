@@ -47,6 +47,18 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->testdataPositive = "tt0137523";
+        setlocale(LC_ALL, "");
+    }
+
+    /**
+     * Clean up after testing.
+     * 
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
     }
 
     /**
@@ -64,13 +76,37 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $expected = 710000;
-        
+
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getVotes();
 
         //Then
         $this->assertGreaterThan($expected, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful with swedish locale
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * 
+     * @return void
+     */
+    public function testPositiveSwedish()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        $expected = "/\d{3} \d{3}/";
+
+        //When
+        $mdata = new Markup_Data($data, "sv_SE");
+        $actual = $mdata->getVotes();
+
+        //Then
+        $this->assertRegExp($expected, $actual);
     }
 
     /**

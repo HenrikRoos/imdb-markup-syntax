@@ -49,7 +49,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
         $locale = "sv_SE";
         $tag = "date";
-        $expected = "1999-12-25";
+        $expected = "Lör 25 Dec 1999";
 
         //When
         $obj = new Tag_Processing_Help($original_content);

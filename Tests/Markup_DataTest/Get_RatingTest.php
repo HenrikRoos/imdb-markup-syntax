@@ -47,6 +47,18 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->testdataPositive = "tt0137523";
+        setlocale(LC_ALL, "");
+    }
+
+    /**
+     * Clean up after testing.
+     * 
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
     }
 
     /**
@@ -65,7 +77,7 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
         $data = $imdb->getData();
         $expected_under = 8;
         $expected_over = 9;
-        
+
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getRating();
@@ -73,6 +85,32 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
         //Then
         $this->assertGreaterThanOrEqual($expected_under, $actual);
         $this->assertLessThanOrEqual($expected_over, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getRating
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
+     * 
+     * @return void
+     */
+    public function testPositiveSwedish()
+    {
+        //Given
+        $locale = "sv_SE";
+        $expected = "/\d,\d/";
+
+        //When
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, $locale);
+        $actual = $mdata->getRating();
+
+        //Then
+        $this->assertRegExp($expected, $actual);
     }
 
     /**

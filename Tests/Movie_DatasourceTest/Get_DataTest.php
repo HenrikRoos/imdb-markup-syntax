@@ -35,6 +35,28 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Set up before testing
+     * 
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        setlocale(LC_ALL, "");
+    }
+
+    /**
+     * Clean up after testing.
+     * 
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
+    }
+
+    /**
      * Main use case get a movie data, no error
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
@@ -110,6 +132,33 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Negativ test, not valid locale
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage Your locale argument is not valid (RFC 4646)
+     * @expectedExceptionCode    400
+     * 
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * 
+     * @return void
+     */
+    public function testNotValidLocale()
+    {
+        //Given
+        $tconst = $GLOBALS["movieDatasourceData"]["movie"];
+        $locale = "zh_cn";
+
+        //When
+        $imdb = new Movie_Datasource($tconst, $locale);
+        $imdb->getData();
     }
 
     /**

@@ -18,6 +18,8 @@ namespace IMDb_Markup_Syntax;
 
 use stdClass;
 
+require_once dirname(__FILE__) . "/Movie_Datasource.php";
+
 /**
  * Markup data tags from IMDb data result. Most popular tag in imdb result has a
  * function in this class
@@ -32,17 +34,21 @@ use stdClass;
 class Markup_Data
 {
 
+    /** @var string Localization for data, standard RFC 4646 */
+    public $locale = "";
+
     /** @var stdClass imdb data result */
     private $_data;
 
     /**
      * Create an instans of this class
      * 
-     * @param stdClass $data IMDb data json class
+     * @param Movie_Datasource $data IMDb data json class
      */
-    public function __construct(stdClass $data)
+    public function __construct(stdClass $data, $locale = "")
     {
         $this->_data = $data;
+        $this->locale = $locale;
     }
 
     /**
@@ -85,7 +91,9 @@ class Markup_Data
     public function getGenres()
     {
         $genres = $this->getValue("genres");
-        return is_array($genres) ? implode(", ", $genres) : false;
+        return is_array($genres)
+            ? implode(", ", $genres)
+            : false;
     }
 
     /**
@@ -94,14 +102,20 @@ class Markup_Data
      * restrictions on who can see the movie. If no release date is given as used
      * publication year.
      * 
-     * @return string|boolean In format 'Y-m-d' <i>e.g. 2013-12-24</i> or just 'Y'
+     * @return string|boolean Preferred date representation based on locale, without
+     * the time <i>e.g. 2013-12-24 or 12/24/13</i> or just 'Y'
      * <i>e.g. 2013</i> or false if no data is set.
      */
     public function getDate()
     {
         if (isset($this->_data->release_date->normal)) {
             if (!empty($this->_data->release_date->normal)) {
-                return $this->_data->release_date->normal;
+                setlocale(LC_TIME, $this->locale);
+                $timestamp = strtotime($this->_data->release_date->normal);
+                $datetime = strftime("%c", $timestamp); //Tue Feb 5 00:45:10 2009
+                $time = strftime("%X", $timestamp); //00:45:10
+                $date = str_replace(" " . $time, "", $datetime); //Tue Feb 5 2009
+                return $date;
             }
         }
         if (isset($this->_data->year)) {
@@ -115,12 +129,14 @@ class Markup_Data
     /**
      * Runtime in minutes for current movie.
      * 
-     * @return int|boolean Runtime in minutes or false if not data
+     * @return string|boolean Runtime in minutes or false if not data
      */
     public function getRuntime()
     {
         $runtime = $this->getValueValue("runtime", "time");
-        return $runtime ? (int) round($runtime / 60) : false;
+        return $runtime
+            ? $this->numberFormatLocale($runtime / 60)
+            : false;
     }
 
     /**
@@ -131,17 +147,17 @@ class Markup_Data
      */
     public function getRating()
     {
-        return $this->getValue("rating");
+        return $this->numberFormatLocale($this->getValue("rating"), 1);
     }
 
     /**
      * Number of votes from imdb members for the current movie. <i>e.g. 3039</i>
      * 
-     * @return int|boolean If no data then false.
+     * @return string|boolean If no data then false.
      */
     public function getVotes()
     {
-        return $this->getValue("num_votes");
+        return $this->numberFormatLocale($this->getValue("num_votes"));
     }
 
     /**
@@ -250,6 +266,27 @@ class Markup_Data
     }
 
     //<editor-fold defaultstate="collapsed" desc="Helpers">
+
+    /**
+     * Convert number to format number by current format roules.
+     * 
+     * @param int $number   The number you will format
+     * @param int $decimals Number of decimals, defualt is 0
+     * 
+     * @return string|boolean Format number for current locale or false if number
+     * is not a numeric.
+     */
+    protected function numberFormatLocale($number, $decimals = 0)
+    {
+        $res = setlocale(LC_NUMERIC, $this->locale);
+        if ($res && is_numeric($number)) {
+            $locale = localeconv();
+            return number_format($number, $decimals, $locale["decimal_point"],
+                $locale["thousands_sep"]);
+        }
+        return false;
+    }
+
     /**
      * Help function check and get value for specifide objekt
      * 
@@ -292,8 +329,7 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
-            && is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary) && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
