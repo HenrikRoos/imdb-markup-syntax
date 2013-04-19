@@ -36,6 +36,7 @@ Release Date: 1994-10-14
 Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
 Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 ```
+
 # Markup Syntax
 Tag                                          | Description
 -------------------------------------------- | ---------------
@@ -49,14 +50,13 @@ Tag                                          | Description
 `[imdb:plot]` `[imdblive:plot]`              | A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
 `[imdb:poster]` `[imdblive:poster]`          | Current movie poster image.*<br />Example: <http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg><br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
 `[imdb:rating]` `[imdblive:rating]`          | Rating scale from 1 to 10 with one decimal where 10 is best.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Pulp Fiction has rating **9.0** on english WordPress and **9,0** on swedish WordPress*
-`[imdb:runtime]` `[imdblive:runtime]`          | Runtime in minutes for current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: The very long movie Matrjoschka has runtime **5700** min long on english WordPress and **5 700** min long on swedish WordPress*
-`[imdb:tagline]` `[imdblive:tagline]`          | A tagline is a variant of a branding slogan typically used in marketing materials and advertising.<br /><br />*Example: Se7en has tagline **Long is the way, and hard, that out of hell leads up to light.***
+`[imdb:runtime]` `[imdblive:runtime]`        | Runtime in minutes for current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: The very long movie Matrjoschka has runtime **5700** min long on english WordPress and **5 700** min long on swedish WordPress*
+`[imdb:tagline]` `[imdblive:tagline]`        | A tagline is a variant of a branding slogan typically used in marketing materials and advertising.<br /><br />*Example: Se7en has tagline **Long is the way, and hard, that out of hell leads up to light.***
 `[imdb:tconst]` `[imdblive:tconst]`          | Tconst/id for current movie.<br /><br />*Example: Se7en has Tconst **tt0114369***
-`[imdb:title]` `[imdblive:title]`          | Title for current moive with link to [imdb.com](http://www.imdb.com).<br /><br />*Example: Se7en has title **[Se7en](http://www.imdb.com/title/tt0114369/)***
-`[imdb:type]` `[imdblive:type]`          | IMDb classifies titles under one of the following types: <ul><li>feature</li><li>short</li><li>documentary</li><li>video</li><li>tv_series</li><li>tv_special</li><li>video_game</li></ul>*Example: Game of Thrones has type **tv_series***
-`[imdb:votes]` `[imdblive:votes]`          | Number of votes from imdb members for the current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />*Example: Game of Thrones has votes **307,685** on english WordPress and **307 685** on swedish WordPress*
-`[imdb:writers]` `[imdblive:writers]`          | A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay.<br /><br />*Example: Game of Thrones has tow writers **[David Benioff](http://www.imdb.com/name/nm1125275/) (creator), [D.B. Weiss](http://www.imdb.com/name/nm1888967/) (creator)***
-
+`[imdb:title]` `[imdblive:title]`            | Title for current moive with link to [imdb.com](http://www.imdb.com).<br /><br />*Example: Se7en has title **[Se7en](http://www.imdb.com/title/tt0114369/)***
+`[imdb:type]` `[imdblive:type]`              | IMDb classifies titles under one of the following types: <ul><li>feature</li><li>short</li><li>documentary</li><li>video</li><li>tv_series</li><li>tv_special</li><li>video_game</li></ul>*Example: Game of Thrones has type **tv_series***
+`[imdb:votes]` `[imdblive:votes]`            | Number of votes from imdb members for the current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />*Example: Game of Thrones has votes **307,685** on english WordPress and **307 685** on swedish WordPress*
+`[imdb:writers]` `[imdblive:writers]`        | A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay.<br /><br />*Example: Game of Thrones has tow writers **[David Benioff](http://www.imdb.com/name/nm1125275/) (creator), [D.B. Weiss](http://www.imdb.com/name/nm1888967/) (creator)***
 
 
 # IMDb data copyright
