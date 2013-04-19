@@ -15,22 +15,26 @@ In post *edit* mode you write:
 
 ```
 [imdb:id(tt0110912)]
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt. Nulla ut mi eget justo ultrices auctor sed in lacus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+Nulla ut mi eget justo ultrices auctor sed in lacus.
 
 Title: [imdb:title]
 Release Date: [imdb:date]
 
-Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
+Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
+Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 ```
 **After** you save it is transform to:
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt. Nulla ut mi eget justo ultrices auctor sed in lacus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+Nulla ut mi eget justo ultrices auctor sed in lacus.
 
 Title: Pulp Fiction
 Release Date: 1994-10-14
 
-Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
+Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
+Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 ```
 # Markup Syntax
 Tag                                          | Description
