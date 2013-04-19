@@ -69,7 +69,12 @@ class Markup_Data
      */
     public function getTitle()
     {
-        return $this->getValue("title");
+        $title = $this->getValue("title");
+        if (!$title) {
+            return false;
+        }
+        return "<a href=\"http://www.imdb.com/title/" . $this->getValue("tconst")
+            . "/\">" . $title . "</a>";
     }
 
     /**
@@ -335,8 +340,7 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
-            && is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary) && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
@@ -434,4 +438,5 @@ class Markup_Data
 
     //</editor-fold>
 }
+
 ?>

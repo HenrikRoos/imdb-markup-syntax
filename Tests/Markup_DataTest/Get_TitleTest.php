@@ -63,7 +63,9 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "Fight Club";
+        $expected
+            = "<a href=\"http://www.imdb.com/title/tt0137523/\">Fight Club</a>";
+        
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getTitle();
