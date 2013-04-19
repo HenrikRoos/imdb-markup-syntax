@@ -43,8 +43,8 @@ class Markup_Data
     /**
      * Create an instans of this class
      * 
-     * @param Movie_Datasource $data IMDb data json class
-     * @param string $locale Localization for data, standard RFC 4646
+     * @param Movie_Datasource $data   IMDb data json class
+     * @param string           $locale Localization for data, standard RFC 4646
      */
     public function __construct(stdClass $data, $locale = "")
     {
@@ -284,9 +284,11 @@ class Markup_Data
         }
         if (is_numeric($number)) {
             $locale = localeconv();
-            return number_format($number, $decimals, $locale["decimal_point"],
+            $num = number_format(
+                $number, $decimals, $locale["decimal_point"],
                 $locale["thousands_sep"]
             );
+            return $num;
         }
         return false;
     }
@@ -333,7 +335,8 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary) && is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
+            && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
@@ -431,5 +434,4 @@ class Markup_Data
 
     //</editor-fold>
 }
-
 ?>

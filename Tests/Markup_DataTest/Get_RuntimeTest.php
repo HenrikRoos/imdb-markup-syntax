@@ -67,6 +67,7 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
@@ -91,6 +92,7 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
@@ -116,6 +118,7 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
@@ -141,6 +144,7 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getRuntime
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */

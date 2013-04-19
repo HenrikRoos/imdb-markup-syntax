@@ -67,6 +67,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
@@ -91,6 +92,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
@@ -115,6 +117,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
@@ -140,6 +143,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
      * 
      * @return void
      */
