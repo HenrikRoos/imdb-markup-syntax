@@ -8,37 +8,33 @@ You have watched a movie and want to post a comment on it on your blog. With a f
 2. Copy the movie id tag shown in the url, for example: *http://www.imdb.com/title/**tt0081505*** i.e. **tt0081505** This tag will help you to insert facts from the movie that will be displayed and highlighted when you are writing the movie title, name of the actors, the directors and so on. 
 3. For example: *[imdb:id(tt0081505)] Yesterday I saw an old movie, [imdb:title]. I really liked both the [imdb:directors] and the movie*
 4. Your text will be displayed as: *Yesterday I saw an old movie, The Shining. I really liked both the [Stanley Kubrick](http://www.imdb.com/name/nm0000040) and the movie*
-5. You can also insert statistics such as the number of people who has comment on the movie at IMDb´s website and this will be automatically updated whenever your own blog page is refreshed. 
+5. You can also insert statistics such as the number of people who has comment on the movie at IMDb´s website and this will be automatically updated whenever your own blog page is refreshed.
 
 ## Example
 In post *edit* mode you write:
 
 ```
 [imdb:id(tt0110912)]
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros
-non dui porta tincidunt. Nulla ut mi eget justo ultrices auctor sed in lacus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt. Nulla ut mi eget justo ultrices auctor sed in lacus.
 
 Title: [imdb:title]
 Release Date: [imdb:date]
 
-Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci.
-Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
+Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 ```
 **After** you save it is transform to:
 
 ```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros
-non dui porta tincidunt. Nulla ut mi eget justo ultrices auctor sed in lacus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt. Nulla ut mi eget justo ultrices auctor sed in lacus.
 
 Title: Pulp Fiction
 Release Date: 1994-10-14
 
-Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci.
-Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
+Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo. Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 ```
 # Markup Syntax
 Tag                                          | Description
--------------------------------------------- | -----------------
+-------------------------------------------- | ---------------
 `[imdb:id(tt0000000)]`                       | Set the current movie. All tags starting with `[imdb` use this id. This ID disappearance when you **save** the post into your database.
 `[imdblive:id(tt0000000)]`                   | Set the current movie. All tags starting with `[imdblive` use this id. This ID disappearance when you **read** the post from your database.
 `[imdb:cast]` `[imdblive:cast]`              | A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
@@ -47,28 +43,17 @@ Tag                                          | Description
 `[imdb:directors]` `[imdblive:directors]`    | The principal creative artist on a movie set. A director is usually (but not always) the driving artistic source behind the filming process, and communicates to actors the way that he/she would like a particular scene played. A director's duties might also include casting, script editing, shot selection, shot composition, and editing. Typically, a director has complete artistic control over all aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a producer or a studio. In some large productions, a director will delegate less important scenes to a second unit.*<br /><br />Example: Director of Pan's Labyrinth is **[Guillermo del Toro](http://www.imdb.com/name/nm0868219)***
 `[imdb:genres]` `[imdblive:genres]`          | One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of all genres.*<br />Example: The Lord of the Rings: The Fellowship of the Ring has genres: **Action, Adventure, Fantasy***
 `[imdb:plot]` `[imdblive:plot]`              | A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
-`[imdb:poster]` `[imdblive:poster]`              | Current movie poster image.*<br />Example: <http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg><br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
+`[imdb:poster]` `[imdblive:poster]`          | Current movie poster image.*<br />Example: <http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg><br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
 
 
 # IMDb data copyright
-Limited non-commercial use of IMDb data is allowed, provided the following conditions
-are met:
+Limited non-commercial use of IMDb data is allowed, provided the following conditions are met:
 
-1. You agree to all the terms of our
-[copyright/conditions](http://www.imdb.com/help/show_article?conditions) of use
-statement. Please also note that IMDb reserves the right to withdraw permission to 
-use the data at any time at our discretion.
-2. The data must be taken only direct from IMDb. You may not use data mining, robots,
-screen scraping, or similar online data gathering and extraction tools on our
-website.
-3. The data can only be used for **personal and non-commercial** use and must not be
-altered/republished/resold/repurposed to create any kind of online/offline database
-of movie information (except for **individual personal** use). Please refer to the
-copyright/license information enclosed in each file for further instructions and
-limitations on allowed usage.
+1. You agree to all the terms of our [copyright/conditions](http://www.imdb.com/help/show_article?conditions) of use statement. Please also note that IMDb reserves the right to withdraw permission to use the data at any time at our discretion.
+2. The data must be taken only direct from IMDb. You may not use data mining, robots, screen scraping, or similar online data gathering and extraction tools on our website.
+3. The data can only be used for **personal and non-commercial** use and must not be altered/republished/resold/repurposed to create any kind of online/offline database of movie information (except for **individual personal** use). Please refer to the copyright/license information enclosed in each file for further instructions and limitations on allowed usage.
 4. You must acknowledge the source of the data by including the following statement:
->Information courtesy of [The Internet Movie Database](http://www.imdb.com). Used
->with permission.
+>Information courtesy of [The Internet Movie Database](http://www.imdb.com). Used with permission.
 
 >###May I use a photo from your site for my web site or publication?
 Most of the photos on our site are licensed to us for our own use only. We do not have the authority to sublicense them to others. Photos on our site may be licensed directly from the license holders.
@@ -80,7 +65,6 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 >For images from agencies like [WireImage](http://www.wireimage.com/), [Getty Images](http://www.gettyimages.com/) and [MPTV](http://www.mptvimages.com/), their names are linked on pages where we display their photos. Click on their names for more information about the agencies and links to their web sites where you can get licensing information.
 
 >See: <http://pro.imdb.com/help/show_leaf?photoslicense>
-
 
 
 # Screenshots
