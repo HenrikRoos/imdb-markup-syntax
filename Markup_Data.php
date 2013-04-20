@@ -348,7 +348,8 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary) && is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
+            && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
