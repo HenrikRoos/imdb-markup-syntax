@@ -121,7 +121,8 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
         $tag = "TiTlE";
-        $expected = "Fight Club";
+        $expected = "<a href=\"http://www.imdb.com/title/tt0137523/\">"
+            . "Fight Club</a>";
 
         //When
         $obj = new Tag_Processing_Help($original_content);

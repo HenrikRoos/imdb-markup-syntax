@@ -63,7 +63,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $original_content = $this->positive_data;
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue. Title:
-            Fight Club";
+            <a href=\"http://www.imdb.com/title/tt0137523/\">Fight Club</a>";
         $expected_count = 2;
 
         //When
@@ -91,7 +91,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $original_content = $this->positive_mix_data;
         $expected_content = "Pellentesque viverra luctus est, vel bibendum
             arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
-            Quisque congue  Title: The Silence of the Lambs
+            Quisque congue  Title: <a href=\"http://www.imdb.com/title/tt0102926/\">"
+            . "The Silence of the Lambs</a>
             [IMDb:id(tt0137523)]. Year: [Tag year not exists] Thu Feb 14 1991 "
             . "<a href=\"http://www.imdb.com/name/nm0000149\">Jodie Foster</a> "
             . "Clarice Starling\n<a href=\"http://www.imdb.com/name/nm0000164\">"
@@ -99,7 +100,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             . "<a href=\"http://www.imdb.com/name/nm0095029\">Lawrence A. Bonney</a>"
             . " FBI Instructor\n<a href=\"http://www.imdb.com/name/nm0501435\">"
             . "Kasi Lemmons</a> Ardelia Mapp
-            The Silence of the Lambs [ImDB: writer ] [imdb:$$]
+            <a href=\"http://www.imdb.com/title/tt0102926/\">The Silence of the "
+            . "Lambs</a> [ImDB: writer ] [imdb:$$]
             [imdb:qwsazxcderrfvbgtyhnmjujdjhfksjhdfkjshdkfjhsakdjfhksjadhfkjsadf]";
         $expected_count = 6;
 
@@ -131,7 +133,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             [abc:title] [imdb:date]";
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue. Title:
-            Fight Club [imdb:date]";
+            <a href=\"http://www.imdb.com/title/tt0137523/\">Fight Club</a> "
+            . "[imdb:date]";
         $expected_count = 2;
 
         //When
