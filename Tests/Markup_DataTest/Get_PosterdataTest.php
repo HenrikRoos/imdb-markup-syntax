@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
+ * Testclass to Markup_DataSuite for method getPosterdata in Markup_Data class
  * 
  * PHP version 5
  * 
@@ -24,7 +24,7 @@ require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
 require_once "PHPUnit/Autoload.php";
 
 /**
- * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
+ * Testclass to Markup_DataSuite for method getPosterdata in Markup_Data class
  * 
  * @category  Testable
  * @package   Test
@@ -33,7 +33,7 @@ require_once "PHPUnit/Autoload.php";
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Get_PosterTest extends PHPUnit_Framework_TestCase
+class Get_PosterdataTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var string positive testdata */
@@ -63,14 +63,14 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "<a href=\"http://www.imdb.com/title/tt0137523/\">"
-            . "<img src=\"http://ia.media-imdb.com/images/M/"
-            . "MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg\" "
-            . "alt=\"Fight Club\" width=\"200\" class=\"alignleft\"/></a>";
+        $expected = "[posterdata{\"url\":\"http:\/\/ia.media-imdb.com\/images\/M\/"
+            . "MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg\","
+            . "\"title\":\"Fight Club\",\"href\":\"http:\/\/www.imdb.com\/title"
+            . "\/tt0137523\/\",\"width\":336,\"height\":500}]";
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getPoster();
+        $actual = $mdata->getPosterdata();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -90,12 +90,14 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        unset($data->image->url);
-        $expected = false;
+        unset($data->image);
+        $expected = "[posterdata{\"url\":false,\"title\":\"Fight Club\",\"href\""
+            . ":\"http:\/\/www.imdb.com\/title\/tt0137523\/\",\"width\":"
+            . "false,\"height\":false}]";
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getPoster();
+        $actual = $mdata->getPosterdata();
 
         //Then
         $this->assertSame($expected, $actual);
@@ -115,12 +117,14 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->image->url = "";
-        $expected = false;
+        $data->image = "";
+        $expected = "[posterdata{\"url\":false,\"title\":\"Fight Club\",\"href\""
+            . ":\"http:\/\/www.imdb.com\/title\/tt0137523\/\",\"width\":"
+            . "false,\"height\":false}]";
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getPoster();
+        $actual = $mdata->getPosterdata();
 
         //Then
         $this->assertSame($expected, $actual);

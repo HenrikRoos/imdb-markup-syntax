@@ -59,7 +59,7 @@ class Markup_Data
      */
     public function getCast()
     {
-        return $this->toSummaryString("cast_summary", "\n");
+        return $this->toSummaryString("cast_summary", ", ");
     }
 
     /**
@@ -175,15 +175,41 @@ class Markup_Data
      */
     public function getPoster()
     {
-        $src = $this->getValueValue("image", "url");
-        if (empty($src)) {
+        if ($this->getValueValue("image", "url") === false) {
             return false;
         }
+        $src = " src=\"" . $this->getValueValue("image", "url") . "\"";
         $href = "http://www.imdb.com/title/" . $this->getValue("tconst") . "/";
-        $alt = $this->getValue("title");
+        $alt = $this->getValue("title")
+            ? " alt=\"" . $this->getValue("title") . "\""
+            : "";
+        $size = " width=\"200\"";
+        $css = " class=\"alignleft\"";
 
-        $img = "<img src=\"" . $src . "\" alt=\"" . $alt . "\" width=\"200\" />";
+        $img = "<img" . $src . $alt . $size . $css . "/>";
         return "<a href=\"" . $href . "\">" . $img . "</a>";
+    }
+
+    /**
+     * Current movie poster image as **json** object. With data:
+     * * url
+     * * title
+     * * href
+     * * width
+     * * heigh
+     * 
+     * @return string 
+     */
+    public function getPosterdata()
+    {
+        $posterdata = array(
+            "url" => $this->getValueValue("image", "url"),
+            "title" => $this->getValue("title"),
+            "href" => "http://www.imdb.com/title/" . $this->getValue("tconst") . "/",
+            "width" => $this->getValueValue("image", "width"),
+            "height" => $this->getValueValue("image", "height")
+        );
+        return "[posterdata" . json_encode($posterdata) . "]";
     }
 
     /**
@@ -348,8 +374,7 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
-            && is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary) && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
