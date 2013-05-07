@@ -19,6 +19,7 @@ namespace IMDb_Markup_Syntax;
 use stdClass;
 
 require_once dirname(__FILE__) . "/Movie_Datasource.php";
+require_once dirname(__FILE__) . "/Media_Library_Handler.php";
 
 /**
  * Markup data tags from IMDb data result. Most popular tag in imdb result has a
@@ -34,8 +35,15 @@ require_once dirname(__FILE__) . "/Movie_Datasource.php";
 class Markup_Data
 {
 
+    /** @var int Current Blog Post ID, defualt is 0 */
+    public $post_id;
+
     /** @var string Localization for data, standard RFC 4646 */
-    public $locale = "";
+    public $locale;
+
+    /** @var string Core syntax in tags. *e.g. prefix = imdb => [imdb:date]
+     * prefix = abc => [abc:date]* */
+    protected $prefix;
 
     /** @var stdClass imdb data result */
     private $_data;
@@ -43,13 +51,19 @@ class Markup_Data
     /**
      * Create an instans of this class
      * 
-     * @param Movie_Datasource $data   IMDb data json class
-     * @param string           $locale Localization for data, standard RFC 4646
+     * @param Movie_Datasource $data    IMDb data json class
+     * @param int              $post_id Current Blog Post ID
+     * @param string           $locale  Localization for data, standard RFC 4646
+     * @param string           $prefix  Core syntax in tags. *e.g. prefix = imdb =>
+     * [imdb:date] prefix = abc => [abc:date]*
      */
-    public function __construct(stdClass $data, $locale = "")
+    public function __construct(stdClass $data, $post_id = 0, $locale = "",
+        $prefix = "imdb")
     {
         $this->_data = $data;
+        $this->post_id = $post_id;
         $this->locale = $locale;
+        $this->prefix = $prefix;
     }
 
     /**
@@ -170,10 +184,29 @@ class Markup_Data
 
     /**
      * Current movie poster image as html widh link to the movie and alt text.
+     * Poster images donwload automatic and store in Media Lib.
      * 
      * @return string|boolean URL to the image or false if no data
      */
     public function getPoster()
+    {
+        $remote_url = $this->getValueValue("image", "url");
+        if (empty($this->post_id) || $remote_url === false) {
+            return false;
+        }
+        $filename = $this->getValue("tconst");
+        $lib = new Media_Library_Handler($this->post_id, $remote_url, $filename);
+        $href = "http://www.imdb.com/title/" . $this->getValue("tconst") . "/";
+        $title = $this->getValue("title");
+        return $lib->getHtml($href, $title);
+    }
+
+    /**
+     * Current movie poster image with no local storeage. Use remote location.
+     * 
+     * @return string 
+     */
+    public function getPosterremote()
     {
         if ($this->getValueValue("image", "url") === false) {
             return false;
@@ -188,28 +221,6 @@ class Markup_Data
 
         $img = "<img" . $src . $alt . $size . $css . "/>";
         return "<a href=\"" . $href . "\">" . $img . "</a>";
-    }
-
-    /**
-     * Current movie poster image as **json** object. With data:
-     * * url
-     * * title
-     * * href
-     * * width
-     * * heigh
-     * 
-     * @return string 
-     */
-    public function getPosterdata()
-    {
-        $posterdata = array(
-            "url" => $this->getValueValue("image", "url"),
-            "title" => $this->getValue("title"),
-            "href" => "http://www.imdb.com/title/" . $this->getValue("tconst") . "/",
-            "width" => $this->getValueValue("image", "width"),
-            "height" => $this->getValueValue("image", "height")
-        );
-        return "[posterdata" . json_encode($posterdata) . "]";
     }
 
     /**

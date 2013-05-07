@@ -23,7 +23,7 @@ require_once dirname(__FILE__) . "/Markup_DataTest/Get_CertificateTest.php";
 require_once dirname(__FILE__) . "/Markup_DataTest/Get_DirectorsTest.php";
 require_once dirname(__FILE__) . "/Markup_DataTest/Get_GenresTest.php";
 require_once dirname(__FILE__) . "/Markup_DataTest/Get_PlotTest.php";
-require_once dirname(__FILE__) . "/Markup_DataTest/Get_PosterTest.php";
+require_once dirname(__FILE__) . "/Markup_DataTest/Get_PosterremoteTest.php";
 require_once dirname(__FILE__) . "/Markup_DataTest/Get_RatingTest.php";
 require_once dirname(__FILE__) . "/Markup_DataTest/Get_DateTest.php";
 require_once dirname(__FILE__) . "/Markup_DataTest/Get_RuntimeTest.php";
@@ -63,7 +63,7 @@ class Markup_DataSuite extends PHPUnit_Framework_TestSuite
         $suite->addTestSuite($namespace . "\Get_DirectorsTest");
         $suite->addTestSuite($namespace . "\Get_GenresTest");
         $suite->addTestSuite($namespace . "\Get_PlotTest");
-        $suite->addTestSuite($namespace . "\Get_PosterTest");
+        $suite->addTestSuite($namespace . "\Get_PosterremoteTest");
         $suite->addTestSuite($namespace . "\Get_RatingTest");
         $suite->addTestSuite($namespace . "\Get_RuntimeTest");
         $suite->addTestSuite($namespace . "\Get_TaglineTest");

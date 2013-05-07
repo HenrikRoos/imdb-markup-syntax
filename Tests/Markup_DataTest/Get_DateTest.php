@@ -103,7 +103,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
         //When
         $imdb = new Movie_Datasource($this->testdataPositive, $locale);
         $data = $imdb->getData();
-        $mdata = new Markup_Data($data, $locale);
+        $mdata = new Markup_Data($data, null, $locale);
         $actual = $mdata->getDate();
 
         //Then
@@ -128,7 +128,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
         //When
         $imdb = new Movie_Datasource($this->testdataPositive, $locale);
         $data = $imdb->getData();
-        $mdata = new Markup_Data($data, $locale);
+        $mdata = new Markup_Data($data, null, $locale);
         $actual = $mdata->getDate();
 
         //Then

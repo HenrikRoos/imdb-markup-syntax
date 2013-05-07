@@ -104,7 +104,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
         $expected = "/\d{3} \d{3}/";
 
         //When
-        $mdata = new Markup_Data($data, "sv_SE");
+        $mdata = new Markup_Data($data, null, "sv_SE");
         $actual = $mdata->getVotes();
 
         //Then

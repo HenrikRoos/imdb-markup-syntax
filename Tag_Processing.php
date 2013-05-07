@@ -98,6 +98,9 @@ class Tag_Processing
     /** @var int The maximum number of milliseconds to allow execute to imdb. */
     public $timeout = 0;
 
+    /** @var int Current post_id use by poster * */
+    public $post_id;
+
     /** @var object IMDb:s data object */
     protected $data;
 
@@ -105,10 +108,12 @@ class Tag_Processing
      * Create an object
      * 
      * @param string $original_content Blog post content
+     * @param int    $post_id          Current post_id use by poster
      */
-    public function __construct($original_content)
+    public function __construct($original_content, $post_id = 0)
     {
         $this->original_content = $original_content;
+        $this->post_id = $post_id;
     }
 
     /**
@@ -220,7 +225,9 @@ class Tag_Processing
         $this->tconst_tag = $match;
 
         $imdb = new Movie_Datasource($match[1], $this->locale, $this->timeout);
-        $this->data = new Markup_Data($imdb->getData(), $this->locale);
+        $this->data = new Markup_Data($imdb->getData(), $this->post_id,
+            $this->locale, $this->prefix
+        );
         return $this->data->getTconst() == true;
     }
 
@@ -238,7 +245,7 @@ class Tag_Processing
             ? "/\[{$this->prefix}\:{$this->imdb_tags_pattern}\]/i"
             : $this->custom_tags_pattern;
         $isOk = @preg_match_all(
-            $pattern, $this->original_content, $match, PREG_SET_ORDER
+                $pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();

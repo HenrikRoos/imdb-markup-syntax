@@ -21,6 +21,7 @@ use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . "/../../Markup_Data.php";
 require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
+require_once dirname(__FILE__) . "/../../../../../wp-config.php";
 require_once "PHPUnit/Autoload.php";
 
 /**
@@ -55,25 +56,56 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
      * @return void
      */
     public function testPositive()
     {
+
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "<a href=\"http://www.imdb.com/title/tt0137523/\">"
-            . "<img src=\"http://ia.media-imdb.com/images/M/"
-            . "MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg\" "
-            . "alt=\"Fight Club\" width=\"200\" class=\"alignleft\"/></a>";
+        $pattern = "/\<a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\" "
+            . "title=\"Fight Club\"\>\<img width=\"201\" height=\"300\" "
+            . "src=\"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2013\/05\/"
+            . "tt0137523\d+-201x300\.jpg\" class=\"alignleft size\-medium "
+            . "wp\-post\-image\" alt=\"Fight Club\" \/\>\<\/a\>/";
+        $post_id = 56;
 
         //When
-        $mdata = new Markup_Data($data);
+        $mdata = new Markup_Data($data, $post_id);
         $actual = $mdata->getPoster();
 
         //Then
-        $this->assertSame($expected, $actual);
+        $this->assertRegExp($pattern, $actual);
+    }
+
+    /**
+     * Positive test: Get data sucessful
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage No valid displayable image
+     * 
+     * @return void
+     */
+    public function testNoImage()
+    {
+
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        $data->image->url = "https://news.google.se";
+        $post_id = 56;
+
+        //When
+        $mdata = new Markup_Data($data, $post_id);
+        $mdata->getPoster();
     }
 
     /**

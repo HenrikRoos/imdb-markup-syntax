@@ -68,10 +68,10 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $expected = "<a href=\"http://www.imdb.com/name/nm0000093\">Brad Pitt</a>"
-            . " Tyler Durden\n<a href=\"http://www.imdb.com/name/nm0001570\">"
-            . "Edward Norton</a> The Narrator\n"
+            . " Tyler Durden, <a href=\"http://www.imdb.com/name/nm0001570\">"
+            . "Edward Norton</a> The Narrator, "
             . "<a href=\"http://www.imdb.com/name/nm0000307\">Helena Bonham Carter"
-            . "</a> Marla Singer\n<a href=\"http://www.imdb.com/name/nm0001533\">"
+            . "</a> Marla Singer, <a href=\"http://www.imdb.com/name/nm0001533\">"
             . "Meat Loaf</a> (as Meat Loaf Aday) Robert 'Bob' Paulson";
 
         //When
