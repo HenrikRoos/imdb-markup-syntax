@@ -87,8 +87,8 @@ class Media_Library_Handler
     public function getHtml($href, $title, $size = "medium", $align = "left")
     {
         $file = $this->download();
-        $attach_id = $this->addToMediaLibrary($file["file"], $title,
-            $file["content-type"]
+        $attach_id = $this->addToMediaLibrary(
+            $file["file"], $title, $file["content-type"]
         );
         $thumbnail = set_post_thumbnail($this->post_id, $attach_id);
         if ($thumbnail === false) {
