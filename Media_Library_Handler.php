@@ -46,6 +46,7 @@ class Media_Library_Handler
 
     /**
      * Create an intsans and validate input
+     * 
      * @param int    $post_id    Current Post ID
      * @param url    $remote_url Valid URL to the image remote
      * @param string $filename   Filename with no extension on new file e.g tconst
@@ -57,7 +58,7 @@ class Media_Library_Handler
         if (!is_int($post_id)) {
             throw new Runtime_Exception(null, "post_id must be an interger");
         }
-        if (filter_var($remote_url, FILTER_VALIDATE_URL) === FALSE) {
+        if (filter_var($remote_url, FILTER_VALIDATE_URL) === false) {
             throw new Runtime_Exception(null, "remote_url must be an URL");
         }
         if (!file_is_displayable_image($remote_url)) {
@@ -87,13 +88,16 @@ class Media_Library_Handler
     {
         $file = $this->download();
         $attach_id = $this->addToMediaLibrary($file["file"], $title,
-            $file["content-type"]);
+            $file["content-type"]
+        );
         $thumbnail = set_post_thumbnail($this->post_id, $attach_id);
         if ($thumbnail === false) {
             throw new Runtime_Exception(null, "Can't set post thumbnail");
         }
-        $img = get_the_post_thumbnail($this->post_id, $size,
-            array("class" => "align" . $align . " size-" . $size));
+        $img = get_the_post_thumbnail(
+            $this->post_id, $size,
+            array("class" => "align" . $align . " size-" . $size)
+        );
         return "<a href=\"{$href}\" title=\"{$title}\">{$img}</a>";
     }
 
@@ -139,8 +143,8 @@ class Media_Library_Handler
      * "Settings_Media_Screen":http://codex.wordpress.org/Settings_Media_Screen
      * **WordPress 2.1+**
      * 
-     * @param string $filename Filepath of the attached image in upload folder.
-     * @param string $title Name of the movie.
+     * @param string $filepath  Filepath of the attached image in upload folder.
+     * @param string $title     Name of the movie.
      * @param string $mime_type File content-type *e.g image/jpeg*
      * 
      * @throws Runtime_Exception Some issues with metadata update

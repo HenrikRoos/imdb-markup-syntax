@@ -225,8 +225,8 @@ class Tag_Processing
         $this->tconst_tag = $match;
 
         $imdb = new Movie_Datasource($match[1], $this->locale, $this->timeout);
-        $this->data = new Markup_Data($imdb->getData(), $this->post_id,
-            $this->locale, $this->prefix
+        $this->data = new Markup_Data(
+            $imdb->getData(), $this->post_id, $this->locale, $this->prefix
         );
         return $this->data->getTconst() == true;
     }

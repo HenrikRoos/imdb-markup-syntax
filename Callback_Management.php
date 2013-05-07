@@ -36,7 +36,7 @@ class Callback_Management
     /**
      * Create an intsans and set localization for data
      * 
-     * @param $locale Localization for data, standard RFC 4646
+     * @param string $locale Localization for data, standard RFC 4646
      */
     public function __construct($locale = "")
     {

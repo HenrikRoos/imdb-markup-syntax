@@ -58,8 +58,8 @@ class Markup_Data
      * [imdb:date] prefix = abc => [abc:date]*
      */
     public function __construct(stdClass $data, $post_id = 0, $locale = "",
-        $prefix = "imdb")
-    {
+        $prefix = "imdb"
+    ) {
         $this->_data = $data;
         $this->post_id = $post_id;
         $this->locale = $locale;
@@ -385,7 +385,8 @@ class Markup_Data
      */
     protected function toSummaryString($summary, $glue = ", ")
     {
-        if (isset($this->_data->$summary) && !empty($this->_data->$summary) && is_array($this->_data->$summary)
+        if (isset($this->_data->$summary) && !empty($this->_data->$summary)
+            && is_array($this->_data->$summary)
         ) {
             $summaryList = $this->toPersonsList($this->_data->$summary);
             if (!empty($summaryList)) {
