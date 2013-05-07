@@ -47,7 +47,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->testdataPositive = "tt0137523";
+        $this->testdataPositive = "tt0468569";
     }
 
     /**
@@ -66,15 +66,18 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $pattern = "/\<a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\" "
-            . "title=\"Fight Club\"\>\<img width=\"201\" height=\"300\" "
-            . "src=\"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2013\/05\/"
-            . "tt0137523\d+-201x300\.jpg\" class=\"alignleft size\-medium "
-            . "wp\-post\-image\" alt=\"Fight Club\" \/\>\<\/a\>/";
         $post_id = 56;
 
         //When
         $mdata = new Markup_Data($data, $post_id);
+        $title = $mdata->getValue("title");
+        $pattern = "/\<a href=\"http:\/\/www\.imdb\.com\/title\/"
+            . "{$this->testdataPositive}\/\" "
+            . "title=\"{$title}\"\>\<img width=\"20\d\" height=\"300\" "
+            . "src=\"http:\/\/localhost\/wordpress\/wp-content\/uploads"
+            . "\/201\d\/\d\d\/"
+            . "{$this->testdataPositive}\d*-20\dx300\.jpg\" class=\"alignleft "
+            . "size\-medium wp\-post\-image\" alt=\"{$title}\" \/\>\<\/a\>/";
         $actual = $mdata->getPoster();
 
         //Then

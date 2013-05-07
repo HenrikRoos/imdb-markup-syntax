@@ -350,7 +350,7 @@ class Markup_Data
      * 
      * @return int|float|string|boolean data value or false if value not set or empty
      */
-    protected function getValue($name)
+    public function getValue($name)
     {
         return (isset($this->_data->$name) && !empty($this->_data->$name))
             ? $this->_data->$name
@@ -365,7 +365,7 @@ class Markup_Data
      * 
      * @return int|float|string|boolean data value or false if value not set or empty
      */
-    protected function getValueValue($na1, $na2)
+    public function getValueValue($na1, $na2)
     {
         return (isset($this->_data->$na1->$na2) && !empty($this->_data->$na1->$na2))
             ? $this->_data->$na1->$na2
