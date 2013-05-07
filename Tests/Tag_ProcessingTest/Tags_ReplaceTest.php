@@ -95,10 +95,10 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             . "The Silence of the Lambs</a>
             [IMDb:id(tt0137523)]. Year: [Tag year not exists] Thu Feb 14 1991 "
             . "<a href=\"http://www.imdb.com/name/nm0000149\">Jodie Foster</a> "
-            . "Clarice Starling\n<a href=\"http://www.imdb.com/name/nm0000164\">"
-            . "Anthony Hopkins</a> Dr. Hannibal Lecter\n"
+            . "Clarice Starling, <a href=\"http://www.imdb.com/name/nm0000164\">"
+            . "Anthony Hopkins</a> Dr. Hannibal Lecter, "
             . "<a href=\"http://www.imdb.com/name/nm0095029\">Lawrence A. Bonney</a>"
-            . " FBI Instructor\n<a href=\"http://www.imdb.com/name/nm0501435\">"
+            . " FBI Instructor, <a href=\"http://www.imdb.com/name/nm0501435\">"
             . "Kasi Lemmons</a> Ardelia Mapp
             <a href=\"http://www.imdb.com/title/tt0102926/\">The Silence of the "
             . "Lambs</a> [ImDB: writer ] [imdb:$$]
