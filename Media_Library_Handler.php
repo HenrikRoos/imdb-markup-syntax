@@ -48,11 +48,11 @@ class Media_Library_Handler
     /**
      * Create an intsans and validate input
      * 
-     * @since 2.5
-     * 
      * @param int    $post_id    Current Post ID
      * @param url    $remote_url Valid URL to the image remote
      * @param string $filename   Filename with no extension on new file e.g tconst
+     * 
+     * @since 2.5
      * 
      * @throws Runtime_Exception If no valid input.
      */
@@ -77,12 +77,12 @@ class Media_Library_Handler
     /**
      * Get html code for image and link to the movie at imdb.com
      * 
-     * @since 3.1
-     * 
      * @param string $href  Link to the movie at imdb.com
      * @param string $title Name of the movie
      * @param string $size  Thumbnail sizes: thumbnail, medium, large, full
-     * @param string $align Alignment: left, center, right, none 
+     * @param string $align Alignment: left, center, right, none
+     * 
+     * @since 3.1 
      * 
      * @throws WP_Exception      Error from retrieve the raw response
      * @throws Runtime_Exception Error from wp_upload_bits or with metadata update
@@ -95,10 +95,7 @@ class Media_Library_Handler
         $attach_id = $this->addToMediaLibrary(
             $file["file"], $title, $file["content-type"]
         );
-        $thumbnail = set_post_thumbnail($this->post_id, $attach_id);
-        if ($thumbnail === false) {
-            throw new Runtime_Exception(null, "Can't set post thumbnail");
-        }
+        set_post_thumbnail($this->post_id, $attach_id);
         $img = get_the_post_thumbnail(
             $this->post_id, $size,
             array("class" => "align" . $align . " size-" . $size)
@@ -148,11 +145,11 @@ class Media_Library_Handler
      * image attachment based on the sizes defined on the
      * "Settings_Media_Screen":http://codex.wordpress.org/Settings_Media_Screen
      * 
-     * @since 2.1
-     * 
      * @param string $filepath  Filepath of the attached image in upload folder.
      * @param string $title     Name of the movie.
      * @param string $mime_type File content-type *e.g image/jpeg*
+     * 
+     * @since 2.1
      * 
      * @throws Runtime_Exception Some issues with metadata update
      * 

@@ -53,7 +53,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
      * Positive test: Get data sucessful
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPosterremote
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
@@ -80,7 +80,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
      * Negative test: No data is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPosterremote
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
@@ -105,7 +105,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
      * Negative test: Data is empty
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPosterremote
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * 
      * @return void
