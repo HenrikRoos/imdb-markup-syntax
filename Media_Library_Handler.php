@@ -20,6 +20,7 @@ use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 use IMDb_Markup_Syntax\Exceptions\WP_Exception;
 
 require_once dirname(__FILE__) . "/../../../wp-admin/includes/image.php";
+require_once dirname(__FILE__) . "/Exceptions/WP_Exception.php";
 
 /**
  * Handler for images in WordPress Media Library. Download and save images into
@@ -47,6 +48,8 @@ class Media_Library_Handler
     /**
      * Create an intsans and validate input
      * 
+     * @since 2.5
+     * 
      * @param int    $post_id    Current Post ID
      * @param url    $remote_url Valid URL to the image remote
      * @param string $filename   Filename with no extension on new file e.g tconst
@@ -56,7 +59,7 @@ class Media_Library_Handler
     public function __construct($post_id, $remote_url, $filename)
     {
         if (!is_int($post_id)) {
-            throw new Runtime_Exception(null, "post_id must be an interger");
+            throw new Runtime_Exception(null, "post_id must be an integer");
         }
         if (filter_var($remote_url, FILTER_VALIDATE_URL) === false) {
             throw new Runtime_Exception(null, "remote_url must be an URL");
@@ -73,6 +76,8 @@ class Media_Library_Handler
 
     /**
      * Get html code for image and link to the movie at imdb.com
+     * 
+     * @since 3.1
      * 
      * @param string $href  Link to the movie at imdb.com
      * @param string $title Name of the movie
@@ -103,15 +108,16 @@ class Media_Library_Handler
 
     /**
      * Download the remot file and save it `in the upload folder.
-     * Local file handler save it in **$this->local_file**
      * /---code php
      * array(
      *      "file" => string, //unique file path
      *      "url" => string, //link to the new file
+     *      "content-type" => string, //e.g image/jpeg
      *      "error" => false|string
      * );
      * \---
-     * **WordPress 2.7+**
+     * 
+     * @since 2.7
      * 
      * @throws WP_Exception      Some error from retrieve the raw response
      * @throws Runtime_Exception Some error from wp_upload_bits
@@ -141,7 +147,8 @@ class Media_Library_Handler
      * attachment. It also creates a thumbnail and other intermediate sizes of the
      * image attachment based on the sizes defined on the
      * "Settings_Media_Screen":http://codex.wordpress.org/Settings_Media_Screen
-     * **WordPress 2.1+**
+     * 
+     * @since 2.1
      * 
      * @param string $filepath  Filepath of the attached image in upload folder.
      * @param string $title     Name of the movie.
@@ -157,7 +164,7 @@ class Media_Library_Handler
             "post_title" => $title,
             "post_mime_type" => $mime_type
         );
-        $attach_id = wp_insert_attachment($attachment, $filepath, $this->post_id);
+        $attach_id = @wp_insert_attachment($attachment, $filepath, $this->post_id);
         $attach_data = wp_generate_attachment_metadata($attach_id, $filepath);
         $update = wp_update_attachment_metadata($attach_id, $attach_data);
         if ($update === false) {

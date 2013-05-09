@@ -16,11 +16,13 @@
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
 use IMDb_Markup_Syntax\Markup_Data;
+use IMDb_Markup_Syntax\Media_Library_Handler;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . "/../../Markup_Data.php";
 require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
+require_once dirname(__FILE__) . "/../../Media_Library_Handler.php";
 require_once dirname(__FILE__) . "/../../../../../wp-config.php";
 require_once "PHPUnit/Autoload.php";
 
@@ -85,7 +87,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Positive test: Get data sucessful
+     * Negative test: No image
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
@@ -109,6 +111,125 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         //When
         $mdata = new Markup_Data($data, $post_id);
         $mdata->getPoster();
+    }
+
+    /**
+     * Negative test: post_id is not an integer
+     *
+     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
+     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
+     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage post_id must be an integer
+     * 
+     * @return void
+     */
+    public function testIdNotInt()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        $post_id = "xx";
+
+        //When
+        $mdata = new Markup_Data($data, $post_id);
+        $mdata->getPoster();
+    }
+
+    /**
+     * Negative test: Incorrect URL
+     *
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage remote_url must be an URL
+     * 
+     * @return void
+     */
+    public function testIncorrectUrl()
+    {
+        //Given
+        $post_id = 1;
+        $remote_url = "x";
+        $filename = "y";
+
+        //When
+        new Media_Library_Handler($post_id, $remote_url, $filename);
+    }
+
+    /**
+     * Negative test: Incorrect URL
+     *
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage Can't update attachment metadata
+     * 
+     * @return void
+     */
+    public function testFailureMetadata()
+    {
+        //Given
+        $post_id = 1;
+        $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
+            . "failure-poster.jpg";
+        $filename = "y";
+
+        //When
+        $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
+        $lib->remote_url .= "x";
+        $lib->getHtml("a", "b");
+    }
+
+    /**
+     * Negative test: Incorrect URL
+     *
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers IMDb_Markup_Syntax\Exceptions\WP_Exception
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\WP_Exception
+     * @expectedExceptionMessage A valid URL was not provided.
+     * 
+     * @return void
+     */
+    public function testFailureDownload()
+    {
+        //Given
+        $post_id = 1;
+        $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
+            . "failure-poster.jpg";
+        $filename = "y";
+
+        //When
+        $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
+        $lib->remote_url = "x";
+        $lib->getHtml("a", "b");
+    }
+
+    /**
+     * Negative test: Incorrect URL
+     *
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage Empty filename
+     * 
+     * @return void
+     */
+    public function testFailureFilename()
+    {
+        //Given
+        $post_id = 1;
+        $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
+            . "failure-poster.jpg";
+        $filename = "y";
+
+        //When
+        $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
+        $lib->fileanme = "";
+        $lib->getHtml("a", "b");
     }
 
     /**

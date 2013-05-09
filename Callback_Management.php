@@ -45,14 +45,24 @@ class Callback_Management
 
     /**
      * Replace **[imdb:id(ttxxxxxxx)]** and **[imdb:xxx]** with imdb data
+     * Call by wp_insert_post_data filer hook.
      * 
-     * @param string $content content widh tags
+     * @param array $data    Sanitized post data
+     * @param array $postarr Raw post data.
      * 
-     * @return string content with replaced tags
+     * @return array Update $data
      */
-    public function filterImdbTags($content)
+    public function filterImdbTags($data, $postarr)
     {
-        return $this->tagsReplace($content);
+        $post_id = $postarr["ID"];
+        
+        $content = $data["post_content"];
+        $data["post_content"] = $this->tagsReplace($content, "imdb", $post_id);
+        
+        $title = $data["post_title"];
+        $data["post_title"] = $this->tagsReplace($title, "imdb", $post_id);
+
+        return $data;
     }
 
     /**
@@ -72,12 +82,13 @@ class Callback_Management
      * 
      * @param string $content Content widh tags
      * @param string $prefix  Starting tagname
+     * @param int    $post_id Current post_id use by poster
      * 
      * @return string content with replaced tags
      */
-    protected function tagsReplace($content, $prefix = "imdb")
+    protected function tagsReplace($content, $prefix = "imdb", $post_id = 0)
     {
-        $imdb = new Tag_Processing($content);
+        $imdb = new Tag_Processing($content, $post_id);
         $imdb->locale = $this->locale;
         $imdb->prefix = $prefix;
         $imdb->tagsReplace();

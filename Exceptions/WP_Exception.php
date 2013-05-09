@@ -16,6 +16,7 @@
 namespace IMDb_Markup_Syntax\Exceptions;
 
 use Exception;
+use WP_Error;
 
 /**
  * Exception class for WP_Error class. **Must have WordPress 2.1+**
@@ -40,8 +41,7 @@ class WP_Exception extends Exception
     public function __construct(WP_Error $wp_error, Exception $previous = null)
     {
         $message = $wp_error->get_error_message();
-        $code = $wp_error->get_error_code();
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, null, $previous);
     }
 
 }
