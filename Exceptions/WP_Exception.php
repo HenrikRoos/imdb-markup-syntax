@@ -37,6 +37,8 @@ class WP_Exception extends Exception
      * @param WP_Error  $wp_error An WordPress Error class
      * @param Exception $previous The previous exception used for the exception
      * chaining
+     * 
+     * @since WordPress 2.1
      */
     public function __construct(WP_Error $wp_error, Exception $previous = null)
     {

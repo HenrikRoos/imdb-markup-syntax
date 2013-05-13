@@ -64,13 +64,19 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      */
     public function testPositive()
     {
-
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $post_id = 56;
+        $post = array(
+            'post_title' => 'My post',
+            'post_content' => 'This is my post.',
+            'post_status' => 'publish',
+            'post_author' => 1,
+            'post_category' => array(8, 39)
+        );
 
         //When
+        $post_id = wp_insert_post($post);
         $mdata = new Markup_Data($data, $post_id);
         $title = $mdata->getValue("title");
         $pattern = "/\<a href=\"http:\/\/www\.imdb\.com\/title\/"
@@ -81,9 +87,11 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             . "{$this->testdataPositive}\d*-20\dx300\.jpg\" class=\"alignleft "
             . "size\-medium wp\-post\-image\" alt=\"{$title}\" \/\>\<\/a\>/";
         $actual = $mdata->getPoster();
+        $delete = wp_delete_post($post_id, true);
 
         //Then
         $this->assertRegExp($pattern, $actual);
+        $this->assertTrue($delete !== false);
     }
 
     /**
@@ -230,6 +238,28 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
         $lib->fileanme = "";
         $lib->getHtml("a", "b");
+    }
+
+    /**
+     * Negative test: Post Id not exist
+     *
+     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedExceptionMessage Can't update attachment metadata
+     * 
+     * @return void
+     */
+    public function testIdNotExist()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        $post_id = 3;
+
+        //When
+        $mdata = new Markup_Data($data, $post_id);
+        $mdata->getPoster();
     }
 
     /**
