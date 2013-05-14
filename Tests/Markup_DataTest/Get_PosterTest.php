@@ -247,7 +247,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Can't insert attachment
+     * @expectedExceptionMessage Can't set thumbnail to the post id
      * 
      * @return void
      */

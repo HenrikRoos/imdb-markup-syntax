@@ -98,7 +98,7 @@ class Media_Library_Handler
         $thumbnail = set_post_thumbnail($this->post_id, $attach_id);
         if ($thumbnail === false) {
             throw new Runtime_Exception(
-            null, "Can't set thumbnail to the post id {$this->post_id}"
+                null, "Can't set thumbnail to the post id {$this->post_id}"
             );
         }
         $img = get_the_post_thumbnail(
@@ -167,9 +167,6 @@ class Media_Library_Handler
             "post_mime_type" => $mime_type
         );
         $attach_id = @wp_insert_attachment($attachment, $filepath, $this->post_id);
-        if ($attach_id == false) {
-            throw new Runtime_Exception(null, "Can't insert attachment");
-        }
         $attach_data = wp_generate_attachment_metadata($attach_id, $filepath);
         wp_update_attachment_metadata($attach_id, $attach_data);
         return $attach_id;

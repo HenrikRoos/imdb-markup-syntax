@@ -45,7 +45,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
      * @return void
      */
     public function testFilterImdbTags()
-      {
+    {
         //Given
         $post = array(
             'post_title' => 'My post',
@@ -95,10 +95,11 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
         //Then
         $this->assertSame($expected["post_title"], $actual["post_title"]);
         $this->assertRegExp($expected["post_content"], $actual["post_content"]);
-        $this->assertRegExp($expected_after["post_content"],
-            $actual_after["post_content"]);
+        $this->assertRegExp(
+            $expected_after["post_content"], $actual_after["post_content"]
+        );
         $this->assertTrue($delete !== false);
-      }
+    }
 
     /**
      * Positive test
