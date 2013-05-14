@@ -4,6 +4,9 @@
          strict="true"
          verbose="true">
     <testsuites>
+        <testsuite name="Callback_Management">
+            <file>Tests/Callback_ManagementTest.php</file>
+        </testsuite>
         <testsuite name="Markup Data">
             <file>Tests/Markup_DataSuite.php</file>
         </testsuite>

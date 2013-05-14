@@ -171,30 +171,6 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * Negative test: Incorrect URL
      *
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
-     * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Can't update attachment metadata
-     * 
-     * @return void
-     */
-    public function testFailureMetadata()
-    {
-        //Given
-        $post_id = 1;
-        $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
-            . "failure-poster.jpg";
-        $filename = "y";
-
-        //When
-        $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
-        $lib->remote_url .= "x";
-        $lib->getHtml("a", "b");
-    }
-
-    /**
-     * Negative test: Incorrect URL
-     *
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * @covers IMDb_Markup_Syntax\Exceptions\WP_Exception
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\WP_Exception
@@ -238,28 +214,6 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
         $lib->fileanme = "";
         $lib->getHtml("a", "b");
-    }
-
-    /**
-     * Negative test: Post Id not exist
-     *
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
-     * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Can't update attachment metadata
-     * 
-     * @return void
-     */
-    public function testIdNotExist()
-    {
-        //Given
-        $imdb = new Movie_Datasource($this->testdataPositive);
-        $data = $imdb->getData();
-        $post_id = 3;
-
-        //When
-        $mdata = new Markup_Data($data, $post_id);
-        $mdata->getPoster();
     }
 
     /**
