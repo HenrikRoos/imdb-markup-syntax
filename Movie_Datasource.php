@@ -165,8 +165,8 @@ class Movie_Datasource
     {
         $resource = @curl_init($this->request);
         if (!isset($resource) || $resource === false) {
-            throw new Curl_Exception(null,
-                __("curl_init return false or null", "imdb-markup-syntax")
+            throw new Curl_Exception(
+                null, __("curl_init return false or null", "imdb-markup-syntax")
             );
         }
         $options = array(

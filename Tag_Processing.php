@@ -246,7 +246,7 @@ class Tag_Processing
             ? "/\[{$this->prefix}\:{$this->imdb_tags_pattern}\]/i"
             : $this->custom_tags_pattern;
         $isOk = @preg_match_all(
-                $pattern, $this->original_content, $match, PREG_SET_ORDER
+            $pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();

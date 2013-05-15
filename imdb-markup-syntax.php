@@ -26,8 +26,9 @@ use IMDb_Markup_Syntax\Callback_Management;
  * License: GPL-3.0
  * License URI: http://opensource.org/licenses/gpl-3.0.html
  */
-load_plugin_textdomain("imdb-markup-syntax", false,
-    basename(dirname(__FILE__)) . "/languages");
+load_plugin_textdomain(
+    "imdb-markup-syntax", false, basename(dirname(__FILE__)) . "/languages"
+);
 
 $mgmt = new Callback_Management(get_locale());
 
