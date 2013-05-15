@@ -59,13 +59,19 @@ class Media_Library_Handler
     public function __construct($post_id, $remote_url, $filename)
     {
         if (!is_int($post_id)) {
-            throw new Runtime_Exception(null, "post_id must be an integer");
+            throw new Runtime_Exception(
+                __("Post ID must be an integer", "imdb-markup-syntax")
+            );
         }
         if (filter_var($remote_url, FILTER_VALIDATE_URL) === false) {
-            throw new Runtime_Exception(null, "remote_url must be an URL");
+            throw new Runtime_Exception(
+                __("Remote URL must be an validate URL", "imdb-markup-syntax")
+            );
         }
         if (!file_is_displayable_image($remote_url)) {
-            throw new Runtime_Exception(null, "No valid displayable image");
+            throw new Runtime_Exception(
+                __("No valid displayable image", "imdb-markup-syntax")
+            );
         }
         $info = pathinfo($remote_url);
         $this->fileanme = $filename . "." . $info["extension"];
@@ -97,8 +103,9 @@ class Media_Library_Handler
         );
         $thumbnail = set_post_thumbnail($this->post_id, $attach_id);
         if ($thumbnail === false) {
+            $msg = "Can't set thumbnail to the Post ID %d";
             throw new Runtime_Exception(
-                null, "Can't set thumbnail to the post id {$this->post_id}"
+                sprintf(__($msg, "imdb-markup-syntax"), $this->post_id)
             );
         }
         $img = get_the_post_thumbnail(
@@ -138,7 +145,7 @@ class Media_Library_Handler
         $bits = wp_remote_retrieve_body($get);
         $local_file = wp_upload_bits($this->fileanme, null, $bits);
         if ($local_file["error"]) {
-            throw new Runtime_Exception(null, $local_file["error"]);
+            throw new Runtime_Exception($local_file["error"]);
         }
         $local_file["content-type"] = $get["headers"]["content-type"];
         return $local_file;
@@ -155,8 +162,6 @@ class Media_Library_Handler
      * @param string $mime_type File content-type *e.g image/jpeg*
      * 
      * @since WordPress 2.1
-     * 
-     * @throws Runtime_Exception Some issues with metadata update
      * 
      * @return int Attachment ID
      */

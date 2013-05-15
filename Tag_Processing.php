@@ -179,7 +179,8 @@ class Tag_Processing
             );
         } else {
             $this->_replacement_content = str_replace(
-                $this->tconst_tag[0], "[No imdb tags found]",
+                $this->tconst_tag[0],
+                __("[No imdb tags found]", "imdb-markup-syntax"),
                 $this->_replacement_content, $num
             );
         }
@@ -245,7 +246,7 @@ class Tag_Processing
             ? "/\[{$this->prefix}\:{$this->imdb_tags_pattern}\]/i"
             : $this->custom_tags_pattern;
         $isOk = @preg_match_all(
-            $pattern, $this->original_content, $match, PREG_SET_ORDER
+                $pattern, $this->original_content, $match, PREG_SET_ORDER
         );
         if ($isOk === false) {
             throw new PCRE_Exception();
@@ -268,11 +269,15 @@ class Tag_Processing
     protected function toDataString($tag)
     {
         if (@preg_match("/^{$this->imdb_tags_pattern}$/i", $tag) == 0) {
-            throw new Runtime_Exception(null, "Invalid function name");
+            throw new Runtime_Exception(
+                __("Invalid function name", "imdb-markup-syntax")
+            );
         }
         $fname = "get" . ucfirst(strtolower($tag));
         if (!method_exists($this->data, $fname)) {
-            throw new Runtime_Exception(null, "[Tag {$tag} not exists]");
+            throw new Runtime_Exception(
+                sprintf(__("[Tag %s not exists]", "imdb-markup-syntax"), $tag)
+            );
         }
         return $this->data->$fname();
     }

@@ -68,11 +68,11 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $post = array(
-            'post_title' => 'My post',
-            'post_content' => 'This is my post.',
-            'post_status' => 'publish',
-            'post_author' => 1,
-            'post_category' => array(8, 39)
+            "post_title" => "My post",
+            "post_content" => "This is my post.",
+            "post_status" => "publish",
+            "post_author" => 1,
+            "post_category" => array(8, 39)
         );
 
         //When
@@ -130,7 +130,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage post_id must be an integer
+     * @expectedExceptionMessage Post ID must be an integer
      * 
      * @return void
      */
@@ -152,7 +152,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage remote_url must be an URL
+     * @expectedExceptionMessage Remote URL must be an validate URL
      * 
      * @return void
      */
@@ -247,7 +247,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Can't set thumbnail to the post id
+     * @expectedExceptionMessage Can't set thumbnail to the Post ID
      * 
      * @return void
      */

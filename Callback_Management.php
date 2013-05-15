@@ -45,7 +45,7 @@ class Callback_Management
 
     /**
      * Replace **[imdb:id(ttxxxxxxx)]** and **[imdb:xxx]** with imdb data
-     * Call by wp_insert_post_data filer hook.
+     * Call by *wp_insert_post_data* filter hook.
      * 
      * @param array $data    Sanitized post data
      * @param array $postarr Raw post data.
@@ -67,6 +67,7 @@ class Callback_Management
 
     /**
      * Replace **[imdblive:id(ttxxxxxxx)]** and **[imdblive:xxx]** with imdb data
+     * Call by *the_content* or *the_title* filter hook
      * 
      * @param string $content content widh tags
      * 

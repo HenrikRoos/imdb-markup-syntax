@@ -83,7 +83,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             . "suscipit quis. ÖÄÅ öäå Quisque congue. "
             . "Title: <a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\">"
             . "Fight Club<\/a> Poster: "
-            . "Can't set thumbnail to the post id \d+/"
+            . "Can't set thumbnail to the Post ID \d+/"
         );
 
         //When

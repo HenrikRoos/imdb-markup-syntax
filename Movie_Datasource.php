@@ -76,7 +76,9 @@ class Movie_Datasource
     public function __construct($tconst = null, $locale = "", $timeout = 0)
     {
         if (!is_null($tconst) && @preg_match("/^tt\d+$/", $tconst) == 0) {
-            throw new Runtime_Exception(null, "Incorrect tconst: {$tconst}");
+            throw new Runtime_Exception(
+                sprintf(__("Incorrect tconst %s", "imdb-markup-syntax"), $tconst)
+            );
         }
         $this->tconst = $tconst;
         $this->timeout = $timeout;
@@ -102,7 +104,7 @@ class Movie_Datasource
         $method = "title/maindetails"
     ) {
         if (empty($query)) {
-            throw new Runtime_Exception(null, "No query");
+            throw new Runtime_Exception(__("Empty query", "imdb-markup-syntax"));
         }
         if (!empty($locale)) {
             $this->params["locale"] = $locale;
@@ -146,7 +148,7 @@ class Movie_Datasource
             throw new Json_Exception();
         }
         if (isset($obj->error)) {
-            throw new Runtime_Exception($obj);
+            throw new Runtime_Exception(null, null, $obj);
         }
         return $obj->data;
     }
@@ -163,7 +165,9 @@ class Movie_Datasource
     {
         $resource = @curl_init($this->request);
         if (!isset($resource) || $resource === false) {
-            throw new Curl_Exception(null, "curl_init return false or null");
+            throw new Curl_Exception(null,
+                __("curl_init return false or null", "imdb-markup-syntax")
+            );
         }
         $options = array(
             CURLOPT_HTTPHEADER => array(
