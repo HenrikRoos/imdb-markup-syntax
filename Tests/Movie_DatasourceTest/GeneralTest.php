@@ -83,7 +83,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
      * Negative test, no query data
      * 
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage No query
+     * @expectedExceptionMessage Empty query
      * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
