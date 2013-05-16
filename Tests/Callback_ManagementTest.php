@@ -17,8 +17,8 @@ namespace IMDb_Markup_Syntax;
 
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/../Callback_Management.php";
 require_once dirname(__FILE__) . "/../../../../wp-config.php";
+require_once dirname(__FILE__) . "/../Callback_Management.php";
 require_once "PHPUnit/Autoload.php";
 
 /**
@@ -48,11 +48,11 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $post = array(
-            'post_title' => 'My post',
-            'post_content' => 'This is my post.',
-            'post_status' => 'publish',
-            'post_author' => 1,
-            'post_category' => array(8, 39)
+            "post_title" => "My post",
+            "post_content" => "This is my post.",
+            "post_status" => "publish",
+            "post_author" => 1,
+            "post_category" => array(8, 39)
         );
         $post_id = wp_insert_post($post);
         $mgmt = new Callback_Management();
@@ -72,7 +72,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             . "Fight Club<\/a> Poster: "
             . "<a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\" "
             . "title=\"Fight Club\"><img width=\"20\d\" height=\"300\" "
-            . "src=\"http:\/\/.+\/wp-content\/uploads\/201\d\/\d\d"
+            . "src=\"http:\/\/.+\/uploads\/201\d\/\d\d"
             . "\/tt0137523\d*-20\dx300.jpg\" class=\"alignleft size-medium "
             . "wp-post-image\" alt=\"Fight Club\" \/><\/a>/"
         );

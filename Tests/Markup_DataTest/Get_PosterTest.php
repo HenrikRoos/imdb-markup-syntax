@@ -82,7 +82,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $pattern = "/\<a href=\"http:\/\/www\.imdb\.com\/title\/"
             . "{$this->testdataPositive}\/\" "
             . "title=\"{$title}\"\>\<img width=\"20\d\" height=\"300\" "
-            . "src=\"http:\/\/.+\/wp-content\/uploads"
+            . "src=\"http:\/\/.+\/uploads"
             . "\/201\d\/\d\d\/"
             . "{$this->testdataPositive}\d*-20\dx300\.jpg\" class=\"alignleft "
             . "size\-medium wp\-post\-image\" alt=\"{$title}\" \/\>\<\/a\>/";

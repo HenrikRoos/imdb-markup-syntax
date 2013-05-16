@@ -17,11 +17,12 @@ namespace IMDb_Markup_Syntax;
 
 use PHPUnit_Framework_TestSuite;
 
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . "/../../../../wp-config.php";
 require_once dirname(__FILE__) . "/../Movie_Datasource.php";
 require_once dirname(__FILE__) . "/Movie_DatasourceTest/GeneralTest.php";
 require_once dirname(__FILE__) . "/Movie_DatasourceTest/Fetch_ResponseTest.php";
 require_once dirname(__FILE__) . "/Movie_DatasourceTest/Get_DataTest.php";
+require_once "PHPUnit/Autoload.php";
 
 /**
  * Test suite (PHPUnit) test for Movie_Datasource tests
