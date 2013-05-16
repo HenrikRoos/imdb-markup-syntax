@@ -71,9 +71,9 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             . "Title: <a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\">"
             . "Fight Club<\/a> Poster: "
             . "<a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\" "
-            . "title=\"Fight Club\"><img width=\"201\" height=\"300\" "
-            . "src=\"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2013\/\d\d"
-            . "\/tt0137523\d*-201x300.jpg\" class=\"alignleft size-medium "
+            . "title=\"Fight Club\"><img width=\"20\d\" height=\"300\" "
+            . "src=\"http:\/\/.+\/wp-content\/uploads\/201\d\/\d\d"
+            . "\/tt0137523\d*-20\dx300.jpg\" class=\"alignleft size-medium "
             . "wp-post-image\" alt=\"Fight Club\" \/><\/a>/"
         );
         $expected_after = array(
