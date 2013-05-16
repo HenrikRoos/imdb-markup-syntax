@@ -74,7 +74,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             . "title=\"Fight Club\"><img width=\"20\d\" height=\"300\" "
             . "src=\"http:\/\/.+\/uploads\/201\d\/\d\d"
             . "\/tt0137523\d*-20\dx300.jpg\" class=\"alignleft size-medium "
-            . "wp-post-image\" alt=\"Fight Club\" \/><\/a>/"
+            . "wp-post-image\" alt=\"Fight Club\".+\/><\/a>/"
         );
         $expected_after = array(
             "post_title" => "ÖÄÅ öäå congue "
