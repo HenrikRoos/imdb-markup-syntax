@@ -1,3 +1,0 @@
-[submodule "php-jenkins-template"]
-	path = php-jenkins-template
-	url = git://github.com/sebastianbergmann/php-jenkins-template.git
