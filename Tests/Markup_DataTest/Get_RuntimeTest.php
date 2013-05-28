@@ -74,12 +74,13 @@ class Get_RuntimeTest extends PHPUnit_Framework_TestCase
     public function testPositive()
     {
         //Given
-        $expected = "5700";
+        $locale = "en_US";
+        $expected = "5,700";
 
         //When
-        $imdb = new Movie_Datasource($this->testdataPositive);
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
         $data = $imdb->getData();
-        $mdata = new Markup_Data($data);
+        $mdata = new Markup_Data($data, null, $locale);
         $actual = $mdata->getRuntime();
 
         //Then

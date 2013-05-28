@@ -74,13 +74,14 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
     public function testPositive()
     {
         //Given
-        $imdb = new Movie_Datasource($this->testdataPositive);
+        $locale = "en_US";
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
         $data = $imdb->getData();
         $expected_under = 8;
         $expected_over = 9;
 
         //When
-        $mdata = new Markup_Data($data);
+        $mdata = new Markup_Data($data, null, $locale);
         $actual = $mdata->getRating();
 
         //Then
@@ -128,7 +129,7 @@ class Get_RatingTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $locale = "xxx";
-        $expected = "/\d\.\d/";
+        $expected = "/\d[\.,]\d/";
 
         //When
         $imdb = new Movie_Datasource($this->testdataPositive);

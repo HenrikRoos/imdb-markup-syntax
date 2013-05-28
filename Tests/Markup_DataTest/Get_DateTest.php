@@ -73,12 +73,13 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
     public function testReleaseDatePositive()
     {
         //Given
-        $imdb = new Movie_Datasource($this->testdataPositive);
-        $data = $imdb->getData();
+        $locale = "en_US";
         $expected = "Fri Jul 18 2008";
 
         //When
-        $mdata = new Markup_Data($data);
+        $imdb = new Movie_Datasource($this->testdataPositive, $locale);
+        $data = $imdb->getData();
+        $mdata = new Markup_Data($data, null, $locale);
         $actual = $mdata->getDate();
 
         //Then

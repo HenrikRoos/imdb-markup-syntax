@@ -104,9 +104,11 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             . "Lambs</a> [ImDB: writer ] [imdb:$$]
             [imdb:qwsazxcderrfvbgtyhnmjujdjhfksjhdfkjshdkfjhsakdjfhksjadhfkjsadf]";
         $expected_count = 6;
+        $locale = "en_US";
 
         //When
         $obj = new Tag_Processing_Help($original_content);
+        $obj->locale = $locale;
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 

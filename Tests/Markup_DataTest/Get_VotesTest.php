@@ -76,11 +76,12 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
+        $conv = localeconv();
         $expected = 710000;
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = $mdata->getVotes();
+        $actual = str_replace($conv["thousands_sep"], "", $mdata->getVotes());
 
         //Then
         $this->assertGreaterThan($expected, $actual);
