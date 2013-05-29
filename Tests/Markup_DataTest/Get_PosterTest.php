@@ -206,6 +206,8 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     {
         global $locale;
         unset($locale);
+        define('WPLANG', '');
+        
         //Given
         $post_id = 1;
         $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
