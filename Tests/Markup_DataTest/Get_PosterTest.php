@@ -18,6 +18,8 @@ namespace IMDb_Markup_Syntax\Markup_DataTest;
 use IMDb_Markup_Syntax\Markup_Data;
 use IMDb_Markup_Syntax\Media_Library_Handler;
 use IMDb_Markup_Syntax\Movie_Datasource;
+use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\WP_Exception;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . "/../../Markup_Data.php";
@@ -173,9 +175,6 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * @covers IMDb_Markup_Syntax\Exceptions\WP_Exception
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\WP_Exception
-     * @expectedExceptionMessage A valid URL was not provided.
-     * 
      * @return void
      */
     public function testFailureDownload()
@@ -185,39 +184,54 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
             . "failure-poster.jpg";
         $filename = "y";
+        $expected = __("A valid URL was not provided.");
 
         //When
-        $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
-        $lib->remote_url = "x";
-        $lib->getHtml("a", "b");
+        try {
+            $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
+            $lib->remote_url = "x";
+            $lib->getHtml("a", "b");
+        }
+
+        //Then
+        catch (WP_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
-     * Negative test: Incorrect URL
+     * Negative test: Incorrect Filename
      *
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
-     * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Empty filename
      * 
      * @return void
      */
     public function testFailureFilename()
     {
-        global $locale;
-        unset($locale);
-        define('WPLANG', '');
-        
         //Given
         $post_id = 1;
         $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
             . "failure-poster.jpg";
         $filename = "y";
+        $expected = __("Empty filename");
 
         //When
-        $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
-        $lib->fileanme = "";
-        $lib->getHtml("a", "b");
+        try {
+            $lib = new Media_Library_Handler($post_id, $remote_url, $filename);
+            $lib->fileanme = "";
+            $lib->getHtml("a", "b");
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
