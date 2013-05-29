@@ -49,6 +49,8 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        global $locale;
+        unset($locale);
         $this->testdataPositive = "tt0468569";
     }
 
