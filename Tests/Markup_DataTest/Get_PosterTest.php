@@ -49,8 +49,6 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        global $locale;
-        unset($locale);
         $this->testdataPositive = "tt0468569";
     }
 
@@ -206,6 +204,8 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      */
     public function testFailureFilename()
     {
+        global $locale;
+        unset($locale);
         //Given
         $post_id = 1;
         $remote_url = "http://www.austingunter.com/wp-content/uploads/2012/11/"
