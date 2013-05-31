@@ -73,7 +73,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             . "<a href=\"http:\/\/www\.imdb\.com\/title\/tt0137523\/\" "
             . "title=\"Fight Club\"><img width=\"20\d\" height=\"300\" "
             . "src=\"http:\/\/.+\/uploads\/201\d\/\d\d"
-            . "\/tt0137523\d*-20\dx300.jpg\" class=\"alignleft size-medium "
+            . "\/tt0137523\d*-20\dx300.jpg\" class=\"alignnone size-medium "
             . "wp-post-image\" alt=\"Fight Club\".+\/><\/a>/"
         );
         $expected_after = array(
@@ -122,7 +122,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             . "Posterremote: <a href=\"http://www.imdb.com/title/tt0137523/\">"
             . "<img src=\"http://ia.media-imdb.com/images/M/"
             . "MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg\" "
-            . "alt=\"Fight Club\" width=\"200\" class=\"alignleft\"/></a>";
+            . "alt=\"Fight Club\" width=\"200\" class=\"alignnone\"/></a>";
 
         //When
         $actual = $mgmt->liveFilterImdbTags($content);
