@@ -66,7 +66,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
         $expected = "<a href=\"http://www.imdb.com/title/tt0137523/\">"
             . "<img src=\"http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl"
             . "5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg\" alt=\"Fight Club\" "
-            . "width=\"200\" class=\"alignleft\"/></a>";
+            . "width=\"200\" class=\"alignnone\"/></a>";
 
         //When
         $mdata = new Markup_Data($data);

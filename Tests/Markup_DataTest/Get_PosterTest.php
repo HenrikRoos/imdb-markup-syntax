@@ -86,7 +86,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             . "title=\"{$title}\"\>\<img width=\"20\d\" height=\"300\" "
             . "src=\"http:\/\/.+\/uploads"
             . "\/201\d\/\d\d\/"
-            . "{$this->testdataPositive}\d*-20\dx300\.jpg\" class=\"alignleft "
+            . "{$this->testdataPositive}\d*-20\dx300\.jpg\" class=\"alignnone "
             . "size\-medium wp\-post\-image\" alt=\"{$title}\".+\/\>\<\/a\>/";
         $actual = $mdata->getPoster();
         $delete = wp_delete_post($post_id, true);

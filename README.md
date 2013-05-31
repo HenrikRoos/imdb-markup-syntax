@@ -1,5 +1,5 @@
 # Description
-This plugin makes it possible to insert movie data in your blog from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com).
+This plugin makes it possible to insert movie data in your text from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com).
 
 ## How to use the plugin on your blog
 You have watched a movie and want to post a comment on it on your blog. With a few simple steps you can use this plugin to extract movie facts and display it on your blog which will complement your writing with professional and exact facts about the movie. 
@@ -8,56 +8,147 @@ You have watched a movie and want to post a comment on it on your blog. With a f
 2. Copy the movie id tag shown in the url, for example: *http://www.imdb.com/title/**tt0081505*** i.e. **tt0081505** This tag will help you to insert facts from the movie that will be displayed and highlighted when you are writing the movie title, name of the actors, the directors and so on. 
 3. For example: *[imdb:id(tt0081505)] Yesterday I saw an old movie, [imdb:title]. I really liked both the [imdb:directors] and the movie*
 4. Your text will be displayed as: *Yesterday I saw an old movie, The Shining. I really liked both the [Stanley Kubrick](http://www.imdb.com/name/nm0000040) and the movie*
-5. You can also insert statistics such as the number of people who has comment on the movie at IMDb´s website and this will be automatically updated whenever your own blog page is refreshed.
+
+You can also insert statistics such as the number of people who has comment on the movie at IMDb´s website and this will be automatically updated whenever your own blog page is refreshed.
 
 ## Example
 In post *edit* mode you write:
 
-```
-[imdb:id(tt0110912)]
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
-Nulla ut mi eget justo ultrices auctor sed in lacus.
+	[imdb:id(tt0110912)]
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+	Nulla ut mi eget justo ultrices auctor sed in lacus.
 
-Title: [imdb:title]
-Release Date: [imdb:date]
+	Title: [imdb:title]
+	Release Date: [imdb:date]
 
-Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
-Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
-```
+	Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
+	Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
+
 **After** you save it is transform to:
 
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
-Nulla ut mi eget justo ultrices auctor sed in lacus.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+	Nulla ut mi eget justo ultrices auctor sed in lacus.
 
-Title: Pulp Fiction
-Release Date: 1994-10-14
+	Title: Pulp Fiction
+	Release Date: 1994-10-14
 
-Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
-Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
-```
+	Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
+	Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate. 
 
 # Markup Syntax
-Tag                                          | Description
--------------------------------------------- | ---------------
-`[imdb:id(tt0000000)]`                       | Set the current movie. All tags starting with `[imdb` use this id. This ID disappearance when you **save** the post into your database.
-`[imdblive:id(tt0000000)]`                   | Set the current movie. All tags starting with `[imdblive` use this id. This ID disappearance when you **read** the post from your database.
-`[imdb:cast]` `[imdblive:cast]`              | A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
-`[imdb:certificate]` `[imdblive:certificate]`| Various countries or regions have film classification boards for reviewing movies and rating their content in terms of its suitability for particular audiences. For many countries, movies are required to be advertised as having a particular "certificate" or "rating", forewarning audiences of possible "objectionable content". The nature of this "objectionable content" is determined mainly by contemporary national, social, religious, and political standards. The usual criteria which determine a film's certificate are violence and sexuality, with "mature" (adult) situations and especially blasphemy and political issues often being considered more important outside the Western world. This is by no means a hard and fast rule; see the Hays Production Code for an example. In some cases, a film classification board exhibits censorship by demanding changes be made to a movie in order to receive a certain rating. As many movies are targetted at a particular age group, studios must balance the content of their films against the demands of the classification board. Negotiations are common; studios agree to make certain changes to films in order to receive the required rating. The IMDb uses the term "Certificate" as opposed to "Rating" to avoid confusion with "ratings" meaning the opinions of critics. <http://www.filmratings.com> Classification and Rating Administration (CARA)<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Fight Club has certificate **PG** on english WordPress and **15** on swedish WordPress*
-`[imdb:date]` `[imdblive:date]`              | The day when a movie is shipped to exhibitors by the distributor, it is deemed to have been released for public viewing - there are no longer any studio restrictions on who can see the movie. If no release date is given as used publication year.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Pulp Fiction has release date **Fri Oct 14 1994** on english WordPress and **Fre 25 Nov 1994** on swedish WordPress*
-`[imdb:directors]` `[imdblive:directors]`    | The principal creative artist on a movie set. A director is usually (but not always) the driving artistic source behind the filming process, and communicates to actors the way that he/she would like a particular scene played. A director's duties might also include casting, script editing, shot selection, shot composition, and editing. Typically, a director has complete artistic control over all aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a producer or a studio. In some large productions, a director will delegate less important scenes to a second unit.*<br /><br />Example: Director of Pan's Labyrinth is **[Guillermo del Toro](http://www.imdb.com/name/nm0868219)***
-`[imdb:genres]` `[imdblive:genres]`          | One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of all genres.*<br />Example: The Lord of the Rings: The Fellowship of the Ring has genres: **Action, Adventure, Fantasy***
-`[imdb:plot]` `[imdblive:plot]`              | A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
-`[imdb:poster]` `[imdblive:poster]`          | Current movie poster image.*<br />Example: <http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg><br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
-`[imdb:rating]` `[imdblive:rating]`          | Rating scale from 1 to 10 with one decimal where 10 is best.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Pulp Fiction has rating **9.0** on english WordPress and **9,0** on swedish WordPress*
-`[imdb:runtime]` `[imdblive:runtime]`        | Runtime in minutes for current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: The very long movie Matrjoschka has runtime **5700** min long on english WordPress and **5 700** min long on swedish WordPress*
-`[imdb:tagline]` `[imdblive:tagline]`        | A tagline is a variant of a branding slogan typically used in marketing materials and advertising.<br /><br />*Example: Se7en has tagline **Long is the way, and hard, that out of hell leads up to light.***
-`[imdb:tconst]` `[imdblive:tconst]`          | Tconst/id for current movie.<br /><br />*Example: Se7en has Tconst **tt0114369***
-`[imdb:title]` `[imdblive:title]`            | Title for current moive with link to [imdb.com](http://www.imdb.com).<br /><br />*Example: Se7en has title **[Se7en](http://www.imdb.com/title/tt0114369/)***
-`[imdb:type]` `[imdblive:type]`              | IMDb classifies titles under one of the following types: <ul><li>feature</li><li>short</li><li>documentary</li><li>video</li><li>tv_series</li><li>tv_special</li><li>video_game</li></ul>*Example: Game of Thrones has type **tv_series***
-`[imdb:votes]` `[imdblive:votes]`            | Number of votes from imdb members for the current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />*Example: Game of Thrones has votes **307,685** on english WordPress and **307 685** on swedish WordPress*
-`[imdb:writers]` `[imdblive:writers]`        | A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay.<br /><br />*Example: Game of Thrones has tow writers **[David Benioff](http://www.imdb.com/name/nm1125275/) (creator), [D.B. Weiss](http://www.imdb.com/name/nm1888967/) (creator)***
+Tag                                            | Description
+-----------------------------------------------| ---------------
+`[imdb:id(tt0000000)]`                         | Set the current movie. All tags starting with `[imdb` use this id. This ID disappearance when you **save** the post into your database.
+`[imdblive:id(tt0000000)]`                     | Set the current movie. All tags starting with `[imdblive` use this id. This ID disappearance when you **read** the post from your database.
+`[imdb:cast]` `[imdblive:cast]`                | A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
+`[imdb:certificate]` `[imdblive:certificate]`  | Various countries or regions have film classification boards for reviewing movies and rating their content in terms of its suitability for particular audiences. For many countries, movies are required to be advertised as having a particular "certificate" or "rating", forewarning audiences of possible "objectionable content". The nature of this "objectionable content" is determined mainly by contemporary national, social, religious, and political standards. The usual criteria which determine a film's certificate are violence and sexuality, with "mature" (adult) situations and especially blasphemy and political issues often being considered more important outside the Western world. This is by no means a hard and fast rule; see the Hays Production Code for an example. In some cases, a film classification board exhibits censorship by demanding changes be made to a movie in order to receive a certain rating. As many movies are targeted at a particular age group, studios must balance the content of their films against the demands of the classification board. Negotiations are common; studios agree to make certain changes to films in order to receive the required rating. The IMDb uses the term "Certificate" as opposed to "Rating" to avoid confusion with "ratings" meaning the opinions of critics. <http://www.filmratings.com> Classification and Rating Administration (CARA)<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Fight Club has certificate **PG** on english WordPress and **15** on swedish WordPress*
+`[imdb:date]` `[imdblive:date]`                | The day when a movie is shipped to exhibitors by the distributor, it is deemed to have been released for public viewing - there are no longer any studio restrictions on who can see the movie. If no release date is given as used publication year.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Pulp Fiction has release date **Fri Oct 14 1994** on english WordPress and **Fre 25 Nov 1994** on swedish WordPress*
+`[imdb:directors]` `[imdblive:directors]`      | The principal creative artist on a movie set. A director is usually (but not always) the driving artistic source behind the filming process, and communicates to actors the way that he/she would like a particular scene played. A director's duties might also include casting, script editing, shot selection, shot composition, and editing. Typically, a director has complete artistic control over all aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a producer or a studio. In some large productions, a director will delegate less important scenes to a second unit.*<br /><br />Example: Director of Pan's Labyrinth is **[Guillermo del Toro](http://www.imdb.com/name/nm0868219)***
+`[imdb:genres]` `[imdblive:genres]`            | One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of all genres.*<br />Example: The Lord of the Rings: The Fellowship of the Ring has genres: **Action, Adventure, Fantasy***
+`[imdb:plot]` `[imdblive:plot]`                | A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
+`[imdb:poster]`                                | Current movie poster image download automatic to your WordPress Media Library and display image as medium size from library. 
+`[imdb:posterRemote]` `[imdblive:posterRemote]`| Current movie poster image direct linked from server (remote). No locale savings!*<br />Example: <http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg><br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
+`[imdb:rating]` `[imdblive:rating]`            | Rating scale from 1 to 10 with one decimal where 10 is best.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Pulp Fiction has rating **9.0** on english WordPress and **9,0** on swedish WordPress*
+`[imdb:runtime]` `[imdblive:runtime]`          | Runtime in minutes for current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: The very long movie Matrjoschka has runtime **5700** min long on english WordPress and **5 700** min long on swedish WordPress*
+`[imdb:tagline]` `[imdblive:tagline]`          | A tagline is a variant of a branding slogan typically used in marketing materials and advertising.<br /><br />*Example: Se7en has tagline **Long is the way, and hard, that out of hell leads up to light.***
+`[imdb:tconst]` `[imdblive:tconst]`            | Tconst/id for current movie.<br /><br />*Example: Se7en has Tconst **tt0114369***
+`[imdb:title]` `[imdblive:title]`              | Title for current moive with link to [imdb.com](http://www.imdb.com).<br /><br />*Example: Se7en has title **[Se7en](http://www.imdb.com/title/tt0114369/)***
+`[imdb:type]` `[imdblive:type]`                | IMDb classifies titles under one of the following types: <ul><li>feature</li><li>short</li><li>documentary</li><li>video</li><li>tv_series</li><li>tv_special</li><li>video_game</li></ul>*Example: Game of Thrones has type **tv_series***
+`[imdb:votes]` `[imdblive:votes]`              | Number of votes from imdb members for the current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />*Example: Game of Thrones has votes **307,685** on english WordPress and **307 685** on swedish WordPress*
+`[imdb:writers]` `[imdblive:writers]`          | A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay.<br /><br />*Example: Game of Thrones has tow writers **[David Benioff](http://www.imdb.com/name/nm1125275/) (creator), [D.B. Weiss](http://www.imdb.com/name/nm1888967/) (creator)***
 
+# All tags example
+This example display all implements tags in one post. For you own test: cut and paste this example in a new post and save it.
+
+	[imdb:id(tt1951261)]
+	[imdblive:id(tt1951261)]
+	<table>
+		<tr>
+			<th>Tag description</th>
+			<th>imdb tag (static)</th>
+			<th>imdblive tag (dynamic)</th>
+		</tr>
+		<tr>
+			<td>Cast (A list of main actors)</td>
+			<td>[imdb:cast]</td>
+			<td>[imdblive:cast]</td>
+		</tr>
+		<tr>
+			<td>Certificate (Recommended age in your country)</td>
+			<td>[imdb:certificate]</td>
+			<td>[imdblive:certificate]</td>
+		</tr>
+		<tr>
+			<td>Date (The day when a movie is shipped to exhibitors in your country)</td>
+			<td>[imdb:date]</td>
+			<td>[imdblive:date]</td>
+		</tr>
+		<tr>
+			<td>Directors (The principal creative artist on a movie set)</td>
+			<td>[imdb:directors]</td>
+			<td>[imdblive:directors]</td>
+		</tr>
+		<tr>
+			<td>Genres (One or more genres for current movie)</td>
+			<td>[imdb:genres]</td>
+			<td>[imdblive:genres]</td>
+		</tr>
+		<tr>
+			<td>Plot (Description)</td>
+			<td>[imdb:plot]</td>
+			<td>[imdblive:plot]</td>
+		</tr>
+		<tr>
+			<td>Poster (Current movie poster image from your lib)</td>
+			<td><div>[imdb:poster]</div></td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<td>Poster Remote (Current movie poster image direct linked from imdb server)</td>
+			<td>[imdb:posterRemote]</td>
+			<td><div>[imdblive:posterRemote]</div></td>
+		</tr>
+		<tr>
+			<td>Rating (Rating scale from 1 to 10 with one decimal)</td>
+			<td>[imdb:rating]</td>
+			<td>[imdblive:rating]</td>
+		</tr>
+		<tr>
+			<td>Runtime (Runtime in minutes for current movie)</td>
+			<td>[imdb:runtime]</td>
+			<td>[imdblive:runtime]</td>
+		</tr>
+		<tr>
+			<td>Tagline (Branding slogan)</td>
+			<td>[imdb:tagline]</td>
+			<td>[imdblive:tagline]</td>
+		</tr>
+		<tr>
+			<td>Tconst (IMDb ID)</td>
+			<td>[imdb:tconst]</td>
+			<td>[imdblive:tconst]</td>
+		</tr>
+		<tr>
+			<td>Title (Prefered in your language)</td>
+			<td>[imdb:title]</td>
+			<td>[imdblive:title]</td>
+		</tr>
+		<tr>
+			<td>Type (IMDb classifies)</td>
+			<td>[imdb:type]</td>
+			<td>[imdblive:type]</td>
+		</tr>
+		<tr>
+			<td>Votes (Number of votes from imdb members)</td>
+			<td>[imdb:votes]</td>
+			<td>[imdblive:votes]</td>
+		</tr>
+		<tr>
+			<td>Writers (Someone who creates a written work)</td>
+			<td>[imdb:writers]</td>
+			<td>[imdblive:writers]</td>
+		</tr>
+	</table>
 
 # IMDb data copyright
 Limited non-commercial use of IMDb data is allowed, provided the following conditions are met:

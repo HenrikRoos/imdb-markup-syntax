@@ -86,7 +86,7 @@ class Media_Library_Handler
      * @param string $href  Link to the movie at imdb.com
      * @param string $title Name of the movie
      * @param string $size  Thumbnail sizes: thumbnail, medium, large, full
-     * @param string $align Alignment: left, center, right, none
+     * @param string $align Alignment: none, left, center, right
      * 
      * @since WordPress 3.1
      * 
@@ -95,7 +95,7 @@ class Media_Library_Handler
      * 
      * @return string html code
      */
-    public function getHtml($href, $title, $size = "medium", $align = "left")
+    public function getHtml($href, $title, $size = "medium", $align = "none")
     {
         $file = $this->download();
         $attach_id = $this->addToMediaLibrary(

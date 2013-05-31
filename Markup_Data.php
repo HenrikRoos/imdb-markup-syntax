@@ -217,7 +217,7 @@ class Markup_Data
             ? " alt=\"" . $this->getValue("title") . "\""
             : "";
         $size = " width=\"200\"";
-        $css = " class=\"alignleft\"";
+        $css = " class=\"alignnone\"";
 
         $img = "<img" . $src . $alt . $size . $css . "/>";
         return "<a href=\"" . $href . "\">" . $img . "</a>";
