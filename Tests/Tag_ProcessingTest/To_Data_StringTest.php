@@ -17,6 +17,7 @@
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
 use PHPUnit_Framework_TestCase;
+use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 
 require_once "PHPUnit/Autoload.php";
 require_once dirname(__FILE__) . "/Tag_Processing_Help.php";
@@ -65,9 +66,6 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     /**
      * No maching function to the tags.
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Invalid function name
-     * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
      * 
@@ -78,18 +76,26 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
         $tag = "öäå";
+        $expected = __("Invalid function name", "imdb-markup-syntax");
 
         //When
-        $obj = new Tag_Processing_Help($original_content);
-        $obj->findId();
-        $obj->toDataString($tag);
+        try {
+            $obj = new Tag_Processing_Help($original_content);
+            $obj->findId();
+            $obj->toDataString($tag);
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
      * No maching function to the tags.
-     * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage [Tag is_null not exists]
      * 
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
@@ -101,11 +107,22 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
         //Given
         $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
         $tag = "is_null";
+        $expected = sprintf(__("[Tag %s not exists]", "imdb-markup-syntax"), $tag);
 
         //When
-        $obj = new Tag_Processing_Help($original_content);
-        $obj->findId();
-        $obj->toDataString($tag);
+        try {
+            $obj = new Tag_Processing_Help($original_content);
+            $obj->findId();
+            $obj->toDataString($tag);
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**

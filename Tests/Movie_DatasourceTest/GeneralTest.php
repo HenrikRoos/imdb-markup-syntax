@@ -17,6 +17,7 @@ namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
 
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
+use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 
 require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
 require_once "PHPUnit/Autoload.php";
@@ -37,9 +38,6 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, incorrect tconst checked in construct
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Incorrect tconst
-     * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * 
@@ -49,9 +47,21 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     {
         //Given
         $tconst = $GLOBALS["movieDatasourceData"]["incorrect"];
+        $expected
+            = sprintf(__("Incorrect tconst %s", "imdb-markup-syntax"), $tconst);
 
         //When
-        new Movie_Datasource($tconst);
+        try {
+            new Movie_Datasource($tconst);
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
@@ -82,9 +92,6 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test, no query data
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Empty query
-     * 
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
@@ -94,11 +101,22 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     public function testSetRequest()
     {
         //Given
-        $imdb = new Movie_Datasource();
         $request = "";
+        $expected = __("Empty query", "imdb-markup-syntax");
 
         //When
-        $imdb->setRequest($request);
+        try {
+            $imdb = new Movie_Datasource();
+            $imdb->setRequest($request);
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
 }

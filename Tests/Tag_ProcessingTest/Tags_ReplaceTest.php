@@ -18,6 +18,7 @@ namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
 use PHPUnit_Framework_TestCase;
 
+require_once dirname(__FILE__) . "/../../../../../wp-config.php";
 require_once "PHPUnit/Autoload.php";
 require_once dirname(__FILE__) . "/Tag_Processing_Help.php";
 
@@ -93,7 +94,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
             Quisque congue  Title: <a href=\"http://www.imdb.com/title/tt0102926/\">"
             . "The Silence of the Lambs</a>
-            [IMDb:id(tt0137523)]. Year: [Tag year not exists] Thu Feb 14 1991 "
+            [IMDb:id(tt0137523)]. Year: [" . __("Tag year not exists") . "] "
+            . "Thu Feb 14 1991 "
             . "<a href=\"http://www.imdb.com/name/nm0000149\">Jodie Foster</a> "
             . "Clarice Starling, <a href=\"http://www.imdb.com/name/nm0000164\">"
             . "Anthony Hopkins</a> Dr. Hannibal Lecter, "
@@ -104,11 +106,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             . "Lambs</a> [ImDB: writer ] [imdb:$$]
             [imdb:qwsazxcderrfvbgtyhnmjujdjhfksjhdfkjshdkfjhsakdjfhksjadhfkjsadf]";
         $expected_count = 6;
-        $locale = "en_US";
 
         //When
         $obj = new Tag_Processing_Help($original_content);
-        $obj->locale = $locale;
         $actual_count = $obj->tagsReplace();
         $actual_content = $obj->getReplacementContent();
 
@@ -165,7 +165,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $original_content = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)].";
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
-            suscipit quis. ÖÄÅ öäå Quisque congue[No imdb tags found].";
+            suscipit quis. ÖÄÅ öäå Quisque congue["
+            . __("No imdb tags found") . "].";
         $expected_count = 1;
 
         //When

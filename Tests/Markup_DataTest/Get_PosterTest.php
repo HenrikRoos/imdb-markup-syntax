@@ -104,23 +104,30 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage No valid displayable image
-     * 
      * @return void
      */
     public function testNoImage()
     {
-
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $data->image->url = "https://news.google.se";
-        $post_id = 56;
+        $post_id = 1;
+        $expected = __("No valid displayable image", "imdb-markup-syntax");
 
         //When
-        $mdata = new Markup_Data($data, $post_id);
-        $mdata->getPoster();
+        try {
+            $mdata = new Markup_Data($data, $post_id);
+            $mdata->getPoster();
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
@@ -131,9 +138,6 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
      * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Post ID must be an integer
-     * 
      * @return void
      */
     public function testIdNotInt()
@@ -142,19 +146,27 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $post_id = "xx";
+        $expected = __("Post ID must be an integer", "imdb-markup-syntax");
 
         //When
-        $mdata = new Markup_Data($data, $post_id);
-        $mdata->getPoster();
+        try {
+            $mdata = new Markup_Data($data, $post_id);
+            $mdata->getPoster();
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
      * Negative test: Incorrect URL
      *
      * @covers IMDb_Markup_Syntax\Media_Library_Handler
-     * 
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * @expectedExceptionMessage Remote URL must be an validate URL
      * 
      * @return void
      */
@@ -164,9 +176,20 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $post_id = 1;
         $remote_url = "x";
         $filename = "y";
+        $expected = __("Remote URL must be an validate URL", "imdb-markup-syntax");
 
         //When
-        new Media_Library_Handler($post_id, $remote_url, $filename);
+        try {
+            new Media_Library_Handler($post_id, $remote_url, $filename);
+        }
+
+        //Then
+        catch (Runtime_Exception $exp) {
+            $this->assertSame($expected, $exp->getMessage());
+            return;
+        }
+
+        $this->fail("An expected Runtime_Exception has not been raised.");
     }
 
     /**
