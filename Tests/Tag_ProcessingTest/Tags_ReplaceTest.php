@@ -94,8 +94,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
             Quisque congue  Title: <a href=\"http://www.imdb.com/title/tt0102926/\">"
             . "The Silence of the Lambs</a>
-            [IMDb:id(tt0137523)]. Year: ["
-            . sprintf(__("[Tag %s not exists]", "imdb-markup-syntax"), "year") . "] "
+            [IMDb:id(tt0137523)]. Year: "
+            . sprintf(__("[Tag %s not exists]", "imdb-markup-syntax"), "year")
             . "Thu Feb 14 1991 "
             . "<a href=\"http://www.imdb.com/name/nm0000149\">Jodie Foster</a> "
             . "Clarice Starling, <a href=\"http://www.imdb.com/name/nm0000164\">"
@@ -166,8 +166,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $original_content = "Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)].";
         $expected_content = "Pellentesque viverra luctus est, vel bibendum arcu
-            suscipit quis. ÖÄÅ öäå Quisque congue["
-            . __("[No imdb tags found]", "imdb-markup-syntax") . "].";
+            suscipit quis. ÖÄÅ öäå Quisque congue"
+            . __("[No imdb tags found]", "imdb-markup-syntax") . ".";
         $expected_count = 1;
 
         //When
