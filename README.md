@@ -1,5 +1,11 @@
 # Description
-This plugin makes it possible to insert movie data in your text from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com).
+This plugin makes it possible to insert movie data in your text from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com). The plugin is
+
+ * **Stable:** over 100 unit test.
+ * **Clean:** no configuration, well integrated to WordPress API, no checkstyle errors.
+ * **Fast:** No extra database writes, using only filter hooks (no actions hooks). IMDb DataSource is an RESTful interface.
+ * **Internationalizing:** Support for locale from IMBb datasource, date format and number format.
+ * **Error handling:** Well design and well tested error handling.
 
 ## How to use the plugin on your blog
 You have watched a movie and want to post a comment on it on your blog. With a few simple steps you can use this plugin to extract movie facts and display it on your blog which will complement your writing with professional and exact facts about the movie. 
@@ -141,8 +147,8 @@ Tag                                            | Description
 `[imdb:directors]` `[imdblive:directors]`      | The principal creative artist on a movie set. A director is usually (but not always) the driving artistic source behind the filming process, and communicates to actors the way that he/she would like a particular scene played. A director's duties might also include casting, script editing, shot selection, shot composition, and editing. Typically, a director has complete artistic control over all aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a producer or a studio. In some large productions, a director will delegate less important scenes to a second unit.*<br /><br />Example: Director of Pan's Labyrinth is **[Guillermo del Toro](http://www.imdb.com/name/nm0868219)***
 `[imdb:genres]` `[imdblive:genres]`            | One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of all genres.*<br />Example: The Lord of the Rings: The Fellowship of the Ring has genres: **Action, Adventure, Fantasy***
 `[imdb:plot]` `[imdblive:plot]`                | A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
-`[imdb:poster]`                                | Current movie poster image download automatic to your WordPress Media Library and display image as medium size from library. 
-`[imdb:posterRemote]` `[imdblive:posterRemote]`| Current movie poster image direct linked from server (remote). No locale savings!*<br />Example: <http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg><br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
+`[imdb:poster]`                                | Current movie poster image download automatic to your WordPress Media Library and display image as medium size from library.*<br />Example:<br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
+`[imdb:posterRemote]` `[imdblive:posterRemote]`| Current movie poster image direct linked from server (remote). No locale savings!*<br />Example: <br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
 `[imdb:rating]` `[imdblive:rating]`            | Rating scale from 1 to 10 with one decimal where 10 is best.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Pulp Fiction has rating **9.0** on english WordPress and **9,0** on swedish WordPress*
 `[imdb:runtime]` `[imdblive:runtime]`          | Runtime in minutes for current movie.<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: The very long movie Matrjoschka has runtime **5700** min long on english WordPress and **5 700** min long on swedish WordPress*
 `[imdb:tagline]` `[imdblive:tagline]`          | A tagline is a variant of a branding slogan typically used in marketing materials and advertising.<br /><br />*Example: Se7en has tagline **Long is the way, and hard, that out of hell leads up to light.***
@@ -174,8 +180,13 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 
 # Screenshots
-xxx
+![IMDb site](screenshots/imdb.jpg)
+![Add New Post](screenshots/add-new-post.jpg)
+![Edit Post](screenshots/edit-post.jpg)
+![View Post](screenshots/view-post.jpg)
+![Media Library](screenshots/media-library.jpg)
+![Edit Media](screenshots/edit-media.jpg)
 
 # Changelog
 ## 1.0
-xxx
+First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.

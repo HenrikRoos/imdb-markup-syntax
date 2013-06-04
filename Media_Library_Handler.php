@@ -60,17 +60,17 @@ class Media_Library_Handler
     {
         if (!is_int($post_id)) {
             throw new Runtime_Exception(
-                __("Post ID must be an integer", "imdb-markup-syntax")
+            __("Post ID must be an integer", "imdb-markup-syntax")
             );
         }
         if (filter_var($remote_url, FILTER_VALIDATE_URL) === false) {
             throw new Runtime_Exception(
-                __("Remote URL must be an validate URL", "imdb-markup-syntax")
+            __("Remote URL must be an validate URL", "imdb-markup-syntax")
             );
         }
         if (!file_is_displayable_image($remote_url)) {
             throw new Runtime_Exception(
-                __("No valid displayable image", "imdb-markup-syntax")
+            __("No valid displayable image", "imdb-markup-syntax")
             );
         }
         $info = pathinfo($remote_url);
@@ -105,7 +105,7 @@ class Media_Library_Handler
         if ($thumbnail === false) {
             $msg = "Can't set thumbnail to the Post ID %d";
             throw new Runtime_Exception(
-                sprintf(__($msg, "imdb-markup-syntax"), $this->post_id)
+            sprintf(__($msg, "imdb-markup-syntax"), $this->post_id)
             );
         }
         $img = get_the_post_thumbnail(
@@ -167,7 +167,9 @@ class Media_Library_Handler
      */
     protected function addToMediaLibrary($filepath, $title, $mime_type)
     {
+        $wp_upload_dir = wp_upload_dir();
         $attachment = array(
+            "guid" => $wp_upload_dir["url"] . "/" . basename($filepath),
             "post_title" => $title,
             "post_mime_type" => $mime_type
         );
