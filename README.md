@@ -180,12 +180,12 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 
 # Screenshots
-![IMDb site](screenshots/imdb.jpg)
-![Add New Post](screenshots/add-new-post.jpg)
-![Edit Post](screenshots/edit-post.jpg)
-![View Post](screenshots/view-post.jpg)
-![Media Library](screenshots/media-library.jpg)
-![Edit Media](screenshots/edit-media.jpg)
+![IMDb site](screenshot-1.jpg)
+![Add New Post](screenshot-2.jpg)
+![Edit Post](screenshot-3.jpg)
+![View Post](screenshot-4.jpg)
+![Media Library](screenshot-5.jpg)
+![Edit Media](screenshot-6.jpg)
 
 # Changelog
 ## 1.0
