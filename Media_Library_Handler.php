@@ -19,7 +19,7 @@ namespace IMDb_Markup_Syntax;
 use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 use IMDb_Markup_Syntax\Exceptions\WP_Exception;
 
-require_once dirname(__FILE__) . "/../../../wp-admin/includes/image.php";
+//require_once dirname(__FILE__) . "/../../../wp-admin/includes/image.php";
 require_once dirname(__FILE__) . "/Exceptions/WP_Exception.php";
 
 /**
