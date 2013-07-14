@@ -302,7 +302,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $timeout = 200;
         $expected_content = "/Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue\[Operation timed out after \d+ "
-            . "milliseconds with \d+ bytes received\]. Title:
+            . "milliseconds with \d+ bytes received curl_version: [\d\.]+\]. Title:
             \[imdb:title\]/";
         $expected_count = 1;
 

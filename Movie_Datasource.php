@@ -170,16 +170,10 @@ class Movie_Datasource
             );
         }
         $options = array(
-            CURLOPT_HTTPHEADER => array(
-                "Connection: Keep-Alive",
-                "Content-type: text/plain;charset=UTF-8"
-            ),
-            CURLOPT_HEADER => false,
             CURLOPT_TIMEOUT_MS => $this->timeout,
-            CURLOPT_ENCODING => "deflate",
             CURLOPT_RETURNTRANSFER => true
         );
-        curl_setopt_array($resource, $options);
+        @curl_setopt_array($resource, $options);
         $response = curl_exec($resource);
         if ($response === false) {
             throw new Curl_Exception($resource);

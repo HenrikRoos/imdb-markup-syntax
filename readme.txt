@@ -1,7 +1,7 @@
 === IMDb Markup Syntax ===
 Contributors: HenrikRoos
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YRT2ALPQH42N4
-Tags: IMDb, IMBb API, Movie, Markup, Syntax, Filter
+Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
 Tested up to: 3.5.1
 Stable tag: 1.0
@@ -256,5 +256,6 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 6. Edit Media
 
 == Changelog ==
+The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
 = 1.0 =
 First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.

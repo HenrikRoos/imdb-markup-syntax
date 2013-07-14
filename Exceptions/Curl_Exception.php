@@ -52,6 +52,8 @@ class Curl_Exception extends Exception
                 $message = $error_get_last["message"];
             }
         }
+        $version = curl_version();
+        $message .= " curl_version: " . $version["version"];
         parent::__construct($message, $code, $previous);
     }
 

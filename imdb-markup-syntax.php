@@ -18,7 +18,7 @@ use IMDb_Markup_Syntax\Callback_Management;
 
 /**
  * Plugin Name: IMDb Markup Syntax
- * Plugin URI: https://github.com/HenrikRoos/imdb-markup-syntax
+ * Plugin URI: http://wordpress.org/plugins/imdb-markup-syntax/
  * Description: Add <strong>IMDb</strong> syntax functionallity in your post. Enter simple tags and this plugin replace with IMBb data direct from <a href="http://app.imdb.com">IMDb Mobile Applications</a>
  * Version: 1.0
  * Author: Henrik Roos
