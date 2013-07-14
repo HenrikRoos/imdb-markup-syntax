@@ -188,5 +188,13 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 ![Edit Media](screenshot-6.jpg)
 
 # Changelog
+
+## 1.1
+
+1. Delete some options for a cURL transfer - use default instead.
+2. Improve error handling for cURL transfer.
+3. Add support for WordPress 3.5.2.
+
 ## 1.0
+
 First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.
