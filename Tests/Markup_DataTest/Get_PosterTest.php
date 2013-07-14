@@ -26,6 +26,7 @@ require_once dirname(__FILE__) . "/../../Markup_Data.php";
 require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
 require_once dirname(__FILE__) . "/../../Media_Library_Handler.php";
 require_once dirname(__FILE__) . "/../../../../../wp-config.php";
+require_once dirname(__FILE__) . "/../../../../../wp-admin/includes/image.php";
 require_once "PHPUnit/Autoload.php";
 
 /**
