@@ -169,11 +169,10 @@ class Movie_Datasource
                 null, __("curl_init return false or null", "imdb-markup-syntax")
             );
         }
-        $options = array(
-            CURLOPT_TIMEOUT_MS => $this->timeout,
-            CURLOPT_RETURNTRANSFER => true
-        );
-        @curl_setopt_array($resource, $options);
+        curl_setopt($resource, CURLOPT_RETURNTRANSFER, true);
+        if ($this->timeout > 0) { //Used by unittest
+            curl_setopt($resource, CURLOPT_TIMEOUT_MS, $this->timeout);
+        }
         $response = curl_exec($resource);
         if ($response === false) {
             throw new Curl_Exception($resource);
