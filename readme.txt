@@ -12,9 +12,6 @@ Add IMDb syntax functionallity in your post. Enter simple tags and this plugin
 replace with IMBb data direct from IMDb Mobile Applications.
 
 == Description ==
-
-	**NOTE: THIS IS AN PRE-RELEASE VERSION 1.2beta NOT AN STABLE ONE!**
-
 This plugin makes it possible to insert movie data in your text from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com). The plugin is
 
  * **Stable:** over 100 unit test.
