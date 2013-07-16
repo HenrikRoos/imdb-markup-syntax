@@ -144,7 +144,7 @@ class Movie_Datasource
     public function toDataClass()
     {
         $obj = @json_decode($this->response);
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (json_last_error() !== JSON_ERROR_NONE || !is_object($obj)) {
             throw new Json_Exception();
         }
         if (isset($obj->error)) {
