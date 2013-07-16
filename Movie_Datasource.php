@@ -147,7 +147,7 @@ class Movie_Datasource
         if (json_last_error() !== JSON_ERROR_NONE || !is_object($obj)) {
             throw new Json_Exception();
         }
-        if (isset($obj->error)) {
+        if (isset($obj->error) || !isset($obj->data)) {
             throw new Runtime_Exception(null, null, $obj);
         }
         return $obj->data;
