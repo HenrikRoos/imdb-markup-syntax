@@ -15,7 +15,10 @@
 
 namespace IMDb_Markup_Syntax;
 
+use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
+
 require_once dirname(__FILE__) . "/Tag_Processing.php";
+require_once dirname(__FILE__) . "/Exceptions/PCRE_Exception.php";
 
 /**
  * Collections and management of callbacks from plugin-filter and plugin-actions
@@ -55,10 +58,10 @@ class Callback_Management
     public function filterImdbTags($data, $postarr)
     {
         $post_id = $postarr["ID"];
-        
+
         $content = $data["post_content"];
         $data["post_content"] = $this->tagsReplace($content, "imdb", $post_id);
-        
+
         $title = $data["post_title"];
         $data["post_title"] = $this->tagsReplace($title, "imdb", $post_id);
 
@@ -79,6 +82,29 @@ class Callback_Management
     }
 
     /**
+     * Seek for tags with multi prefix syntax e.g imdb-a, imdb-b, ... imdb-z.
+     * **SubPrefix Syntax: xxx-[a-z]**
+     * 
+     * @param string $content Content widh tags
+     * @param string $prefix  Starting tagname
+     * 
+     * @since 2.0
+     * 
+     * @return array list of all sub prefix
+     */
+    public function getSubPrefixHints($content, $prefix)
+    {
+        $match = array();
+        $pattern = "/\[({$prefix}(-[a-z])?):/i";
+        $isOk = @preg_match_all($pattern, $content, $match);
+
+        if ($isOk === false) {
+            throw new PCRE_Exception();
+        }
+        return $match[1];
+    }
+
+    /**
      * Replace **[xxx:id(ttyyyy)]** and **[xxx:yyy]** with imdb data
      * 
      * @param string $content Content widh tags
@@ -87,7 +113,7 @@ class Callback_Management
      * 
      * @return string content with replaced tags
      */
-    protected function tagsReplace($content, $prefix = "imdb", $post_id = 0)
+    protected function tagsReplace($content, $prefix, $post_id = 0)
     {
         $imdb = new Tag_Processing($content, $post_id);
         $imdb->locale = $this->locale;

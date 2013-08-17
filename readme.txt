@@ -140,7 +140,7 @@ This example display all implements tags in one post. For you own test: cut and 
 == Installation ==
 1. Upload 'imdb-markup-syntax' to the '/wp-content/plugins/' directory,
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. PHP 5.3 or later is required.
+3. PHP 5.3+ with PECL json 1.2+ and cURL is required.
 
 = How to use the plugin on your blog =
 You have watched a movie and want to post a comment on it on your blog. With a few simple steps you can use this plugin to extract movie facts and display it on your blog which will complement your writing with professional and exact facts about the movie. 
@@ -258,6 +258,11 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 == Changelog ==
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
+
+= 1.2 =
+
+1. Tested and supported for WordPress 3.6
+2. Improve error handling
 
 = 1.1 =
 

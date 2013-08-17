@@ -189,6 +189,11 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 # Changelog
 
+## 1.2
+
+1. Tested and supported for WordPress 3.6
+2. Improve error handling
+
 ## 1.1
 
 1. Delete some options for a cURL transfer - use default instead.

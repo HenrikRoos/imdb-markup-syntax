@@ -18,6 +18,7 @@ namespace IMDb_Markup_Syntax;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . "/../../../../wp-config.php";
+require_once dirname(__FILE__) . "/../../../../wp-admin/includes/image.php";
 require_once dirname(__FILE__) . "/../Callback_Management.php";
 require_once "PHPUnit/Autoload.php";
 
@@ -129,6 +130,53 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Positive test
+     * 
+     * @covers IMDb_Markup_Syntax\Callback_Management::getSubPrefixHints
+
+     * @return void
+     */
+    public function testGetSubPrefixHints()
+    {
+        //Given
+        $mgmt = new Callback_Management();
+        $content = "Pellentesque viverra luctus est, vel bibendum arcu "
+            . "suscipit quis. ÖÄÅ öäå Quisque congue[IMDblive:id(tt0137523)]. "
+            . "Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremo]";
+        $prefix = "imdblive";
+        $expected = array("IMDblive", "imdblive-a", "imdblive-z");
+
+        //When
+        $actual = $mgmt->getSubPrefixHints($content, $prefix);
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Negative test
+     * 
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @expectedExceptionMessage preg_match_all(): Compilation failed: missing )
+     * 
+     * @covers IMDb_Markup_Syntax\Callback_Management::getSubPrefixHints
+     * 
+     * @return void
+     */
+    public function testGetSubPrefixHintsPCREException()
+    {
+        //Given
+        $mgmt = new Callback_Management();
+        $content = "Pellentesque viverra luctus est, vel bibendum arcu "
+            . "suscipit quis. ÖÄÅ öäå Quisque congue[IMDblive:id(tt0137523)]. "
+            . "Posterremote: [imdblive-a:posterremote] [imdblive-z:posterreme]";
+        $prefix = "(";
+
+        //When
+        $mgmt->getSubPrefixHints($content, $prefix);
     }
 
 }
