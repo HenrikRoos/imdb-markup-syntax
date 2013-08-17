@@ -3,8 +3,8 @@ Contributors: HenrikRoos
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YRT2ALPQH42N4
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
-Tested up to: 3.5.2
-Stable tag: 1.1
+Tested up to: 3.6
+Stable tag: 1.2
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
 
