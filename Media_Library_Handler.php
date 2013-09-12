@@ -170,7 +170,8 @@ class Media_Library_Handler
         $attachment = array(
             "guid" => $wp_upload_dir["url"] . "/" . basename($filepath),
             "post_title" => $title,
-            "post_mime_type" => $mime_type
+            "post_mime_type" => $mime_type,
+            "post_content" => "",
         );
         $attach_id = @wp_insert_attachment($attachment, $filepath, $this->post_id);
         $attach_data = wp_generate_attachment_metadata($attach_id, $filepath);
