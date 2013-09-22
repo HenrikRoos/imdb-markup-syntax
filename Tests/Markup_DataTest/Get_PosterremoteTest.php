@@ -2,9 +2,9 @@
 
 /**
  * Testclass to Markup_DataSuite for method getPosterremote in Markup_Data class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -19,13 +19,13 @@ use IMDb_Markup_Syntax\Markup_Data;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/../../Markup_Data.php";
-require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . '/../../Markup_Data.php';
+require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
+require_once 'PHPUnit/Autoload.php';
 
 /**
  * Testclass to Markup_DataSuite for method getPosterremote in Markup_Data class
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -40,22 +40,12 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
     public $testdataPositive;
 
     /**
-     * Set up local testdata
-     * 
-     * @return void
-     */
-    protected function setUp()
-    {
-        $this->testdataPositive = "tt0137523";
-    }
-
-    /**
      * Positive test: Get data sucessful
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPosterremote
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testPositive()
@@ -63,10 +53,10 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "<a href=\"http://www.imdb.com/title/tt0137523/\">"
-            . "<img src=\"http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl"
-            . "5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg\" alt=\"Fight Club\" "
-            . "width=\"200\" class=\"alignnone\"/></a>";
+        $expected = '<a href="http://www.imdb.com/title/tt0137523/">'
+            . '<img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl'
+            . '5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" '
+            . 'width="200" class="alignnone"/></a>';
 
         //When
         $mdata = new Markup_Data($data);
@@ -82,7 +72,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPosterremote
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testNotSet()
@@ -107,7 +97,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getPosterremote
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testEmpty()
@@ -115,7 +105,7 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->image = "";
+        $data->image = '';
         $expected = false;
 
         //When
@@ -124,6 +114,16 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Set up local testdata
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->testdataPositive = 'tt0137523';
     }
 
 }

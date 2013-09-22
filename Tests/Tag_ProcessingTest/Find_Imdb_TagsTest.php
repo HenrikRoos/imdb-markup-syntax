@@ -3,9 +3,9 @@
 /**
  * Sub testclass to Tag_ProcessingTest for method findImdbTags in Tag_Processing
  * class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -16,15 +16,16 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
+use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/Tag_Processing_Help.php";
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
+require_once 'PHPUnit/Autoload.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method findImdbTags in Tag_Processing
  * class
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -37,19 +38,19 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Find one tag. Positive test
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * 
+     *
      * @return void
      */
     public function testOnePositive()
     {
         //Given
-        $original_content = $GLOBALS["tagProcessingData"]["one_positive"];
+        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
         $expectedCount = 1;
         $expected = array(
-            array("[imdb:title]", "title")
+            array('[imdb:title]', 'title')
         );
 
         //When
@@ -66,20 +67,20 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Find two tag. Positive test
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * 
+     *
      * @return void
      */
     public function testTwoPositive()
     {
         //Given
-        $original_content = $GLOBALS["tagProcessingData"]["two_positive"];
+        $original_content = $GLOBALS['tagProcessingData']['two_positive'];
         $expectedCount = 2;
         $expected = array(
-            array("[imdb:title]", "title"),
-            array("[IMDb:year]", "year")
+            array('[imdb:title]', 'title'),
+            array('[IMDb:year]', 'year')
         );
 
         //When
@@ -96,16 +97,16 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negative test: Under min length of id. <b>[a-z0-9]{0}</b>
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * 
+     *
      * @return void
      */
     public function testMinNegative()
     {
         //Given
-        $original_content = "[imdb:]";
+        $original_content = '[imdb:]';
         $expected = array();
 
         //When
@@ -120,17 +121,17 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Positive test: Min length of id. <b>[a-z0-9]{1}</b>
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * 
+     *
      * @return void
      */
     public function testMinPositive()
     {
         //Given
-        $original_content = "[imdb:a]";
-        $expected = array(array("[imdb:a]", "a"));
+        $original_content = '[imdb:a]';
+        $expected = array(array('[imdb:a]', 'a'));
 
         //When
         $obj = new Tag_Processing_Help($original_content);
@@ -144,18 +145,18 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Positive test: Min length of id. <b>[a-z0-9]{40}</b>
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * 
+     *
      * @return void
      */
     public function testMaxPositive()
     {
         //Given
-        $original_content = "[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]";
-        $expected = array(array("[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]",
-                "abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_"
+        $original_content = '[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]';
+        $expected = array(array('[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]',
+            'abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_'
         ));
 
         //When
@@ -170,16 +171,16 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negative test: Under min length of id. <b>[a-z0-9]{41}</b>
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
      * @covers IMDb_Markup_Syntax\Tag_Processing::findId
-     * 
+     *
      * @return void
      */
     public function testMaxNegative()
     {
         //Given
-        $original_content = "[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_a]";
+        $original_content = '[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_a]';
         $expected = array();
 
         //When
@@ -194,16 +195,16 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Find zero tag. Alternative test
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * 
+     *
      * @return void
      */
     public function testNoMatch()
     {
         //Given
-        $original_content = $GLOBALS["tagProcessingData"]["no_match"];
+        $original_content = $GLOBALS['tagProcessingData']['no_match'];
         $expectedCount = 0;
 
         //When
@@ -218,17 +219,17 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Null input. Alternative test
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
      * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * 
+     *
      * @return void
      */
     public function testEmpty()
     {
         //Given
         $testdata = null;
-        $testdata2 = "";
+        $testdata2 = '';
 
         //When
         $obj = new Tag_Processing_Help($testdata);
@@ -245,21 +246,21 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test for Exception handler of a PREG_ERROR
-     * 
+     *
      * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
      * @expectedExceptionMessage PREG_BACKTRACK_LIMIT_ERROR
-     * 
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers IMDb_Markup_Syntax\Exceptions\PCRE_Exception
-     * 
+     *
+     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers                   IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     *
      * @return void
      */
     public function testPregError()
     {
         //Given
-        $original_content = "foobar foobar foobar";
-        $custom_tags_pattern = "/(?:\D+|<\d+>)*[!?]/";
+        $original_content = 'foobar foobar foobar';
+        $custom_tags_pattern = '/(?:\D+|<\d+>)*[!?]/';
 
         //When
         $obj = new Tag_Processing_Help($original_content);
@@ -269,21 +270,21 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test for Exception handler of a Compilation failed
-     * 
+     *
      * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
      * @expectedExceptionMessage Compilation failed
-     * 
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers IMDb_Markup_Syntax\Exceptions\PCRE_Exception
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * 
+     *
+     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers                   IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
+     *
      * @return void
      */
     public function testErrorControlOperators()
     {
         //Given
-        $original_content = "foobar foobar foobar";
-        $custom_tags_pattern = "/(/";
+        $original_content = 'foobar foobar foobar';
+        $custom_tags_pattern = '/(/';
 
         //When
         $obj = new Tag_Processing_Help($original_content);

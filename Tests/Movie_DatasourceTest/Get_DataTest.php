@@ -2,9 +2,9 @@
 
 /**
  * Sub testclass to Movie_DatasourceTest for method getData in Movie_Datasource class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -15,15 +15,16 @@
 
 namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
 
+use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
+require_once 'PHPUnit/Autoload.php';
 
 /**
  * Sub testclass to Movie_DatasourceTest for method getData in Movie_Datasource class
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -35,43 +36,21 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * Set up before testing
-     * 
-     * @return void
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-        setlocale(LC_ALL, "");
-    }
-
-    /**
-     * Clean up after testing.
-     * 
-     * @return void
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        setlocale(LC_ALL, "");
-    }
-
-    /**
      * Main use case get a movie data, no error
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * 
+     *
      * @return void
      */
     public function testMovie()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["movie"];
-        $expected = "Fight Club";
+        $tconst = $GLOBALS['movieDatasourceData']['movie'];
+        $expected = 'Fight Club';
 
         //When
         $imdb = new Movie_Datasource($tconst);
@@ -84,20 +63,20 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Main use case get a tv serie data, no error
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * 
+     *
      * @return void
      */
     public function testTvSerie()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["tvserie"];
-        $expected = "Boston Legal";
+        $tconst = $GLOBALS['movieDatasourceData']['tvserie'];
+        $expected = 'Boston Legal';
 
         //When
         $imdb = new Movie_Datasource($tconst);
@@ -110,20 +89,20 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Main use case get a video game data, no error
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * 
+     *
      * @return void
      */
     public function testVideoGame()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["videogame"];
-        $expected = "Lego Pirates of the Caribbean: The Video Game";
+        $tconst = $GLOBALS['movieDatasourceData']['videogame'];
+        $expected = 'Lego Pirates of the Caribbean: The Video Game';
 
         //When
         $imdb = new Movie_Datasource($tconst);
@@ -136,25 +115,25 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test, not valid locale
-     * 
+     *
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * @expectedExceptionMessage Your locale argument is not valid (RFC 4646)
      * @expectedExceptionCode    400
-     * 
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * 
+     *
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::setRequest
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers                   IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     *
      * @return void
      */
     public function testNotValidLocale()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["movie"];
-        $locale = "zh_cn";
+        $tconst = $GLOBALS['movieDatasourceData']['movie'];
+        $locale = 'zh_cn';
 
         //When
         $imdb = new Movie_Datasource($tconst, $locale);
@@ -163,24 +142,24 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Negativ test, No data for this title tconst. HTTP 404
-     * 
+     *
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      * @expectedExceptionCode    404
-     * 
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * 
+     *
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::setRequest
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::getData
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::toDataClass
+     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers                   IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     *
      * @return void
      */
     public function testNoData()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["nodata"];
+        $tconst = $GLOBALS['movieDatasourceData']['nodata'];
 
         //When
         $imdb = new Movie_Datasource($tconst);
@@ -189,23 +168,23 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
 
     /**
      * Positive alternative test. Different release date in different countries
-     * 
+     *
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
      * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
      * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
      * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
      * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
-     * 
+     *
      * @return void
      */
     public function testAlternativeLocale()
     {
         //Given
-        $tconst = $GLOBALS["movieDatasourceData"]["tvserie"];
-        $locale = "sv_SE";
-        $expected = "2004-10-03";
-        $expected_se = "2005-03-21";
+        $tconst = $GLOBALS['movieDatasourceData']['tvserie'];
+        $locale = 'sv_SE';
+        $expected = '2004-10-03';
+        $expected_se = '2005-03-21';
 
         //When
         $imdb = new Movie_Datasource($tconst);
@@ -220,6 +199,28 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
         //Then
         $this->assertSame($expected, $actual);
         $this->assertSame($expected_se, $actual_se);
+    }
+
+    /**
+     * Set up before testing
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        setlocale(LC_ALL, '');
+    }
+
+    /**
+     * Clean up after testing.
+     *
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, "");
     }
 
 }

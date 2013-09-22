@@ -2,9 +2,9 @@
 
 /**
  * Class for access to IMDb RESTful datasource web api
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Runnable
  * @package   Core
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -20,13 +20,13 @@ use IMDb_Markup_Syntax\Exceptions\Json_Exception;
 use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
 use stdClass;
 
-require_once dirname(__FILE__) . "/Exceptions/Runtime_Exception.php";
-require_once dirname(__FILE__) . "/Exceptions/Curl_Exception.php";
-require_once dirname(__FILE__) . "/Exceptions/Json_Exception.php";
+require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Curl_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Json_Exception.php';
 
 /**
  * Class for access to IMDb RESTful datasource web api
- * 
+ *
  * @category  Runnable
  * @package   Core
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -38,23 +38,17 @@ class Movie_Datasource
 {
 
     /** @var string IMDb API URL */
-    public $baseurl = "http://app.imdb.com/";
-
+    public $baseurl = 'http://app.imdb.com/';
     /** @var array Parameter to the request */
     public $params = array();
-
     /** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
     public $tconst;
-
     /** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */
     public $locale;
-
     /** @var string Request to web api. */
     public $request;
-
     /** @var string raw data respomse from web api */
     public $response;
-
     /**
      * @var int The maximum number of milliseconds to allow cURL functions to
      * execute. If libcurl is built to use the standard system name resolver, that
@@ -65,19 +59,19 @@ class Movie_Datasource
 
     /**
      * Create an instans object for acces to datasource
-     * 
+     *
      * @param string $tconst  Imdb tconst for current movie <i>e.g. tt0137523</i>
      * @param string $locale  Localization for data
      * @param int    $timeout The maximum number of milliseconds to allow execute to
-     * imdb.
-     * 
+     *                        imdb.
+     *
      * @throws Runtime_Exception if incorrect tconst.
      */
-    public function __construct($tconst = null, $locale = "", $timeout = 0)
+    public function __construct($tconst = null, $locale = '', $timeout = 0)
     {
-        if (!is_null($tconst) && @preg_match("/^tt\d+$/", $tconst) == 0) {
+        if (!is_null($tconst) && @preg_match('/^tt\d+$/', $tconst) == 0) {
             throw new Runtime_Exception(
-                sprintf(__("Incorrect tconst %s", "imdb-markup-syntax"), $tconst)
+                sprintf(__('Incorrect tconst %s', 'imdb-markup-syntax'), $tconst)
             );
         }
         $this->tconst = $tconst;
@@ -87,40 +81,43 @@ class Movie_Datasource
     }
 
     /**
-     * Build and set request 
-     * 
+     * Build and set request
+     *
      * @param string $query  That are you locking for? <i>e.g. movie id: tt0137523 or
-     * persion id</i>
+     *                       persion id</i>
      * @param string $locale Localization for data
      * @param string $key    That kind of data are $query? Defualt <i>tconst</i>
      * @param string $method Type of method to API defualt is find title by id.
      * Alternative find after persion id: <i>name/maindetails</i> or just simple
      * <i>find</i>
-     * RFC 4646 language
-     * 
+     *                       RFC 4646 language
+     *
+     * @throws Exceptions\Runtime_Exception
      * @return void
      */
-    public function setRequest($query, $locale = "", $key = "tconst",
-        $method = "title/maindetails"
+    public function setRequest($query,
+        $locale = '',
+        $key = 'tconst',
+        $method = 'title/maindetails'
     ) {
         if (empty($query)) {
-            throw new Runtime_Exception(__("Empty query", "imdb-markup-syntax"));
+            throw new Runtime_Exception(__('Empty query', 'imdb-markup-syntax'));
         }
         if (!empty($locale)) {
-            $this->params["locale"] = $locale;
+            $this->params['locale'] = $locale;
         }
         $this->params[$key] = urlencode($query);
 
         $this->request
-            = $this->baseurl . $method . "?" . http_build_query($this->params);
+            = $this->baseurl . $method . '?' . http_build_query($this->params);
     }
 
     /**
      * Fetch and convert data from IMDb from current tconst. Data stores in
      * $this->response
-     * 
+     *
      * @return stdClass movie data
-     * 
+     *
      * @throws Curl_Exception    On error in web api request
      * @throws Json_Exception    If error in decode
      * @throws Runtime_Exception If response has error in result ex no data for
@@ -133,10 +130,38 @@ class Movie_Datasource
     }
 
     /**
+     * Function for cURL data fetching for current movie. Data stores in
+     * $this->response
+     *
+     * @return void
+     *
+     * @throws Curl_Exception On error in web api request
+     */
+    public function fetchResponse()
+    {
+        $resource = @curl_init($this->request);
+        if (!isset($resource) || $resource === false) {
+            throw new Curl_Exception(
+                null, __('curl_init return false or null', 'imdb-markup-syntax')
+            );
+        }
+        @curl_setopt($resource, CURLOPT_RETURNTRANSFER, true);
+        if ($this->timeout > 0) {
+            @curl_setopt($resource, CURLOPT_TIMEOUT_MS, $this->timeout);
+        }
+        $response = @curl_exec($resource);
+        if ($response === false) {
+            throw new Curl_Exception($resource);
+        }
+        curl_close($resource);
+        $this->response = $response;
+    }
+
+    /**
      * Convert raw json data from web api to movie stdClass
-     * 
+     *
      * @return stdClass movie data
-     * 
+     *
      * @throws Json_Exception    If error in decode
      * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
@@ -151,34 +176,6 @@ class Movie_Datasource
             throw new Runtime_Exception(null, null, $obj);
         }
         return $obj->data;
-    }
-
-    /**
-     * Function for cURL data fetching for current movie. Data stores in
-     * $this->response
-     * 
-     * @return void
-     * 
-     * @throws Curl_Exception On error in web api request
-     */
-    public function fetchResponse()
-    {
-        $resource = @curl_init($this->request);
-        if (!isset($resource) || $resource === false) {
-            throw new Curl_Exception(
-                null, __("curl_init return false or null", "imdb-markup-syntax")
-            );
-        }
-        @curl_setopt($resource, CURLOPT_RETURNTRANSFER, true);
-        if ($this->timeout > 0) {
-            @curl_setopt($resource, CURLOPT_TIMEOUT_MS, $this->timeout);
-        }
-        $response = @curl_exec($resource);
-        if ($response === false) {
-            throw new Curl_Exception($resource);
-        }
-        curl_close($resource);
-        $this->response = $response;
     }
 
 }

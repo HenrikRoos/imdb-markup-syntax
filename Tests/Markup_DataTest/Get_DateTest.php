@@ -2,9 +2,9 @@
 
 /**
  * Testclass to Markup_DataSuite for method getDate in Markup_Data class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -19,13 +19,13 @@ use IMDb_Markup_Syntax\Markup_Data;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/../../Markup_Data.php";
-require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . '/../../Markup_Data.php';
+require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
+require_once 'PHPUnit/Autoload.php';
 
 /**
  * Testclass to Markup_DataSuite for method getDate in Markup_Data class
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -40,41 +40,19 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
     public $testdataPositive;
 
     /**
-     * Set up local testdata
-     * 
-     * @return void
-     */
-    protected function setUp()
-    {
-        $this->testdataPositive = "tt0468569";
-        setlocale(LC_ALL, "");
-    }
-
-    /**
-     * Clean up after testing.
-     * 
-     * @return void
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        setlocale(LC_ALL, "");
-    }
-
-    /**
      * Positive test: Get data sucessful then release date is set
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testReleaseDatePositive()
     {
         //Given
-        $locale = "en_US";
-        $expected = "Fri Jul 18 2008";
+        $locale = 'en_US';
+        $expected = 'Fri Jul 18 2008';
 
         //When
         $imdb = new Movie_Datasource($this->testdataPositive, $locale);
@@ -92,14 +70,14 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testReleaseDatePositiveSwedish()
     {
         //Given
-        $locale = "sv_SE";
-        $expected = "Fre 25 Jul 2008";
+        $locale = 'sv_SE';
+        $expected = 'Fre 25 Jul 2008';
 
         //When
         $imdb = new Movie_Datasource($this->testdataPositive, $locale);
@@ -117,14 +95,14 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testReleaseDatePositiveFrench()
     {
         //Given
-        $locale = "fr_FR";
-        $expected = "Mer 13 aoû 2008";
+        $locale = 'fr_FR';
+        $expected = 'Mer 13 aoû 2008';
 
         //When
         $imdb = new Movie_Datasource($this->testdataPositive, $locale);
@@ -142,7 +120,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testYearAlternative()
@@ -150,8 +128,8 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->release_date->normal = "";
-        $expected = "2008";
+        $data->release_date->normal = '';
+        $expected = '2008';
 
         //When
         $mdata = new Markup_Data($data);
@@ -167,7 +145,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testNoSet()
@@ -193,7 +171,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getDate
      * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * 
+     *
      * @return void
      */
     public function testEmpty()
@@ -201,7 +179,7 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $data->release_date->normal = "";
+        $data->release_date->normal = '';
         $data->year = "";
         $expected = false;
 
@@ -211,6 +189,28 @@ class Get_DateTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Set up local testdata
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->testdataPositive = 'tt0468569';
+        setlocale(LC_ALL, '');
+    }
+
+    /**
+     * Clean up after testing.
+     *
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, '');
     }
 
 }

@@ -2,9 +2,9 @@
 
 /**
  * Testclass to Markup_DataSuite for method getCast in Markup_Data class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -19,13 +19,13 @@ use IMDb_Markup_Syntax\Markup_Data;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/../../Markup_Data.php";
-require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . '/../../Markup_Data.php';
+require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
+require_once 'PHPUnit/Autoload.php';
 
 /**
  * Testclass to Markup_DataSuite for method getCast in Markup_Data class
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -40,16 +40,6 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
     public $testdataPositive;
 
     /**
-     * Set up local testdata
-     * 
-     * @return void
-     */
-    protected function setUp()
-    {
-        $this->testdataPositive = "tt0137523";
-    }
-
-    /**
      * Positive test: Get data sucessful
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
@@ -59,7 +49,7 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
      * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
-     * 
+     *
      * @return void
      */
     public function testPositive()
@@ -67,12 +57,12 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "<a href=\"http://www.imdb.com/name/nm0000093\">Brad Pitt</a>"
-            . " Tyler Durden, <a href=\"http://www.imdb.com/name/nm0001570\">"
-            . "Edward Norton</a> The Narrator, "
-            . "<a href=\"http://www.imdb.com/name/nm0000307\">Helena Bonham Carter"
-            . "</a> Marla Singer, <a href=\"http://www.imdb.com/name/nm0001533\">"
-            . "Meat Loaf</a> (as Meat Loaf Aday) Robert 'Bob' Paulson";
+        $expected = '<a href="http://www.imdb.com/name/nm0000093">Brad Pitt</a>'
+            . ' Tyler Durden, <a href="http://www.imdb.com/name/nm0001570">'
+            . 'Edward Norton</a> The Narrator, '
+            . '<a href="http://www.imdb.com/name/nm0000307">Helena Bonham Carter'
+            . '</a> Marla Singer, <a href="http://www.imdb.com/name/nm0001533">'
+            . 'Meat Loaf</a> (as Meat Loaf Aday) Robert \'Bob\' Paulson';
 
         //When
         $mdata = new Markup_Data($data);
@@ -92,7 +82,7 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
      * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
-     * 
+     *
      * @return void
      */
     public function testNotSet()
@@ -121,7 +111,7 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
      * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
      * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
-     * 
+     *
      * @return void
      */
     public function testEmpty()
@@ -131,8 +121,8 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
         $data = $imdb->getData();
         $data->cast_summary = array($data->cast_summary[0]);
         unset($data->cast_summary[0]->name->nconst);
-        $data->cast_summary[0]->char = "";
-        $data->cast_summary[0]->name->name = " ";
+        $data->cast_summary[0]->char = '';
+        $data->cast_summary[0]->name->name = ' ';
         $expected = false;
 
         //When
@@ -141,6 +131,16 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Set up local testdata
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->testdataPositive = 'tt0137523';
     }
 
 }

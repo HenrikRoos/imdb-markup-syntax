@@ -2,9 +2,9 @@
 
 /**
  * Testclass to Markup_DataSuite for method getVotes in Markup_Data class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -19,13 +19,13 @@ use IMDb_Markup_Syntax\Markup_Data;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . "/../../Markup_Data.php";
-require_once dirname(__FILE__) . "/../../Movie_Datasource.php";
-require_once "PHPUnit/Autoload.php";
+require_once dirname(__FILE__) . '/../../Markup_Data.php';
+require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
+require_once 'PHPUnit/Autoload.php';
 
 /**
  * Testclass to Markup_DataSuite for method getVotes in Markup_Data class
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -40,35 +40,13 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
     public $testdataPositive;
 
     /**
-     * Set up local testdata
-     * 
-     * @return void
-     */
-    protected function setUp()
-    {
-        $this->testdataPositive = "tt0137523";
-        setlocale(LC_ALL, "");
-    }
-
-    /**
-     * Clean up after testing.
-     * 
-     * @return void
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        setlocale(LC_ALL, "");
-    }
-
-    /**
      * Positive test: Get data sucessful
      *
      * @covers IMDb_Markup_Syntax\Markup_Data::__construct
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
-     * 
+     *
      * @return void
      */
     public function testPositive()
@@ -81,7 +59,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
 
         //When
         $mdata = new Markup_Data($data);
-        $actual = str_replace($conv["thousands_sep"], "", $mdata->getVotes());
+        $actual = str_replace($conv['thousands_sep'], '', $mdata->getVotes());
 
         //Then
         $this->assertGreaterThan($expected, $actual);
@@ -94,7 +72,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
-     * 
+     *
      * @return void
      */
     public function testPositiveSwedish()
@@ -102,10 +80,10 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = "/\d{3} \d{3}/";
+        $expected = '/\d{3} \d{3}/';
 
         //When
-        $mdata = new Markup_Data($data, null, "sv_SE");
+        $mdata = new Markup_Data($data, null, 'sv_SE');
         $actual = $mdata->getVotes();
 
         //Then
@@ -119,7 +97,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
-     * 
+     *
      * @return void
      */
     public function testNotSet()
@@ -145,7 +123,7 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
      * @covers IMDb_Markup_Syntax\Markup_Data::getVotes
      * @covers IMDb_Markup_Syntax\Markup_Data::getValue
      * @covers IMDb_Markup_Syntax\Markup_Data::numberFormatLocale
-     * 
+     *
      * @return void
      */
     public function testEmpty()
@@ -162,6 +140,28 @@ class Get_VotesTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Set up local testdata
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->testdataPositive = 'tt0137523';
+        setlocale(LC_ALL, '');
+    }
+
+    /**
+     * Clean up after testing.
+     *
+     * @return void
+     */
+    protected function tearDown()
+    {
+        parent::tearDown();
+        setlocale(LC_ALL, '');
     }
 
 }

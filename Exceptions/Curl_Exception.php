@@ -2,9 +2,9 @@
 
 /**
  * Exception class for curl exceptions
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Runnable
  * @package   Exception
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -19,7 +19,7 @@ use Exception;
 
 /**
  * Exception class for curl exceptions
- * 
+ *
  * @category  Runnable
  * @package   Exception
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -32,14 +32,16 @@ class Curl_Exception extends Exception
 
     /**
      * Create an instnas of exception class and grep the last error from curl class.
-     * 
+     *
      * @param resource  $resource Resource from curl_init
      * @param string    $message  Extra messages
      * @param int       $code     If $resource is null set custom errro code
      * @param Exception $previous The previous exception used for the exception
-     * chaining
+     *                            chaining
      */
-    public function __construct($resource = null, $message = "", $code = 0,
+    public function __construct($resource = null,
+        $message = '',
+        $code = 0,
         Exception $previous = null
     ) {
         if (isset($resource) && curl_errno($resource) > 0) {
@@ -48,12 +50,12 @@ class Curl_Exception extends Exception
         } else {
             $error_get_last = error_get_last();
             if (isset($error_get_last)) {
-                $code = $error_get_last["type"];
-                $message = $error_get_last["message"];
+                $code = $error_get_last['type'];
+                $message = $error_get_last['message'];
             }
         }
         $version = curl_version();
-        $message .= " curl_version: " . $version["version"];
+        $message .= ' curl_version: ' . $version['version'];
         parent::__construct($message, $code, $previous);
     }
 

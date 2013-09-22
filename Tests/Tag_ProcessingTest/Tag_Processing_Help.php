@@ -2,9 +2,9 @@
 
 /**
  * Help class for test protected methods in Tag_Processing class
- * 
+ *
  * PHP version 5
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -15,9 +15,10 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
+use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use IMDb_Markup_Syntax\Tag_Processing;
 
-require_once dirname(__FILE__) . "/../../Tag_Processing.php";
+require_once dirname(__FILE__) . '/../../Tag_Processing.php';
 
 /**
  * Help class for test protected methods in Tag_Processing class
@@ -29,7 +30,7 @@ require_once dirname(__FILE__) . "/../../Tag_Processing.php";
  * <code>
  * $obj = new Tag_Processing_Help($original_content, $locale, $timeout);
  * </code>
- * 
+ *
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
@@ -42,32 +43,29 @@ class Tag_Processing_Help extends Tag_Processing
 
     /**
      * Public override
-     * 
+     *
      * @var string Regular expression for id. If this is set when override
      * **[{$this->prefix}:{$this->id_pattern}]** with this.
      * e.g. <i>/\[my_id\:[a-z]+\]/i"</i>
      */
-    public $custom_id_pattern = "";
-
+    public $custom_id_pattern = '';
     /**
      * Public override
-     * 
+     *
      * @var string Regular expression for imdb tags. If this is set when override
      * **[{$this->prefix}:{$this->imdb_tags_pattern}]** with this.
      * e.g. <i>/\[my_prefix\:[a-z]+\]/i"</i>
      */
-    public $custom_tags_pattern = "";
-
+    public $custom_tags_pattern = '';
     /**
      * Public override
-     * 
+     *
      * @var array Id on current movie.
      */
     public $tconst_tag = array();
-
     /**
      * Public override
-     * 
+     *
      * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
      * current content
      */
@@ -75,9 +73,9 @@ class Tag_Processing_Help extends Tag_Processing
 
     /**
      * Public override
-     * 
+     *
      * @param string $tag Name of tag to get data for
-     * 
+     *
      * @return string|boolean Replacement text for the tag name
      */
     public function toDataString($tag)
@@ -87,9 +85,9 @@ class Tag_Processing_Help extends Tag_Processing
 
     /**
      * Public override
-     * 
+     *
      * @return boolean False if no match true if find a id
-     * 
+     *
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
     public function findId()
@@ -99,9 +97,9 @@ class Tag_Processing_Help extends Tag_Processing
 
     /**
      * Public override
-     * 
+     *
      * @return boolean False if no match true if find
-     * 
+     *
      * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
      */
     public function findImdbTags()
