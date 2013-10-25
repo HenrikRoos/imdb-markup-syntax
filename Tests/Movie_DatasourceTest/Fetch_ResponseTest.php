@@ -66,7 +66,7 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
      * Negative test, incorrect request
      *
      * @expectedException        IMDb_Markup_Syntax\Exceptions\Curl_Exception
-     * @expectedExceptionMessage Could not resolve host: a b c; nodename nor servname
+     * @expectedExceptionMessage Could not resolve host: a b c curl_version:
      * @expectedExceptionCode    6
      *
      * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
