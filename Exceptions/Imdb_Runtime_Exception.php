@@ -28,7 +28,7 @@ use stdClass;
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Runtime_Exception extends Exception
+class Imdb_Runtime_Exception extends Exception
 {
 
     /**
