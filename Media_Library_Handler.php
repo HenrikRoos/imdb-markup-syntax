@@ -16,10 +16,10 @@
 
 namespace IMDb_Markup_Syntax;
 
-use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
 use IMDb_Markup_Syntax\Exceptions\WP_Exception;
 
-require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Imdb_Runtime_Exception.php';
 require_once dirname(__FILE__) . '/Exceptions/WP_Exception.php';
 
 /**
@@ -46,28 +46,28 @@ class Media_Library_Handler
     /**
      * Create an intsans and validate input
      *
-     * @param int    $post_id    Current Post ID
+     * @param int    $post_id Current Post ID
      * @param string $remote_url Valid URL to the image remote
-     * @param string $filename   Filename with no extension on new file e.g tconst
+     * @param string $filename Filename with no extension on new file e.g tconst
      *
      * @since WordPress 2.5
      *
-     * @throws Runtime_Exception If no valid input.
+     * @throws Imdb_Runtime_Exception If no valid input.
      */
     public function __construct($post_id, $remote_url, $filename)
     {
         if (!is_int($post_id)) {
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 __('Post ID must be an integer', 'imdb-markup-syntax')
             );
         }
         if (filter_var($remote_url, FILTER_VALIDATE_URL) === false) {
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 __('Remote URL must be an validate URL', 'imdb-markup-syntax')
             );
         }
         if (!file_is_displayable_image($remote_url)) {
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 __('No valid displayable image', 'imdb-markup-syntax')
             );
         }
@@ -81,15 +81,15 @@ class Media_Library_Handler
     /**
      * Get html code for image and link to the movie at imdb.com
      *
-     * @param string $href  Link to the movie at imdb.com
+     * @param string $href Link to the movie at imdb.com
      * @param string $title Name of the movie
-     * @param string $size  Thumbnail sizes: thumbnail, medium, large, full
+     * @param string $size Thumbnail sizes: thumbnail, medium, large, full
      * @param string $align Alignment: none, left, center, right
      *
      * @since WordPress 3.1
      *
      * @throws WP_Exception      Error from retrieve the raw response
-     * @throws Runtime_Exception Error from wp_upload_bits or with metadata update
+     * @throws Imdb_Runtime_Exception Error from wp_upload_bits or with metadata update
      *
      * @return string html code
      */
@@ -99,10 +99,10 @@ class Media_Library_Handler
         $attach_id = $this->addToMediaLibrary(
             $file['file'], $title, $file['content-type']
         );
-        $thumbnail = set_post_thumbnail($this->post_id, $attach_id);
+        $thumbnail = @set_post_thumbnail($this->post_id, $attach_id);
         if ($thumbnail === false) {
             $msg = 'Can\'t set thumbnail to the Post ID %d';
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 sprintf(__($msg, 'imdb-markup-syntax'), $this->post_id)
             );
         }
@@ -127,7 +127,7 @@ class Media_Library_Handler
      * @since WordPress 2.7
      *
      * @throws WP_Exception      Some error from retrieve the raw response
-     * @throws Runtime_Exception Some error from wp_upload_bits
+     * @throws Imdb_Runtime_Exception Some error from wp_upload_bits
      *
      * @return array File and url info in a array.
      */
@@ -143,7 +143,7 @@ class Media_Library_Handler
         $bits = wp_remote_retrieve_body($get);
         $local_file = wp_upload_bits($this->fileanme, null, $bits);
         if ($local_file['error']) {
-            throw new Runtime_Exception($local_file['error']);
+            throw new Imdb_Runtime_Exception($local_file['error']);
         }
         $local_file['content-type'] = $get['headers']['content-type'];
         return $local_file;
@@ -155,8 +155,8 @@ class Media_Library_Handler
      * image attachment based on the sizes defined on the
      * "Settings_Media_Screen":http://codex.wordpress.org/Settings_Media_Screen
      *
-     * @param string $filepath  Filepath of the attached image in upload folder.
-     * @param string $title     Name of the movie.
+     * @param string $filepath Filepath of the attached image in upload folder.
+     * @param string $title Name of the movie.
      * @param string $mime_type File content-type *e.g image/jpeg*
      *
      * @since WordPress 2.1

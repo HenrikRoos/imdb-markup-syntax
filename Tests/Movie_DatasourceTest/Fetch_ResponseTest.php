@@ -21,7 +21,6 @@ use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
-require_once 'PHPUnit/Autoload.php';
 
 /**
  * Sub testclass to Movie_DatasourceTest for method fetchResponse in Movie_Datasource
@@ -36,6 +35,13 @@ require_once 'PHPUnit/Autoload.php';
  */
 class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
 {
+    public $original_content = array(
+        'movie'     => 'tt0137523',
+        'tvserie'   => 'tt0402711',
+        'videogame' => 'tt1843198',
+        'nodata'    => 'tt0000000',
+        'incorrect' => 'a b c'
+    );
 
     /**
      * Negativ test, incorrect input to curl_init function
@@ -53,7 +59,7 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testCurlInitException()
     {
         //Given
-        $tconst = $GLOBALS['movieDatasourceData']['nodata'];
+        $tconst = $this->original_content['nodata'];
         $request = array();
 
         //When
@@ -78,7 +84,7 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testIncorrectRequest()
     {
         //Given
-        $tconst = $GLOBALS['movieDatasourceData']['nodata'];
+        $tconst = $this->original_content['nodata'];
         $request = 'a b c';
 
         //When
@@ -103,7 +109,7 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     public function testTimeout()
     {
         //Given
-        $tconst = $GLOBALS['movieDatasourceData']['movie'];
+        $tconst = $this->original_content['movie'];
         $locale = null;
         $timeout = 200;
 

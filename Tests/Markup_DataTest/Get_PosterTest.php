@@ -15,7 +15,7 @@
 
 namespace IMDb_Markup_Syntax\Markup_DataTest;
 
-use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
 use IMDb_Markup_Syntax\Exceptions\WP_Exception;
 use IMDb_Markup_Syntax\Markup_Data;
 use IMDb_Markup_Syntax\Media_Library_Handler;
@@ -25,9 +25,8 @@ use PHPUnit_Framework_TestCase;
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
 require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 require_once dirname(__FILE__) . '/../../Media_Library_Handler.php';
-require_once dirname(__FILE__) . '/../../../../../wp-config.php';
-require_once dirname(__FILE__) . '/../../../../../wp-admin/includes/image.php';
-require_once 'PHPUnit/Autoload.php';
+require_once 'wp-config.php';
+require_once 'wp-admin/includes/image.php';
 
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
@@ -43,7 +42,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
 {
 
     /** @var string positive testdata */
-    public $testdataPositive;
+    public $testdataPositive = 'tt0468569';
 
     /**
      * Positive test: Get data sucessful
@@ -61,7 +60,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
         $post = array(
-            'post_title'    => 'My post',
+            'post_title'    => 'Get_PosterTest',
             'post_content'  => 'This is my post.',
             'post_status'   => 'publish',
             'post_author'   => 1,
@@ -69,7 +68,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         );
 
         //When
-        $post_id = wp_insert_post($post);
+        $post_id = wp_insert_post($post, true);
         $mdata = new Markup_Data($data, $post_id);
         $title = $mdata->getValue('title');
         $pattern = '/\<a href="http:\/\/www\.imdb\.com\/title\/'
@@ -111,12 +110,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $mdata = new Markup_Data($data, $post_id);
             $mdata->getPoster();
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -142,12 +141,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $mdata = new Markup_Data($data, $post_id);
             $mdata->getPoster();
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -169,12 +168,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         try {
             new Media_Library_Handler($post_id, $remote_url, $filename);
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -205,7 +204,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -230,12 +229,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $lib->fileanme = '';
             $lib->getHtml('a', 'b');
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -285,12 +284,12 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $lib->remote_url .= 'x';
             $lib->getHtml('a', 'b');
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertStringStartsWith($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -316,16 +315,6 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Set up local testdata
-     *
-     * @return void
-     */
-    protected function setUp()
-    {
-        $this->testdataPositive = 'tt0468569';
     }
 
 }

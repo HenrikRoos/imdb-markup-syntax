@@ -18,8 +18,7 @@ namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
-require_once 'PHPUnit/Autoload.php';
+require_once 'Tag_Processing_Help.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method findId in Tag_Processing class
@@ -33,6 +32,19 @@ require_once 'PHPUnit/Autoload.php';
  */
 class Find_IdTest extends PHPUnit_Framework_TestCase
 {
+    public $original_content = array(
+        'one_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. Quisque congue [IMDb:id(tt0137523)]. Title:
+                [imdb:title]',
+        'two_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
+                [IMDb:id(tt0137523)]. Year: [IMDb:year]',
+        'no_match'     => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523]
+                [IMDb:id:(0137523)] [IMDb:id(tt)]'
+    );
 
     /**
      * One [IMDb:id(xxx)] tag, Positive test
@@ -45,7 +57,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     public function testOnePositive()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
+        $original_content = $this->original_content['one_positive'];
         $expected = array('[IMDb:id(tt0137523)]', 'tt0137523');
 
         //When
@@ -70,7 +82,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     public function testTwoPositive()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['two_positive'];
+        $original_content = $this->original_content['two_positive'];
         $expected = array('[IMDb:id(tt0102926)]', 'tt0102926');
 
         //When
@@ -110,7 +122,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Min length of id. <b>tt\d{7}</b>
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      *
      * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
@@ -131,7 +143,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Min length of id. <b>tt\d{20}</b>
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @expectedException        IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      *
      * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
@@ -184,7 +196,7 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     public function testNoMatch()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['no_match'];
+        $original_content = $this->original_content['no_match'];
 
         //When
         $obj = new Tag_Processing_Help($original_content);

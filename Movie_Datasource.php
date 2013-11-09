@@ -17,10 +17,10 @@ namespace IMDb_Markup_Syntax;
 
 use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
 use IMDb_Markup_Syntax\Exceptions\Json_Exception;
-use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
 use stdClass;
 
-require_once dirname(__FILE__) . '/Exceptions/Runtime_Exception.php';
+require_once dirname(__FILE__) . '/Exceptions/Imdb_Runtime_Exception.php';
 require_once dirname(__FILE__) . '/Exceptions/Curl_Exception.php';
 require_once dirname(__FILE__) . '/Exceptions/Json_Exception.php';
 
@@ -65,12 +65,12 @@ class Movie_Datasource
      * @param int    $timeout The maximum number of milliseconds to allow execute to
      *                        imdb.
      *
-     * @throws Runtime_Exception if incorrect tconst.
+     * @throws Imdb_Runtime_Exception if incorrect tconst.
      */
     public function __construct($tconst = null, $locale = '', $timeout = 0)
     {
         if (!is_null($tconst) && @preg_match('/^tt\d+$/', $tconst) == 0) {
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 sprintf(__('Incorrect tconst %s', 'imdb-markup-syntax'), $tconst)
             );
         }
@@ -92,7 +92,7 @@ class Movie_Datasource
      * <i>find</i>
      *                       RFC 4646 language
      *
-     * @throws Exceptions\Runtime_Exception
+     * @throws Exceptions\Imdb_Runtime_Exception
      * @return void
      */
     public function setRequest($query,
@@ -101,7 +101,7 @@ class Movie_Datasource
         $method = 'title/maindetails'
     ) {
         if (empty($query)) {
-            throw new Runtime_Exception(__('Empty query', 'imdb-markup-syntax'));
+            throw new Imdb_Runtime_Exception(__('Empty query', 'imdb-markup-syntax'));
         }
         if (!empty($locale)) {
             $this->params['locale'] = $locale;
@@ -120,7 +120,7 @@ class Movie_Datasource
      *
      * @throws Curl_Exception    On error in web api request
      * @throws Json_Exception    If error in decode
-     * @throws Runtime_Exception If response has error in result ex no data for
+     * @throws Imdb_Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function getData()
@@ -163,7 +163,7 @@ class Movie_Datasource
      * @return stdClass movie data
      *
      * @throws Json_Exception    If error in decode
-     * @throws Runtime_Exception If response has error in result ex no data for
+     * @throws Imdb_Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function toDataClass()
@@ -173,7 +173,7 @@ class Movie_Datasource
             throw new Json_Exception();
         }
         if (isset($obj->error) || !isset($obj->data)) {
-            throw new Runtime_Exception(null, null, $obj);
+            throw new Imdb_Runtime_Exception(null, null, $obj);
         }
         return $obj->data;
     }

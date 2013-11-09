@@ -16,11 +16,11 @@
 
 namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
-use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
 use PHPUnit_Framework_TestCase;
 
-require_once 'PHPUnit/Autoload.php';
-require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
+require_once 'Tag_Processing_Help.php';
+require_once 'wp-includes/l10n.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method toDataString in Tag_Processing
@@ -35,6 +35,19 @@ require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
  */
 class To_Data_StringTest extends PHPUnit_Framework_TestCase
 {
+    public $original_content = array(
+        'one_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. Quisque congue [IMDb:id(tt0137523)]. Title:
+                [imdb:title]',
+        'two_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
+                [IMDb:id(tt0137523)]. Year: [IMDb:year]',
+        'no_match'     => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523]
+                [IMDb:id:(0137523)] [IMDb:id(tt)]'
+    );
 
     /**
      * Positive test. Test maching of a function
@@ -47,7 +60,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     public function testPositive()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
+        $original_content = $this->original_content['one_positive'];
         $locale = 'sv_SE';
         $tag = 'date';
         $expected = 'Lör 25 Dec 1999';
@@ -74,7 +87,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     public function testInvalidName()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
+        $original_content = $this->original_content['one_positive'];
         $tag = 'öäå';
         $expected = __('Invalid function name', 'imdb-markup-syntax');
 
@@ -84,12 +97,12 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
             $obj->findId();
             $obj->toDataString($tag);
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -103,7 +116,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     public function testNoMatch()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
+        $original_content = $this->original_content['one_positive'];
         $tag = 'is_null';
         $expected = sprintf(__('[Tag %s not exists]', 'imdb-markup-syntax'), $tag);
 
@@ -113,12 +126,12 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
             $obj->findId();
             $obj->toDataString($tag);
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -132,7 +145,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     public function testPositiveCapitalize()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
+        $original_content = $this->original_content['one_positive'];
         $tag = 'TiTlE';
         $expected = '<a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>';
 

@@ -19,8 +19,7 @@ namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
-require_once 'PHPUnit/Autoload.php';
+require_once 'Tag_Processing_Help.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method findImdbTags in Tag_Processing
@@ -35,6 +34,19 @@ require_once 'PHPUnit/Autoload.php';
  */
 class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
 {
+    public $original_content = array(
+        'one_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. Quisque congue [IMDb:id(tt0137523)]. Title:
+                [imdb:title]',
+        'two_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
+                [IMDb:id(tt0137523)]. Year: [IMDb:year]',
+        'no_match'     => 'Pellentesque viverra luctus est, vel bibendum arcu
+                suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)]
+                Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523]
+                [IMDb:id:(0137523)] [IMDb:id(tt)]'
+    );
 
     /**
      * Find one tag. Positive test
@@ -47,7 +59,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     public function testOnePositive()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['one_positive'];
+        $original_content = $this->original_content['one_positive'];
         $expectedCount = 1;
         $expected = array(
             array('[imdb:title]', 'title')
@@ -76,7 +88,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     public function testTwoPositive()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['two_positive'];
+        $original_content = $this->original_content['two_positive'];
         $expectedCount = 2;
         $expected = array(
             array('[imdb:title]', 'title'),
@@ -204,7 +216,7 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     public function testNoMatch()
     {
         //Given
-        $original_content = $GLOBALS['tagProcessingData']['no_match'];
+        $original_content = $this->original_content['no_match'];
         $expectedCount = 0;
 
         //When

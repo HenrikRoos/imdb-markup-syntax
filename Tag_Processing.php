@@ -17,10 +17,10 @@ namespace IMDb_Markup_Syntax;
 
 use Exception;
 use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
-use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
 
 require_once dirname(__FILE__) . "/Exceptions/PCRE_Exception.php";
-require_once dirname(__FILE__) . "/Exceptions/Runtime_Exception.php";
+require_once dirname(__FILE__) . "/Exceptions/Imdb_Runtime_Exception.php";
 require_once dirname(__FILE__) . "/Movie_Datasource.php";
 require_once dirname(__FILE__) . "/Markup_Data.php";
 
@@ -241,19 +241,19 @@ class Tag_Processing
      *
      * @param string $tag Name of tag to get data for
      *
-     * @throws Exceptions\Runtime_Exception
+     * @throws Exceptions\Imdb_Runtime_Exception
      * @return string|boolean Replacement text for the tag name
      */
     protected function toDataString($tag)
     {
         if (@preg_match('/^' . $this->imdb_tags_pattern . '$/i', $tag) == 0) {
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 __('Invalid function name', 'imdb-markup-syntax')
             );
         }
         $fname = 'get' . ucfirst(strtolower($tag));
         if (!method_exists($this->data, $fname)) {
-            throw new Runtime_Exception(
+            throw new Imdb_Runtime_Exception(
                 sprintf(__('[Tag %s not exists]', 'imdb-markup-syntax'), $tag)
             );
         }

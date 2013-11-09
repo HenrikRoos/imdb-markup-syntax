@@ -17,10 +17,9 @@ namespace IMDb_Markup_Syntax;
 
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . '/../../../../wp-config.php';
-require_once dirname(__FILE__) . '/../../../../wp-admin/includes/image.php';
-require_once dirname(__FILE__) . '/../Callback_Management.php';
-require_once 'PHPUnit/Autoload.php';
+require_once 'wp-config.php';
+require_once 'wp-admin/includes/image.php';
+require_once dirname(__FILE__) . '../Callback_Management.php';
 
 /**
  * Testclass to Callback_Management class

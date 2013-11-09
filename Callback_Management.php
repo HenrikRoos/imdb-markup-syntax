@@ -15,10 +15,10 @@
 
 namespace IMDb_Markup_Syntax;
 
+use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
+
 require_once dirname(__FILE__) . '/Tag_Processing.php';
 require_once dirname(__FILE__) . '/Exceptions/PCRE_Exception.php';
-
-use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
 
 /**
  * Collections and management of callbacks from plugin-filter and plugin-actions

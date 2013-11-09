@@ -18,9 +18,8 @@ namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
 
 use PHPUnit_Framework_TestCase;
 
-require_once dirname(__FILE__) . '/../../../../../wp-config.php';
-require_once dirname(__FILE__) . '/Tag_Processing_Help.php';
-require_once 'PHPUnit/Autoload.php';
+require_once 'Tag_Processing_Help.php';
+require_once 'wp-config.php';
 
 
 /**
@@ -303,7 +302,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
         $expected_content = '/Pellentesque viverra luctus est, vel bibendum arcu
             suscipit quis. ÖÄÅ öäå Quisque congue\[Operation timed out after \d+ '
             . 'milliseconds with \d+ out of [\-\d+]+ bytes received curl_version:'
-            .' [\d\.]+\]. Title:
+            . ' [\d\.]+\]. Title:
             \[imdb:title\]/';
         $expected_count = 1;
 

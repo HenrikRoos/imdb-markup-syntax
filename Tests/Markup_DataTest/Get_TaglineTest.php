@@ -21,7 +21,6 @@ use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
 require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
-require_once 'PHPUnit/Autoload.php';
 
 /**
  * Testclass to Markup_DataSuite for method getTagline in Markup_Data class

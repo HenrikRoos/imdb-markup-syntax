@@ -21,7 +21,6 @@ use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Markup_Data.php';
 require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
-require_once 'PHPUnit/Autoload.php';
 
 /**
  * Testclass to Markup_DataSuite for method getCertificate in Markup_Data class
@@ -53,7 +52,7 @@ class Get_CertificateTest extends PHPUnit_Framework_TestCase
         //Given
         $imdb = new Movie_Datasource($this->testdataPositive);
         $data = $imdb->getData();
-        $expected = 'R';
+        $expected = 'TV-MA';
 
         //When
         $mdata = new Markup_Data($data);

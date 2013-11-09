@@ -16,12 +16,11 @@
 namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
 
 use IMDb_Markup_Syntax\Exceptions\Json_Exception;
-use IMDb_Markup_Syntax\Exceptions\Runtime_Exception;
+use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
 use IMDb_Markup_Syntax\Movie_Datasource;
 use PHPUnit_Framework_TestCase;
 
 require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
-require_once 'PHPUnit/Autoload.php';
 
 /**
  * Sub testclass to Movie_DatasourceTest for general tests in Movie_Datasource
@@ -35,19 +34,26 @@ require_once 'PHPUnit/Autoload.php';
  */
 class GeneralTest extends PHPUnit_Framework_TestCase
 {
+    public $original_content = array(
+        'movie'     => 'tt0137523',
+        'tvserie'   => 'tt0402711',
+        'videogame' => 'tt1843198',
+        'nodata'    => 'tt0000000',
+        'incorrect' => 'a b c'
+    );
 
     /**
      * Negativ test, incorrect tconst checked in construct
      *
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @covers IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
      *
      * @return void
      */
     public function testIncorrectId()
     {
         //Given
-        $tconst = $GLOBALS['movieDatasourceData']['incorrect'];
+        $tconst = $this->original_content['incorrect'];
         $expected
             = sprintf(__('Incorrect tconst %s', 'imdb-markup-syntax'), $tconst);
 
@@ -55,12 +61,12 @@ class GeneralTest extends PHPUnit_Framework_TestCase
         try {
             new Movie_Datasource($tconst);
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
     /**
@@ -79,7 +85,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     public function testToDataClassJsonException()
     {
         //Given
-        $tconst = $GLOBALS['movieDatasourceData']['movie'];
+        $tconst = $this->original_content['movie'];
 
         //When
         $imdb = new Movie_Datasource($tconst);
@@ -93,7 +99,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
      *
      * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
      * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Exceptions\Runtime_Exception
+     * @covers IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
      *
      * @return void
      */
@@ -108,12 +114,12 @@ class GeneralTest extends PHPUnit_Framework_TestCase
             $imdb = new Movie_Datasource();
             $imdb->setRequest($request);
         } //Then
-        catch (Runtime_Exception $exp) {
+        catch (Imdb_Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
 
-        $this->fail('An expected Runtime_Exception has not been raised.');
+        $this->fail('An expected Imdb_Runtime_Exception has not been raised.');
     }
 
 }
