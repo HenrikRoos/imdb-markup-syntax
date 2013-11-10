@@ -61,9 +61,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         $data = $imdb->getData();
         $post = array(
             'post_title'    => 'Get_PosterTest',
-            'post_content'  => 'This is my post.',
-            'post_status'   => 'publish',
-            'post_author'   => 1,
+            'post_content'  => 'This is my Get_PosterTest post.',
             'post_category' => array(8, 39)
         );
 

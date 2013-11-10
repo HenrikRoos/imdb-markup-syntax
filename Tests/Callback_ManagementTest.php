@@ -19,7 +19,7 @@ use PHPUnit_Framework_TestCase;
 
 require_once 'wp-config.php';
 require_once 'wp-admin/includes/image.php';
-require_once dirname(__FILE__) . '../Callback_Management.php';
+require_once dirname(__FILE__) . '/../Callback_Management.php';
 
 /**
  * Testclass to Callback_Management class
