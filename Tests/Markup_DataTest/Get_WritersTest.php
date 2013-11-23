@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Testclass to Markup_DataSuite for method getWriters in Markup_Data class
  *
@@ -12,15 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Markup_DataTest;
-
-use IMDb_Markup_Syntax\Markup_Data;
-use IMDb_Markup_Syntax\Movie_Datasource;
-use PHPUnit_Framework_TestCase;
-
-require_once dirname(__FILE__) . '/../../Markup_Data.php';
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 
 /**
  * Testclass to Markup_DataSuite for method getWriters in Markup_Data class
@@ -41,13 +31,13 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test where movie has one writer and no attribute like (nocel)
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
-     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getWriters
+     * @covers Markup_Data::toSummaryString
+     * @covers Markup_Data::toPersonsList
+     * @covers Markup_Data::toPersonString
+     * @covers Markup_Data::toNameString
+     * @covers Markup_Data::isNotEmpty
      *
      * @return void
      */
@@ -68,13 +58,13 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test where movie has two writers
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
-     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getWriters
+     * @covers Markup_Data::toSummaryString
+     * @covers Markup_Data::toPersonsList
+     * @covers Markup_Data::toPersonString
+     * @covers Markup_Data::toNameString
+     * @covers Markup_Data::isNotEmpty
      *
      * @return void
      */
@@ -97,13 +87,13 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     /**
      * Alternative test where movie has no writers
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
-     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getWriters
+     * @covers Markup_Data::toSummaryString
+     * @covers Markup_Data::toPersonsList
+     * @covers Markup_Data::toPersonString
+     * @covers Markup_Data::toNameString
+     * @covers Markup_Data::isNotEmpty
      *
      * @return void
      */
@@ -124,13 +114,13 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: getWriters is empty
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getWriters
-     * @covers IMDb_Markup_Syntax\Markup_Data::toSummaryString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonsList
-     * @covers IMDb_Markup_Syntax\Markup_Data::toPersonString
-     * @covers IMDb_Markup_Syntax\Markup_Data::toNameString
-     * @covers IMDb_Markup_Syntax\Markup_Data::isNotEmpty
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getWriters
+     * @covers Markup_Data::toSummaryString
+     * @covers Markup_Data::toPersonsList
+     * @covers Markup_Data::toPersonString
+     * @covers Markup_Data::toNameString
+     * @covers Markup_Data::isNotEmpty
      *
      * @return void
      */
@@ -161,5 +151,3 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

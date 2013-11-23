@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Exception class for runtime exceptions
  *
@@ -13,11 +12,6 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax\Exceptions;
-
-use Exception;
-use stdClass;
-
 /**
  * Exception class for runtime exceptions
  *
@@ -28,14 +22,14 @@ use stdClass;
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-class Imdb_Runtime_Exception extends Exception
+class Runtime_Exception extends Exception
 {
 
     /**
      * Create intans object for imdb api repsonse error.
      *
-     * @param string    $message  Extra message
-     * @param int       $code     Error code ex 404 for not fond
+     * @param string    $message Extra message
+     * @param int       $code Error code ex 404 for not fond
      * @param stdClass  $response From imdb api respons as json convert
      * @param Exception $previous The previous exception used for the exception
      *                            chaining
@@ -55,5 +49,3 @@ class Imdb_Runtime_Exception extends Exception
     }
 
 }
-
-?>

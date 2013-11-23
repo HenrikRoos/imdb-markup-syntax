@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Tag_ProcessingTest for method findImdbTags in Tag_Processing
  * class
@@ -13,11 +12,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
-
-use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
-use PHPUnit_Framework_TestCase;
 
 require_once 'Tag_Processing_Help.php';
 
@@ -51,8 +45,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Find one tag. Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
      *
      * @return void
      */
@@ -80,8 +74,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Find two tag. Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
      *
      * @return void
      */
@@ -110,8 +104,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Under min length of id. <b>[a-z0-9]{0}</b>
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
      *
      * @return void
      */
@@ -134,8 +128,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Min length of id. <b>[a-z0-9]{1}</b>
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
      *
      * @return void
      */
@@ -158,8 +152,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Min length of id. <b>[a-z0-9]{40}</b>
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
      *
      * @return void
      */
@@ -184,8 +178,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Under min length of id. <b>[a-z0-9]{41}</b>
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -208,8 +202,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Find zero tag. Alternative test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
      *
      * @return void
      */
@@ -232,8 +226,8 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Null input. Alternative test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers Tag_Processing::findImdbTags
+     * @covers Tag_Processing::__construct
      *
      * @return void
      */
@@ -259,12 +253,12 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a PREG_ERROR
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @expectedException        PCRE_Exception
      * @expectedExceptionMessage PREG_BACKTRACK_LIMIT_ERROR
      *
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers                   IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers                   Tag_Processing::__construct
+     * @covers                   Tag_Processing::findImdbTags
+     * @covers                   PCRE_Exception
      *
      * @return void
      */
@@ -283,12 +277,12 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a Compilation failed
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @expectedException        PCRE_Exception
      * @expectedExceptionMessage Compilation failed
      *
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findImdbTags
-     * @covers                   IMDb_Markup_Syntax\Exceptions\PCRE_Exception
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
+     * @covers                   Tag_Processing::findImdbTags
+     * @covers                   Tag_Processing::__construct
+     * @covers                   PCRE_Exception
      *
      * @return void
      */
@@ -305,5 +299,3 @@ class Find_Imdb_TagsTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

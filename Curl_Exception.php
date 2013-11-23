@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Exception class for curl exceptions
  *
@@ -12,10 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Exceptions;
-
-use Exception;
 
 /**
  * Exception class for curl exceptions
@@ -34,8 +29,8 @@ class Curl_Exception extends Exception
      * Create an instnas of exception class and grep the last error from curl class.
      *
      * @param resource  $resource Resource from curl_init
-     * @param string    $message  Extra messages
-     * @param int       $code     If $resource is null set custom errro code
+     * @param string    $message Extra messages
+     * @param int       $code If $resource is null set custom errro code
      * @param Exception $previous The previous exception used for the exception
      *                            chaining
      */
@@ -60,5 +55,3 @@ class Curl_Exception extends Exception
     }
 
 }
-
-?>

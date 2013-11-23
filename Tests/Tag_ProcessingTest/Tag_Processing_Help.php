@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Help class for test protected methods in Tag_Processing class
  *
@@ -12,13 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
-
-use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
-use IMDb_Markup_Syntax\Tag_Processing;
-
-require_once dirname(__FILE__) . '/../../Tag_Processing.php';
 
 /**
  * Help class for test protected methods in Tag_Processing class
@@ -108,5 +100,3 @@ class Tag_Processing_Help extends Tag_Processing
     }
 
 }
-
-?>

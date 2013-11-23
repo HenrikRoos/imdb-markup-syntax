@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Tag_ProcessingTest for method tagsReplace in Tag_Processing
  * class
@@ -14,13 +13,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
-
-use PHPUnit_Framework_TestCase;
-
 require_once 'Tag_Processing_Help.php';
-require_once 'wp-config.php';
-
 
 /**
  * Sub testclass to Tag_ProcessingTest for method tagsReplace in Tag_Processing
@@ -51,9 +44,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * Replace one imdb tag and delete mandatory id. Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -79,9 +72,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * Replace one imdb tag and delete mandatory id. Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -120,9 +113,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * Replace one imdb tag and delete mandatory id. Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -153,9 +146,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * No data for this title id. Alternative test.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -182,8 +175,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * No imdb tags just id. Alternative test.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
      *
      * @return void
      */
@@ -207,8 +200,8 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * Test when no id or imdb tags is empty. Alternative positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
      *
      * @return void
      */
@@ -229,9 +222,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * PCRE Exception test. Alternative test.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -260,9 +253,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * PCRE Exception test with no imdb:id tags. Alternative test.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -288,9 +281,9 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     /**
      * No data for this title id. Alternative test.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::tagsReplace
-     * @covers IMDb_Markup_Syntax\Tag_Processing::getReplacementContent
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::tagsReplace
+     * @covers Tag_Processing::getReplacementContent
      *
      * @return void
      */
@@ -318,5 +311,3 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

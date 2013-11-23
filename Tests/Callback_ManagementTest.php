@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Testclass to Callback_Management class
  *
@@ -13,13 +12,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
-
-use PHPUnit_Framework_TestCase;
-
 require_once 'wp-config.php';
 require_once 'wp-admin/includes/image.php';
-require_once dirname(__FILE__) . '/../Callback_Management.php';
 
 /**
  * Testclass to Callback_Management class
@@ -37,10 +31,10 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test and alternative test; attatch image to not existens post
      *
-     * @covers IMDb_Markup_Syntax\Callback_Management::filterImdbTags
-     * @covers IMDb_Markup_Syntax\Callback_Management::tagsReplace
-     * @covers IMDb_Markup_Syntax\Callback_Management::__construct
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Callback_Management::filterImdbTags
+     * @covers Callback_Management::tagsReplace
+     * @covers Callback_Management::__construct
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -60,30 +54,30 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
         $data = array(
             'post_title'   => 'ÖÄÅ öäå congue [IMDb:id(tt0137523)][imdb:title]',
             'post_content' => 'Pellentesque viverra luctus est, vel bibendum arcu '
-            . 'suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. '
-            . 'Title: [imdb:title] Poster: [imdb:poster]'
+                . 'suscipit quis. ÖÄÅ öäå Quisque congue[IMDb:id(tt0137523)]. '
+                . 'Title: [imdb:title] Poster: [imdb:poster]'
         );
         $expected = array(
             'post_title'   => 'ÖÄÅ öäå congue '
-            . '<a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>',
+                . '<a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>',
             'post_content' => '/Pellentesque viverra luctus est, vel bibendum arcu '
-            . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
-            . 'Title: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/">'
-            . 'Fight Club<\/a> Poster: '
-            . '<a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/" '
-            . 'title="Fight Club"><img width="20\d" height="300" '
-            . 'src="http:\/\/.+\/uploads\/201\d\/\d\d'
-            . '\/tt0137523\d*-20\dx300.jpg" class="alignnone size-medium '
-            . 'wp-post-image" alt="Fight Club".+\/><\/a>/'
+                . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
+                . 'Title: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/">'
+                . 'Fight Club<\/a> Poster: '
+                . '<a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/" '
+                . 'title="Fight Club"><img width="20\d" height="300" '
+                . 'src="http:\/\/.+\/uploads\/201\d\/\d\d'
+                . '\/tt0137523\d*-20\dx300.jpg" class="alignnone size-medium '
+                . 'wp-post-image" alt="Fight Club".+\/><\/a>/'
         );
         $expected_after = array(
             'post_title'   => 'ÖÄÅ öäå congue '
-            . '<a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>',
+                . '<a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>',
             'post_content' => '/Pellentesque viverra luctus est, vel bibendum arcu '
-            . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
-            . 'Title: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/">'
-            . 'Fight Club<\/a> Poster: '
-            . 'Can\'t set thumbnail to the Post ID \d+/'
+                . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
+                . 'Title: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/">'
+                . 'Fight Club<\/a> Poster: '
+                . 'Can\'t set thumbnail to the Post ID \d+/'
         );
 
         //When
@@ -104,9 +98,9 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test
      *
-     * @covers IMDb_Markup_Syntax\Callback_Management::liveFilterImdbTags
-     * @covers IMDb_Markup_Syntax\Callback_Management::tagsReplace
-     * @covers IMDb_Markup_Syntax\Callback_Management::__construct
+     * @covers Callback_Management::liveFilterImdbTags
+     * @covers Callback_Management::tagsReplace
+     * @covers Callback_Management::__construct
      *
      * @return void
      */
@@ -134,7 +128,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test
      *
-     * @covers IMDb_Markup_Syntax\Callback_Management::getSubPrefixHints
+     * @covers Callback_Management::getSubPrefixHints
      * @return void
      */
     public function testGetSubPrefixHints()
@@ -157,10 +151,11 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @expectedException        PCRE_Exception
      * @expectedExceptionMessage preg_match_all(): Compilation failed: missing )
      *
-     * @covers IMDb_Markup_Syntax\Callback_Management::getSubPrefixHints
+     * @covers Callback_Management::getSubPrefixHints
+     * @covers PCRE_Exception
      *
      * @return void
      */

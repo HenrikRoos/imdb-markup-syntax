@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Movie_DatasourceTest for general tests in Movie_Datasource
  *
@@ -12,15 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
-
-use IMDb_Markup_Syntax\Exceptions\Json_Exception;
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-use IMDb_Markup_Syntax\Movie_Datasource;
-use PHPUnit_Framework_TestCase;
-
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 
 /**
  * Sub testclass to Movie_DatasourceTest for general tests in Movie_Datasource
@@ -45,8 +35,8 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, incorrect tconst checked in construct
      *
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @covers Movie_Datasource::__construct
+     * @covers Runtime_Exception
      *
      * @return void
      */
@@ -61,7 +51,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
         try {
             new Movie_Datasource($tconst);
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -72,13 +62,13 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, incorrect json syntax
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Json_Exception
+     * @expectedException        Json_Exception
      * @expectedExceptionMessage JSON_ERROR_SYNTAX
      * @expectedExceptionCode    4
      *
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers                   IMDb_Markup_Syntax\Exceptions\Json_Exception
+     * @covers                   Movie_Datasource::__construct
+     * @covers                   Movie_Datasource::toDataClass
+     * @covers                   Json_Exception
      *
      * @return void
      */
@@ -97,9 +87,9 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test, no query data
      *
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @covers Movie_Datasource::__construct
+     * @covers Movie_Datasource::setRequest
+     * @covers Runtime_Exception
      *
      * @return void
      */
@@ -114,7 +104,7 @@ class GeneralTest extends PHPUnit_Framework_TestCase
             $imdb = new Movie_Datasource();
             $imdb->setRequest($request);
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -123,5 +113,3 @@ class GeneralTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

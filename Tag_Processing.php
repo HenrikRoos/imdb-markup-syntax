@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Find and replace imdb tags to movie data from IMDb
  *
@@ -13,16 +12,10 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
-
-use Exception;
-use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-
-require_once dirname(__FILE__) . "/Exceptions/PCRE_Exception.php";
-require_once dirname(__FILE__) . "/Exceptions/Imdb_Runtime_Exception.php";
-require_once dirname(__FILE__) . "/Movie_Datasource.php";
-require_once dirname(__FILE__) . "/Markup_Data.php";
+require_once 'Movie_Datasource.php';
+require_once 'Markup_Data.php';
+require_once 'PCRE_Exception.php';
+require_once 'Runtime_Exception.php';
 
 /**
  * Find and replace imdb tags to movie data from IMDb
@@ -96,7 +89,7 @@ class Tag_Processing
      * Create an object
      *
      * @param string $original_content Blog post content
-     * @param int    $post_id          Current post_id use by poster
+     * @param int    $post_id Current post_id use by poster
      */
     public function __construct($original_content, $post_id = 0)
     {
@@ -241,19 +234,19 @@ class Tag_Processing
      *
      * @param string $tag Name of tag to get data for
      *
-     * @throws Exceptions\Imdb_Runtime_Exception
+     * @throws Runtime_Exception
      * @return string|boolean Replacement text for the tag name
      */
     protected function toDataString($tag)
     {
         if (@preg_match('/^' . $this->imdb_tags_pattern . '$/i', $tag) == 0) {
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 __('Invalid function name', 'imdb-markup-syntax')
             );
         }
         $fname = 'get' . ucfirst(strtolower($tag));
         if (!method_exists($this->data, $fname)) {
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 sprintf(__('[Tag %s not exists]', 'imdb-markup-syntax'), $tag)
             );
         }
@@ -273,4 +266,3 @@ class Tag_Processing
 
 }
 
-?>

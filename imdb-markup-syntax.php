@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Main file for IMDb Markup Syntax WordPress Plugin
  *
@@ -13,9 +12,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-use IMDb_Markup_Syntax\Callback_Management;
-
-require_once dirname(__FILE__) . "/Callback_Management.php";
+require_once 'Callback_Management.php';
 
 /**
  * Plugin Name: IMDb Markup Syntax

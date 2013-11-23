@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Tag_ProcessingTest for method findId in Tag_Processing class
  *
@@ -12,11 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
-
-use IMDb_Markup_Syntax\Exceptions\PCRE_Exception;
-use PHPUnit_Framework_TestCase;
 
 require_once 'Tag_Processing_Help.php';
 
@@ -49,8 +43,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * One [IMDb:id(xxx)] tag, Positive test
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -74,8 +68,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
      * Two correct [IMDb:id(xxx)] tags, Positive test. Only one is set
      * (first one)
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -98,8 +92,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Under min length of id. <b>tt\d{6}</b>
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -122,11 +116,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Min length of id. <b>tt\d{7}</b>
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @expectedException        Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      *
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers                   Tag_Processing::__construct
+     * @covers                   Tag_Processing::findId
+     * @covers                   Runtime_Exception
      *
      * @return void
      */
@@ -143,11 +138,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Min length of id. <b>tt\d{20}</b>
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @expectedException        Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      *
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers                   Tag_Processing::__construct
+     * @covers                   Tag_Processing::findId
+     * @covers                   Runtime_Exception
      *
      * @return void
      */
@@ -164,8 +160,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Under min length of id. <b>tt\d{21}</b>
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -188,8 +184,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * No correct [IMDb:id(xxx)] tags. Alternative test. id not set
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -210,8 +206,8 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Null input = id not set
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::findId
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::findId
      *
      * @return void
      */
@@ -237,12 +233,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a PREG_ERROR
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @expectedException        PCRE_Exception
      * @expectedExceptionMessage PREG_BACKTRACK_LIMIT_ERROR
      *
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findId
-     * @covers                   IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers                   Tag_Processing::__construct
+     * @covers                   Tag_Processing::findId
+     * @covers                   PCRE_Exception
      *
      * @return void
      */
@@ -261,12 +257,12 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test for Exception handler of a compilation failed
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @expectedException        PCRE_Exception
      * @expectedExceptionMessage Compilation failed
      *
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers                   IMDb_Markup_Syntax\Tag_Processing::findId
-     * @covers                   IMDb_Markup_Syntax\Exceptions\PCRE_Exception
+     * @covers                   Tag_Processing::__construct
+     * @covers                   Tag_Processing::findId
+     * @covers                   PCRE_Exception
      *
      * @return void
      */
@@ -283,5 +279,3 @@ class Find_IdTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

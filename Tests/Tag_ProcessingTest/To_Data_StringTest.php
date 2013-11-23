@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Tag_ProcessingTest for method toDataString in Tag_Processing
  * class
@@ -14,13 +13,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax\Tag_ProcessingTest;
-
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-use PHPUnit_Framework_TestCase;
-
 require_once 'Tag_Processing_Help.php';
-require_once 'wp-includes/l10n.php';
 
 /**
  * Sub testclass to Tag_ProcessingTest for method toDataString in Tag_Processing
@@ -52,8 +45,8 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test. Test maching of a function
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::toDataString
      *
      * @return void
      */
@@ -79,8 +72,8 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     /**
      * No maching function to the tags.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::toDataString
      *
      * @return void
      */
@@ -97,7 +90,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
             $obj->findId();
             $obj->toDataString($tag);
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -108,8 +101,8 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     /**
      * No maching function to the tags.
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::toDataString
      *
      * @return void
      */
@@ -126,7 +119,7 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
             $obj->findId();
             $obj->toDataString($tag);
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -137,8 +130,8 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     /**
      * Alternative positive test. Test when wrong capitalize is precent
      *
-     * @covers IMDb_Markup_Syntax\Tag_Processing::__construct
-     * @covers IMDb_Markup_Syntax\Tag_Processing::toDataString
+     * @covers Tag_Processing::__construct
+     * @covers Tag_Processing::toDataString
      *
      * @return void
      */
@@ -160,5 +153,3 @@ class To_Data_StringTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

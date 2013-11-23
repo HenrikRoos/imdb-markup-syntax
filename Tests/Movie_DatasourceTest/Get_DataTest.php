@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Movie_DatasourceTest for method getData in Movie_Datasource class
  *
@@ -12,14 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
-
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-use IMDb_Markup_Syntax\Movie_Datasource;
-use PHPUnit_Framework_TestCase;
-
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 
 /**
  * Sub testclass to Movie_DatasourceTest for method getData in Movie_Datasource class
@@ -44,11 +35,11 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Main use case get a movie data, no error
      *
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers Movie_Datasource::__construct
+     * @covers Movie_Datasource::setRequest
+     * @covers Movie_Datasource::getData
+     * @covers Movie_Datasource::toDataClass
+     * @covers Movie_Datasource::fetchResponse
      *
      * @return void
      */
@@ -70,11 +61,11 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Main use case get a tv serie data, no error
      *
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers Movie_Datasource::__construct
+     * @covers Movie_Datasource::setRequest
+     * @covers Movie_Datasource::getData
+     * @covers Movie_Datasource::toDataClass
+     * @covers Movie_Datasource::fetchResponse
      *
      * @return void
      */
@@ -96,11 +87,11 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Main use case get a video game data, no error
      *
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
+     * @covers Movie_Datasource::__construct
+     * @covers Movie_Datasource::setRequest
+     * @covers Movie_Datasource::getData
+     * @covers Movie_Datasource::toDataClass
+     * @covers Movie_Datasource::fetchResponse
      *
      * @return void
      */
@@ -122,16 +113,16 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, not valid locale
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @expectedException        Runtime_Exception
      * @expectedExceptionMessage Your locale argument is not valid (RFC 4646)
      * @expectedExceptionCode    400
      *
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers                   IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @covers                   Movie_Datasource::__construct
+     * @covers                   Movie_Datasource::setRequest
+     * @covers                   Movie_Datasource::getData
+     * @covers                   Movie_Datasource::toDataClass
+     * @covers                   Movie_Datasource::fetchResponse
+     * @covers                   Runtime_Exception
      *
      * @return void
      */
@@ -149,16 +140,16 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, No data for this title tconst. HTTP 404
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @expectedException        Runtime_Exception
      * @expectedExceptionMessage No data for this title id
      * @expectedExceptionCode    404
      *
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers                   IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @covers                   Movie_Datasource::__construct
+     * @covers                   Movie_Datasource::setRequest
+     * @covers                   Movie_Datasource::getData
+     * @covers                   Movie_Datasource::toDataClass
+     * @covers                   Movie_Datasource::fetchResponse
+     * @covers                   Runtime_Exception
      *
      * @return void
      */
@@ -175,12 +166,12 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     /**
      * Positive alternative test. Different release date in different countries
      *
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::setRequest
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::getData
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::toDataClass
-     * @covers IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception
+     * @covers Movie_Datasource::__construct
+     * @covers Movie_Datasource::setRequest
+     * @covers Movie_Datasource::getData
+     * @covers Movie_Datasource::toDataClass
+     * @covers Movie_Datasource::fetchResponse
+     * @covers Runtime_Exception
      *
      * @return void
      */
@@ -230,5 +221,3 @@ class Get_DataTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

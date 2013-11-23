@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Testclass to Markup_DataSuite for method getType in Markup_Data class
  *
@@ -12,15 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Markup_DataTest;
-
-use IMDb_Markup_Syntax\Markup_Data;
-use IMDb_Markup_Syntax\Movie_Datasource;
-use PHPUnit_Framework_TestCase;
-
-require_once dirname(__FILE__) . '/../../Markup_Data.php';
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 
 /**
  * Testclass to Markup_DataSuite for method getType in Markup_Data class
@@ -41,9 +31,9 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Get data sucessful for a feature
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getType
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getType
+     * @covers Markup_Data::getValue
      *
      * @return void
      */
@@ -65,9 +55,9 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Get data sucessful for a tv-serie
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getType
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getType
+     * @covers Markup_Data::getValue
      *
      * @return void
      */
@@ -89,9 +79,9 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: No data is set
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getType
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getType
+     * @covers Markup_Data::getValue
      *
      * @return void
      */
@@ -114,9 +104,9 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Data is empty
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getType
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValue
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getType
+     * @covers Markup_Data::getValue
      *
      * @return void
      */
@@ -147,5 +137,3 @@ class Get_TypeTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

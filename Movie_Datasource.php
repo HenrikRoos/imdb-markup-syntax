@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class for access to IMDb RESTful datasource web api
  *
@@ -13,16 +12,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
-
-use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
-use IMDb_Markup_Syntax\Exceptions\Json_Exception;
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-use stdClass;
-
-require_once dirname(__FILE__) . '/Exceptions/Imdb_Runtime_Exception.php';
-require_once dirname(__FILE__) . '/Exceptions/Curl_Exception.php';
-require_once dirname(__FILE__) . '/Exceptions/Json_Exception.php';
+require_once 'Runtime_Exception.php';
+require_once 'Curl_Exception.php';
+require_once 'Json_Exception.php';
 
 /**
  * Class for access to IMDb RESTful datasource web api
@@ -60,17 +52,17 @@ class Movie_Datasource
     /**
      * Create an instans object for acces to datasource
      *
-     * @param string $tconst  Imdb tconst for current movie <i>e.g. tt0137523</i>
-     * @param string $locale  Localization for data
+     * @param string $tconst Imdb tconst for current movie <i>e.g. tt0137523</i>
+     * @param string $locale Localization for data
      * @param int    $timeout The maximum number of milliseconds to allow execute to
      *                        imdb.
      *
-     * @throws Imdb_Runtime_Exception if incorrect tconst.
+     * @throws Runtime_Exception if incorrect tconst.
      */
     public function __construct($tconst = null, $locale = '', $timeout = 0)
     {
         if (!is_null($tconst) && @preg_match('/^tt\d+$/', $tconst) == 0) {
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 sprintf(__('Incorrect tconst %s', 'imdb-markup-syntax'), $tconst)
             );
         }
@@ -83,16 +75,15 @@ class Movie_Datasource
     /**
      * Build and set request
      *
-     * @param string $query  That are you locking for? <i>e.g. movie id: tt0137523 or
+     * @param string $query That are you locking for? <i>e.g. movie id: tt0137523 or
      *                       persion id</i>
      * @param string $locale Localization for data
-     * @param string $key    That kind of data are $query? Defualt <i>tconst</i>
+     * @param string $key That kind of data are $query? Defualt <i>tconst</i>
      * @param string $method Type of method to API defualt is find title by id.
      * Alternative find after persion id: <i>name/maindetails</i> or just simple
-     * <i>find</i>
-     *                       RFC 4646 language
+     * <i>find</i> RFC 4646 language
      *
-     * @throws Exceptions\Imdb_Runtime_Exception
+     * @throws Runtime_Exception
      * @return void
      */
     public function setRequest($query,
@@ -101,7 +92,7 @@ class Movie_Datasource
         $method = 'title/maindetails'
     ) {
         if (empty($query)) {
-            throw new Imdb_Runtime_Exception(__('Empty query', 'imdb-markup-syntax'));
+            throw new Runtime_Exception(__('Empty query', 'imdb-markup-syntax'));
         }
         if (!empty($locale)) {
             $this->params['locale'] = $locale;
@@ -120,7 +111,7 @@ class Movie_Datasource
      *
      * @throws Curl_Exception    On error in web api request
      * @throws Json_Exception    If error in decode
-     * @throws Imdb_Runtime_Exception If response has error in result ex no data for
+     * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function getData()
@@ -163,7 +154,7 @@ class Movie_Datasource
      * @return stdClass movie data
      *
      * @throws Json_Exception    If error in decode
-     * @throws Imdb_Runtime_Exception If response has error in result ex no data for
+     * @throws Runtime_Exception If response has error in result ex no data for
      * this tconst.
      */
     public function toDataClass()
@@ -173,11 +164,9 @@ class Movie_Datasource
             throw new Json_Exception();
         }
         if (isset($obj->error) || !isset($obj->data)) {
-            throw new Imdb_Runtime_Exception(null, null, $obj);
+            throw new Runtime_Exception(null, null, $obj);
         }
         return $obj->data;
     }
 
 }
-
-?>

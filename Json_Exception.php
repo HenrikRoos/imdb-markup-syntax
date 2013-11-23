@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Exception class for json exceptions
  *
@@ -12,10 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Exceptions;
-
-use Exception;
 
 /**
  * Exception class for json exceptions
@@ -43,8 +38,8 @@ class Json_Exception extends Exception
     /**
      * Create object and grep the last error from json
      *
-     * @param string    $message  Extra message
-     * @param int       $code     If json_last_error = 0 use this code
+     * @param string    $message Extra message
+     * @param int       $code If json_last_error = 0 use this code
      * @param Exception $previous The previous exception used for the exception
      *                            chaining
      */
@@ -58,5 +53,3 @@ class Json_Exception extends Exception
     }
 
 }
-
-?>

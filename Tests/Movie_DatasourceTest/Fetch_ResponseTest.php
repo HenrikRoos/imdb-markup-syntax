@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Sub testclass to Movie_DatasourceTest for method fetchResponse in Movie_Datasource
  * class
@@ -13,14 +12,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Movie_DatasourceTest;
-
-use IMDb_Markup_Syntax\Exceptions\Curl_Exception;
-use IMDb_Markup_Syntax\Movie_Datasource;
-use PHPUnit_Framework_TestCase;
-
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
 
 /**
  * Sub testclass to Movie_DatasourceTest for method fetchResponse in Movie_Datasource
@@ -46,13 +37,13 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     /**
      * Negativ test, incorrect input to curl_init function
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Curl_Exception
+     * @expectedException        Curl_Exception
      * @expectedExceptionMessage curl_init() expects parameter 1 to be string
      * @expectedExceptionCode    2
      *
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers                   IMDb_Markup_Syntax\Exceptions\Curl_Exception
+     * @covers                   Movie_Datasource::__construct
+     * @covers                   Movie_Datasource::fetchResponse
+     * @covers                   Curl_Exception
      *
      * @return void
      */
@@ -71,13 +62,13 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test, incorrect request
      *
-     * @expectedException        IMDb_Markup_Syntax\Exceptions\Curl_Exception
+     * @expectedException        Curl_Exception
      * @expectedExceptionMessage Could not resolve host: a b c curl_version:
      * @expectedExceptionCode    6
      *
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers                   IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers                   IMDb_Markup_Syntax\Exceptions\Curl_Exception
+     * @covers                   Movie_Datasource::__construct
+     * @covers                   Movie_Datasource::fetchResponse
+     * @covers                   Curl_Exception
      *
      * @return void
      */
@@ -97,12 +88,12 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
      * Negativ test, timeout exception to imdb api. CURLE_OPERATION_TIMEDOUT = 28
      * error code
      *
-     * @expectedException     IMDb_Markup_Syntax\Exceptions\Curl_Exception
+     * @expectedException     Curl_Exception
      * @expectedExceptionCode 28
      *
-     * @covers                IMDb_Markup_Syntax\Movie_Datasource::__construct
-     * @covers                IMDb_Markup_Syntax\Movie_Datasource::fetchResponse
-     * @covers                IMDb_Markup_Syntax\Exceptions\Curl_Exception
+     * @covers                Movie_Datasource::__construct
+     * @covers                Movie_Datasource::fetchResponse
+     * @covers                Curl_Exception
      *
      * @return void
      */
@@ -119,5 +110,3 @@ class Fetch_ResponseTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Markup data tags from IMDb data result. Most popular tag in imdb result has a
  * function in this class
@@ -14,12 +13,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
-
-use stdClass;
-
-require_once dirname(__FILE__) . '/Movie_Datasource.php';
-require_once dirname(__FILE__) . '/Media_Library_Handler.php';
+require_once 'Media_Library_Handler.php';
 
 /**
  * Markup data tags from IMDb data result. Most popular tag in imdb result has a
@@ -48,10 +42,10 @@ class Markup_Data
     /**
      * Create an instans of this class
      *
-     * @param stdClass $data    IMDb data json class
+     * @param stdClass $data IMDb data json class
      * @param int      $post_id Current Blog Post ID
-     * @param string   $locale  Localization for data, standard RFC 4646
-     * @param string   $prefix  Core syntax in tags. *e.g. prefix = imdb =>
+     * @param string   $locale Localization for data, standard RFC 4646
+     * @param string   $prefix Core syntax in tags. *e.g. prefix = imdb =>
      * [imdb:date] prefix = abc => [abc:date]
      */
     public function __construct(stdClass $data,
@@ -81,7 +75,7 @@ class Markup_Data
      *
      * @param string $summary E.g <i>directors_summary</i> in
      * $this->_data->directors_summary
-     * @param string $glue    One or more char as separat between persons in the list
+     * @param string $glue One or more char as separat between persons in the list
      *                        default is <i>", "</i>
      *
      * @return boolean|string contans all persons or false if no data
@@ -304,7 +298,7 @@ class Markup_Data
     /**
      * Convert number to format number by current format roules.
      *
-     * @param int $number   The number you will format
+     * @param int $number The number you will format
      * @param int $decimals Number of decimals, defualt is 0
      *
      * @return string|boolean Format number for current locale or false if number
@@ -479,5 +473,3 @@ class Markup_Data
         return !empty($value);
     }
 }
-
-?>

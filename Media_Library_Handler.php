@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Handler for images in WordPress Media Library. Download and save images into
  * Media Library.
@@ -14,13 +13,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
-namespace IMDb_Markup_Syntax;
-
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-use IMDb_Markup_Syntax\Exceptions\WP_Exception;
-
-require_once dirname(__FILE__) . '/Exceptions/Imdb_Runtime_Exception.php';
-require_once dirname(__FILE__) . '/Exceptions/WP_Exception.php';
+require_once 'Runtime_Exception.php';
+require_once 'WP_Exception.php';
 
 /**
  * Handler for images in WordPress Media Library. Download and save images into
@@ -52,22 +46,22 @@ class Media_Library_Handler
      *
      * @since WordPress 2.5
      *
-     * @throws Imdb_Runtime_Exception If no valid input.
+     * @throws Runtime_Exception If no valid input.
      */
     public function __construct($post_id, $remote_url, $filename)
     {
         if (!is_int($post_id)) {
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 __('Post ID must be an integer', 'imdb-markup-syntax')
             );
         }
         if (filter_var($remote_url, FILTER_VALIDATE_URL) === false) {
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 __('Remote URL must be an validate URL', 'imdb-markup-syntax')
             );
         }
         if (!file_is_displayable_image($remote_url)) {
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 __('No valid displayable image', 'imdb-markup-syntax')
             );
         }
@@ -89,7 +83,7 @@ class Media_Library_Handler
      * @since WordPress 3.1
      *
      * @throws WP_Exception      Error from retrieve the raw response
-     * @throws Imdb_Runtime_Exception Error from wp_upload_bits or with metadata update
+     * @throws Runtime_Exception Error from wp_upload_bits or with metadata update
      *
      * @return string html code
      */
@@ -102,7 +96,7 @@ class Media_Library_Handler
         $thumbnail = @set_post_thumbnail($this->post_id, $attach_id);
         if ($thumbnail === false) {
             $msg = 'Can\'t set thumbnail to the Post ID %d';
-            throw new Imdb_Runtime_Exception(
+            throw new Runtime_Exception(
                 sprintf(__($msg, 'imdb-markup-syntax'), $this->post_id)
             );
         }
@@ -127,7 +121,7 @@ class Media_Library_Handler
      * @since WordPress 2.7
      *
      * @throws WP_Exception      Some error from retrieve the raw response
-     * @throws Imdb_Runtime_Exception Some error from wp_upload_bits
+     * @throws Runtime_Exception Some error from wp_upload_bits
      *
      * @return array File and url info in a array.
      */
@@ -143,7 +137,7 @@ class Media_Library_Handler
         $bits = wp_remote_retrieve_body($get);
         $local_file = wp_upload_bits($this->fileanme, null, $bits);
         if ($local_file['error']) {
-            throw new Imdb_Runtime_Exception($local_file['error']);
+            throw new Runtime_Exception($local_file['error']);
         }
         $local_file['content-type'] = $get['headers']['content-type'];
         return $local_file;
@@ -179,5 +173,3 @@ class Media_Library_Handler
     }
 
 }
-
-?>

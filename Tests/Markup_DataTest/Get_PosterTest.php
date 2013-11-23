@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
  *
@@ -12,21 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Markup_DataTest;
-
-use IMDb_Markup_Syntax\Exceptions\Imdb_Runtime_Exception;
-use IMDb_Markup_Syntax\Exceptions\WP_Exception;
-use IMDb_Markup_Syntax\Markup_Data;
-use IMDb_Markup_Syntax\Media_Library_Handler;
-use IMDb_Markup_Syntax\Movie_Datasource;
-use PHPUnit_Framework_TestCase;
-
-require_once dirname(__FILE__) . '/../../Markup_Data.php';
-require_once dirname(__FILE__) . '/../../Movie_Datasource.php';
-require_once dirname(__FILE__) . '/../../Media_Library_Handler.php';
-require_once 'wp-config.php';
-require_once 'wp-admin/includes/image.php';
 
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
@@ -47,10 +31,10 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Positive test: Get data sucessful
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPoster
+     * @covers Markup_Data::getValueValue
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -87,10 +71,10 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: No image
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPoster
+     * @covers Markup_Data::getValueValue
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -108,7 +92,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $mdata = new Markup_Data($data, $post_id);
             $mdata->getPoster();
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -119,10 +103,10 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: post_id is not an integer
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPoster
+     * @covers Markup_Data::getValueValue
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -139,7 +123,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $mdata = new Markup_Data($data, $post_id);
             $mdata->getPoster();
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -150,7 +134,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Incorrect URL
      *
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -166,7 +150,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
         try {
             new Media_Library_Handler($post_id, $remote_url, $filename);
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -177,8 +161,8 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Incorrect URL
      *
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
-     * @covers IMDb_Markup_Syntax\Exceptions\WP_Exception
+     * @covers Media_Library_Handler
+     * @covers Exceptions\WP_Exception
      *
      * @return void
      */
@@ -208,7 +192,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Incorrect Filename
      *
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -227,7 +211,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $lib->fileanme = '';
             $lib->getHtml('a', 'b');
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertSame($expected, $exp->getMessage());
             return;
         }
@@ -238,9 +222,9 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: No data is set
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPoster
+     * @covers Markup_Data::getValueValue
      *
      * @return void
      */
@@ -263,7 +247,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Incorrect URL
      *
-     * @covers IMDb_Markup_Syntax\Media_Library_Handler
+     * @covers Media_Library_Handler
      *
      * @return void
      */
@@ -282,7 +266,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
             $lib->remote_url .= 'x';
             $lib->getHtml('a', 'b');
         } //Then
-        catch (Imdb_Runtime_Exception $exp) {
+        catch (Runtime_Exception $exp) {
             $this->assertStringStartsWith($expected, $exp->getMessage());
             return;
         }
@@ -293,9 +277,9 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     /**
      * Negative test: Data is empty
      *
-     * @covers IMDb_Markup_Syntax\Markup_Data::__construct
-     * @covers IMDb_Markup_Syntax\Markup_Data::getPoster
-     * @covers IMDb_Markup_Syntax\Markup_Data::getValueValue
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPoster
+     * @covers Markup_Data::getValueValue
      *
      * @return void
      */
@@ -316,5 +300,3 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

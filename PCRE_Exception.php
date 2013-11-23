@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Exception class for PCRE exceptions
  *
@@ -12,10 +11,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-namespace IMDb_Markup_Syntax\Exceptions;
-
-use Exception;
 
 /**
  * Exception class for PCRE exceptions
@@ -42,8 +37,8 @@ class PCRE_Exception extends Exception
     /**
      * Create object and grep last preg error code
      *
-     * @param string    $message  Extra message
-     * @param int       $code     If no preg_last_error or error_get_last use this
+     * @param string    $message Extra message
+     * @param int       $code If no preg_last_error or error_get_last use this
      *                            code
      * @param Exception $previous The previous exception used for the exception
      *                            chaining
@@ -63,5 +58,3 @@ class PCRE_Exception extends Exception
     }
 
 }
-
-?>
