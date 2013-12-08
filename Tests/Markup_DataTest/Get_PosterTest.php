@@ -162,7 +162,7 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
      * Negative test: Incorrect URL
      *
      * @covers Media_Library_Handler
-     * @covers Exceptions\WP_Exception
+     * @covers WP_Exception
      *
      * @return void
      */

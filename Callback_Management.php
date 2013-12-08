@@ -107,7 +107,7 @@ class Callback_Management
         if ($isOk === false) {
             throw new PCRE_Exception();
         }
-        return array_unique($match[1]);
+        return array_unique(array_map('strtolower', $match[1]));
     }
 
     /**

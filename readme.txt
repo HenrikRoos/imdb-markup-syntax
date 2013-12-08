@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.2
+Stable tag: 2.0
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
 
@@ -137,6 +137,40 @@ This example display all implements tags in one post. For you own test: cut and 
 		</tr>
 	</table>
 
+= Multi id in same post (require 2.0+)=
+In post *edit* mode you write:
+
+	[imdb:id(tt0110912)]
+	[imdb-a:id(tt1206543)]
+	[imdb-b:id(tt1981115)]
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+	Nulla ut mi eget justo ultrices auctor sed in lacus.
+
+	Title: [imdb:title]
+	Release Date: [imdb:date]
+
+	Title: [imdb-a:title]
+    Release Date: [imdb-a:date]
+
+    Title: [imdb-b:title]
+    Release Date: [imdb-b:date]
+
+**After** you save it is transform to:
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+	Nulla ut mi eget justo ultrices auctor sed in lacus.
+
+	Title: <a href="http://www.imdb.com/title/tt0110912/">Pulp Fiction</a>
+	Release Date: Fri Oct 14 1994
+
+	Title: <a href="http://www.imdb.com/title/tt1206543/">Out of the Furnace</a>
+	Release Date: Fri Dec 6 2013
+
+	Title: <a href="http://www.imdb.com/title/tt1981115/">Thor: The Dark World</a>
+	Release Date: Fri Nov 8 2013
+
+*Replace pattern: imdb, imdb-a, imdb-b, ... , imdb-x*
+
 == Installation ==
 1. Upload 'imdb-markup-syntax' to the '/wp-content/plugins/' directory,
 2. Activate the plugin through the 'Plugins' menu in WordPress.
@@ -258,6 +292,9 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 == Changelog ==
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
+
+= 2.0 =
+
 
 = 1.2 =
 
