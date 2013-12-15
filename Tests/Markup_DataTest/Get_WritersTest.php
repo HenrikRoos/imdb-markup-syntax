@@ -56,6 +56,33 @@ class Get_WritersTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Positive test where movie has one writer and no attribute like (nocel)
+     *
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getWriters_nolink
+     * @covers Markup_Data::toSummaryString
+     * @covers Markup_Data::toPersonsList
+     * @covers Markup_Data::toPersonString
+     * @covers Markup_Data::toNameString
+     * @covers Markup_Data::isNotEmpty
+     *
+     * @return void
+     */
+    public function testPositive_nolink()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = new Markup_Data($imdb->getData());
+        $expected = 'Bryan Litt';
+
+        //When
+        $actual = $data->getWriters_nolink();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * Positive test where movie has two writers
      *
      * @covers Markup_Data::__construct

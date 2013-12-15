@@ -62,6 +62,36 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Positive test: Get data sucessful
+     *
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getCast_nolink
+     * @covers Markup_Data::toSummaryString
+     * @covers Markup_Data::toPersonsList
+     * @covers Markup_Data::toPersonString
+     * @covers Markup_Data::toNameString
+     * @covers Markup_Data::isNotEmpty
+     *
+     * @return void
+     */
+    public function testPositive_nolink()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        $expected = 'Brad Pitt - Tyler Durden, Edward Norton - The Narrator, '
+            . 'Helena Bonham Carter - Marla Singer, '
+            . 'Meat Loaf - (as Meat Loaf Aday) - Robert \'Bob\' Paulson';
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getCast_nolink();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * Negative test: No data is set
      *
      * @covers Markup_Data::__construct

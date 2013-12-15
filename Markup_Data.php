@@ -66,26 +66,27 @@ class Markup_Data
      */
     public function getCast()
     {
-        return $this->toSummaryString('cast_summary', ', ');
+        return $this->toSummaryString('cast_summary');
     }
 
     /**
      * Convert data *_summary object to string contans persons as list separate by
      * specifde glue char(s).
      *
-     * @param string $summary E.g <i>directors_summary</i> in
+     * @param string  $summary E.g <i>directors_summary</i> in
      * $this->_data->directors_summary
-     * @param string $glue One or more char as separat between persons in the list
+     * @param string  $glue One or more char as separat between persons in the list
      *                        default is <i>", "</i>
+     * @param boolean $link true = name with url (defualt) else just name
      *
      * @return boolean|string contans all persons or false if no data
      */
-    protected function toSummaryString($summary, $glue = ', ')
+    protected function toSummaryString($summary, $glue = ', ', $link = true)
     {
         if (isset($this->_data->$summary) && !empty($this->_data->$summary)
             && is_array($this->_data->$summary)
         ) {
-            $summaryList = $this->toPersonsList($this->_data->$summary);
+            $summaryList = $this->toPersonsList($this->_data->$summary, $link);
             if (!empty($summaryList)) {
                 return implode($glue, $summaryList);
             }
@@ -97,15 +98,92 @@ class Markup_Data
      * Convert json objects persion to array contans string format for the
      * persons
      *
-     * @param array $personsObj list of persions objects
+     * @param array   $personsObj list of persions objects
+     * @param boolean $link true = name with url (defualt) else just name
      *
      * @return array|boolean list that persion is a string markup
      */
-    protected function toPersonsList(array $personsObj)
+    protected function toPersonsList(array $personsObj, $link)
     {
-        $named = array_map(array($this, 'toPersonString'), $personsObj);
+        $named = array();
+        foreach ($personsObj as $nameObj) {
+            $named[] = $this->toPersonString($nameObj, $link);
+        }
         $named_summary = array_filter($named, array($this, 'isNotEmpty'));
         return $named_summary;
+    }
+
+    /**
+     * Extract name like data into a string e.g.
+     * <b>input</b>
+     * <code>
+     * stdClass Object
+     * (
+     *     [name] => stdClass Object
+     *     (
+     *        [nconst] => nm0254645
+     *        [name] => Ted Elliott
+     *     )
+     *     [attr] => (characters)
+     * )
+     * </code>
+     * <b>output</b>
+     * <code>
+     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
+     * </code>
+     *
+     * @param stdClass $person object where minimun name object is set
+     * @param boolean  $link true = name with url (defualt) else just name
+     *
+     * @return string concat data into a string
+     */
+    protected function toPersonString(stdClass $person, $link)
+    {
+        $resultArr = array();
+        $props = get_object_vars($person);
+        if ((isset($person->name->name)) && is_object($person->name)) {
+            array_push($resultArr, $this->toNameString($person->name, $link));
+            unset($props['name']);
+        }
+        $result = array_merge($resultArr, $props);
+        $glue = $link ? ' ' : ' - ';
+        $resultStr = implode($glue, $result);
+        return trim($resultStr);
+    }
+
+    /**
+     * Convert name objekt into string
+     *
+     * @param stdClass $nameObj An array like
+     * <code>
+     * [name] => stdClass Object
+     *     (
+     *        [nconst] => nm0254645
+     *        [name] => Ted Elliott
+     *     )
+     * </code>
+     * @param boolean  $link true = name with url (defualt) else just name
+     *
+     * @return string like <i>
+     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)</i>
+     */
+    protected function toNameString(stdClass $nameObj, $link)
+    {
+        return (isset($nameObj->nconst) && $link === true)
+            ? '<a href="http://www.imdb.com/name/' . $nameObj->nconst . '">'
+            . $nameObj->name . '</a>'
+            : $nameObj->name;
+    }
+
+    /**
+     * A collective term for the actors appearing in a particular movie.
+     *
+     * @return string|boolean List of actors as a one string or false if no data
+     * without links to imdb
+     */
+    public function getCast_nolink()
+    {
+        return $this->toSummaryString('cast_summary', ', ', false);
     }
 
     /**
@@ -201,6 +279,25 @@ class Markup_Data
     }
 
     /**
+     * The principal creative artist on a movie set. A director is usually (but not
+     * always) the driving artistic source behind the filming process, and
+     * communicates to actors the way that he/she would like a particular scene
+     * played. A director's duties might also include casting, script editing, shot
+     * selection, shot composition, and editing. Typically, a director has complete
+     * artistic control over all aspects of the movie, but it is not uncommon for the
+     * director to be bound by agreements with either a producer or a studio. In some
+     * large productions, a director will delegate less important scenes to a second
+     * unit.
+     *
+     * @return string|boolean List of directors as a one string or false if no data
+     * without links to imdb
+     */
+    public function getDirectors_nolink()
+    {
+        return $this->toSummaryString('directors_summary', ', ', false);
+    }
+
+    /**
      * One or more genres for current movie. http://www.imdb.com/genre IMDb list of
      * all genres <i>e.g. Adventure, Action, Animation </i>
      *
@@ -263,25 +360,56 @@ class Markup_Data
     }
 
     /**
+     * Current movie poster image as html widhout link to the movie.
+     * Poster images donwload automatic and store in Media Lib.
+     *
+     * @return string|boolean the image or false if no data, without url to imdb
+     */
+    public function getPoster_nolink()
+    {
+        $remote_url = $this->getValueValue('image', 'url');
+        if (empty($this->post_id) || $remote_url === false) {
+            return false;
+        }
+        $filename = $this->getValue('tconst');
+        $lib = new Media_Library_Handler($this->post_id, $remote_url, $filename);
+        return $lib->getHtml(null, null);
+    }
+
+    /**
      * Current movie poster image with no local storeage. Use remote location.
      *
      * @return string
      */
     public function getPosterremote()
     {
+        $img = $this->getPosterremote_nolink();
+        if ($img === false) {
+            return false;
+        }
+        $href = 'http://www.imdb.com/title/' . $this->getValue('tconst') . '/';
+        return '<a href="' . $href . '">' . $img . '</a>';
+    }
+
+    /**
+     * Current movie poster image with no local storeage. Use remote location.
+     * without link to imdb
+     *
+     * @return string
+     */
+    public function getPosterremote_nolink()
+    {
         if ($this->getValueValue('image', 'url') === false) {
             return false;
         }
         $src = ' src="' . $this->getValueValue('image', 'url') . '"';
-        $href = 'http://www.imdb.com/title/' . $this->getValue('tconst') . '/';
         $alt = $this->getValue('title')
             ? ' alt="' . $this->getValue('title') . '"'
             : '';
         $size = ' width="200"';
         $css = ' class="alignnone"';
 
-        $img = '<img' . $src . $alt . $size . $css . '/>';
-        return '<a href="' . $href . '">' . $img . '</a>';
+        return '<img' . $src . $alt . $size . $css . '/>';
     }
 
     /**
@@ -366,8 +494,24 @@ class Markup_Data
         if (empty($title)) {
             return false;
         }
+
         return '<a href="http://www.imdb.com/title/' . $this->getValue('tconst')
         . '/">' . $title . '</a>';
+
+    }
+
+    /**
+     * Title for current moive without href link to imdb
+     *
+     * @return string|boolean if no title then false
+     */
+    public function getTitle_nolink()
+    {
+        $title = $this->getValue('title');
+        if (empty($title)) {
+            return false;
+        }
+        return $title;
     }
 
     /**
@@ -403,62 +547,14 @@ class Markup_Data
     }
 
     /**
-     * Extract name like data into a string e.g.
-     * <b>input</b>
-     * <code>
-     * stdClass Object
-     * (
-     *     [name] => stdClass Object
-     *     (
-     *        [nconst] => nm0254645
-     *        [name] => Ted Elliott
-     *     )
-     *     [attr] => (characters)
-     * )
-     * </code>
-     * <b>output</b>
-     * <code>
-     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
-     * </code>
+     * A general term for someone who creates a written work, be it a novel, script,
+     * screenplay, or teleplay.
      *
-     * @param stdClass $person object where minimun name object is set
-     *
-     * @return string concat data into a string
+     * @return string|boolean List of writers as a string without link to imdb
      */
-    protected function toPersonString(stdClass $person)
+    public function getWriters_nolink()
     {
-        $resultArr = array();
-        $props = get_object_vars($person);
-        if ((isset($person->name->name)) && is_object($person->name)) {
-            array_push($resultArr, $this->toNameString($person->name));
-            unset($props['name']);
-        }
-        $result = array_merge($resultArr, $props);
-        $resultStr = implode(" ", $result);
-        return trim($resultStr);
-    }
-
-    /**
-     * Convert name objekt into string
-     *
-     * @param stdClass $nameObj An array like
-     * <code>
-     * [name] => stdClass Object
-     *     (
-     *        [nconst] => nm0254645
-     *        [name] => Ted Elliott
-     *     )
-     * </code>
-     *
-     * @return string like <i>
-     * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)</i>
-     */
-    protected function toNameString(stdClass $nameObj)
-    {
-        return isset($nameObj->nconst)
-            ? '<a href="http://www.imdb.com/name/' . $nameObj->nconst . '">'
-            . $nameObj->name . '</a>'
-            : $nameObj->name;
+        return $this->toSummaryString('writers_summary', ', ', false);
     }
 
     /**

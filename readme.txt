@@ -47,8 +47,8 @@ In post *edit* mode you write:
 = All tags example =
 This example display all implements tags in one post. For you own test: cut and paste this example in a new post and save it.
 
-	[imdb:id(tt1951261)]
-	[imdblive:id(tt1951261)]
+	[imdb:id(tt1951264)]
+	[imdblive:id(tt1951264)]
 	<table>
 		<tr>
 			<th>Tag description</th>
@@ -59,6 +59,11 @@ This example display all implements tags in one post. For you own test: cut and 
 			<td>Cast (A list of main actors)</td>
 			<td>[imdb:cast]</td>
 			<td>[imdblive:cast]</td>
+		</tr>
+		<tr>
+			<td>Cast (A list of main actors) no link</td>
+			<td>[imdb:cast_nolink]</td>
+			<td>[imdblive:cast_nolink]</td>
 		</tr>
 		<tr>
 			<td>Certificate (Recommended age in your country)</td>
@@ -76,6 +81,11 @@ This example display all implements tags in one post. For you own test: cut and 
 			<td>[imdblive:directors]</td>
 		</tr>
 		<tr>
+			<td>Directors (The principal creative artist on a movie set) no link</td>
+			<td>[imdb:directors_nolink]</td>
+			<td>[imdblive:directors_nolink]</td>
+		</tr>
+		<tr>
 			<td>Genres (One or more genres for current movie)</td>
 			<td>[imdb:genres]</td>
 			<td>[imdblive:genres]</td>
@@ -89,6 +99,16 @@ This example display all implements tags in one post. For you own test: cut and 
 			<td>Poster (Current movie poster image from your lib)</td>
 			<td><div>[imdb:poster]</div></td>
 			<td>N/A</td>
+		</tr>
+		<tr>
+			<td>Poster (Current movie poster image from your lib) no link</td>
+			<td><div>[imdb:poster_nolink]</div></td>
+			<td>N/A</td>
+		</tr>
+		<tr>
+			<td>Poster Remote (Current movie poster image direct linked from imdb server) no link</td>
+			<td>[imdb:posterRemote_nolink]</td>
+			<td><div>[imdblive:posterRemote_nolink]</div></td>
 		</tr>
 		<tr>
 			<td>Poster Remote (Current movie poster image direct linked from imdb server)</td>
@@ -121,6 +141,11 @@ This example display all implements tags in one post. For you own test: cut and 
 			<td>[imdblive:title]</td>
 		</tr>
 		<tr>
+			<td>Title (Prefered in your language) no link</td>
+			<td>[imdb:title_nolink]</td>
+			<td>[imdblive:title_nolink]</td>
+		</tr>
+		<tr>
 			<td>Type (IMDb classifies)</td>
 			<td>[imdb:type]</td>
 			<td>[imdblive:type]</td>
@@ -134,6 +159,11 @@ This example display all implements tags in one post. For you own test: cut and 
 			<td>Writers (Someone who creates a written work)</td>
 			<td>[imdb:writers]</td>
 			<td>[imdblive:writers]</td>
+		</tr>
+		<tr>
+			<td>Writers (Someone who creates a written work) no link</td>
+			<td>[imdb:writers_nolink]</td>
+			<td>[imdblive:writers_nolink]</td>
 		</tr>
 	</table>
 
@@ -200,6 +230,11 @@ Set the current movie. All tags starting with `[imdblive` use this id. This ID d
     [imdb:cast] or [imdblive:cast]
 
 A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
+
+    [imdb:cast_nolink] or [imdblive:cast_nolink]
+
+A list of main actors with no links (Required 2.0). *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
+
 
     [imdb:certificate] or [imdblive:certificate]
 

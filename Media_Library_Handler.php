@@ -75,7 +75,7 @@ class Media_Library_Handler
     /**
      * Get html code for image and link to the movie at imdb.com
      *
-     * @param string $href Link to the movie at imdb.com
+     * @param string $href Link to the movie at imdb.com, null if no url
      * @param string $title Name of the movie
      * @param string $size Thumbnail sizes: thumbnail, medium, large, full
      * @param string $align Alignment: none, left, center, right
@@ -85,7 +85,7 @@ class Media_Library_Handler
      * @throws WP_Exception      Error from retrieve the raw response
      * @throws Runtime_Exception Error from wp_upload_bits or with metadata update
      *
-     * @return string html code
+     * @return string html code with a href tag to the movie if $href is present
      */
     public function getHtml($href, $title, $size = 'medium', $align = 'none')
     {
@@ -104,6 +104,9 @@ class Media_Library_Handler
             $this->post_id, $size,
             array('class' => 'align' . $align . ' size-' . $size)
         );
+        if ($href == null) {
+            return $img;
+        }
         return '<a href="' . $href . '" title="' . $title . '">' . $img . '</a>';
     }
 
