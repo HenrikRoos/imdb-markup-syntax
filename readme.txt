@@ -165,6 +165,11 @@ This example display all implements tags in one post. For you own test: cut and 
 			<td>[imdb:writers_nolink]</td>
 			<td>[imdblive:writers_nolink]</td>
 		</tr>
+		<tr>
+			<td>Year (Publication year)</td>
+			<td>[imdb:year]</td>
+			<td>[imdblive:year]</td>
+		</tr>
 	</table>
 
 = Multi id in same post (require 2.0+)=
@@ -259,10 +264,6 @@ One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of a
 
 A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
 
-    [imdb:plot_nolink] or [imdblive:plot_nolink]
-
-A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime. Without link to imdb.***
-
     [imdb:poster]
 
 Current movie poster image download automatic to your WordPress Media Library and display image as medium size from library.*<br />Example:<br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
@@ -319,6 +320,10 @@ A general term for someone who creates a written work, be it a novel, script, sc
 
 A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay. Widhout link to imdb<br /><br />*Example: Game of Thrones has tow writers **David Benioff - (creator), D.B. Weiss - (creator)***
 
+    [imdb:year] or [imdblive:year]
+
+Publication year.<br /><br />Example: Pulp Fiction has publication year **1994**
+
 = IMDb data copyright =
 Limited non-commercial use of IMDb data is allowed, provided the following conditions are met:
 
@@ -352,7 +357,11 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
 
 = 2.0 =
-
+1. New feature: Handle mulit tags in same content **e.g. imdb-a, imdb-b, ... imdb-z** [GitHub issue #2](https://github.com/HenrikRoos/imdb-markup-syntax/issues/2)
+2. New feature: New tags *cast_nolink, directors_nolink, poster_nolink, posterRemote_nolink, title_nolink and writers_nolink*  with no links to imdb.com. **Thanks [williamxd3](http://profiles.wordpress.org/williamxd3)** [GitHub issue #4](https://github.com/HenrikRoos/imdb-markup-syntax/issues/4)
+3. New feature: New tag *year* Year of publication of the movie. **Thanks [gauwain](http://profiles.wordpress.org/gauwain/)** [GitHub issue #5](https://github.com/HenrikRoos/imdb-markup-syntax/issues/5)
+4. Update feature: Adding support to tags in post title *e.g [imdb:id(tt1951264)][imdb:title_nolink]* **Thanks [ray19](http://profiles.wordpress.org/ray19/)** [GitHub issue #3](https://github.com/HenrikRoos/imdb-markup-syntax/issues/3)
+5. Tested and supported for WordPress 3.8
 
 = 1.2 =
 

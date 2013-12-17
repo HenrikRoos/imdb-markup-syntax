@@ -18,7 +18,7 @@ require_once 'Callback_Management.php';
  * Plugin Name: IMDb Markup Syntax
  * Plugin URI: http://wordpress.org/plugins/imdb-markup-syntax/
  * Description: Add <strong>IMDb</strong> syntax functionallity in your post. Enter simple tags and this plugin replace with IMBb data direct from <a href="http://app.imdb.com">IMDb Mobile Applications</a>
- * Version: 1.2
+ * Version: 2.0
  * Author: Henrik Roos
  * Author URI: http://www.linkedin.com/pub/henrik-roos/28/148/348
  * License: GPL-3.0
