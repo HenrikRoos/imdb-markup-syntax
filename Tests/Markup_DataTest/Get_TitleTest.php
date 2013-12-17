@@ -57,7 +57,7 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
      * Positive test: Get data sucessful
      *
      * @covers Markup_Data::__construct
-     * @covers Markup_Data::getTitle
+     * @covers Markup_Data::getTitle_nolink
      * @covers Markup_Data::getValue
      *
      * @return void
@@ -97,6 +97,31 @@ class Get_TitleTest extends PHPUnit_Framework_TestCase
         //When
         $mdata = new Markup_Data($data);
         $actual = $mdata->getTitle();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * Negative test: No data is set
+     *
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getTitle_nolink
+     * @covers Markup_Data::getValue
+     *
+     * @return void
+     */
+    public function testNotSet_nolink()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        unset($data->title);
+        $expected = false;
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getTitle_nolink();
 
         //Then
         $this->assertSame($expected, $actual);

@@ -205,6 +205,31 @@ class Get_PosterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Negative test: No data is set
+     *
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPoster_nolink
+     * @covers Markup_Data::getValueValue
+     *
+     * @return void
+     */
+    public function testNotSet_nolink()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        unset($data->image->url);
+        $expected = false;
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getPoster_nolink();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * Negative test: Incorrect URL
      *
      * @covers Media_Library_Handler

@@ -69,6 +69,7 @@ class Markup_Data
         return $this->toSummaryString('cast_summary');
     }
 
+
     /**
      * Convert data *_summary object to string contans persons as list separate by
      * specifde glue char(s).
@@ -231,6 +232,16 @@ class Markup_Data
     }
 
     /**
+     * The year when a movie is shipped to exhibitors by the distributor.
+     *
+     * @return string|boolean Year e.g 1999
+     */
+    public function getYear()
+    {
+        return $this->getValue('year');
+    }
+
+    /**
      * The day when a movie is shipped to exhibitors by the distributor, it is deemed
      * to have been released for public viewing - there are no longer any studio
      * restrictions on who can see the movie. If no release date is given as used
@@ -373,7 +384,8 @@ class Markup_Data
         }
         $filename = $this->getValue('tconst');
         $lib = new Media_Library_Handler($this->post_id, $remote_url, $filename);
-        return $lib->getHtml(null, null);
+        $title = $this->getValue('title');
+        return $lib->getHtml(null, $title);
     }
 
     /**

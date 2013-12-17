@@ -3,7 +3,7 @@ Contributors: HenrikRoos
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YRT2ALPQH42N4
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
-Tested up to: 3.6
+Tested up to: 3.8
 Stable tag: 2.0
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
@@ -233,8 +233,7 @@ A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/na
 
     [imdb:cast_nolink] or [imdblive:cast_nolink]
 
-A list of main actors with no links (Required 2.0). *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
-
+A list of main actors with no links (Required 2.0). *<br />Example:<br />Elijah Wood - Frodo Baggins<br />Ian McKellen - Gandalf the Grey<br />Orlando Bloom - Legolas Greenleaf<br />Sean Bean - Boromir*
 
     [imdb:certificate] or [imdblive:certificate]
 
@@ -248,6 +247,10 @@ The day when a movie is shipped to exhibitors by the distributor, it is deemed t
 
 The principal creative artist on a movie set. A director is usually (but not always) the driving artistic source behind the filming process, and communicates to actors the way that he/she would like a particular scene played. A director's duties might also include casting, script editing, shot selection, shot composition, and editing. Typically, a director has complete artistic control over all aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a producer or a studio. In some large productions, a director will delegate less important scenes to a second unit.*<br /><br />Example: Director of Pan's Labyrinth is **[Guillermo del Toro](http://www.imdb.com/name/nm0868219)***
 
+    [imdb:directors_nolink] or [imdblive:directors_nolink]
+
+The principal creative artist on a movie set. A director is usually (but not always) the driving artistic source behind the filming process, and communicates to actors the way that he/she would like a particular scene played. A director's duties might also include casting, script editing, shot selection, shot composition, and editing. Typically, a director has complete artistic control over all aspects of the movie, but it is not uncommon for the director to be bound by agreements with either a producer or a studio. In some large productions, a director will delegate less important scenes to a second unit. Widhout link to imdb*<br /><br />Example: Director of Pan's Labyrinth is **Guillermo del Toro***
+
     [imdb:genres] or [imdblive:genres]
 
 One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of all genres.*<br />Example: The Lord of the Rings: The Fellowship of the Ring has genres: **Action, Adventure, Fantasy***
@@ -256,13 +259,25 @@ One or more genres for current movie. <http://www.imdb.com/genre> IMDb list of a
 
 A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime.***
 
+    [imdb:plot_nolink] or [imdblive:plot_nolink]
+
+A plot summary is a description of the story in a novel, film or other piece of storytelling. It is not a review and should not contain the opinions of the author. It should contain all the necessary information about the main characters and the unfolding drama to give a complete impression of the twists and turns in the plot, but without confusing the reader with unnecessary detail.*<br /><br />Example: Les quatre cents coups has plot: **Intensely touching story of a misunderstood young adolescent who left without attention, delves into a life of petty crime. Without link to imdb.***
+
     [imdb:poster]
 
 Current movie poster image download automatic to your WordPress Media Library and display image as medium size from library.*<br />Example:<br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
 
+    [imdb:poster_nolink]
+
+Current movie poster image download automatic to your WordPress Media Library and display image as medium size from library. Without link to imdb.*<br />Example:<br />*<img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/>
+
     [imdb:posterRemote] or [imdblive:posterRemote]
 
 Current movie poster image direct linked from server (remote). No locale savings!*<br />Example: <br />*<a href="http://www.imdb.com/title/tt0137523" title="Fight Club"><img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/></a>
+
+    [imdb:posterRemote_nolink] or [imdblive:posterRemote_nolink]
+
+Current movie poster image direct linked from server (remote). No locale savings! Without link to imdb*<br />Example: <br />*<img src="http://ia.media-imdb.com/images/M/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg" alt="Fight Club" height="200"/>
 
     [imdb:rating] or [imdblive:rating]
 
@@ -284,6 +299,10 @@ Tconst/id for current movie.<br /><br />*Example: Se7en has Tconst **tt0114369**
 
 Title for current moive with link to [imdb.com](http://www.imdb.com).<br /><br />*Example: Se7en has title **[Se7en](http://www.imdb.com/title/tt0114369/)***
 
+    [imdb:title_nolink] or [imdblive:title_nolink]
+
+Title for current moive without link to [imdb.com](http://www.imdb.com).<br /><br />*Example: Se7en has title **Se7en***
+
     [imdb:type] or [imdblive:type]
 
 IMDb classifies titles under one of the following types: <ul><li>feature</li><li>short</li><li>documentary</li><li>video</li><li>tv_series</li><li>tv_special</li><li>video_game</li></ul>*Example: Game of Thrones has type **tv_series***
@@ -295,6 +314,10 @@ Number of votes from imdb members for the current movie.<br /><br />*NOTE: This 
     [imdb:writers] or [imdblive:writers]
 
 A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay.<br /><br />*Example: Game of Thrones has tow writers **[David Benioff](http://www.imdb.com/name/nm1125275/) (creator), [D.B. Weiss](http://www.imdb.com/name/nm1888967/) (creator)***
+
+    [imdb:writers_nolink] or [imdblive:writers_nolink]
+
+A general term for someone who creates a written work, be it a novel, script, screenplay, or teleplay. Widhout link to imdb<br /><br />*Example: Game of Thrones has tow writers **David Benioff - (creator), D.B. Weiss - (creator)***
 
 = IMDb data copyright =
 Limited non-commercial use of IMDb data is allowed, provided the following conditions are met:

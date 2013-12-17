@@ -34,6 +34,8 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
      * @covers Callback_Management::filterImdbTags
      * @covers Callback_Management::tagsReplace
      * @covers Callback_Management::__construct
+     * @covers Markup_Data::getPoster
+     * @covers Markup_Data::getPoster_nolink
      * @covers Media_Library_Handler
      *
      * @return void
@@ -56,7 +58,8 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
             'post_content' => 'Pellentesque viverra luctus est, vel bibendum arcu '
                 . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
                 . '[IMDb:id(tt0137523)]Title: [imdb:title] Poster: [imdb:poster]'
-                . '[IMDb-a:id(tt1206543)]Title: [imdb-a:title] Poster: [imdb-a:poster]'
+                . '[IMDb-a:id(tt1206543)]Title: [imdb-a:title] Poster: '
+                . '[imdb-a:poster_nolink]'
         );
         $expected = array(
             'post_title'   => 'ÖÄÅ öäå congue '
@@ -72,11 +75,10 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
                 . 'wp-post-image" alt="Fight Club".+\/><\/a>'
                 . 'Title: <a href="http:\/\/www\.imdb\.com\/title\/tt1206543\/">'
                 . 'Out of the Furnace<\/a> Poster: '
-                . '<a href="http:\/\/www\.imdb\.com\/title\/tt1206543\/" '
-                . 'title="Out of the Furnace"><img width="\d+" height="\d+" '
+                . '<img width="\d+" height="\d+" '
                 . 'src="http:\/\/.+\/uploads\/201\d\/\d\d'
                 . '\/tt1206543\d*-\d+x\d+.jpg" class="alignnone size-medium '
-                . 'wp-post-image" alt="Out of the Furnace".+\/><\/a>/'
+                . 'wp-post-image" alt="Out of the Furnace".+\/>/'
         );
         $expected_after = array(
             'post_title'   => 'ÖÄÅ öäå congue '

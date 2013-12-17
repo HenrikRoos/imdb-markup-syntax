@@ -37,7 +37,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
     public $positive_mix_data = 'Pellentesque viverra luctus est, vel bibendum
             arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)]
             Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title]
-            [IMDb:id(tt0137523)]. Year: [IMDb:year] [imdb:date] [imdb:cast]
+            [IMDb:id(tt0137523)]. Year: [IMDb:years] [imdb:date] [imdb:cast]
             [imdb:title] [ImDB: writer ] [imdb:$$]
             [imdb:qwsazxcderrfvbgtyhnmjujdjhfksjhdfkjshdkfjhsakdjfhksjadhfkjsadf]';
 
@@ -87,7 +87,7 @@ class Tags_ReplaceTest extends PHPUnit_Framework_TestCase
             Quisque congue  Title: <a href="http://www.imdb.com/title/tt0102926/">'
             . 'The Silence of the Lambs</a>
             [IMDb:id(tt0137523)]. Year: '
-            . sprintf(__('[Tag %s not exists]', 'imdb-markup-syntax'), 'year')
+            . sprintf(__('[Tag %s not exists]', 'imdb-markup-syntax'), 'years')
             . ' Thu Feb 14 1991 '
             . '<a href="http://www.imdb.com/name/nm0000149">Jodie Foster</a> '
             . 'Clarice Starling, <a href="http://www.imdb.com/name/nm0000164">'

@@ -107,6 +107,31 @@ class Get_PosterremoteTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Negative test: No data is set
+     *
+     * @covers Markup_Data::__construct
+     * @covers Markup_Data::getPosterremote_nolink
+     * @covers Markup_Data::getValueValue
+     *
+     * @return void
+     */
+    public function testNotSet_nolink()
+    {
+        //Given
+        $imdb = new Movie_Datasource($this->testdataPositive);
+        $data = $imdb->getData();
+        unset($data->image);
+        $expected = false;
+
+        //When
+        $mdata = new Markup_Data($data);
+        $actual = $mdata->getPosterremote_nolink();
+
+        //Then
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
      * Negative test: Data is empty
      *
      * @covers Markup_Data::__construct
