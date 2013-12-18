@@ -170,7 +170,8 @@ This example display all implements tags in one post. For you own test: cut and 
 		</tr>
 	</table>
 
-# Multi id in same post (require 2.0+)
+# Multi id in same post
+### (require 2.0+)
 In post *edit* mode you write:
 
 	[imdb:id(tt0110912)]
