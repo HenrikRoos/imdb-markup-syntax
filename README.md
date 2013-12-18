@@ -270,6 +270,7 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 3. New feature: New tag *year* Year of publication of the movie. **Thanks [gauwain](http://profiles.wordpress.org/gauwain/)** [GitHub issue #5](https://github.com/HenrikRoos/imdb-markup-syntax/issues/5)
 4. Update feature: Adding support to tags in post title *e.g [imdb:id(tt1951264)][imdb:title_nolink]* **Thanks [ray19](http://profiles.wordpress.org/ray19/)** [GitHub issue #3](https://github.com/HenrikRoos/imdb-markup-syntax/issues/3)
 5. Tested and supported for WordPress 3.8
+6. Code refactoring, harmonization to PhpStorm
 
 ## 1.2
 
@@ -285,3 +286,7 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 ## 1.0
 
 First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.
+
+# Easy to contribute and make changes
+If you want to be involved in developing this plug along, you are welcome to attend. The code is struktuerad, well commented and have very high test coverage, so it is easy to contribute and make changes.
+Of course you get a license for [PhpStorm 7](http://www.jetbrains.com/phpstorm/)!

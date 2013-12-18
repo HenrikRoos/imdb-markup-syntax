@@ -345,7 +345,6 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 >See: <http://pro.imdb.com/help/show_leaf?photoslicense>
 
-
 == Screenshots ==
 1. [IMDb site](http://www.imdb.com/)
 2. Add New Post
@@ -378,3 +377,7 @@ The code in WordPress plugin host is only production releases. Developers releas
 = 1.0 =
 
 First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.
+
+== Easy to contribute and make changes ==
+If you want to be involved in developing this plug along, you are welcome to attend. The code is struktuerad, well commented and have very high test coverage, so it is easy to contribute and make changes.
+Of course you get a license for [PhpStorm 7](http://www.jetbrains.com/phpstorm/)!
