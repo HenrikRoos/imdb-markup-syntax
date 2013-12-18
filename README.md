@@ -255,12 +255,12 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 
 # Screenshots
-![IMDb site](screenshot-1.jpg)
-![Add New Post](screenshot-2.jpg)
-![Edit Post](screenshot-3.jpg)
-![View Post](screenshot-4.jpg)
-![Media Library](screenshot-5.jpg)
-![Edit Media](screenshot-6.jpg)
+![IMDb site](Site/screenshot-1.jpg)
+![Add New Post](Site/screenshot-2.jpg)
+![Edit Post](Site/screenshot-3.jpg)
+![View Post](Site/screenshot-4.jpg)
+![Media Library](Site/screenshot-5.jpg)
+![Edit Media](Site/screenshot-6.jpg)
 
 # Changelog
 
