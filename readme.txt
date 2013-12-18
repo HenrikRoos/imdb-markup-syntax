@@ -204,7 +204,7 @@ In post *edit* mode you write:
 	Title: <a href="http://www.imdb.com/title/tt1981115/">Thor: The Dark World</a>
 	Release Date: Fri Nov 8 2013
 
-*Replace pattern: imdb, imdb-a, imdb-b, ... , imdb-x*
+*Replace pattern: imdb, imdb-a, imdb-b, ... , imdb-x* (maximum is 26 pc simultaneously)
 
 == Installation ==
 1. Upload 'imdb-markup-syntax' to the '/wp-content/plugins/' directory,
