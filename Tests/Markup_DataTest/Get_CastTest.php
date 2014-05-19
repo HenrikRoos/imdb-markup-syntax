@@ -51,7 +51,7 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
             . 'Edward Norton</a> The Narrator, '
             . '<a href="http://www.imdb.com/name/nm0000307">Helena Bonham Carter'
             . '</a> Marla Singer, <a href="http://www.imdb.com/name/nm0001533">'
-            . 'Meat Loaf</a> (as Meat Loaf Aday) Robert \'Bob\' Paulson';
+            . 'Meat Loaf</a> (as Meat Loaf Aday) Robert \'Bob\' Paulsen';
 
         //When
         $mdata = new Markup_Data($data);
@@ -81,7 +81,7 @@ class Get_CastTest extends PHPUnit_Framework_TestCase
         $data = $imdb->getData();
         $expected = 'Brad Pitt - Tyler Durden, Edward Norton - The Narrator, '
             . 'Helena Bonham Carter - Marla Singer, '
-            . 'Meat Loaf - (as Meat Loaf Aday) - Robert \'Bob\' Paulson';
+            . 'Meat Loaf - (as Meat Loaf Aday) - Robert \'Bob\' Paulsen';
 
         //When
         $mdata = new Markup_Data($data);

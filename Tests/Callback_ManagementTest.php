@@ -12,6 +12,7 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'Callback_Management.php';
 require_once 'wp-config.php';
 require_once 'wp-admin/includes/image.php';
 

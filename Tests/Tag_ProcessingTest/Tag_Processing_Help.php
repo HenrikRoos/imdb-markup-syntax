@@ -12,6 +12,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'Tag_Processing.php';
+
 /**
  * Help class for test protected methods in Tag_Processing class
  * Usage this class insted of Tag_Processing
