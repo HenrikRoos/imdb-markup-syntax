@@ -101,7 +101,7 @@ class Callback_Management
     public function getSubPrefixHints($content, $prefix)
     {
         $match = array();
-        $pattern = '/\[(' . $prefix . '(-[a-z])?):/i';
+        $pattern = '/\[(' . $prefix . '(-[a-z][a-z0-9]*)?):/i';
         $isOk = @preg_match_all($pattern, $content, $match);
 
         if ($isOk === false) {
