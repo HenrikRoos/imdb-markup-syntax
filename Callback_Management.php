@@ -74,6 +74,7 @@ class Callback_Management
      */
     protected function tagsReplace($content, $prefix, $post_id = 0)
     {
+        $content = $this->convertOneOffToSubPrefix($content, $prefix);
         $prefixsubs = $this->getSubPrefixHints($content, $prefix);
 
         foreach ($prefixsubs as $prefixsub) {
@@ -107,7 +108,51 @@ class Callback_Management
         if ($isOk === false) {
             throw new PCRE_Exception();
         }
-        return array_unique(array_map('strtolower', $match[1]));
+        return array_values(array_unique(array_map('strtolower', $match[1])));
+    }
+
+    /**
+     * Convert one-off tags (with IDs embedded into the tag directly) to subprefixed tags
+     *
+     * @param string $content Content widh tags
+     * @param string $prefix Starting tagname
+     *
+     * @throws PCRE_Exception
+     * @since 2.1
+     *
+     * @return string content with one-off tags converted
+     */
+    public function convertOneOffToSubPrefix($content, $prefix)
+    {
+        $match = array();
+        $pattern = '/\[' . $prefix . ':([a-z0-9_]{1,40})\((tt\d{7,20})\)\]/i';
+        $isOk = @preg_match_all($pattern, $content, $match);
+
+        if ($isOk === false) {
+            throw new PCRE_Exception();
+        }
+
+        $tagList = array_map('strtolower', $match[1]);
+        foreach (array_keys($tagList, 'id') as $idIndex) {
+            unset($match[2][$idIndex]);
+        }
+        $idList = array_values(array_unique(array_map('strtolower', $match[2])));
+
+        foreach ($idList as $id) {
+            $pattern = '/\[' . $prefix . ':([a-z0-9_]{1,40})\(' . $id . '\)\]/i';
+            $replace = '[' . $prefix . '-' . $id . ':$1]';
+            $replaceResult = preg_replace($pattern, $replace, $content);
+            if ($replaceResult === null) {
+                throw new PCRE_Exception();
+            }
+            else {
+                $content = $replaceResult;
+            }
+
+            $content = "[{$prefix}-{$id}:id({$id})]" . $content;
+        }
+
+        return str_ireplace('[' . $prefix . ':id]', '', $content);
     }
 
     /**
