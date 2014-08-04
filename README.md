@@ -42,6 +42,21 @@ In post *edit* mode you write:
 	Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
 	Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate.
 
+### List of movies
+In post *edit* mode you write:
+
+    [imdb-WhatIf:id(tt1486834)]
+    [imdblive-WhatIf:id(tt1486834)]
+    <h1>[imdb-WhatIf:title_nolink]</h1>
+    Ratings: [imdblive-WhatIf:rating]/10 from [imdblive-WhatIf:votes] users
+    <div>[imdb-WhatIf:poster]</div>
+
+    [imdb-AboutAlex:id(tt2667918)]
+    [imdblive-AboutAlex:id(tt2667918)]
+    <h1>[imdb-AboutAlex:title_nolink]</h1>
+    Ratings: [imdblive-AboutAlex:rating]/10 from [imdblive-AboutAlex:votes] users
+    <div>[imdb-AboutAlex:poster]</div>
+
 ### All tags example
 This example display all implements tags in one post. For you own test: cut and paste this example in a new post and save it.
 
@@ -170,41 +185,6 @@ This example display all implements tags in one post. For you own test: cut and 
 		</tr>
 	</table>
 
-# Multi id in same post
-### (require 2.0+)
-In post *edit* mode you write:
-
-	[imdb:id(tt0110912)]
-	[imdb-a:id(tt1206543)]
-	[imdb-b:id(tt1981115)]
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
-	Nulla ut mi eget justo ultrices auctor sed in lacus.
-
-	Title: [imdb:title]
-	Release Date: [imdb:date]
-
-	Title: [imdb-a:title]
-    Release Date: [imdb-a:date]
-
-    Title: [imdb-b:title]
-    Release Date: [imdb-b:date]
-
-**After** you save it is transform to:
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
-	Nulla ut mi eget justo ultrices auctor sed in lacus.
-
-	Title: <a href="http://www.imdb.com/title/tt0110912/">Pulp Fiction</a>
-	Release Date: Fri Oct 14 1994
-
-	Title: <a href="http://www.imdb.com/title/tt1206543/">Out of the Furnace</a>
-	Release Date: Fri Dec 6 2013
-
-	Title: <a href="http://www.imdb.com/title/tt1981115/">Thor: The Dark World</a>
-	Release Date: Fri Nov 8 2013
-
-*Replace pattern: imdb, imdb-a, imdb-b, ... , imdb-x* (maximum is 26 pc simultaneously)
-
 # Markup Syntax
 Tag                                                          | Description
 ------------------------------------------------------------ | ---------------
@@ -263,6 +243,10 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 ![Edit Media](Site/screenshot-6.jpg)
 
 # Changelog
+
+## 2.1
+1. New feature: Added support for one-off tags with embedded IDs **e.g. imdb-AboutAlex, imdblive-IntotheStorm, imdb-zaq12wsx, ...** [GitHub issue #8](https://github.com/HenrikRoos/imdb-markup-syntax/issues/8) **Thanks to [Daniel](https://github.com/danhunsaker)!**
+2. Tested and supported for WordPress 3.9.1
 
 ## 2.0
 1. New feature: Handle mulit tags in same content **e.g. imdb-a, imdb-b, ... imdb-z** [GitHub issue #2](https://github.com/HenrikRoos/imdb-markup-syntax/issues/2)
