@@ -148,8 +148,8 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
         $mgmt = new Callback_Management();
         $content = 'Pellentesque viverra luctus est, vel bibendum arcu '
             . 'suscipit quis. ÖÄÅ öäå Quisque congue[IMDblive:id(tt0137523)]. '
-            . 'Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremote]'
-            . '[imdblive-z:posterremote] [imdblive-aa:posterremote]'
+            . 'Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremote] '
+            . '[imdblive-z:posterremote] [imdblive-aa:posterremote] '
             . '[imdblive-f0001:posterremote] [imdblive-fightclub:posterremote]';
         $prefix = 'imdblive';
         $expected = array('imdblive', 'imdblive-a', 'imdblive-z', 'imdblive-aa', 'imdblive-f0001', 'imdblive-fightclub');
@@ -159,6 +159,31 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
 
         //Then
         $this->assertSame($expected, array_values($actual));
+    }
+
+    /**
+     * Positive test
+     *
+     * @covers Callback_Management::convertOneOffToSubPrefix
+     * @return void
+     */
+    public function testConvertOneOffToSubPrefix()
+    {
+        //Given
+        $mgmt = new Callback_Management();
+        $content = 'Pellentesque viverra luctus est, vel bibendum arcu '
+            . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
+            . 'Posterremote: [imdb:posterremote(tt0137523)]';
+        $expected = '[imdb-tt0137523:id(tt0137523)]Pellentesque viverra luctus est, vel bibendum arcu '
+            . 'suscipit quis. ÖÄÅ öäå Quisque congue. '
+            . 'Posterremote: [imdb-tt0137523:posterremote]';
+        $prefix = 'imdb';
+
+        //When
+        $actual = $mgmt->convertOneOffToSubPrefix($content, $prefix);
+
+        //Then
+        $this->assertSame($expected, $actual);
     }
 
     /**
