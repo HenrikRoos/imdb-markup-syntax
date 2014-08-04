@@ -148,10 +148,11 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
         $mgmt = new Callback_Management();
         $content = 'Pellentesque viverra luctus est, vel bibendum arcu '
             . 'suscipit quis. ÖÄÅ öäå Quisque congue[IMDblive:id(tt0137523)]. '
-            . 'Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremo]'
-            . '[imdblive-z:posterremo]';
+            . 'Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremote]'
+            . '[imdblive-z:posterremote] [imdblive-aa:posterremote]'
+            . '[imdblive-f0001:posterremote] [imdblive-fightclub:posterremote]';
         $prefix = 'imdblive';
-        $expected = array('imdblive', 'imdblive-a', 'imdblive-z');
+        $expected = array('imdblive', 'imdblive-a', 'imdblive-z', 'imdblive-aa', 'imdblive-f0001', 'imdblive-fightclub');
 
         //When
         $actual = $mgmt->getSubPrefixHints($content, $prefix);
@@ -177,7 +178,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
         $mgmt = new Callback_Management();
         $content = 'Pellentesque viverra luctus est, vel bibendum arcu '
             . 'suscipit quis. ÖÄÅ öäå Quisque congue[IMDblive:id(tt0137523)]. '
-            . 'Posterremote: [imdblive-a:posterremote] [imdblive-z:posterreme]';
+            . 'Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremote]';
         $prefix = '(';
 
         //When
