@@ -158,7 +158,7 @@ class Callback_ManagementTest extends PHPUnit_Framework_TestCase
         $actual = $mgmt->getSubPrefixHints($content, $prefix);
 
         //Then
-        $this->assertSame($expected, $actual);
+        $this->assertSame($expected, array_values($actual));
     }
 
     /**
