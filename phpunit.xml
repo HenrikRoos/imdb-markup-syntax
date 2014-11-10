@@ -1,0 +1,11 @@
+<phpunit verbose="true">
+    <testsuites>
+        <testsuite name="All tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <includePath>.</includePath>
+        <includePath>/Library/WebServer/Documents</includePath>
+    </php>
+</phpunit>
