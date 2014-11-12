@@ -104,11 +104,11 @@ class Markup_Data {
 	 * @return array|boolean list that persion is a string markup
 	 */
 	protected function to_persons_list( array $personsObj, $link ) {
-		$named = array();
+		$named = [ ];
 		foreach ( $personsObj as $nameObj ) {
 			$named[] = $this->to_person_string( $nameObj, $link );
 		}
-		$named_summary = array_filter( $named, array( $this, 'is_not_empty' ) );
+		$named_summary = array_filter( $named, [ $this, 'is_not_empty' ] );
 
 		return $named_summary;
 	}
@@ -138,7 +138,7 @@ class Markup_Data {
 	 * @return string concat data into a string
 	 */
 	protected function to_person_string( stdClass $person, $link ) {
-		$resultArr = array();
+		$resultArr = [ ];
 		$props     = get_object_vars( $person );
 		if ( ( isset( $person->name->name ) ) && is_object( $person->name ) ) {
 			array_push( $resultArr, $this->to_name_string( $person->name, $link ) );
@@ -235,6 +235,19 @@ class Markup_Data {
 	}
 
 	/**
+	 * Help function check and get value for specifide objekt
+	 *
+	 * @param string $name name of the first function
+	 *
+	 * @return int|float|string|boolean data value or false if value not set or empty
+	 */
+	public function get_value( $name ) {
+		return ( isset( $this->_data->$name ) && ! empty( $this->_data->$name ) )
+			? $this->_data->$name
+			: false;
+	}
+
+	/**
 	 * The day when a movie is shipped to exhibitors by the distributor, it is deemed
 	 * to have been released for public viewing - there are no longer any studio
 	 * restrictions on who can see the movie. If no release date is given as used
@@ -310,19 +323,6 @@ class Markup_Data {
 
 		return is_array( $genres )
 			? implode( ', ', $genres )
-			: false;
-	}
-
-	/**
-	 * Help function check and get value for specifide objekt
-	 *
-	 * @param string $name name of the first function
-	 *
-	 * @return int|float|string|boolean data value or false if value not set or empty
-	 */
-	public function get_value( $name ) {
-		return ( isset( $this->_data->$name ) && ! empty( $this->_data->$name ) )
-			? $this->_data->$name
 			: false;
 	}
 

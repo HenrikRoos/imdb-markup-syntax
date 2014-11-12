@@ -12,6 +12,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'markup-data.php';
+require_once 'movie-datasource.php';
+
 /**
  * Testclass to Markup_DataSuite for method getRating in Markup_Data class
  *
@@ -22,10 +25,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'markup-data.php';
-require_once 'movie-datasource.php';
-
 class Get_Rating_Test extends PHPUnit_Framework_TestCase {
 
 	/** @var string positive testdata */

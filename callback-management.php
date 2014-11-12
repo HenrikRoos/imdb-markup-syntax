@@ -85,30 +85,6 @@ class Callback_Management {
 	}
 
 	/**
-	 * Seek for tags with multi prefix syntax e.g imdb-a, imdb- , ... imdb-z.
-	 * **SubPrefix Syntax: xxx-[a-z]**
-	 *
-	 * @param string $content Content widh tags
-	 * @param string $prefix Starting tagname
-	 *
-	 * @throws PCRE_Exception
-	 * @since 2.0
-	 *
-	 * @return array list of all sub prefix
-	 */
-	public function get_sub_prefix_hints( $content, $prefix ) {
-		$match   = array();
-		$pattern = '/\[(' . $prefix . '(-[a-z][a-z0-9]*)?):/i';
-		$isOk    = @preg_match_all( $pattern, $content, $match );
-
-		if ( $isOk === false ) {
-			throw new PCRE_Exception();
-		}
-
-		return array_values( array_unique( array_map( 'strtolower', $match[1] ) ) );
-	}
-
-	/**
 	 * Convert one-off tags (with IDs embedded into the tag directly) to subprefixed tags
 	 *
 	 * @param string $content Content widh tags
@@ -120,7 +96,7 @@ class Callback_Management {
 	 * @return string content with one-off tags converted
 	 */
 	public function convert_one_off_to_sub_prefix( $content, $prefix ) {
-		$match   = array();
+		$match   = [ ];
 		$pattern = '/\[' . $prefix . ':([a-z0-9_]{1,40})\((tt\d{7,20})\)\]/i';
 		$isOk    = @preg_match_all( $pattern, $content, $match );
 
@@ -148,6 +124,30 @@ class Callback_Management {
 		}
 
 		return str_ireplace( '[' . $prefix . ':id]', '', $content );
+	}
+
+	/**
+	 * Seek for tags with multi prefix syntax e.g imdb-a, imdb- , ... imdb-z.
+	 * **SubPrefix Syntax: xxx-[a-z]**
+	 *
+	 * @param string $content Content widh tags
+	 * @param string $prefix Starting tagname
+	 *
+	 * @throws PCRE_Exception
+	 * @since 2.0
+	 *
+	 * @return array list of all sub prefix
+	 */
+	public function get_sub_prefix_hints( $content, $prefix ) {
+		$match   = [ ];
+		$pattern = '/\[(' . $prefix . '(-[a-z][a-z0-9]*)?):/i';
+		$isOk    = @preg_match_all( $pattern, $content, $match );
+
+		if ( $isOk === false ) {
+			throw new PCRE_Exception();
+		}
+
+		return array_values( array_unique( array_map( 'strtolower', $match[1] ) ) );
 	}
 
 	/**

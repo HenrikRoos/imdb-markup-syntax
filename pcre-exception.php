@@ -25,14 +25,14 @@
 class PCRE_Exception extends Exception {
 
 	/** @var array Mapping error code into error name */
-	public $pcre_errors = array(
+	public $pcre_errors = [
 		0 => 'PREG_NO_ERROR',
 		1 => 'PREG_INTERNAL_ERROR',
 		2 => 'PREG_BACKTRACK_LIMIT_ERROR',
 		3 => 'PREG_RECURSION_LIMIT_ERROR',
 		4 => 'PREG_BAD_UTF8_ERROR',
 		5 => 'PREG_BAD_UTF8_OFFSET_ERROR',
-	);
+	];
 
 	/**
 	 * Create object and grep last preg error code

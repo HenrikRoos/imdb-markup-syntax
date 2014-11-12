@@ -13,6 +13,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'tag-processing-help.php';
+
 /**
  * Sub testclass to tag-processing-tests for method findImdbTags in Tag_Processing
  * class
@@ -24,16 +26,13 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'tag-processing-help.php';
-
 class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 
-	public $original_content = array(
+	public $original_content = [
 		'one_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. Quisque congue [IMDb:id(tt0137523)]. Title: [imdb:title]',
 		'two_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title] [IMDb:id(tt0137523)]. Year: [IMDb:year]',
 		'no_match'     => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523] [IMDb:id:(0137523)] [IMDb:id(tt)]',
-	);
+	];
 
 	/**
 	 * Find one tag. Positive test
@@ -47,7 +46,7 @@ class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$original_content = $this->original_content['one_positive'];
 		$expectedCount    = 1;
-		$expected         = array( array( '[imdb:title]', 'title' ) );
+		$expected         = [ [ '[imdb:title]', 'title' ] ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -73,10 +72,10 @@ class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$original_content = $this->original_content['two_positive'];
 		$expectedCount    = 2;
-		$expected         = array(
-			array( '[imdb:title]', 'title' ),
-			array( '[IMDb:year]', 'year' ),
-		);
+		$expected         = [
+			[ '[imdb:title]', 'title' ],
+			[ '[IMDb:year]', 'year' ],
+		];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -101,7 +100,7 @@ class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 	public function test_min_negative() {
 		//Given
 		$original_content = '[imdb:]';
-		$expected         = array();
+		$expected         = [ ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -124,7 +123,7 @@ class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 	public function test_min_positive() {
 		//Given
 		$original_content = '[imdb:a]';
-		$expected         = array( array( '[imdb:a]', 'a' ) );
+		$expected         = [ [ '[imdb:a]', 'a' ] ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -147,12 +146,12 @@ class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 	public function test_max_positive() {
 		//Given
 		$original_content = '[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]';
-		$expected         = array(
-			array(
+		$expected         = [
+			[
 				'[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_]',
 				'abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_',
-			),
-		);
+			],
+		];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -175,7 +174,7 @@ class Find_Imdb_Tags_Test extends PHPUnit_Framework_TestCase {
 	public function test_max_negative() {
 		//Given
 		$original_content = '[imdb:abcdefghijklmnopqrstuvxyzABCDEFGHIJ0123_a]';
-		$expected         = array();
+		$expected         = [ ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );

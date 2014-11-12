@@ -13,6 +13,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'movie-datasource.php';
+require_once 'wp-config.php';
+
 /**
  * Sub testclass to movie-datasource-tests for method fetchResponse in Movie_Datasource
  * class
@@ -24,19 +27,15 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'movie-datasource.php';
-require_once 'wp-config.php';
-
 class Fetch_Response_Test extends PHPUnit_Framework_TestCase {
 
-	public $original_content = array(
+	public $original_content = [
 		'movie'     => 'tt0137523',
 		'tvserie'   => 'tt0402711',
 		'videogame' => 'tt1843198',
 		'nodata'    => 'tt0000000',
 		'incorrect' => 'a b c',
-	);
+	];
 
 	/**
 	 * Negativ test, incorrect input to curl_init function
@@ -54,7 +53,7 @@ class Fetch_Response_Test extends PHPUnit_Framework_TestCase {
 	public function test_curl_init_exception() {
 		//Given
 		$tconst  = $this->original_content['nodata'];
-		$request = array();
+		$request = [ ];
 
 		//When
 		$imdb          = new Movie_Datasource( $tconst );

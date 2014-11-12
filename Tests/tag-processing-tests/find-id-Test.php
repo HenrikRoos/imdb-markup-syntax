@@ -12,6 +12,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'tag-processing-help.php';
+
 /**
  * Sub testclass to tag-processing-tests for method findId in Tag_Processing class
  *
@@ -22,16 +24,13 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'tag-processing-help.php';
-
 class Find_Id_Test extends PHPUnit_Framework_TestCase {
 
-	public $original_content = array(
+	public $original_content = [
 		'one_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. Quisque congue [IMDb:id(tt0137523)]. Title: [imdb:title]',
 		'two_positive' => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis.[IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id(tt0102926)] Title: [imdb:title] [IMDb:id(tt0137523)]. Year: [IMDb:year]',
 		'no_match'     => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. [IMDb:id(http://www.imdb.com/title/tt0137523/)] Quisque congue [IMDb:id()] Title: [title] [IMDb:id:tt0137523] [IMDb:id:(0137523)] [IMDb:id(tt)]',
-	);
+	];
 
 	/**
 	 * One [IMDb:id(xxx)] tag, Positive test
@@ -44,7 +43,7 @@ class Find_Id_Test extends PHPUnit_Framework_TestCase {
 	public function test_one_positive() {
 		//Given
 		$original_content = $this->original_content['one_positive'];
-		$expected         = array( '[IMDb:id(tt0137523)]', 'tt0137523' );
+		$expected         = [ '[IMDb:id(tt0137523)]', 'tt0137523' ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -68,7 +67,7 @@ class Find_Id_Test extends PHPUnit_Framework_TestCase {
 	public function test_two_positive() {
 		//Given
 		$original_content = $this->original_content['two_positive'];
-		$expected         = array( '[IMDb:id(tt0102926)]', 'tt0102926' );
+		$expected         = [ '[IMDb:id(tt0102926)]', 'tt0102926' ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -91,7 +90,7 @@ class Find_Id_Test extends PHPUnit_Framework_TestCase {
 	public function test_min_negative() {
 		//Given
 		$original_content = '[IMDb:id(tt999999)]';
-		$expected         = array();
+		$expected         = [ ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );
@@ -156,7 +155,7 @@ class Find_Id_Test extends PHPUnit_Framework_TestCase {
 	public function test_max_negative() {
 		//Given
 		$original_content = '[IMDb:id(tt000000000000000000000)]';
-		$expected         = array();
+		$expected         = [ ];
 
 		//When
 		$obj       = new Tag_Processing_Help( $original_content );

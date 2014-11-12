@@ -99,7 +99,7 @@ class Media_Library_Handler {
 		}
 		$img = get_the_post_thumbnail(
 			$this->post_id, $size,
-			array( 'class' => 'align' . $align . ' size-' . $size )
+			[ 'class' => 'align' . $align . ' size-' . $size ]
 		);
 		if ( $href == null ) {
 			return $img;
@@ -160,12 +160,12 @@ class Media_Library_Handler {
 	 */
 	protected function add_to_media_library( $filepath, $title, $mime_type ) {
 		$wp_upload_dir = wp_upload_dir();
-		$attachment    = array(
+		$attachment    = [
 			'guid'           => $wp_upload_dir['url'] . '/' . basename( $filepath ),
 			'post_title'     => $title,
 			'post_mime_type' => $mime_type,
 			'post_content'   => '',
-		);
+		];
 		$attach_id     = @wp_insert_attachment( $attachment, $filepath, $this->post_id );
 		$attach_data   = wp_generate_attachment_metadata( $attach_id, $filepath );
 		wp_update_attachment_metadata( $attach_id, $attach_data );

@@ -12,6 +12,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'movie-datasource.php';
+
 /**
  * Sub testclass to movie-datasource-tests for method getData in Movie_Datasource class
  *
@@ -22,18 +24,15 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'movie-datasource.php';
-
 class Get_Data_Test extends PHPUnit_Framework_TestCase {
 
-	public $original_content = array(
+	public $original_content = [
 		'movie'     => 'tt0137523',
 		'tvserie'   => 'tt0402711',
 		'videogame' => 'tt1843198',
 		'nodata'    => 'tt0000000',
 		'incorrect' => 'a b c',
-	);
+	];
 
 	/**
 	 * Main use case get a movie data, no error

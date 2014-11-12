@@ -31,10 +31,10 @@ load_plugin_textdomain(
 $mgmt = new Callback_Management( get_locale() );
 
 // Called by function prior to inserting into or updating the database.
-add_filter( 'wp_insert_post_data', array( $mgmt, 'filter_imdb_tags' ), null, 2 );
+add_filter( 'wp_insert_post_data', [ $mgmt, 'filter_imdb_tags' ], null, 2 );
 
 //applied to the post title retrieved from the database, prior to printing on the screen
-add_filter( 'the_title', array( $mgmt, 'live_filter_imdb_tags' ) );
+add_filter( 'the_title', [ $mgmt, 'live_filter_imdb_tags' ] );
 
 //applied to the post content retrieved from the database, prior to printing on the screen
-add_filter( 'the_content', array( $mgmt, 'live_filter_imdb_tags' ) );
+add_filter( 'the_content', [ $mgmt, 'live_filter_imdb_tags' ] );

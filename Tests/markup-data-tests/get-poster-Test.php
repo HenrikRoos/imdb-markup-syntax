@@ -12,6 +12,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'markup-data.php';
+require_once 'movie-datasource.php';
+
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
  *
@@ -22,10 +25,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'markup-data.php';
-require_once 'movie-datasource.php';
-
 class Get_Poster_Test extends PHPUnit_Framework_TestCase {
 
 	/** @var string positive testdata */
@@ -45,13 +44,13 @@ class Get_Poster_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$imdb = new Movie_Datasource( $this->testdataPositive );
 		$data = $imdb->get_data();
-		$post = array(
+		$post = [
 			'post_title'   => 'Test My post',
 			'post_content' => 'Test This is my post.',
 			'post_status'  => 'publish',
 			'post_author'  => 1,
 			'post_type'    => 'post',
-		);
+		];
 
 		//When
 		$post_id = @wp_insert_post( $post, true );

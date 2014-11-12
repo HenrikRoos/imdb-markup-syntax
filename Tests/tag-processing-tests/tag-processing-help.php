@@ -12,6 +12,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'tag-processing.php';
+
 /**
  * Help class for test protected methods in Tag_Processing class
  * Usage this class insted of Tag_Processing
@@ -30,9 +32,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'tag-processing.php';
-
 class Tag_Processing_Help extends Tag_Processing {
 
 	/**
@@ -56,14 +55,14 @@ class Tag_Processing_Help extends Tag_Processing {
 	 *
 	 * @var array Id on current movie.
 	 */
-	public $tconst_tag = array();
+	public $tconst_tag = [ ];
 	/**
 	 * Public override
 	 *
 	 * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
 	 * current content
 	 */
-	public $imdb_tags = array();
+	public $imdb_tags = [ ];
 
 	/**
 	 * Public override

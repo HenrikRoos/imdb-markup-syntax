@@ -12,6 +12,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'markup-data.php';
+require_once 'movie-datasource.php';
+
 /**
  * Testclass to Markup_DataSuite for method getCast in Markup_Data class
  *
@@ -22,10 +25,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'markup-data.php';
-require_once 'movie-datasource.php';
-
 class Get_Cast_Test extends PHPUnit_Framework_TestCase {
 
 	/** @var string positive testdata */
@@ -130,7 +129,7 @@ class Get_Cast_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$imdb               = new Movie_Datasource( $this->testdataPositive );
 		$data               = $imdb->get_data();
-		$data->cast_summary = array( $data->cast_summary[0] );
+		$data->cast_summary = [ $data->cast_summary[0] ];
 		unset( $data->cast_summary[0]->name->nconst );
 		$data->cast_summary[0]->char       = '';
 		$data->cast_summary[0]->name->name = ' ';

@@ -42,28 +42,28 @@ class Callback_Management_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_filter_imdb_tags() {
 		//Given
-		$post           = array(
+		$post           = [
 			'post_title'    => 'My post',
 			'post_content'  => 'This is my post.',
 			'post_status'   => 'publish',
 			'post_author'   => 1,
-			'post_category' => array( 8, 39 )
-		);
+			'post_category' => [ 8, 39 ],
+		];
 		$post_id        = wp_insert_post( $post );
 		$mgmt           = new Callback_Management();
-		$postarr        = array( 'ID' => $post_id );
+		$postarr        = [ 'ID' => $post_id ];
 		$data           = [
 			'post_title'   => 'ÖÄÅ öäå congue [IMDb:id(tt0137523)][imdb:title]',
 			'post_content' => 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. ÖÄÅ öäå Quisque congue. [IMDb:id(tt0137523)]Title: [imdb:title] Poster: [imdb:poster][IMDb-a:id(tt1206543)]Title: [imdb-a:title] Poster: [imdb-a:poster_nolink]',
 		];
-		$expected       = array(
+		$expected       = [
 			'post_title'   => 'ÖÄÅ öäå congue <a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>',
 			'post_content' => '/Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. ÖÄÅ öäå Quisque congue. Title: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/">Fight Club<\/a> Poster: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/" title="Fight Club"><img width="\d+" height="\d+" src="http:\/\/.+\/uploads\/201\d\/\d\d\/tt0137523\d*-\d+x\d+.jpg" class="alignnone size-medium wp-post-image" alt="Fight Club".+\/><\/a>Title: <a href="http:\/\/www\.imdb\.com\/title\/tt1206543\/">Out of the Furnace<\/a> Poster: <img width="\d+" height="\d+" src="http:\/\/.+\/uploads\/201\d\/\d\d\/tt1206543\d*-\d+x\d+.jpg" class="alignnone size-medium wp-post-image" alt="Out of the Furnace".+\/>/',
-		);
-		$expected_after = array(
+		];
+		$expected_after = [
 			'post_title'   => 'ÖÄÅ öäå congue <a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>',
 			'post_content' => '/Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. ÖÄÅ öäå Quisque congue. Title: <a href="http:\/\/www\.imdb\.com\/title\/tt0137523\/">Fight Club<\/a> Poster: Can\'t set thumbnail to the Post ID \d+/',
-		);
+		];
 
 		//When
 		$actual = $mgmt->filter_imdb_tags( $data, $postarr );
@@ -113,14 +113,14 @@ class Callback_Management_Test extends PHPUnit_Framework_TestCase {
 		$mgmt     = new Callback_Management();
 		$content  = 'Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. ÖÄÅ öäå Quisque congue[IMDblive:id(tt0137523)]. Posterremote: [imdblive-a:posterremote] [imdblive-z:posterremote] [imdblive-z:posterremote] [imdblive-aa:posterremote] [imdblive-f0001:posterremote] [imdblive-fightclub:posterremote]';
 		$prefix   = 'imdblive';
-		$expected = array(
+		$expected = [
 			'imdblive',
 			'imdblive-a',
 			'imdblive-z',
 			'imdblive-aa',
 			'imdblive-f0001',
 			'imdblive-fightclub',
-		);
+		];
 
 		//When
 		$actual = $mgmt->get_sub_prefix_hints( $content, $prefix );

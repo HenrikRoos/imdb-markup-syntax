@@ -13,6 +13,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'tag-processing-help.php';
+require_once 'wp-config.php';
+
 /**
  * Sub testclass to tag-processing-tests for method tagsReplace in Tag_Processing
  * class
@@ -24,10 +27,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'tag-processing-help.php';
-require_once 'wp-config.php';
-
 class Tags_Replace_Test extends PHPUnit_Framework_TestCase {
 
 	/** @var string Simple positive testdata with one id and one imdb tag */
@@ -247,7 +246,7 @@ class Tags_Replace_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$original_content = $this->positive_data;
 		$timeout          = 200;
-		$expected_content = '/Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. ÖÄÅ öäå Quisque congue\[Operation timed out after \d+ milliseconds with \d+ out of [\-\d+]+ bytes received curl_version:[\d\.]+\]. Title:\[imdb:title\]/';
+		$expected_content = '/Pellentesque viverra luctus est, vel bibendum arcu suscipit quis. ÖÄÅ öäå Quisque congue\[Operation timed out after \d+ milliseconds with \d+ bytes received curl_version: [\d\.]+\]. Title: \[imdb:title\]/';
 		$expected_count   = 1;
 
 		//When

@@ -12,6 +12,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'markup-data.php';
+require_once 'movie-datasource.php';
+
 /**
  * Testclass to Markup_DataSuite for method getTitle in Markup_Data class
  *
@@ -22,10 +25,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'markup-data.php';
-require_once 'movie-datasource.php';
-
 class Get_Title_Test extends PHPUnit_Framework_TestCase {
 
 	/** @var string positive testdata */
@@ -42,8 +41,8 @@ class Get_Title_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_positive() {
 		//Given
-		$imdb = new Movie_Datasource( $this->testdataPositive );
-		$data = $imdb->get_data();
+		$imdb     = new Movie_Datasource( $this->testdataPositive );
+		$data     = $imdb->get_data();
 		$expected = '<a href="http://www.imdb.com/title/tt0137523/">Fight Club</a>';
 
 		//When

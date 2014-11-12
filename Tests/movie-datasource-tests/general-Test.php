@@ -12,6 +12,9 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'movie-datasource.php';
+require_once 'wp-config.php';
+
 /**
  * Sub testclass to movie-datasource-tests for general tests in Movie_Datasource
  *
@@ -22,19 +25,15 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'movie-datasource.php';
-require_once 'wp-config.php';
-
 class General_Test extends PHPUnit_Framework_TestCase {
 
-	public $original_content = array(
+	public $original_content = [
 		'movie'     => 'tt0137523',
 		'tvserie'   => 'tt0402711',
 		'videogame' => 'tt1843198',
 		'nodata'    => 'tt0000000',
 		'incorrect' => 'a b c',
-	);
+	];
 
 	/**
 	 * Negativ test, incorrect tconst checked in construct
