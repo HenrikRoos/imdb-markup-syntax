@@ -13,6 +13,8 @@
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
 
+require_once 'media-library-handler.php';
+
 /**
  * Markup data tags from IMDb data result. Most popular tag in imdb result has a
  * function in this class
@@ -24,8 +26,6 @@
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
-
-require_once 'media-library-handler.php';
 
 class Markup_Data {
 

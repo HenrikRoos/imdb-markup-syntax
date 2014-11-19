@@ -92,9 +92,8 @@ class Media_Library_Handler {
 		);
 		$thumbnail = @set_post_thumbnail( $this->post_id, $attach_id );
 		if ( $thumbnail === false ) {
-			$msg = 'Can\'t set thumbnail to the Post ID %d';
 			throw new Runtime_Exception(
-				sprintf( __( $msg, 'imdb-markup-syntax' ), $this->post_id )
+				sprintf( __( 'Can\'t set thumbnail to the Post ID %d', 'imdb-markup-syntax' ), $this->post_id )
 			);
 		}
 		$img = get_the_post_thumbnail(

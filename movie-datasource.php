@@ -31,7 +31,7 @@ class Movie_Datasource {
 	/** @var string IMDb API URL */
 	public $baseurl = 'http://app.imdb.com/';
 	/** @var array Parameter to the request */
-	public $params = array();
+	public $params = [];
 	/** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
 	public $tconst;
 	/** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */

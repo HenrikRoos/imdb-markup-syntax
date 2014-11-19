@@ -14,6 +14,8 @@
 
 require_once 'markup-data.php';
 require_once 'movie-datasource.php';
+require_once 'wp-config.php';
+require_once 'wp-admin/includes/image.php';
 
 /**
  * Testclass to Markup_DataSuite for method getPoster in Markup_Data class
@@ -29,48 +31,6 @@ class Get_Poster_Test extends PHPUnit_Framework_TestCase {
 
 	/** @var string positive testdata */
 	public $testdataPositive = 'tt0111161';
-
-	/**
-	 * Positive test: Get data sucessful
-	 *
-	 * @covers Markup_Data::__construct
-	 * @covers Markup_Data::get_poster
-	 * @covers Markup_Data::get_value_value
-	 * @covers Media_Library_Handler
-	 *
-	 * @return void
-	 */
-	public function test_positive() {
-		//Given
-		$imdb = new Movie_Datasource( $this->testdataPositive );
-		$data = $imdb->get_data();
-		$post = [
-			'post_title'   => 'Test My post',
-			'post_content' => 'Test This is my post.',
-			'post_status'  => 'publish',
-			'post_author'  => 1,
-			'post_type'    => 'post',
-		];
-
-		//When
-		$post_id = @wp_insert_post( $post, true );
-
-		if ( is_object( $post_id ) || $post_id == 0 ) {
-			$this->markTestSkipped(
-				'Could not insert the post, wp_insert_post return 0 or WP_Error'
-			);
-		}
-
-		$mdata   = new Markup_Data( $data, $post_id );
-		$title   = $mdata->get_value( 'title' );
-		$pattern = '/\<a href="http:\/\/www\.imdb\.com\/title\/' . $this->testdataPositive . '\/" title="' . $title . '"\>\<img width="20\d" height="300" src="http:\/\/.+\/uploads\/201\d\/\d\d\/' . $this->testdataPositive . '\d*-20\dx300\.jpg" class="alignnone size\-medium wp\-post\-image" alt="' . $title . '".+\/\>\<\/a\>/';
-		$actual  = $mdata->get_poster();
-		$delete  = wp_delete_post( $post_id, true );
-
-		//Then
-		$this->assertRegExp( $pattern, $actual );
-		$this->assertTrue( $delete !== false );
-	}
 
 	/**
 	 * Negative test: No image

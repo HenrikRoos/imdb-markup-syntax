@@ -188,7 +188,7 @@ class Tag_Processing {
 			throw new PCRE_Exception();
 		}
 		if ( empty( $match ) ) {
-			$this->tconst_tag = array();
+			$this->tconst_tag = [];
 
 			return false;
 		}
@@ -221,7 +221,7 @@ class Tag_Processing {
 			throw new PCRE_Exception();
 		}
 		if ( empty( $match ) ) {
-			$this->imdb_tags = array();
+			$this->imdb_tags = [];
 
 			return false;
 		}
