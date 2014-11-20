@@ -69,6 +69,31 @@ class Tags_Replace_Test extends PHPUnit_Framework_TestCase {
 	 *
 	 * @return void
 	 */
+	public function test_locale_positive() {
+		//Given
+		$original_content = '[IMDb:locale(es)][IMDb:id(tt0317219)][imdb:date]';
+		$expected_content = 'Thu Jul  6 2006';
+		$expected_count   = 3;
+
+		//When
+		$obj            = new Tag_Processing_Help( $original_content );
+		$actual_count   = $obj->tags_replace();
+		$actual_content = $obj->get_replacement_content();
+
+		//Then
+		$this->assertSame( $expected_content, $actual_content );
+		$this->assertSame( $expected_count, $actual_count );
+	}
+
+	/**
+	 * Replace one imdb tag and delete mandatory id. Positive test
+	 *
+	 * @covers Tag_Processing::__construct
+	 * @covers Tag_Processing::tags_replace
+	 * @covers Tag_Processing::get_replacement_content
+	 *
+	 * @return void
+	 */
 	public function test_mixed_positive() {
 		//Given
 		$original_content = $this->positive_mix_data;

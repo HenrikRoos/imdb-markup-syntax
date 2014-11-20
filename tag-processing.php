@@ -48,6 +48,11 @@ class Tag_Processing {
 	 */
 	protected $id_pattern = 'id\((tt\d{7,20})\)';
 	/**
+	 * @var string Regular expression for locale e.g fr-FR. This is a subset of pattern:
+	 * **[{$this->prefix}:{$this->id_pattern}]**
+	 */
+	protected $locale_pattern = 'locale\(([a-z]{2}_?[a-z]{0,2})\)';
+	/**
 	 * @var string Regular expression for imdb tags. This is a subset of pattern:
 	 * **[{$this->prefix}:{$this->imdb_tags_pattern}]**
 	 */
@@ -58,6 +63,12 @@ class Tag_Processing {
 	 * e.g. <i>/\[my_id\:[a-z]+\]/i"</i>
 	 */
 	protected $custom_id_pattern = '';
+	/**
+	 * @var string Regular expression for locale. If this is set when override
+	 * **[{$this->prefix}:{$this->locale_pattern}]** with this.
+	 * e.g. <i>/\[my_id\:[a-z]+\]/i"</i>
+	 */
+	protected $custom_locale_pattern = '';
 	/**
 	 * @var string Regular expression for imdb tags. If this is set when override
 	 * **[{$this->prefix}:{$this->imdb_tags_pattern}]** with this.
@@ -71,6 +82,12 @@ class Tag_Processing {
 	 * $tconst_tag => array("[imdb:id(tt0137523)]", "tt0137523")
 	 */
 	protected $tconst_tag = [ ];
+	/**
+	 * @var array locale on current movie.
+	 * Syntax: <b>[imdb:locale(fr-FR)]</b>
+	 * $locale_tag => array("[imdb:locale(tt0137523)]", "fr-FR")
+	 */
+	protected $locale_tag = [ ];
 	/**
 	 * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
 	 * current content
@@ -115,10 +132,10 @@ class Tag_Processing {
 		$this->_replacement_content = $this->original_content;
 		$count                      = 0;
 		try {
+			$this->find_locale();
 			if ( ! $this->find_id() ) {
 				return false;
 			}
-			//Try parse imdb tags
 			$this->find_imdb_tags();
 		} catch ( PCRE_Exception $exc ) {
 			//Some fishy PCRE Exception try find [imdb:id with str_replace insted
@@ -157,6 +174,12 @@ class Tag_Processing {
 			$this->_replacement_content = str_replace(
 				$this->tconst_tag[0], '', $this->_replacement_content, $num
 			);
+			$count += $num;
+
+			//Delete [imdb:locale(ttxxxxxxx)] in replacement_content
+			$this->_replacement_content = str_replace(
+				$this->locale_tag[0], '', $this->_replacement_content, $num
+			);
 		} else {
 			$this->_replacement_content = str_replace(
 				$this->tconst_tag[0],
@@ -189,7 +212,6 @@ class Tag_Processing {
 		}
 		if ( empty( $match ) ) {
 			$this->tconst_tag = [];
-
 			return false;
 		}
 		$this->tconst_tag = $match;
@@ -200,6 +222,33 @@ class Tag_Processing {
 		);
 
 		return $this->data->get_tconst() == true;
+	}
+
+	/**
+	 * Find after local override for locale.
+	 *
+	 * @return boolean False if no match true if match
+	 *
+	 * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
+	 */
+	protected function find_locale() {
+		$match   = [ ];
+		$pattern = empty( $this->custom_locale_pattern )
+			? '/\[' . $this->prefix . '\:' . $this->locale_pattern . '\]/i'
+			: $this->custom_locale_pattern;
+		$isOk    = @preg_match( $pattern, $this->original_content, $match );
+
+		if ( $isOk === false ) {
+			throw new PCRE_Exception();
+		}
+		if ( empty( $match ) ) {
+			$this->locale_tag = [];
+			return false;
+		}
+		$this->locale_tag = $match;
+		$this->locale = $match[1];
+
+		return true;
 	}
 
 	/**

@@ -45,6 +45,15 @@ class Tag_Processing_Help extends Tag_Processing {
 	/**
 	 * Public override
 	 *
+	 * @var string Regular expression for id. If this is set when override
+	 * **[{$this->prefix}:{$this->locale_pattern}]** with this.
+	 * e.g. <i>/\[my_id\:[a-z]+\]/i"</i>
+	 */
+	public $custom_locale_pattern = '';
+
+	/**
+	 * Public override
+	 *
 	 * @var string Regular expression for imdb tags. If this is set when override
 	 * **[{$this->prefix}:{$this->imdb_tags_pattern}]** with this.
 	 * e.g. <i>/\[my_prefix\:[a-z]+\]/i"</i>
@@ -56,6 +65,12 @@ class Tag_Processing_Help extends Tag_Processing {
 	 * @var array Id on current movie.
 	 */
 	public $tconst_tag = [ ];
+	/**
+	 * Public override
+	 *
+	 * @var array locale on current context
+	 */
+	public $locale_tag = [ ];
 	/**
 	 * Public override
 	 *
@@ -73,6 +88,17 @@ class Tag_Processing_Help extends Tag_Processing {
 	 */
 	public function to_data_string( $tag ) {
 		return parent::to_data_string( $tag );
+	}
+
+	/**
+	 * Public override
+	 *
+	 * @return boolean False if no match true if find a id
+	 *
+	 * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
+	 */
+	public function find_locale() {
+		return parent::find_locale();
 	}
 
 	/**
