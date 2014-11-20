@@ -7,7 +7,7 @@
  * @category  Runnable
  * @package   Core
  * @author    Henrik Roos <henrik.roos@afternoon.se>
- * @copyright 2013 Henrik Roos
+ * @copyright 2014 Henrik Roos
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
@@ -22,7 +22,7 @@ require_once 'json-exception.php';
  * @category  Runnable
  * @package   Core
  * @author    Henrik Roos <henrik.roos@afternoon.se>
- * @copyright 2013 Henrik Roos
+ * @copyright 2014 Henrik Roos
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
@@ -31,7 +31,7 @@ class Movie_Datasource {
 	/** @var string IMDb API URL */
 	public $baseurl = 'http://app.imdb.com/';
 	/** @var array Parameter to the request */
-	public $params = [];
+	public $params = [ ];
 	/** @var string imdb tconst for current movie. <i>e.g. tt0137523</i> */
 	public $tconst;
 	/** @var string Localization for data, defualt <i>en_US</i> standard RFC 4646 */

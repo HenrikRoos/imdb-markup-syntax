@@ -7,7 +7,7 @@
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
- * @copyright 2013 Henrik Roos
+ * @copyright 2014 Henrik Roos
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */
@@ -22,7 +22,7 @@ require_once 'wp-config.php';
  * @category  Testable
  * @package   Test
  * @author    Henrik Roos <henrik.roos@afternoon.se>
- * @copyright 2013 Henrik Roos
+ * @copyright 2014 Henrik Roos
  * @license   http://opensource.org/licenses/gpl-3.0.html GPL-3.0
  * @link      https://github.com/HenrikRoos/imdb-markup-syntax imdb-markup-syntax
  */

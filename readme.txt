@@ -3,8 +3,8 @@ Contributors: HenrikRoos
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YRT2ALPQH42N4
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
-Tested up to: 3.9.1
-Stable tag: 2.1
+Tested up to: 4.0
+Stable tag: 2.2
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ replace with IMBb data direct from IMDb Mobile Applications.
 == Description ==
 This plugin makes it possible to insert movie data in your text from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com). The plugin is
 
- * **Stable:** over 100 unit test.
+ * **Stable:** over 120 unit test.
  * **Clean:** no configuration, well integrated to WordPress API, no checkstyle errors.
  * **Fast:** No extra database writes, using only filter hooks (no actions hooks). IMDb DataSource is an RESTful interface.
  * **Internationalizing:** Support for locale from IMBb datasource, date format and number format.
@@ -43,6 +43,25 @@ In post *edit* mode you write:
 
 	Vivamus id sem felis. Donec consequat urna et sapien gravida bibendum sed ut orci. Donec eu nibh leo.
 	Etiam hendrerit justo eget est vehicula eu ornare dolor vulputate.
+
+= Set language for a set av tags =
+In post *edit* mode you write:
+	[imdb:id(tt0110912)]
+	[imdb:locale(de_DE)]
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+	Nulla ut mi eget justo ultrices auctor sed in lacus.
+
+	Title: [imdb:title]
+	Release Date: [imdb:date]
+
+	[imdb:id(tt0110912)]
+    [imdb:locale(es)]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+    Nulla ut mi eget justo ultrices auctor sed in lacus.
+
+    Title: [imdb:title]
+    Release Date: [imdb:date]
+
 
 = List of movies =
 In post *edit* mode you write:
@@ -213,6 +232,10 @@ Set the current movie. All tags starting with `[imdb` use this id. This ID disap
 
 Set the current movie. All tags starting with `[imdblive` use this id. This ID disappearance when you **read** the post from your database.
 
+    [imdb:locale(en)] or [imdblive:locale(sv_se)]
+
+Set the current language in standard RFC 4646. All tags starting with `[imdb [imdblive` use this language (if imdb.com support that).
+
     [imdb:cast] or [imdblive:cast]
 
 A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
@@ -336,6 +359,12 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 == Changelog ==
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
 
+= 2.2 =
+1. New feature: Add support for [imdb:locale(...)] tag. Thanks *nexplissken*
+2. Better support for WordPress Coding Standards for PHP_CodeSniffer
+3. PHPUnit improvement for PhpStorm 8
+4. Tested and supported for WordPress 4.0
+
 = 2.1 =
 1. New feature: Added support for one-off tags with embedded IDs **e.g. imdb-AboutAlex, imdblive-IntotheStorm, imdb-zaq12wsx, ...** [GitHub issue #8](https://github.com/HenrikRoos/imdb-markup-syntax/issues/8) **Thanks to [Daniel](https://github.com/danhunsaker)!**
 2. Tested and supported for WordPress 3.9.1
@@ -360,5 +389,5 @@ The code in WordPress plugin host is only production releases. Developers releas
 First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.
 
 == Easy to contribute and make changes ==
-If you want to be involved in developing this plug along, you are welcome to attend. The code is struktuerad, well commented and have very high test coverage, so it is easy to contribute and make changes.
-Of course you get a license for [PhpStorm 7](http://www.jetbrains.com/phpstorm/)!
+If you want to be involved in developing this plug along, you are welcome to attend. The code is structured, well commented and have very high test coverage, so it is easy to contribute and make changes.
+Of course you get a license for [PhpStorm 8](http://www.jetbrains.com/phpstorm/)!

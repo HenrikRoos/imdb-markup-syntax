@@ -1,7 +1,7 @@
 # Description
 This plugin makes it possible to insert movie data in your text from the IMDb Web Service which is the same datasource that IMDb:s Mobile apps is using [IMDb Mobile Applications](http://app.imdb.com). The plugin is
 
- * **Stable:** over 100 unit test.
+ * **Stable:** over 120 unit test.
  * **Clean:** no configuration, well integrated to WordPress API, no checkstyle errors.
  * **Fast:** No extra database writes, using only filter hooks (no actions hooks). IMDb DataSource is an RESTful interface.
  * **Internationalizing:** Support for locale from IMBb datasource, date format and number format.
@@ -56,6 +56,25 @@ In post *edit* mode you write:
     <h1>[imdb-AboutAlex:title_nolink]</h1>
     Ratings: [imdblive-AboutAlex:rating]/10 from [imdblive-AboutAlex:votes] users
     <div>[imdb-AboutAlex:poster]</div>
+
+## Set language for a set av tags:
+In post *edit* mode you write:
+
+    [imdb:id(tt0110912)]
+    [imdb:locale(de_DE)]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+    Nulla ut mi eget justo ultrices auctor sed in lacus.
+
+    Title: [imdb:title]
+    Release Date: [imdb:date]
+
+    [imdb:id(tt0110912)]
+    [imdb:locale(es)]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis eros non dui porta tincidunt.
+    Nulla ut mi eget justo ultrices auctor sed in lacus.
+
+    Title: [imdb:title]
+    Release Date: [imdb:date]
 
 ### All tags example
 This example display all implements tags in one post. For you own test: cut and paste this example in a new post and save it.
@@ -190,6 +209,7 @@ Tag                                                          | Description
 ------------------------------------------------------------ | ---------------
 `[imdb:id(tt0000000)]`                                       | Set the current movie. All tags starting with `[imdb` use this id. This ID disappearance when you **save** the post into your database.
 `[imdblive:id(tt0000000)]`                                   | Set the current movie. All tags starting with `[imdblive` use this id. This ID disappearance when you **read** the post from your database.
+`[imdb:locale(en)] or [imdblive:locale(sv_se)                | Set the current language in standard RFC 4646. All tags starting with `[imdb [imdblive` use this language (if imdb.com support that).
 `[imdb:cast]` `[imdblive:cast]`                              | A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
 `[imdb:cast_nolink]` `[imdblive:cast_nolink]`                | A list of main actors without links. *<br />Example:<br />Elijah Wood - Frodo Baggins<br />Ian McKellen - Gandalf the Grey<br />Orlando Bloom - Legolas Greenleaf<br />Sean Bean - Boromir*
 `[imdb:certificate]` `[imdblive:certificate]`                | Various countries or regions have film classification boards for reviewing movies and rating their content in terms of its suitability for particular audiences. For many countries, movies are required to be advertised as having a particular "certificate" or "rating", forewarning audiences of possible "objectionable content". The nature of this "objectionable content" is determined mainly by contemporary national, social, religious, and political standards. The usual criteria which determine a film's certificate are violence and sexuality, with "mature" (adult) situations and especially blasphemy and political issues often being considered more important outside the Western world. This is by no means a hard and fast rule; see the Hays Production Code for an example. In some cases, a film classification board exhibits censorship by demanding changes be made to a movie in order to receive a certain rating. As many movies are targeted at a particular age group, studios must balance the content of their films against the demands of the classification board. Negotiations are common; studios agree to make certain changes to films in order to receive the required rating. The IMDb uses the term "Certificate" as opposed to "Rating" to avoid confusion with "ratings" meaning the opinions of critics. <http://www.filmratings.com> Classification and Rating Administration (CARA)<br /><br />*NOTE: This tag has language dependency, different WordPress language different output.<br /><br />Example: Fight Club has certificate **PG** on english WordPress and **15** on swedish WordPress*
@@ -243,6 +263,12 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 ![Edit Media](Site/screenshot-6.jpg)
 
 # Changelog
+
+## 2.2
+1. New feature: Add support for [imdb:locale(...)] tag. Thanks *nexplissken*
+2. Better support for WordPress Coding Standards for PHP_CodeSniffer
+3. PHPUnit improvement for PhpStorm 8
+4. Tested and supported for WordPress 4.0
 
 ## 2.1
 1. New feature: Added support for one-off tags with embedded IDs **e.g. imdb-AboutAlex, imdblive-IntotheStorm, imdb-zaq12wsx, ...** [GitHub issue #8](https://github.com/HenrikRoos/imdb-markup-syntax/issues/8) **Thanks to [Daniel](https://github.com/danhunsaker)!**
