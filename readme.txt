@@ -221,6 +221,9 @@ You have watched a movie and want to post a comment on it on your blog. With a f
 
 You can also insert statistics such as the number of people who has comment on the movie at IMDb´s website and this will be automatically updated whenever your own blog page is refreshed.
 
+== Upgrade Notice ==
+Current verson is backward compatibility.
+
 == Other Notes ==
 = Markup Syntax =
 
@@ -388,6 +391,9 @@ The code in WordPress plugin host is only production releases. Developers releas
 = 1.0 =
 First stable release, tested from English WordPress (3.3, 3.3.1, 3.3.2, 3.3.3, 3.4, 3.4.1, 3.4.2, 3.5, 3.5.1), Svenska WordPress 3.5.1, Español WordPress 3.5.1 and ئۇيغۇرچە WordPress 3.5.1. Error messages in English and Swedish is supported.
 
-== Easy to contribute and make changes ==
+= Easy to contribute and make changes =
 If you want to be involved in developing this plug along, you are welcome to attend. The code is structured, well commented and have very high test coverage, so it is easy to contribute and make changes.
 Of course you get a license for [PhpStorm 8](http://www.jetbrains.com/phpstorm/)!
+
+== Frequently Asked Questions ==
+see Support section
