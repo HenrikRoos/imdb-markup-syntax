@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 2.2.1
+Stable tag: 2.3
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
 
