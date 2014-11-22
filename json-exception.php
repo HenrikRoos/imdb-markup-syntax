@@ -25,14 +25,14 @@
 class Json_Exception extends Exception {
 
 	/** @var array json error codes */
-	public $json_errors = [
+	public $json_errors = array(
 		0 => 'JSON_ERROR_NONE',
 		1 => 'JSON_ERROR_DEPTH',
 		2 => 'JSON_ERROR_STATE_MISMATCH',
 		3 => 'JSON_ERROR_CTRL_CHAR',
 		4 => 'JSON_ERROR_SYNTAX',
 		5 => 'JSON_ERROR_UTF8',
-	];
+	);
 
 	/**
 	 * Create object and grep the last error from json

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 2.2
+Stable tag: 2.2.1
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
 
@@ -362,11 +362,15 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 == Changelog ==
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
 
+= 2.2.1 =
+1. Add support for php 5.3. Must have php 5.3+.
+
 = 2.2 =
 1. New feature: Add support for [imdb:locale(...)] tag. Thanks *nexplissken*
 2. Better support for WordPress Coding Standards for PHP_CodeSniffer
 3. PHPUnit improvement for PhpStorm 8
 4. Tested and supported for WordPress 4.0
+5. Must have php 5.4+
 
 = 2.1 =
 1. New feature: Added support for one-off tags with embedded IDs **e.g. imdb-AboutAlex, imdblive-IntotheStorm, imdb-zaq12wsx, ...** [GitHub issue #8](https://github.com/HenrikRoos/imdb-markup-syntax/issues/8) **Thanks to [Daniel](https://github.com/danhunsaker)!**

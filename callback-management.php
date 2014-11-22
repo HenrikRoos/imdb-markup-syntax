@@ -96,7 +96,7 @@ class Callback_Management {
 	 * @return string content with one-off tags converted
 	 */
 	public function convert_one_off_to_sub_prefix( $content, $prefix ) {
-		$match   = [ ];
+		$match   = array();
 		$pattern = '/\[' . $prefix . ':([a-z0-9_]{1,40})\((tt\d{7,20})\)\]/i';
 		$isOk    = @preg_match_all( $pattern, $content, $match );
 
@@ -139,7 +139,7 @@ class Callback_Management {
 	 * @return array list of all sub prefix
 	 */
 	public function get_sub_prefix_hints( $content, $prefix ) {
-		$match   = [ ];
+		$match   = array();
 		$pattern = '/\[(' . $prefix . '(-[a-z][a-z0-9]*)?):/i';
 		$isOk    = @preg_match_all( $pattern, $content, $match );
 

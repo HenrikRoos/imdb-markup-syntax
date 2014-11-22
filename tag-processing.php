@@ -81,13 +81,13 @@ class Tag_Processing {
 	 * Syntax: <b>[imdb:id(ttxxxxxxx)]</b>
 	 * $tconst_tag => array("[imdb:id(tt0137523)]", "tt0137523")
 	 */
-	protected $tconst_tag = [ ];
+	protected $tconst_tag = array();
 	/**
 	 * @var array locale on current movie.
 	 * Syntax: <b>[imdb:locale(fr-FR)]</b>
 	 * $locale_tag => array("[imdb:locale(tt0137523)]", "fr-FR")
 	 */
-	protected $locale_tag = [ ];
+	protected $locale_tag = array();
 	/**
 	 * @var array Multi-array of imdb tags in PREG_SET_ORDER. All imdb tags in
 	 * current content
@@ -95,7 +95,7 @@ class Tag_Processing {
 	 * - $imdb_tags[1] => array("[imdb:yyy]", "yyy")
 	 * - ...
 	 */
-	protected $imdb_tags = [ ];
+	protected $imdb_tags = array();
 	/** @var object IMDb:s data object */
 	protected $data;
 	/** @var string Replacement content after filter processing */
@@ -201,7 +201,7 @@ class Tag_Processing {
 	 * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
 	 */
 	protected function find_id() {
-		$match   = [ ];
+		$match   = array();
 		$pattern = empty( $this->custom_id_pattern )
 			? '/\[' . $this->prefix . '\:' . $this->id_pattern . '\]/i'
 			: $this->custom_id_pattern;
@@ -211,7 +211,7 @@ class Tag_Processing {
 			throw new PCRE_Exception();
 		}
 		if ( empty( $match ) ) {
-			$this->tconst_tag = [ ];
+			$this->tconst_tag = array();
 
 			return false;
 		}
@@ -233,7 +233,7 @@ class Tag_Processing {
 	 * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
 	 */
 	protected function find_locale() {
-		$match   = [ ];
+		$match   = array();
 		$pattern = empty( $this->custom_locale_pattern )
 			? '/\[' . $this->prefix . '\:' . $this->locale_pattern . '\]/i'
 			: $this->custom_locale_pattern;
@@ -243,7 +243,7 @@ class Tag_Processing {
 			throw new PCRE_Exception();
 		}
 		if ( empty( $match ) ) {
-			$this->locale_tag = [ ];
+			$this->locale_tag = array();
 
 			return false;
 		}
@@ -261,7 +261,7 @@ class Tag_Processing {
 	 * @throws PCRE_Exception If a PCRE error occurs or patten compilation failed
 	 */
 	protected function find_imdb_tags() {
-		$match   = [ ];
+		$match   = array();
 		$pattern = empty( $this->custom_tags_pattern )
 			? '/\[' . $this->prefix . '\:' . $this->imdb_tags_pattern . '\]/i'
 			: $this->custom_tags_pattern;
@@ -272,7 +272,7 @@ class Tag_Processing {
 			throw new PCRE_Exception();
 		}
 		if ( empty( $match ) ) {
-			$this->imdb_tags = [ ];
+			$this->imdb_tags = array();
 
 			return false;
 		}

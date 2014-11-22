@@ -103,11 +103,11 @@ class Markup_Data {
 	 * @return array|boolean list that persion is a string markup
 	 */
 	protected function to_persons_list( array $personsObj, $link ) {
-		$named = [ ];
+		$named = array();
 		foreach ( $personsObj as $nameObj ) {
 			$named[] = $this->to_person_string( $nameObj, $link );
 		}
-		$named_summary = array_filter( $named, [ $this, 'is_not_empty' ] );
+		$named_summary = array_filter( $named, array( $this, 'is_not_empty' ) );
 
 		return $named_summary;
 	}
@@ -137,7 +137,7 @@ class Markup_Data {
 	 * @return string concat data into a string
 	 */
 	protected function to_person_string( stdClass $person, $link ) {
-		$resultArr = [ ];
+		$resultArr = array();
 		$props     = get_object_vars( $person );
 		if ( ( isset( $person->name->name ) ) && is_object( $person->name ) ) {
 			array_push( $resultArr, $this->to_name_string( $person->name, $link ) );
