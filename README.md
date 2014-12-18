@@ -264,6 +264,12 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 # Changelog
 
+## 2.4
+1. Add support for WordPress 4.1
+
+## 2.3
+1. Add support for php 5.3. Must have php 5.3+.
+
 ## 2.2
 1. New feature: Add support for [imdb:locale(...)] tag. Thanks *nexplissken*
 2. Better support for WordPress Coding Standards for PHP_CodeSniffer
