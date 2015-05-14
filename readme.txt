@@ -3,8 +3,8 @@ Contributors: HenrikRoos
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YRT2ALPQH42N4
 Tags: IMDb, Movie, Review, API, Markup, Syntax, Clean
 Requires at least: 3.3
-Tested up to: 4.1
-Stable tag: 2.4
+Tested up to: 4.2.2
+Stable tag: 2.5
 License: GPL-3.0
 License URI: http://opensource.org/licenses/gpl-3.0.html
 
@@ -361,6 +361,9 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 
 == Changelog ==
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
+
+= 2.5 =
+1. Add sipport for WordPress 4.2
 
 = 2.4 =
 1. Add support for WordPress 4.1
