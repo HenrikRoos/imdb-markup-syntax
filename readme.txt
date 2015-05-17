@@ -222,7 +222,7 @@ You have watched a movie and want to post a comment on it on your blog. With a f
 You can also insert statistics such as the number of people who has comment on the movie at IMDb´s website and this will be automatically updated whenever your own blog page is refreshed.
 
 == Upgrade Notice ==
-Current verson is backward compatibility.
+Current version is backward compatibility.
 
 == Other Notes ==
 = Markup Syntax =
@@ -241,11 +241,11 @@ Set the current language in standard RFC 4646. All tags starting with `[imdb [im
 
     [imdb:cast] or [imdblive:cast]
 
-A list of main actors. *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
+A list of main actors (Updated 2.5). *<br />Example:<br />[Elijah Wood](http://www.imdb.com/name/nm0000704) Frodo Baggins<br />[Ian McKellen](http://www.imdb.com/name/nm0005212) Gandalf the Grey<br />[Orlando Bloom](http://www.imdb.com/name/nm0089217) Legolas Greenleaf<br />[Sean Bean](http://www.imdb.com/name/nm0000293) Boromir*
 
     [imdb:cast_nolink] or [imdblive:cast_nolink]
 
-A list of main actors with no links (Required 2.0). *<br />Example:<br />Elijah Wood - Frodo Baggins<br />Ian McKellen - Gandalf the Grey<br />Orlando Bloom - Legolas Greenleaf<br />Sean Bean - Boromir*
+A list of main actors with no links (Required 2.0, Updated 2.5). *<br />Example:<br />Elijah Wood, Ian McKellen, Orlando Bloom, Sean Bean*
 
     [imdb:certificate] or [imdblive:certificate]
 
@@ -363,7 +363,9 @@ Most of the photos on our site are licensed to us for our own use only. We do no
 The code in WordPress plugin host is only production releases. Developers releases with unit-test and jenkins build config is hosted on [GitHub](https://github.com/HenrikRoos/imdb-markup-syntax)
 
 = 2.5 =
-1. Add sipport for WordPress 4.2
+1. Changes in [imdb:cast], [imdblive:cast]. Replace , to <br />. Thanks Aloysius69 for you feedback!
+2. Changes in [imdb:cast_nolink], [imdblive:cast_nolink]. Show stars name without character name. Thanks reborn79 and bluecity for you feedback!
+3. Add support for WordPress 4.2
 
 = 2.4 =
 1. Add support for WordPress 4.1

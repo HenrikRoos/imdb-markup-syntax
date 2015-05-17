@@ -65,26 +65,24 @@ class Markup_Data {
 	 * @return string|boolean List of actors as a one string or false if no data
 	 */
 	public function get_cast() {
-		return $this->to_summary_string( 'cast_summary' );
+		return $this->to_summary_string( 'cast_summary', '<br />', true, true );
 	}
 
 
 	/**
-	 * Convert data *_summary object to string contans persons as list separate by
-	 * specifde glue char(s).
+	 * Convert data *_summary object to string contains persons as list separate by specified glue char(s).
 	 *
-	 * @param string $summary E.g <i>directors_summary</i> in
-	 * $this->_data->directors_summary
-	 * @param string $glue One or more char as separat between persons in the list
-	 *                        default is <i>", "</i>
-	 * @param boolean $link true = name with url (defualt) else just name
+	 * @param string $summary E.g <i>directors_summary</i> in $this->_data->directors_summary
+	 * @param string $glue One or more char as separate between persons in the list default is <i>", "</i>
+	 * @param boolean $link true = name with url (default) else just name
+     * @param boolean $attr true = name with artist name or title. Default if false
 	 *
-	 * @return boolean|string contans all persons or false if no data
+	 * @return boolean|string contains all persons or false if no data
 	 */
-	protected function to_summary_string( $summary, $glue = ', ', $link = true ) {
+	protected function to_summary_string( $summary, $glue = ', ', $link = true, $attr = false ) {
 		if ( isset( $this->_data->$summary ) && ! empty( $this->_data->$summary ) && is_array( $this->_data->$summary )
 		) {
-			$summaryList = $this->to_persons_list( $this->_data->$summary, $link );
+			$summaryList = $this->to_persons_list( $this->_data->$summary, $link, $attr );
 			if ( ! empty( $summaryList ) ) {
 				return implode( $glue, $summaryList );
 			}
@@ -94,18 +92,18 @@ class Markup_Data {
 	}
 
 	/**
-	 * Convert json objects persion to array contans string format for the
-	 * persons
+	 * Convert json objects persons to array contains string format for the persons
 	 *
-	 * @param array $personsObj list of persions objects
-	 * @param boolean $link true = name with url (defualt) else just name
+	 * @param array $personsObj list of persons objects
+	 * @param boolean $link true = name with url (default) else just name
+     * @param boolean $attr true = name with artist name or title.
 	 *
-	 * @return array|boolean list that persion is a string markup
+	 * @return array|boolean list that persons is a string markup
 	 */
-	protected function to_persons_list( array $personsObj, $link ) {
+	protected function to_persons_list( array $personsObj, $link, $attr ) {
 		$named = array();
 		foreach ( $personsObj as $nameObj ) {
-			$named[] = $this->to_person_string( $nameObj, $link );
+			$named[] = $this->to_person_string( $nameObj, $link, $attr );
 		}
 		$named_summary = array_filter( $named, array( $this, 'is_not_empty' ) );
 
@@ -131,27 +129,32 @@ class Markup_Data {
 	 * <a href="http://www.imdb.com/name/nm0254645">Ted Elliott</a> (characters)
 	 * </code>
 	 *
-	 * @param stdClass $person object where minimun name object is set
-	 * @param boolean $link true = name with url (defualt) else just name
+	 * @param stdClass $person object where minimum name object is set
+	 * @param boolean $link true = name with url (default) else just name
+     * @param boolean $attr true = name with artist name or title.
 	 *
 	 * @return string concat data into a string
 	 */
-	protected function to_person_string( stdClass $person, $link ) {
-		$resultArr = array();
-		$props     = get_object_vars( $person );
+	protected function to_person_string( stdClass $person, $link, $attr ) {
+        $resultArr = array();
+        $props     = get_object_vars( $person );
 		if ( ( isset( $person->name->name ) ) && is_object( $person->name ) ) {
-			array_push( $resultArr, $this->to_name_string( $person->name, $link ) );
-			unset( $props['name'] );
+            array_push( $resultArr, $this->to_name_string( $person->name, $link ) );
 		}
-		$result    = array_merge( $resultArr, $props );
-		$glue      = $link ? ' ' : ' - ';
-		$resultStr = implode( $glue, $result );
+        if ($attr) {
+            unset( $props['name'] );
+            $result    = array_merge( $resultArr, $props );
+            $glue      = $link ? ' ' : ' - ';
+            $resultStr = implode( $glue, $result );
+        } else {
+            $resultStr = implode( '' , $resultArr );
+        }
 
-		return trim( $resultStr );
+        return trim( $resultStr );
 	}
 
 	/**
-	 * Convert name objekt into string
+	 * Convert name object into string
 	 *
 	 * @param stdClass $nameObj An array like
 	 * <code>
@@ -534,7 +537,7 @@ class Markup_Data {
 	 * @return string|boolean List of writers as a string
 	 */
 	public function get_writers() {
-		return $this->to_summary_string( 'writers_summary' );
+		return $this->to_summary_string( 'writers_summary', ', ', true, true );
 	}
 
 	/**

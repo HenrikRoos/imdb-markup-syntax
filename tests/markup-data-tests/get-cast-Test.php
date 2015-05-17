@@ -47,7 +47,7 @@ class Get_Cast_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$imdb     = new Movie_Datasource( $this->testdataPositive );
 		$data     = $imdb->get_data();
-		$expected = '<a href="http://www.imdb.com/name/nm0000093">Brad Pitt</a> Tyler Durden, <a href="http://www.imdb.com/name/nm0001570">Edward Norton</a> The Narrator, <a href="http://www.imdb.com/name/nm0000307">Helena Bonham Carter</a> Marla Singer, <a href="http://www.imdb.com/name/nm0001533">Meat Loaf</a> (as Meat Loaf Aday) Robert \'Bob\' Paulsen';
+		$expected = '<a href="http://www.imdb.com/name/nm0000093">Brad Pitt</a> Tyler Durden<br /><a href="http://www.imdb.com/name/nm0001570">Edward Norton</a> The Narrator<br /><a href="http://www.imdb.com/name/nm0000307">Helena Bonham Carter</a> Marla Singer<br /><a href="http://www.imdb.com/name/nm0001533">Meat Loaf</a> (as Meat Loaf Aday) Robert \'Bob\' Paulsen';
 
 		//When
 		$mdata  = new Markup_Data( $data );
@@ -74,7 +74,7 @@ class Get_Cast_Test extends PHPUnit_Framework_TestCase {
 		//Given
 		$imdb     = new Movie_Datasource( $this->testdataPositive );
 		$data     = $imdb->get_data();
-		$expected = 'Brad Pitt - Tyler Durden, Edward Norton - The Narrator, Helena Bonham Carter - Marla Singer, Meat Loaf - (as Meat Loaf Aday) - Robert \'Bob\' Paulsen';
+		$expected = 'Brad Pitt, Edward Norton, Helena Bonham Carter, Meat Loaf';
 
 		//When
 		$mdata  = new Markup_Data( $data );
